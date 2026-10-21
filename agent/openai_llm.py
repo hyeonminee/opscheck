@@ -57,7 +57,7 @@ class OpenAILLM:
         self.usd_per_1k = usd_per_1k_tokens
         self.api_key = os.environ.get("OPENAI_API_KEY", "")
 
-    async def _chat(self, system: str, user: str, json_mode: bool = False, *, history=None) -> tuple[str, dict]:
+    async def _chat(self, system: str, user: str, json_mode: bool = False, *, history=None, on_token=None) -> tuple[str, dict]:
         if not self.api_key:
             raise RuntimeError(
                 "OPENAI_API_KEY가 설정되지 않았습니다 — .env 또는 환경변수로 지정하세요."
@@ -74,9 +74,38 @@ class OpenAILLM:
         headers = {"Authorization": f"Bearer {self.api_key}",
                    "Content-Type": "application/json"}
         async with asyncio.timeout(MODEL_TIMEOUT), httpx.AsyncClient(timeout=MODEL_TIMEOUT) as client:
-            resp = await client.post(OPENAI_URL, json=payload, headers=headers)
-        resp.raise_for_status()
-        data = resp.json()
+            if on_token is None:
+                resp = await client.post(OPENAI_URL, json=payload, headers=headers)
+                resp.raise_for_status()
+                data = resp.json()
+            else:
+                payload.update(stream=True, stream_options={"include_usage": True})
+                pieces, finish_reason, done, tokens = [], None, False, 0
+                async with client.stream("POST", OPENAI_URL, json=payload, headers=headers) as resp:
+                    resp.raise_for_status()
+                    async for line in resp.aiter_lines():
+                        if not line.startswith('data:'):
+                            continue
+                        value = line[5:].strip()
+                        if value == '[DONE]':
+                            done = True
+                            break
+                        chunk = json.loads(value)
+                        if chunk.get('error'):
+                            raise RuntimeError('모델 응답 스트림에 오류가 발생했습니다.')
+                        if chunk.get('usage'):
+                            tokens = chunk['usage'].get('total_tokens', 0)
+                        for choice in chunk.get('choices', []):
+                            piece = choice.get('delta', {}).get('content')
+                            if piece:
+                                pieces.append(piece)
+                                on_token(piece)
+                            if choice.get('finish_reason'):
+                                finish_reason = choice['finish_reason']
+                if not done or finish_reason != 'stop':
+                    raise GenerationLimitError()
+                return ''.join(pieces), {'model': self.name, 'tokens': tokens,
+                    'usd': round(tokens / 1000 * self.usd_per_1k, 6)}
         if data["choices"][0].get("finish_reason") != "stop":
             raise GenerationLimitError()
         content = data["choices"][0]["message"]["content"]
@@ -168,9 +197,7 @@ class OpenAIFastLLM(OpenAILLM):
 
     @traceable(run_type="llm", name="openai_fast.chat")
     async def chat(self, query: str, history: list[dict], on_token=None) -> tuple[str, dict]:
-        """ollama_llm.py와 인터페이스(on_token 콜백)만 맞춘다 — OpenAI Chat Completions를
-        아직 stream=True로 호출하지 않아 토큰 단위 중계는 하지 않고 완성된 응답을 한 번에
-        전달한다."""
+        """콜백이 있으면 생성 조각을 즉시 전달하고, 없으면 완성 응답을 반환한다."""
         system = ("당신은 AI 비서다. 사용자와 당신의 역할을 구분하고 한국어로 짧게 답하라. "
                   "사용자의 이름 소개에는 그 이름 뒤에 님을 붙여 인사하라. "
                   "사용자의 이름 질문에는 user 메시지에서 가장 최근에 말한 이름을 님과 함께 답하라. "
@@ -178,12 +205,10 @@ class OpenAIFastLLM(OpenAILLM):
                   "이전 assistant 메시지의 잘못된 자기소개를 반복하지 마라.")
         messages = [{"role": m["role"], "content": m["content"]} for m in history[-10:]
                     if m["role"] in ("user", "assistant")]
-        content, usage = await self._chat(system, query, history=messages)
+        content, usage = await self._chat(system, query, history=messages, on_token=on_token)
         usage["prompt"] = "\n\n".join(
             f"[{m['role'].upper()}]\n{m['content']}" for m in
             [{"role": "system", "content": system}, *messages, {"role": "user", "content": query}])
-        if on_token is not None:
-            on_token(content)
         return content, usage
 
 
@@ -195,8 +220,6 @@ class OpenAIQualityLLM(OpenAILLM):
     async def write(self, query: str, collected: list[dict], attempt: int,
                     feedback: str | None, on_token=None) -> tuple[str, dict]:
         system, user = writer_prompt(query, collected, feedback)
-        content, usage = await self._chat(system, user, json_mode=True)
-        if on_token is not None:
-            on_token(content)
+        content, usage = await self._chat(system, user, json_mode=True, on_token=on_token)
         usage['prompt'] = f'[SYSTEM]\n{system}\n\n[USER]\n{user}'
         return content, usage

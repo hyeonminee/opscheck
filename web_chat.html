@@ -124,6 +124,7 @@
     .detail-title { font-size:20px; }
     .comparison { padding:14px; }
   }
+  .typing-cursor { color:var(--accent, #2468c9); }
 </style>
 </head>
 <body>
@@ -182,7 +183,7 @@
         <template v-for="item in log" :key="item.id">
           <div v-if="item.kind === 'user'" class="row user"><span class="message-label">나</span><div class="bubble">{{ item.text }}</div></div>
           <details v-else-if="item.kind === 'steps' && (item.steps.length || !item.done)" class="steps" :open="!item.done"><summary><strong>{{ item.done ? '처리 과정' : item.incident ? '진단 진행 중' : '요청 처리 중' }}</strong> · {{ stepCount(item.steps) }}단계 · {{ item.eventCount }}이벤트</summary><div class="step-list" aria-live="polite"><div v-for="(step,i) in item.steps" :key="step.id || i" class="step" :class="'step-'+(step.status || 'legacy')"><span class="step-index">{{ stepIcon(step) }}</span><span>{{ stepText(step) }}</span></div></div></details>
-          <div v-else-if="item.kind === 'agent'" class="row agent" :class="'status-'+item.validationStatus"><span class="message-label">진단 어시스턴트</span><div class="bubble"><strong v-if="item.validationStatus" class="validation-label">{{ validationLabel(item.validationStatus) }}</strong><section v-for="(block,i) in reportBlocks(item.text,item.validationStatus)" :key="i" class="report-section"><h3 v-if="block.title">{{ block.title }}</h3><div class="report-body">{{ block.body }}</div></section><pre v-if="item.comparisonText" class="comparison">{{ item.comparisonText }}</pre><div v-if="item.issues?.length" class="issues">반려 사유: {{ item.issues.join(" / ") }}</div></div></div>
+          <div v-else-if="item.kind === 'agent'" class="row agent" :class="'status-'+item.validationStatus"><span class="message-label">진단 어시스턴트</span><div class="bubble"><strong v-if="item.validationStatus" class="validation-label">{{ validationLabel(item.validationStatus) }}</strong><section v-for="(block,i) in reportBlocks(item.visibleText ?? item.text,item.validationStatus,item.text)" :key="i" class="report-section"><h3 v-if="block.title">{{ block.title }}</h3><div class="report-body">{{ block.body }}</div></section><span v-if="item.revealing" class="typing-cursor" aria-hidden="true">▋</span><pre v-if="item.comparisonText && !item.revealing" class="comparison">{{ item.comparisonText }}</pre><div v-if="item.issues?.length" class="issues">반려 사유: {{ item.issues.join(" / ") }}</div></div></div>
           <details v-else-if="item.kind === 'prompt'" class="prompt-box"><summary>개발용 · 최종 프롬프트 보기</summary><pre>{{ item.text }}</pre></details>
         </template>
       </div>
@@ -213,15 +214,17 @@ const STEP_LABELS = {
   Finalize: e => e.processing_status === 'failed' || e.validation_status === 'unverified' ? '진단 미완료·확인 자료 안내 종료' : e.processing_status === 'partial' ? '일부 조회 실패·부분 답변 완료' : '최종 답변 완성',
 };
 
-function reportBlocks(value, status) {
+function reportBlocks(value, status, completeText = value) {
   const text = String(value || '');
-  const matches = [...text.matchAll(/^([1-5])\) (관측값|분석|권장 조치|미확인 사항|출처)$/gm)];
+  const matches = [...String(completeText || '').matchAll(/^([1-5])\) (관측값|분석|권장 조치|미확인 사항|출처)$/gm)];
   const titles = ['관측값','분석','권장 조치','미확인 사항','출처'];
   if (matches.length !== 5 || !matches.every((m,i) => Number(m[1]) === i+1 && m[2] === titles[i])) return [{title:'',body:text}];
   const blocks = [];
   const lead = text.slice(0,matches[0].index).trim();
   if (lead && !(lead === '검증 통과' && status === 'passed')) blocks.push({title:'',body:lead});
-  matches.forEach((m,i) => blocks.push({title:m[0],body:text.slice(m.index+m[0].length,matches[i+1]?.index ?? text.length).trim()}));
+  matches.forEach((m,i) => {
+    if (text.length > m.index) blocks.push({title:m[0],body:text.slice(m.index+m[0].length,matches[i+1]?.index ?? text.length).trim()});
+  });
   return blocks;
 }
 
@@ -338,6 +341,35 @@ createApp({
       if (follow && logEl.value) logEl.value.scrollTop = logEl.value.scrollHeight;
     }
 
+    function stopReveal(item) {
+      if (item.revealFrame != null) cancelAnimationFrame(item.revealFrame);
+      item.revealFrame = null;
+      item.revealing = false;
+      item.visibleText = item.text;
+    }
+
+    function revealText(item, reset = false) {
+      if (typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        stopReveal(item);
+        return;
+      }
+      if (reset) item.visibleText = '';
+      item.visibleText ??= '';
+      if (item.revealFrame != null) return;
+      item.revealing = true;
+      const tick = () => {
+        item.revealFrame = null;
+        if (!log.value.includes(item)) { item.revealing = false; return; }
+        const remaining = item.text.slice(item.visibleText.length);
+        const chars = Array.from(remaining);
+        item.visibleText += chars.slice(0, Math.max(4, Math.ceil(chars.length / 30))).join('');
+        scrollToBottom();
+        if (item.visibleText !== item.text) item.revealFrame = requestAnimationFrame(tick);
+        else item.revealing = false;
+      };
+      item.revealFrame = requestAnimationFrame(tick);
+    }
+
     function onSubmit() {
       const text = input.value.trim();
       if (!text || sending.value || restoring.value) return;
@@ -374,7 +406,7 @@ createApp({
 
         if (e.type === 'ProcessingError') {
           stepsItem.steps = finishSteps(stepsItem.steps);
-          if (streamItem) {streamItem.text = '작성 중단: 이 초안은 완료된 답변이 아닙니다.';streamItem.validationStatus = 'unverified';}
+          if (streamItem) {streamItem.text = '작성 중단: 이 초안은 완료된 답변이 아닙니다.';streamItem.validationStatus = 'unverified';stopReveal(streamItem);}
           streamItem = null; streamAttempt = null;
           log.value.push({id: nextId++, kind: 'agent', text: e.message});
           scrollToBottom();
@@ -389,6 +421,7 @@ createApp({
           }
           if (e.validation_status) streamItem.validationStatus = e.validation_status;
           streamItem.text += e.delta;
+          revealText(streamItem);
           scrollToBottom();
           return;
         }
@@ -403,7 +436,10 @@ createApp({
           streamItem.issues = [];
           streamItem.report = e.report || null;
           streamItem.comparisonText = e.comparison_text || ''; 
-          streamItem.text = e.reply;   // 토큰 합산 결과와 서버의 최종 텍스트를 일치시킨다
+          const unchanged = streamItem.text === e.reply;
+          if (!unchanged) stopReveal(streamItem);
+          streamItem.text = e.reply;
+          revealText(streamItem, !unchanged);   // 최종 보고서는 검증이 끝난 뒤 순서대로 표시한다
           if (e.prompt) log.value.push({ id: nextId++, kind: 'prompt', text: e.prompt });
           streamItem = null;
           streamAttempt = null;
@@ -414,6 +450,7 @@ createApp({
         if (e.type === 'Validation' && streamItem && streamAttempt === e.attempt) {
           streamItem.validationStatus = e.status;
           streamItem.issues = e.issues || [];
+          if (e.status !== 'pending') stopReveal(streamItem);
         }
         if (stepsItem.liveProgress) return;
         const fn = STEP_LABELS[e.type];
@@ -426,7 +463,7 @@ createApp({
 
       es.onerror = () => {
         es.close(); stepsItem.steps = finishSteps(stepsItem.steps); stepsItem.done = true; sending.value = false;
-        if (streamItem) {streamItem.text = '연결 중단: 이 초안의 완료 여부를 확인하지 못했습니다.';streamItem.validationStatus = 'unverified';}
+        if (streamItem) {streamItem.text = '연결 중단: 이 초안의 완료 여부를 확인하지 못했습니다.';streamItem.validationStatus = 'unverified';stopReveal(streamItem);}
         log.value.push({id: nextId++, kind: 'agent', text: '서버 연결이 끊겼습니다. 다시 질문해 주세요.'});
         scrollToBottom();
       };

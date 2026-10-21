@@ -350,19 +350,25 @@ async def write_node(state: AgentState, deps: SupervisorDeps) -> dict:
     attempt = state.get('validation_attempts', 0) + 1
     writer = get_stream_writer()
     writer({'type': 'AnswerToken', 'attempt': attempt, 'delta': '', 'validation_status': 'pending'})
-    received, emitted = '', 0
+    received, emitted = '', ''
     def preview(piece):
         nonlocal received, emitted
         received += piece
-        hypotheses = re.findall(r'"hypothesis"\s*:\s*("(?:[^"\\]|\\.)*")', received)
-        for value in hypotheses[emitted:]:
+        # JSON 원문은 숨기고 미완성 가설도 복호화할 수 있는 부분만 표시한다.
+        hypotheses = re.findall(r'"hypothesis"\s*:\s*("(?:[^"\\]|\\.)*(?:"|$))', received)
+        texts = []
+        for value in hypotheses:
             try:
-                text = json.loads(value)
+                decoded = json.loads(value if value.endswith('"') else value + '"')
+                decoded.encode('utf-8')  # 분할된 유니코드 surrogate는 다음 조각까지 기다린다.
+                texts.append(decoded)
             except ValueError:
-                continue
-            writer({'type': 'AnswerToken', 'attempt': attempt, 'delta': text + '\n',
+                break
+        text = '\n'.join(texts)
+        if text.startswith(emitted) and text != emitted:
+            writer({'type': 'AnswerToken', 'attempt': attempt, 'delta': text[len(emitted):],
                     'validation_status': 'pending'})
-        emitted = len(hypotheses)
+            emitted = text
     draft, usage = await deps.quality_llm.write(state['query'], collected, attempt,
                         state.get('validation_feedback'), on_token=preview)
     return {'draft': draft, 'last_prompt': usage.get('prompt'), 'validation_status': 'pending',

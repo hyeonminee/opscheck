@@ -24,7 +24,9 @@ class ChatMessageTests(unittest.IsolatedAsyncioTestCase):
                 lines=[{'message':{'content':'현민님이라고 '},'done':False},
                        {'message':{'content':'말씀하셨어요.'},'done':True,'prompt_eval_count':10,'eval_count':5}]
                 return httpx.Response(200,text='\n'.join(json.dumps(l,ensure_ascii=False) for l in lines))
-            return httpx.Response(200,json={'choices':[{'finish_reason':'stop','message':{'content':'현민님이라고 말씀하셨어요.'}}], 'usage':{'total_tokens':15}})
+            chunks=[{'choices':[{'delta':{'content':piece},'finish_reason':None}]} for piece in ('현민님이라고 ','말씀하셨어요.')]
+            chunks += [{'choices':[{'delta':{},'finish_reason':'stop'}]}, {'choices':[],'usage':{'total_tokens':15}}]
+            return httpx.Response(200,text=''.join('data: '+json.dumps(chunk,ensure_ascii=False)+'\n\n' for chunk in chunks)+'data: [DONE]\n\n')
         transport=httpx.MockTransport(handle)
         pieces=[]
         if backend=='ollama':

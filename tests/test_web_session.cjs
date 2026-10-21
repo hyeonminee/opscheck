@@ -9,10 +9,17 @@ const storage = new Map();
 let counter = 0;
 const urls = [];
 const requests = [];
+let frameId = 0, reducedMotion = false;
+const frames = new Map();
+function frame() { const pending = [...frames.values()]; frames.clear(); pending.forEach(fn => fn()); }
+function finishAnimation() { for (let i=0; frames.size && i<2000; i++) frame(); assert.equal(frames.size,0); }
 function mount(messages, historyFetch) {
   let state;
   const context = {
     URLSearchParams,
+    requestAnimationFrame: callback => { const id = ++frameId; frames.set(id, callback); return id; },
+    cancelAnimationFrame: id => frames.delete(id),
+    matchMedia: () => ({matches: reducedMotion}),
     Vue: {ref: value => ({value}), reactive: x => x, nextTick: async () => {},
       createApp: app => ({mount() {state = app.setup();}})},
     localStorage: {getItem: key => storage.get(key), setItem: (key, value) => storage.set(key, value)},
@@ -103,6 +110,23 @@ function mount(messages, historyFetch) {
   assert.ok(!state.log.value.at(-1).validationStatus);
   requests.at(-1).onmessage({data:JSON.stringify({type:'FinalAnswer',reply:'안녕',validation_status:null})});
   assert.equal(state.log.value.at(-1).validationStatus,null);requests.at(-1).onmessage({data:'[DONE]'});
+  state.input.value='긴 답변';state.onSubmit();
+  let animationRequest=requests.at(-1);
+  const longReply='검증된 답변을 순서대로 표시합니다. '.repeat(30)+'😀 끝';
+  animationRequest.onmessage({data:JSON.stringify({type:'FinalAnswer',reply:longReply,validation_status:'passed'})});
+  const animated=state.log.value.at(-1);
+  assert.equal(animated.text,longReply);assert.equal(animated.visibleText,'');
+  frame();assert.ok(animated.visibleText.length>0 && animated.visibleText.length<longReply.length);
+  animationRequest.onmessage({data:'[DONE]'});assert.equal(state.sending.value,false);
+  finishAnimation();assert.equal(animated.visibleText,longReply);assert.equal(animated.revealing,false);
+  state.input.value='중단 확인';state.onSubmit();animationRequest=requests.at(-1);
+  animationRequest.onmessage({data:JSON.stringify({type:'AnswerToken',delta:longReply,attempt:1,validation_status:'pending'})});
+  const interrupted=state.log.value.at(-1);frame();animationRequest.onerror();finishAnimation();
+  assert.ok(!interrupted.visibleText.includes('검증된 답변'));assert.equal(interrupted.revealing,false);
+  reducedMotion=true;state.input.value='동작 줄이기';state.onSubmit();animationRequest=requests.at(-1);
+  animationRequest.onmessage({data:JSON.stringify({type:'FinalAnswer',reply:longReply})});
+  assert.equal(state.log.value.at(-1).visibleText,longReply);assert.equal(frames.size,0);
+  animationRequest.onmessage({data:'[DONE]'});reducedMotion=false;
   const rows=[{run_id:'run-one',query:'payments-service 진단',created:'fixed',processing_status:'partial',validation_status:'unverified',is_sample:true}];
   let seenHistory=[];
   state=mount([],async url=>{seenHistory.push(url);return {ok:true,json:async()=>url.startsWith('/investigations?')?{investigations:rows}:{...rows[0],reply:'저장된 관측과 출처',report:{actions:[]}}};});
@@ -202,6 +226,10 @@ function mount(messages, historyFetch) {
   const sample='검증 통과\n\n1) 관측값\n- CPU 91% <script>literal</script>\n\n2) 분석\n- 가설\n\n3) 권장 조치\n- 조건 미확인\n\n4) 미확인 사항\n- 원인 확정 불가\n\n5) 출처\n- obs:payments-service';
   const blocks=state.reportBlocks(sample);
   assert.equal(state.reportBlocks(sample,'passed').length,5);
+  const partial=state.reportBlocks(sample.slice(0,sample.indexOf('2) 분석')),'passed',sample);
+  assert.equal(partial.length,1);assert.equal(partial[0].title,'1) 관측값');
+  assert.ok(!JSON.stringify(partial).includes('원인 확정 불가'));
+  finishAnimation();
   assert.equal(blocks.length,6);assert.equal(blocks[0].body,'검증 통과');
   assert.equal(blocks[1].title,'1) 관측값');assert.ok(blocks[1].body.includes('<script>literal</script>'));
   assert.equal(blocks[4].body,'- 원인 확정 불가');
