@@ -104,3 +104,5 @@ node tests/test_web_session.cjs
 후속 개발: [Phase 8 검증셋](doc/VALIDATION_DATASET.md) · [Phase 9 전체 이력](doc/PHASE9_RESULT.md). 전체 이력은 인증 없는 개인 실습용으로 같은 DB의 기록을 통합한다.
 
 [Phase 10 실시간 진행 결과](doc/PHASE10_RESULT.md): 후속 검증에서 Python119개·Node·고정 판정35개 통과. 실제 HTTP/프록시의 작업 도중 수신을 검사했다. 이전 107개/Phase 7 결과는 당시 기록으로 보존한다.
+
+[LangSmith SSE 요청 추적 보완](doc/LANGSMITH_SSE_VERIFICATION.md): 요청·하위 호출·저장 조사 ID 연결, 신규6개 포함 Python125개 통과. 외부 대시보드 수집은 별도 확인이 필요합니다.

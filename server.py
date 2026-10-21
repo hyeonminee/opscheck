@@ -22,7 +22,7 @@ load_dotenv()   # LANGCHAIN_TRACING_V2 / API_KEY / PROJECT — import보다 먼�
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import StreamingResponse, Response
-from langsmith import traceable
+from langsmith import traceable, trace
 from langsmith.run_helpers import get_current_run_tree
 from pydantic import BaseModel
 
@@ -241,51 +241,57 @@ async def chat_stream(message: str, thread_id: str = "default"):
     deps = app.state.deps
 
     async def gen():
-        run_id = str(uuid4())
-        result = {"query": message, "thread_id": thread_id,
-                  "history": deps.session_store.load(thread_id),
-                  "session_context": deps.session_store.load_context(thread_id), "events": [], "cost_usd": 0.0}
-        seen = 0
-        try:
-            async with asyncio.timeout(REQUEST_TIMEOUT):
-                if deps.version != "v2":
-                    result = await run_v1(deps, message, thread_id, result["history"])
-                    for event in result["events"]:
-                        yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
-                else:
-                    async for mode, payload in app.state.graph.astream(result, stream_mode=["updates", "custom"]):
-                        if mode == "custom":
-                            if payload.get('type') == 'Progress':
-                                upsert_step(result.setdefault('progress', []), payload['step'])
-                            yield f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
-                            continue
-                        for node_name, delta in payload.items():
-                            result.update(delta)
-                            for event in (delta.get("events") or [])[seen:]:
-                                yield f"data: {json.dumps({**event, 'node': node_name}, ensure_ascii=False)}\n\n"
-                            if delta.get("events"):
-                                seen = len(delta["events"])
-        except asyncio.CancelledError:
-            _log_canceled(result, run_id)
-            raise
-        except Exception as error:
-            logging.warning("stream request failed: %s", type(error).__name__)
-            result = failure_result(result, error)
-            yield f"data: {json.dumps(result['events'][-1], ensure_ascii=False)}\n\n"
-        # Cancellation is a BaseException and propagates above: interrupted work is not saved as completed.
-        before_end = result.get('progress', [])
-        result['progress'] = end_steps(before_end)
-        for previous, step in zip(before_end,result['progress']):
-            if previous != step:
-                yield f"data: {json.dumps({'type':'Progress','step':step}, ensure_ascii=False)}\n\n"
-        _save_result(deps, message, thread_id, result, run_id)
-        final_event = {"type": "FinalAnswer", "run_id": run_id, "reply": result["final"], "prompt": result.get("last_prompt"),
-                       "processing_status": result.get("processing_status", "completed"),
-                       "validation_status": result.get("validation_status"), "report": result.get("report"),
-                       "comparison": result.get("comparison"), "comparison_text": render_comparison(result.get("comparison", [])),
-                       "progress": result.get('progress', [])}
-        yield f"data: {json.dumps(final_event, ensure_ascii=False)}\n\n"
-        yield "data: [DONE]\n\n"
+        # The context must live inside iteration, through graph execution and persistence.
+        async with trace('chat_request', inputs={'message': message, 'thread_id': thread_id},
+                         metadata={'transport': 'sse'}) as request_trace:
+            run_id = str(uuid4())
+            result = {"query": message, "thread_id": thread_id,
+                      "history": deps.session_store.load(thread_id),
+                      "session_context": deps.session_store.load_context(thread_id), "events": [], "cost_usd": 0.0}
+            seen = 0
+            try:
+                async with asyncio.timeout(REQUEST_TIMEOUT):
+                    if deps.version != "v2":
+                        result = await run_v1(deps, message, thread_id, result["history"])
+                        for event in result["events"]:
+                            yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n"
+                    else:
+                        async for mode, payload in app.state.graph.astream(result, stream_mode=["updates", "custom"]):
+                            if mode == "custom":
+                                if payload.get('type') == 'Progress':
+                                    upsert_step(result.setdefault('progress', []), payload['step'])
+                                yield f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
+                                continue
+                            for node_name, delta in payload.items():
+                                result.update(delta)
+                                for event in (delta.get("events") or [])[seen:]:
+                                    yield f"data: {json.dumps({**event, 'node': node_name}, ensure_ascii=False)}\n\n"
+                                if delta.get("events"):
+                                    seen = len(delta["events"])
+            except asyncio.CancelledError:
+                _log_canceled(result, run_id)
+                raise
+            except Exception as error:
+                logging.warning("stream request failed: %s", type(error).__name__)
+                result = failure_result(result, error)
+                yield f"data: {json.dumps(result['events'][-1], ensure_ascii=False)}\n\n"
+            # Cancellation is a BaseException and propagates above: interrupted work is not saved as completed.
+            before_end = result.get('progress', [])
+            result['progress'] = end_steps(before_end)
+            for previous, step in zip(before_end,result['progress']):
+                if previous != step:
+                    yield f"data: {json.dumps({'type':'Progress','step':step}, ensure_ascii=False)}\n\n"
+            trace_id = _save_result(deps, message, thread_id, result, run_id)
+            final_event = {"type": "FinalAnswer", "run_id": run_id, "reply": result["final"], "prompt": result.get("last_prompt"),
+                           "processing_status": result.get("processing_status", "completed"),
+                           "validation_status": result.get("validation_status"), "report": result.get("report"),
+                           "comparison": result.get("comparison"), "comparison_text": render_comparison(result.get("comparison", [])),
+                           "progress": result.get('progress', []), "langsmith_run_id": trace_id}
+            request_trace.end(outputs={'run_id': run_id, 'route': result.get('route'),
+                'processing_status': final_event['processing_status'], 'validation_status': final_event['validation_status']},
+                error=next((e['code'] for e in reversed(result.get('events', [])) if e['type']=='ProcessingError'), None))
+            yield f"data: {json.dumps(final_event, ensure_ascii=False)}\n\n"
+            yield "data: [DONE]\n\n"
 
     return StreamingResponse(gen(), media_type="text/event-stream",
                              headers={"Cache-Control":"no-cache, no-transform", "X-Accel-Buffering":"no"})

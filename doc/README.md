@@ -384,3 +384,8 @@ API: `GET /investigations?limit=20`는 전체, `?thread_id=...`는 기존 대화
 검증: `tests/test_phase10.py`의 Event 차단 검사와 실제 루프백 HTTP·프록시 검사를 실행했다. 작업을 해제하기 전에 running/빠른 완료 수신을 확인했으며 단순 최종 이벤트 순서만 검사하지 않았다. 전체 Python119·Node·고정 판정35 통과. fake/고정 데이터로 데스크톱·390px을 확인했고 유료 호출은 없다. [Phase 10 결과·직접 확인](PHASE10_RESULT.md).
 
 MCP의 기존 Lock·네트워크 지연 자체는 개선하지 않았다. 같은 MCP 연결이 내부 직렬화하면 완료도 그 순서를 따른다. 로컬 테스트 성공을 모든 배포 프록시의 무버퍼 전달 보장으로 해석하지 않는다. 사용자 서버 8100/8600과 DB는 재시작/변경하지 않았으므로 반영하려면 기존 기동 방법으로 서버를 재시작하고 화면을 새로고침한다.
+
+
+### LangSmith SSE 추적 보완 — 2026-10-22
+
+SSE 생성기의 실제 실행·결과 저장을 `chat_request` 요청 추적으로 연결했다. 노드·LLM·MCP는 이 요청 아래에 연결되며 조사 이력과 `FinalAnswer.langsmith_run_id`가 같은 ID를 갖는다. 추적 비활성 시 null을 유지하고 취소는 완료 이력에 저장하지 않는다. 신규6개 포함 전체 Python125·Node·고정35 통과. 외부 업로드 없는 로컬 SDK/전송 대역 검사이며 LangSmith 외부 화면 수집 성공과 구분한다. 기존 비활성 설정·사용자 DB·Phase0~10 과거 결과는 보존했다. [검증 결과·외부 확인 방법](LANGSMITH_SSE_VERIFICATION.md).
