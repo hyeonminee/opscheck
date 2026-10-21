@@ -347,3 +347,8 @@ node tests/test_web_session.cjs
 ## 최신 UI/UX
 
 밝은 화면·질문 예시·접을 수 있는 처리 과정·5개 영역 보고서·옆 이력 패널과 상세 화면을 적용했다. 기존 대화는 유지하며 새로고침으로 반영된다. [변경·검증·화면](UX_CHANGELOG.md). 최신 소스 묶음은 [UI 반영 ZIP](../submission/AI_Mini_Project_Submission_UI.zip)이다. 기존 PPT 화면은 UI 변경 전 기능 검증 캡처다.
+
+
+## 후속 Phase 8~10
+
+기존 Phase 0~7 기록은 보존한다. [후속 계획](DEVELOPMENT_PHASE_PLAN.md#후속-개발-계획--phase-810-2026-10-21-추가)을 따른다. Phase 8의 [정답·판정 기준 검증셋](VALIDATION_DATASET.md)은 과거 회귀 문서의 자동 대체 같은 설명을 정답으로 사용하지 않는다. `eval/run_validation.py`로 fake 고정 그래프·초안 판정을 실행한다. Phase 9 전체 이력·Phase 10 실제 진행 이벤트는 후속 검증 전이다.
