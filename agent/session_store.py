@@ -76,12 +76,27 @@ class SqliteSessionStore:
                 )
 
     def list_investigations(self, thread_id: str, limit: int = 20) -> list[dict]:
-        rows = self.conn.execute(
-            "SELECT result_json FROM investigations WHERE thread_id=? ORDER BY rowid DESC LIMIT ?",
-            (thread_id, limit),
-        ).fetchall()
+        return self.investigation_page(thread_id, limit)['investigations']
+
+    def investigation_page(self, thread_id: str | None = None, limit: int = 20,
+                           before: str | None = None) -> dict:
+        where, params = [], []
+        if thread_id is not None:
+            where.append('thread_id=?')
+            params.append(thread_id)
+        if before is not None:
+            row = self.conn.execute('SELECT rowid,thread_id FROM investigations WHERE run_id=?', (before,)).fetchone()
+            if row is None or (thread_id is not None and row[1] != thread_id):
+                raise ValueError('Invalid investigation cursor')
+            where.append('rowid < ?')
+            params.append(row[0])
+        clause = ' WHERE ' + ' AND '.join(where) if where else ''
+        rows = self.conn.execute('SELECT result_json FROM investigations' + clause + ' ORDER BY rowid DESC LIMIT ?',
+                                 [*params, limit + 1]).fetchall()
+        records = [json.loads(row[0]) for row in rows[:limit]]
         keys = ('run_id', 'thread_id', 'created', 'query', 'targets', 'processing_status', 'validation_status', 'is_sample')
-        return [{key: record.get(key) for key in keys} for record in (json.loads(row[0]) for row in rows)]
+        return {'investigations': [{key: record.get(key) for key in keys} for record in records],
+                'next_cursor': records[-1]['run_id'] if len(rows) > limit else None}
 
     def get_investigation(self, run_id: str, thread_id: str) -> dict | None:
         row = self.conn.execute("SELECT result_json FROM investigations WHERE run_id=? AND thread_id=?",

@@ -91,6 +91,9 @@
   .sample-notice { color:#745b2e; background:#fffbef; border:1px solid #eee3c8; padding:12px 14px; font-size:12px; line-height:1.7; border-radius:8px; margin:18px 0; }
   .detail-report { background:#fff; padding:26px; border:1px solid var(--line); border-radius:14px; font-size:14px; line-height:1.85; overflow-wrap:anywhere; }
   .notice { margin-top:18px; padding:16px 12px; background:#f8fafc; border-radius:9px; font-size:13px; color:var(--muted); line-height:1.7; }
+  .history-filters { display:flex; gap:6px; margin:14px 0; }
+  .history-filters button[aria-pressed="true"] { color:var(--blue); background:#eaf2ff; border-color:#aec8f1; }
+  .load-more { width:100%; margin-top:12px; }
   .error { color:#a1422b; }
   @media(min-width:1450px) { .history-panel {width:340px;} }
   @media(max-width:760px) {
@@ -130,21 +133,26 @@
   <div class="workspace" :class="{'has-detail': historyOpen && selectedInvestigation}">
     <aside v-if="historyOpen" id="investigation-history" class="history-panel" aria-label="조사 이력">
       <div class="panel-heading"><h2>조사 이력</h2><span>{{ investigations.length }}건</span></div>
-      <p class="muted">현재 대화에서 완료한 최근 20건입니다.</p>
+      <p class="muted">대화와 무관하게 저장된 조사를 확인합니다. 개인 실습용 전체 목록입니다.</p>
+      <div class="history-filters" role="group" aria-label="조사 범위">
+        <button type="button" :aria-pressed="historyScope==='all'" @click="setHistoryScope('all')">전체 조사</button>
+        <button type="button" :aria-pressed="historyScope==='current'" @click="setHistoryScope('current')">현재 대화</button>
+      </div>
       <div v-if="historyLoading" class="notice" role="status">조사 기록을 불러오고 있습니다.</div>
       <div v-if="historyError" class="notice error" role="alert">{{ historyError }}</div>
       <div v-if="!historyLoading && !historyError && !investigations.length" class="notice">아직 저장된 조사가 없습니다.<br>서비스를 진단하면 이곳에 기록됩니다.</div>
       <ul><li v-for="record in investigations" :key="record.run_id">
-        <button type="button" class="history-record" :class="{active:selectedInvestigation?.run_id === record.run_id}" @click="openInvestigation(record.run_id)">
+        <button type="button" class="history-record" :class="{active:selectedInvestigation?.run_id === record.run_id}" @click="openInvestigation(record)">
           <span class="history-query">{{ record.query }}</span>
-          <span class="history-meta">{{ processingLabel(record.processing_status) }} · {{ validationLabel(record.validation_status) }}<br>{{ formatTime(record.created) }}</span>
+          <span class="history-meta">{{ (record.targets || []).join(', ') }}<br>{{ processingLabel(record.processing_status) }} · {{ validationLabel(record.validation_status) }}<br>{{ formatTime(record.created) }}</span>
         </button>
       </li></ul>
+      <button v-if="historyCursor" type="button" class="load-more" @click="loadInvestigations(true)" :disabled="historyLoading">{{ historyLoading ? '불러오는 중…' : '더 보기' }}</button>
     </aside>
     <main class="conversation" aria-label="서비스 진단">
       <div class="context-bar"><p>수업 샘플 데이터 · 운영 조치는 자동 실행되지 않습니다.</p><details class="connection-details"><summary>연결 정보</summary><div>{{ backendLabel }}</div></details></div>
       <section v-if="historyOpen && selectedInvestigation" class="history-detail" aria-label="저장된 진단 보고서">
-        <div class="detail-toolbar"><button type="button" @click="selectedInvestigation=null; historyOpen=false">← 대화로 돌아가기</button><a class="download" :href="downloadUrl(selectedInvestigation.run_id)" download>Markdown 내려받기</a></div>
+        <div class="detail-toolbar"><button type="button" @click="selectedInvestigation=null; historyOpen=false">← 대화로 돌아가기</button><a class="download" :href="downloadUrl(selectedInvestigation.run_id,selectedInvestigation.thread_id)" download>Markdown 내려받기</a></div>
         <p class="eyebrow">SAVED REPORT</p><h2 class="detail-title">{{ selectedInvestigation.query }}</h2>
         <p class="muted">{{ formatTime(selectedInvestigation.created) }} · {{ processingLabel(selectedInvestigation.processing_status) }}</p>
         <div v-if="selectedInvestigation.is_sample" class="sample-notice">저장 당시의 수업 샘플 데이터입니다. 현재 상태를 새로 조회한 결과가 아닙니다.</div>
@@ -153,6 +161,7 @@
           <section v-for="(block,i) in reportBlocks(selectedInvestigation.reply,selectedInvestigation.validation_status)" :key="i" class="report-section"><h3 v-if="block.title">{{ block.title }}</h3><div class="report-body">{{ block.body }}</div></section>
           <pre v-if="selectedInvestigation.comparison_text" class="comparison">{{ selectedInvestigation.comparison_text }}</pre>
         </div>
+        <details class="steps saved-steps"><summary><strong>저장된 처리 과정</strong> · {{ savedSteps(selectedInvestigation).length }}개 기록</summary><div class="step-list"><div v-for="(step,i) in savedSteps(selectedInvestigation)" :key="i" class="step"><span class="step-index">{{ i+1 }}</span><span>{{ step }}</span></div><p v-if="!savedSteps(selectedInvestigation).length" class="muted">이 기록에는 처리 과정 정보가 없습니다.</p></div></details>
       </section>
       <div v-show="!(historyOpen && selectedInvestigation)" id="log" ref="logEl" role="log" aria-label="진단 대화">
         <section v-if="!log.length && !restoring" class="empty-state">
@@ -213,11 +222,13 @@ function reportBlocks(value, status) {
 
 createApp({
   setup() {
+    const savedSteps = record => (record.events || []).map(e => STEP_LABELS[e.type]?.(e)).filter(Boolean);
     const validationLabel = status => ({pending: '검증 전 초안', rejected: '반려된 초안 · 최종 답변 아님', passed: '검증 통과', unverified: '검증 미통과 · 최종 권고 아님'}[status] || '');
     const formatTime = value => value ? new Date(value).toLocaleString('ko-KR', {timeZone: 'Asia/Seoul'}) : '시각 미확인';
     const processingLabel = status => ({completed: '완료', partial: '일부 조회 실패', failed: '처리 미완료'}[status] || status);
     const historyOpen = ref(false), investigations = ref([]), selectedInvestigation = ref(null), historyError = ref(''), historyLoading = ref(false);
-    let historySelection = null;
+    const historyScope = ref('all'), historyCursor = ref(null);
+    let historySelection = null, historyEpoch = 0;
     const backendLabel = ref('서버 연결을 확인하고 있습니다.');
     const log = ref([]);
     const input = ref('');
@@ -243,21 +254,35 @@ createApp({
       }
     }
 
-    const downloadUrl = runId => `/investigations/${encodeURIComponent(runId)}/report.md?thread_id=${encodeURIComponent(thread)}`;
+    const downloadUrl = (runId, recordThread = selectedInvestigation.value?.thread_id || thread) => `/investigations/${encodeURIComponent(runId)}/report.md?thread_id=${encodeURIComponent(recordThread)}`;
 
-    async function loadInvestigations() {
-      const requestedThread = thread;
+    async function loadInvestigations(append = false) {
+      if (append && (historyLoading.value || !historyCursor.value)) return;
+      const epoch = ++historyEpoch, requestedThread = thread, scope = historyScope.value;
+      const params = new URLSearchParams({limit: '20'});
+      if (scope === 'current') params.set('thread_id', requestedThread);
+      if (append) params.set('before', historyCursor.value);
+      if (!append) { investigations.value = []; historyCursor.value = null; }
       historyLoading.value = true; historyError.value = '';
       try {
-        const response = await fetch(`/investigations?thread_id=${encodeURIComponent(requestedThread)}`);
+        const response = await fetch(`/investigations?${params}`);
         if (!response.ok) throw new Error('history unavailable');
         const data = await response.json();
-        if (thread === requestedThread) investigations.value = data.investigations;
+        if (epoch !== historyEpoch || thread !== requestedThread || scope !== historyScope.value) return;
+        const rows = append ? [...investigations.value, ...data.investigations] : data.investigations;
+        investigations.value = [...new Map(rows.map(r => [r.run_id,r])).values()];
+        historyCursor.value = data.next_cursor || null;
       } catch {
-        if (thread === requestedThread) historyError.value = '조사 이력을 불러오지 못했습니다. 다시 열어 주세요.';
+        if (epoch === historyEpoch) historyError.value = '조사 이력을 불러오지 못했습니다. 다시 열어 주세요.';
       } finally {
-        if (thread === requestedThread) historyLoading.value = false;
+        if (epoch === historyEpoch) historyLoading.value = false;
       }
+    }
+
+    function setHistoryScope(scope) {
+      if (scope === historyScope.value) return;
+      historyScope.value = scope; historySelection = null; selectedInvestigation.value = null;
+      loadInvestigations();
     }
 
     function toggleHistory() {
@@ -265,16 +290,18 @@ createApp({
       if (historyOpen.value) loadInvestigations();
     }
 
-    async function openInvestigation(runId) {
-      const requestedThread = thread;
-      selectedInvestigation.value = null; historyError.value = ''; historySelection = runId;
+    async function openInvestigation(record) {
+      const runId = typeof record === 'string' ? record : record.run_id;
+      const recordThread = typeof record === 'string' ? thread : record.thread_id;
+      const selection = {};
+      selectedInvestigation.value = null; historyError.value = ''; historySelection = selection;
       try {
-        const response = await fetch(`/investigations/${encodeURIComponent(runId)}?thread_id=${encodeURIComponent(requestedThread)}`);
+        const response = await fetch(`/investigations/${encodeURIComponent(runId)}?thread_id=${encodeURIComponent(recordThread)}`);
         if (!response.ok) throw new Error('detail unavailable');
-        const record = await response.json();
-        if (thread === requestedThread && historySelection === runId) selectedInvestigation.value = record;
+        const detail = await response.json();
+        if (historySelection === selection) selectedInvestigation.value = detail;
       } catch {
-        if (thread === requestedThread && historySelection === runId) historyError.value = '이 세션에서 조사 상세를 불러오지 못했습니다.';
+        if (historySelection === selection) historyError.value = '조사 상세를 불러오지 못했습니다.';
       }
     }
 
@@ -286,6 +313,7 @@ createApp({
       input.value = '';
       historyOpen.value = false; investigations.value = []; selectedInvestigation.value = null;
       historyError.value = ''; historyLoading.value = false; historySelection = null;
+      historyEpoch++; historyCursor.value = null; historyScope.value = 'all';
     }
 
     restoreConversation();
@@ -379,7 +407,7 @@ createApp({
       };
     }
 
-    return { reportBlocks, downloadUrl, formatTime, processingLabel, historyOpen, investigations, selectedInvestigation, historyError, historyLoading, toggleHistory, openInvestigation, validationLabel, backendLabel, log, input, sending, restoring, logEl, onSubmit, newConversation };
+    return { savedSteps, historyScope, historyCursor, setHistoryScope, loadInvestigations, reportBlocks, downloadUrl, formatTime, processingLabel, historyOpen, investigations, selectedInvestigation, historyError, historyLoading, toggleHistory, openInvestigation, validationLabel, backendLabel, log, input, sending, restoring, logEl, onSubmit, newConversation };
   },
 }).mount('#app');
 </script>

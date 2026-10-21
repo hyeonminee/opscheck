@@ -12,6 +12,7 @@ const requests = [];
 function mount(messages, historyFetch) {
   let state;
   const context = {
+    URLSearchParams,
     Vue: {ref: value => ({value}), reactive: x => x, nextTick: async () => {},
       createApp: app => ({mount() {state = app.setup();}})},
     localStorage: {getItem: key => storage.get(key), setItem: (key, value) => storage.set(key, value)},
@@ -108,7 +109,7 @@ function mount(messages, historyFetch) {
   await new Promise(resolve=>setImmediate(resolve));
   state.toggleHistory();await new Promise(resolve=>setImmediate(resolve));
   assert.equal(state.investigations.value.length,1);
-  assert.ok(seenHistory[0].includes(encodeURIComponent(storage.get('ai-mini-project.thread-id'))));
+  assert.ok(!seenHistory[0].includes('thread_id=')); // global by default
   await state.openInvestigation('run-one');
   assert.equal(state.selectedInvestigation.value.reply,'저장된 관측과 출처');
   assert.equal(state.selectedInvestigation.value.validation_status,'unverified');
@@ -129,6 +130,41 @@ function mount(messages, historyFetch) {
   state=mount([],async()=>({ok:false}));await new Promise(resolve=>setImmediate(resolve));
   state.toggleHistory();await new Promise(resolve=>setImmediate(resolve));
   assert.ok(state.historyError.value.includes('불러오지 못했습니다'));
+  // Phase 9: global/filtered pagination and stale request isolation.
+  let resolveList, historyCalls=[];
+  const originalThread=storage.get('ai-mini-project.thread-id');
+  const rowA={run_id:'a',thread_id:'conversation-A',query:'payments 진단',targets:['payments-service']};
+  const rowB={run_id:'b',thread_id:'conversation-B',query:'cache 진단',targets:['cache-service']};
+  state=mount([],async url=>{
+    historyCalls.push(url);
+    const u=new URL(url,'http://test');
+    if(u.pathname==='/investigations') {
+      if(u.searchParams.get('before')) return {ok:true,json:async()=>({investigations:[rowA,rowB],next_cursor:null})};
+      if(u.searchParams.has('thread_id')) return {ok:true,json:async()=>({investigations:[],next_cursor:null})};
+      return {ok:true,json:async()=>({investigations:[rowA],next_cursor:'a'})};
+    }
+    return {ok:true,json:async()=>({...rowA,reply:'original report'})};
+  });
+  await new Promise(resolve=>setImmediate(resolve));state.toggleHistory();await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(state.historyScope.value,'all');assert.equal(state.historyCursor.value,'a');
+  await state.loadInvestigations(true);assert.equal(state.investigations.value.length,2);
+  assert.ok(historyCalls.some(url=>url.includes('before=a')));
+  await state.openInvestigation(rowA);
+  assert.ok(historyCalls.at(-1).includes('thread_id=conversation-A'));
+  assert.ok(state.downloadUrl('a').includes('thread_id=conversation-A'));
+  assert.equal(storage.get('ai-mini-project.thread-id'),originalThread);
+  state.setHistoryScope('current');await new Promise(resolve=>setImmediate(resolve));
+  assert.ok(historyCalls.at(-1).includes(encodeURIComponent(originalThread)));
+  state.newConversation();state.toggleHistory();await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(state.investigations.value[0].run_id,'a');assert.equal(state.historyScope.value,'all');
+  state=mount([],url=>url.includes('thread_id=') ? Promise.resolve({ok:true,json:async()=>({investigations:[rowB],next_cursor:null})}) : new Promise(resolve=>{resolveList=resolve;}));
+  await new Promise(resolve=>setImmediate(resolve));state.toggleHistory();state.setHistoryScope('current');
+  await new Promise(resolve=>setImmediate(resolve));
+  resolveList({ok:true,json:async()=>({investigations:[rowA],next_cursor:'a'})});await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(state.investigations.value[0].run_id,'b');assert.equal(state.historyCursor.value,null);
+  state.setHistoryScope('all');state.newConversation();
+  resolveList({ok:true,json:async()=>({investigations:[rowA],next_cursor:'a'})});await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(state.investigations.value.length,0);assert.equal(state.historyLoading.value,false);
   const sample='검증 통과\n\n1) 관측값\n- CPU 91% <script>literal</script>\n\n2) 분석\n- 가설\n\n3) 권장 조치\n- 조건 미확인\n\n4) 미확인 사항\n- 원인 확정 불가\n\n5) 출처\n- obs:payments-service';
   const blocks=state.reportBlocks(sample);
   assert.equal(state.reportBlocks(sample,'passed').length,5);

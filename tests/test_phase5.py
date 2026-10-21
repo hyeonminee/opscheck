@@ -97,7 +97,7 @@ class APITests(unittest.IsolatedAsyncioTestCase):
         listed=(await self.client.get('/investigations',params={'thread_id':'session'})).json()['investigations']
         self.assertEqual(len(listed),1);self.assertEqual(listed[0]['run_id'],run)
         self.assertEqual((await self.client.get('/investigations/'+run,params={'thread_id':'other'})).status_code,404)
-        self.assertEqual((await self.client.get('/investigations')).status_code,422)
+        self.assertEqual((await self.client.get('/investigations')).status_code,200)  # Phase 9: default global scope
         self.assertEqual((await self.client.get('/investigations',params={'thread_id':'session','limit':101})).status_code,422)
 
     async def test_sse_stores_once_before_final_and_separate_http_requests_are_distinct(self):

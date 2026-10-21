@@ -191,8 +191,11 @@ async def session_messages(thread_id: str):
 
 
 @app.get('/investigations')
-async def investigations(thread_id: str, limit: int = Query(20, ge=1, le=100)):
-    return {'investigations': app.state.deps.session_store.list_investigations(thread_id, limit)}
+async def investigations(thread_id: str | None = None, limit: int = Query(20, ge=1, le=100), before: str | None = None):
+    try:
+        return app.state.deps.session_store.investigation_page(thread_id, limit, before)
+    except ValueError:
+        raise HTTPException(status_code=422, detail='조사 목록의 페이지 기준이 유효하지 않습니다.')
 
 
 @app.get('/investigations/{run_id}')

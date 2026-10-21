@@ -48,8 +48,10 @@ async def proxy_messages(thread_id: str):
     return JSONResponse(r.json(), status_code=r.status_code)
 
 
-async def _history_response(path, thread_id, limit=None):
-    params = {'thread_id': thread_id}
+async def _history_response(path, thread_id, limit=None, before=None):
+    params = {} if thread_id is None else {'thread_id': thread_id}
+    if before is not None:
+        params['before'] = before
     if limit is not None:
         params['limit'] = limit
     try:
@@ -61,8 +63,8 @@ async def _history_response(path, thread_id, limit=None):
 
 
 @app.get('/investigations')
-async def proxy_investigations(thread_id: str, limit: int = 20):
-    return await _history_response('/investigations', thread_id, limit)
+async def proxy_investigations(thread_id: str | None = None, limit: int = 20, before: str | None = None):
+    return await _history_response('/investigations', thread_id, limit, before)
 
 
 @app.get('/investigations/{run_id}')
