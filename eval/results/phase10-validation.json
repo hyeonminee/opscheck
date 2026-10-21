@@ -1,0 +1,727 @@
+{
+  "dataset": "validation_cases.v1.json",
+  "model": "fake",
+  "results": [
+    {
+      "id": "payments-single",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "cache-single",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "log-single",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "gateway-payments",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "web-auth",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "payments-cache",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "unspecified",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.no_diagnosis": true,
+        "turn1.confirmation": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "unknown-billing",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.no_diagnosis": true,
+        "turn1.confirmation": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "greeting",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.no_diagnosis": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "name-first",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.no_diagnosis": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "name-followup",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.no_diagnosis": true,
+        "turn1.memory": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "healthy-web",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "partial-failure",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "type-cpu-spike",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "type-memory-leak",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "type-disk-full",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "type-high-latency",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "type-network-timeout",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "type-db-down",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "unknown-observation",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "missing-runbook",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "clarify-then-target",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.no_diagnosis": true,
+        "turn1.confirmation": true,
+        "turn2.branch": true,
+        "turn2.targets": true,
+        "turn2.looked_up_targets": true,
+        "turn2.processing_status": true,
+        "turn2.validation_status": true,
+        "turn2.monitoring_success": true,
+        "turn2.monitoring_failure": true,
+        "turn2.documents_success": true,
+        "turn2.documents_failure": true,
+        "turn2.facts": true,
+        "turn2.sources": true,
+        "turn2.service_manuals": true,
+        "turn2.actions": true,
+        "turn2.conditions": true,
+        "turn2.limits": true,
+        "turn2.unverified_safe": true,
+        "turn2.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "service-followup",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true,
+        "turn2.branch": true,
+        "turn2.targets": true,
+        "turn2.looked_up_targets": true,
+        "turn2.processing_status": true,
+        "turn2.validation_status": true,
+        "turn2.monitoring_success": true,
+        "turn2.monitoring_failure": true,
+        "turn2.documents_success": true,
+        "turn2.documents_failure": true,
+        "turn2.facts": true,
+        "turn2.sources": true,
+        "turn2.service_manuals": true,
+        "turn2.actions": true,
+        "turn2.conditions": true,
+        "turn2.limits": true,
+        "turn2.unverified_safe": true,
+        "turn2.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "followup-new-context",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.no_diagnosis": true,
+        "turn1.confirmation": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "name-dialogue",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.no_diagnosis": true,
+        "turn2.branch": true,
+        "turn2.targets": true,
+        "turn2.looked_up_targets": true,
+        "turn2.processing_status": true,
+        "turn2.validation_status": true,
+        "turn2.monitoring_success": true,
+        "turn2.monitoring_failure": true,
+        "turn2.documents_success": true,
+        "turn2.documents_failure": true,
+        "turn2.no_diagnosis": true,
+        "turn2.memory": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "all-lookups-fail",
+      "status": "passed",
+      "checks": {
+        "turn1.branch": true,
+        "turn1.targets": true,
+        "turn1.looked_up_targets": true,
+        "turn1.processing_status": true,
+        "turn1.validation_status": true,
+        "turn1.monitoring_success": true,
+        "turn1.monitoring_failure": true,
+        "turn1.documents_success": true,
+        "turn1.documents_failure": true,
+        "turn1.facts": true,
+        "turn1.sources": true,
+        "turn1.service_manuals": true,
+        "turn1.actions": true,
+        "turn1.conditions": true,
+        "turn1.limits": true,
+        "turn1.unverified_safe": true,
+        "turn1.sections": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "draft-valid",
+      "status": "passed",
+      "checks": {
+        "accept_matches_oracle": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "draft-wrong-value",
+      "status": "passed",
+      "checks": {
+        "accept_matches_oracle": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "draft-wrong-service",
+      "status": "passed",
+      "checks": {
+        "accept_matches_oracle": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "draft-invented-source",
+      "status": "passed",
+      "checks": {
+        "accept_matches_oracle": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "draft-wrong-document",
+      "status": "passed",
+      "checks": {
+        "accept_matches_oracle": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "draft-missing-step",
+      "status": "passed",
+      "checks": {
+        "accept_matches_oracle": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "draft-assert-condition",
+      "status": "passed",
+      "checks": {
+        "accept_matches_oracle": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "draft-assert-recovery",
+      "status": "passed",
+      "checks": {
+        "accept_matches_oracle": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "draft-missing-analysis",
+      "status": "passed",
+      "checks": {
+        "accept_matches_oracle": true
+      },
+      "manual_semantic_review": "not_automated"
+    },
+    {
+      "id": "history-scope",
+      "status": "linked_test",
+      "test_reference": "tests/test_phase9.py"
+    },
+    {
+      "id": "history-pagination",
+      "status": "linked_test",
+      "test_reference": "tests/test_phase9.py; tests/test_web_session.cjs"
+    },
+    {
+      "id": "live-progress",
+      "status": "linked_test",
+      "test_reference": "tests/test_phase10.py"
+    },
+    {
+      "id": "saved-progress",
+      "status": "linked_test",
+      "test_reference": "tests/test_phase10.py; tests/test_web_session.cjs"
+    }
+  ],
+  "passed": 35,
+  "failed": 0,
+  "linked_tests": 4,
+  "integration_verification": {
+    "python_tests": 119,
+    "node": "passed",
+    "phase9_contracts": "tests/test_phase9.py passed",
+    "phase10_contracts": "tests/test_phase10.py passed; blocked work + actual TCP proxy receipt",
+    "paid_model_calls": 0,
+    "semantic_quality": "not_automated"
+  }
+}

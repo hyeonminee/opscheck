@@ -35,6 +35,7 @@ from agent.mcp_client import MCPClient
 from agent.session_store import SqliteSessionStore
 from agent.supervisor_v1 import run_v1
 from agent.execution import REQUEST_TIMEOUT, failure_result
+from agent.progress import upsert_step, end_steps
 
 CREATION_COUNT = 0   # Wave 1 — 프로세스 내 Agent 번들 생성 횟수 (항상 1이어야 정상)
 
@@ -138,6 +139,7 @@ def _save_result(deps, message, thread_id, result, run_id):
     trace = get_current_run_tree()
     trace_id = str(trace.id) if trace else None
     record = None
+    result['progress'] = end_steps(result.get('progress', []))
     if result.get('route') == 'incident':
         record = {'run_id': run_id, 'thread_id': thread_id, 'created': datetime.now(timezone.utc).isoformat(),
             'query': message, 'resolved_query': result.get('query', message),
@@ -147,7 +149,7 @@ def _save_result(deps, message, thread_id, result, run_id):
             'is_sample': True, 'data_source': '수업 샘플 모니터링(MCP Tool)·대응 매뉴얼(MCP Resource)',
             'collected': [c for c in result.get('collected', []) if c.get('source') != 'analysis'],
             'report': result.get('report'), 'reply': result['final'], 'events': result.get('events', []),
-            'langsmith_run_id': trace_id}
+            'langsmith_run_id': trace_id, 'progress': result['progress']}
         record['comparison'] = compare_record(record, deps.session_store)
         result['comparison'] = record['comparison']
     deps.session_store.append_exchange(thread_id, message, result['final'], result.get('session_context'), investigation=record)
@@ -170,9 +172,13 @@ async def _handle_chat(message: str, thread_id: str) -> tuple[dict, str | None]:
     try:
         async with asyncio.timeout(REQUEST_TIMEOUT):
             if deps.version == "v2":
-                async for update in app.state.graph.astream(result, stream_mode="updates"):
-                    for delta in update.values():
-                        result.update(delta)
+                async for mode, payload in app.state.graph.astream(result, stream_mode=["updates", "custom"]):
+                    if mode == 'custom':
+                        if payload.get('type') == 'Progress':
+                            upsert_step(result.setdefault('progress', []), payload['step'])
+                    else:
+                        for delta in payload.values():
+                            result.update(delta)
             else:
                 result = await run_v1(deps, message, thread_id, history)
     except asyncio.CancelledError:
@@ -222,7 +228,7 @@ async def chat(req: ChatRequest):
     result, run_id = await _handle_chat(req.message, req.thread_id)
     return {"reply": result["final"], "report": result.get("report"), "comparison": result.get("comparison"),
             "comparison_text": render_comparison(result.get("comparison", [])), "events": result.get("events", []),
-            "metadata": _metadata(result, run_id)}
+            "metadata": _metadata(result, run_id), "progress": result.get('progress', [])}
 
 
 @app.get("/chat/stream")
@@ -249,6 +255,8 @@ async def chat_stream(message: str, thread_id: str = "default"):
                 else:
                     async for mode, payload in app.state.graph.astream(result, stream_mode=["updates", "custom"]):
                         if mode == "custom":
+                            if payload.get('type') == 'Progress':
+                                upsert_step(result.setdefault('progress', []), payload['step'])
                             yield f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
                             continue
                         for node_name, delta in payload.items():
@@ -265,15 +273,22 @@ async def chat_stream(message: str, thread_id: str = "default"):
             result = failure_result(result, error)
             yield f"data: {json.dumps(result['events'][-1], ensure_ascii=False)}\n\n"
         # Cancellation is a BaseException and propagates above: interrupted work is not saved as completed.
+        before_end = result.get('progress', [])
+        result['progress'] = end_steps(before_end)
+        for previous, step in zip(before_end,result['progress']):
+            if previous != step:
+                yield f"data: {json.dumps({'type':'Progress','step':step}, ensure_ascii=False)}\n\n"
         _save_result(deps, message, thread_id, result, run_id)
         final_event = {"type": "FinalAnswer", "run_id": run_id, "reply": result["final"], "prompt": result.get("last_prompt"),
                        "processing_status": result.get("processing_status", "completed"),
                        "validation_status": result.get("validation_status"), "report": result.get("report"),
-                       "comparison": result.get("comparison"), "comparison_text": render_comparison(result.get("comparison", []))}
+                       "comparison": result.get("comparison"), "comparison_text": render_comparison(result.get("comparison", [])),
+                       "progress": result.get('progress', [])}
         yield f"data: {json.dumps(final_event, ensure_ascii=False)}\n\n"
         yield "data: [DONE]\n\n"
 
-    return StreamingResponse(gen(), media_type="text/event-stream")
+    return StreamingResponse(gen(), media_type="text/event-stream",
+                             headers={"Cache-Control":"no-cache, no-transform", "X-Accel-Buffering":"no"})
 
 
 if __name__ == "__main__":

@@ -89,3 +89,8 @@ node tests/test_web_session.cjs
 - 원본 SHA256, 기존 21개 ID·질문 포함 및 필드 계약 검사를 실행한다.
 - Phase 9·10의 4개 계약은 이 시점에는 linked_test이며 기능 완료로 세지 않는다. 이후 해당 Phase의 결과 문서와 실제 테스트가 근거다.
 - 화면 변경은 없으므로 Phase 8에서 새 브라우저 확인이 필요한 동작은 없다.
+
+
+## 후속 계약 검증 — Phase 9·10 완료 후
+
+위 Phase 8 시점의 4개 linked_test 기록은 보존한다. 이후 `tests/test_phase9.py`에서 history-scope/history-pagination을, `tests/test_phase10.py`와 Node 회귀에서 live-progress/saved-progress를 실제로 실행했다. 전체 Python119·Node가 통과했다. run_validation.py 출력의 linked_tests=4는 해당 검사를 여기서 다시 실행하지 않는다는 뜻이며 실패나 미구현 수치로 바꾸지 않는다. [Phase 9 결과](PHASE9_RESULT.md) · [Phase 10 결과](PHASE10_RESULT.md).

@@ -120,7 +120,8 @@ async def proxy_stream(message: str, thread_id: str = "web-demo"):
             yield f"data: {json.dumps(event, ensure_ascii=False)}\n\n".encode()
             yield b"data: [DONE]\n\n"
 
-    return StreamingResponse(relay(), media_type="text/event-stream")
+    return StreamingResponse(relay(), media_type="text/event-stream",
+                             headers={"Cache-Control":"no-cache, no-transform", "X-Accel-Buffering":"no"})
 
 
 if __name__ == "__main__":

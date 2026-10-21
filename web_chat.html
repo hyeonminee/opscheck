@@ -91,6 +91,11 @@
   .sample-notice { color:#745b2e; background:#fffbef; border:1px solid #eee3c8; padding:12px 14px; font-size:12px; line-height:1.7; border-radius:8px; margin:18px 0; }
   .detail-report { background:#fff; padding:26px; border:1px solid var(--line); border-radius:14px; font-size:14px; line-height:1.85; overflow-wrap:anywhere; }
   .notice { margin-top:18px; padding:16px 12px; background:#f8fafc; border-radius:9px; font-size:13px; color:var(--muted); line-height:1.7; }
+  .step-running { color:#175bc0; font-weight:650; background:#edf4ff; border-radius:6px; }
+  .step-running .step-index { color:#175bc0; }
+  .step-failed, .step-rejected, .step-unverified, .step-interrupted { color:#a1422b; }
+  .step-skipped, .step-pending { color:#718096; }
+  .step-completed .step-index { color:#267447; }
   .history-filters { display:flex; gap:6px; margin:14px 0; }
   .history-filters button[aria-pressed="true"] { color:var(--blue); background:#eaf2ff; border-color:#aec8f1; }
   .load-more { width:100%; margin-top:12px; }
@@ -161,7 +166,7 @@
           <section v-for="(block,i) in reportBlocks(selectedInvestigation.reply,selectedInvestigation.validation_status)" :key="i" class="report-section"><h3 v-if="block.title">{{ block.title }}</h3><div class="report-body">{{ block.body }}</div></section>
           <pre v-if="selectedInvestigation.comparison_text" class="comparison">{{ selectedInvestigation.comparison_text }}</pre>
         </div>
-        <details class="steps saved-steps"><summary><strong>저장된 처리 과정</strong> · {{ savedSteps(selectedInvestigation).length }}개 기록</summary><div class="step-list"><div v-for="(step,i) in savedSteps(selectedInvestigation)" :key="i" class="step"><span class="step-index">{{ i+1 }}</span><span>{{ step }}</span></div><p v-if="!savedSteps(selectedInvestigation).length" class="muted">이 기록에는 처리 과정 정보가 없습니다.</p></div></details>
+        <details class="steps saved-steps"><summary><strong>저장된 처리 과정</strong> · {{ stepCount(savedSteps(selectedInvestigation)) }}단계</summary><div class="step-list"><div v-for="(step,i) in savedSteps(selectedInvestigation)" :key="step.id || i" class="step" :class="'step-'+(step.status || 'legacy')"><span class="step-index">{{ stepIcon(step) }}</span><span>{{ stepText(step) }}</span></div><p v-if="!savedSteps(selectedInvestigation).length" class="muted">이 기록에는 처리 과정 정보가 없습니다.</p></div></details>
       </section>
       <div v-show="!(historyOpen && selectedInvestigation)" id="log" ref="logEl" role="log" aria-label="진단 대화">
         <section v-if="!log.length && !restoring" class="empty-state">
@@ -176,7 +181,7 @@
         <p v-if="restoring" class="muted" role="status">이전 대화를 불러오고 있습니다.</p>
         <template v-for="item in log" :key="item.id">
           <div v-if="item.kind === 'user'" class="row user"><span class="message-label">나</span><div class="bubble">{{ item.text }}</div></div>
-          <details v-else-if="item.kind === 'steps' && (item.steps.length || !item.done)" class="steps" :open="!item.done"><summary><strong>{{ item.done ? '처리 과정' : '진단 진행 중' }}</strong> · {{ item.steps.length }}단계<span v-if="item.steps.length"> · {{ item.steps[item.steps.length-1] }}</span></summary><div class="step-list"><div v-for="(step,i) in item.steps" :key="i" class="step"><span class="step-index">{{ i+1 }}</span><span>{{ step }}</span></div></div></details>
+          <details v-else-if="item.kind === 'steps' && (item.steps.length || !item.done)" class="steps" :open="!item.done"><summary><strong>{{ item.done ? '처리 과정' : item.incident ? '진단 진행 중' : '요청 처리 중' }}</strong> · {{ stepCount(item.steps) }}단계 · {{ item.eventCount }}이벤트</summary><div class="step-list" aria-live="polite"><div v-for="(step,i) in item.steps" :key="step.id || i" class="step" :class="'step-'+(step.status || 'legacy')"><span class="step-index">{{ stepIcon(step) }}</span><span>{{ stepText(step) }}</span></div></div></details>
           <div v-else-if="item.kind === 'agent'" class="row agent" :class="'status-'+item.validationStatus"><span class="message-label">진단 어시스턴트</span><div class="bubble"><strong v-if="item.validationStatus" class="validation-label">{{ validationLabel(item.validationStatus) }}</strong><section v-for="(block,i) in reportBlocks(item.text,item.validationStatus)" :key="i" class="report-section"><h3 v-if="block.title">{{ block.title }}</h3><div class="report-body">{{ block.body }}</div></section><pre v-if="item.comparisonText" class="comparison">{{ item.comparisonText }}</pre><div v-if="item.issues?.length" class="issues">반려 사유: {{ item.issues.join(" / ") }}</div></div></div>
           <details v-else-if="item.kind === 'prompt'" class="prompt-box"><summary>개발용 · 최종 프롬프트 보기</summary><pre>{{ item.text }}</pre></details>
         </template>
@@ -222,7 +227,11 @@ function reportBlocks(value, status) {
 
 createApp({
   setup() {
-    const savedSteps = record => (record.events || []).map(e => STEP_LABELS[e.type]?.(e)).filter(Boolean);
+    const stepCount = steps => new Set(steps.map((s,i) => s.stage_id || 'legacy:'+i)).size;
+    const stepIcon = step => ({pending:'○',running:'●',completed:'✓',failed:'!',rejected:'!',unverified:'!',skipped:'–',interrupted:'■'}[step.status] || '•');
+    const stepText = step => typeof step === 'string' ? step : `${step.label}${step.attempt > 1 ? ' · 시도 '+step.attempt : ''} · ${{pending:'대기',running:'진행 중…',completed:'완료',failed:'실패',rejected:'반려',unverified:'미통과',skipped:'건너뜀',interrupted:'중단'}[step.status] || step.status}`;
+    const finishSteps = steps => steps.map(s => ['running','pending'].includes(s.status) ? {...s,status:s.status==='running'?'interrupted':'skipped'} : s);
+    const savedSteps = record => Array.isArray(record.progress) && record.progress.length ? finishSteps(record.progress) : (record.events || []).map(e => STEP_LABELS[e.type]?.(e)).filter(Boolean);
     const validationLabel = status => ({pending: '검증 전 초안', rejected: '반려된 초안 · 최종 답변 아님', passed: '검증 통과', unverified: '검증 미통과 · 최종 권고 아님'}[status] || '');
     const formatTime = value => value ? new Date(value).toLocaleString('ko-KR', {timeZone: 'Asia/Seoul'}) : '시각 미확인';
     const processingLabel = status => ({completed: '완료', partial: '일부 조회 실패', failed: '처리 미완료'}[status] || status);
@@ -322,9 +331,11 @@ createApp({
       backendLabel.value = `${h.llm_backend === 'fake' ? '테스트 모델' : h.llm_backend} · ${h.fast_llm} / ${h.quality_llm}`;
     }).catch(() => { backendLabel.value = '서버에 연결하지 못했습니다. 잠시 후 새로고침해 주세요.'; });
 
-    async function scrollToBottom() {
+    async function scrollToBottom(force = false) {
+      const el = logEl.value;
+      const follow = force || !el || el.scrollHeight - el.scrollTop - el.clientHeight < 80;
       await nextTick();
-      if (logEl.value) logEl.value.scrollTop = logEl.value.scrollHeight;
+      if (follow && logEl.value) logEl.value.scrollTop = logEl.value.scrollHeight;
     }
 
     function onSubmit() {
@@ -336,7 +347,7 @@ createApp({
       sending.value = true;
       scrollToBottom();
 
-      const stepsItem = reactive({ id: nextId++, kind: 'steps', steps: [], done: false });
+      const stepsItem = reactive({ id: nextId++, kind: 'steps', steps: [], done: false, eventCount: 0, liveProgress: false, incident: false });
       log.value.push(stepsItem);
       scrollToBottom();
 
@@ -346,11 +357,23 @@ createApp({
       let streamAttempt = null;   // write_node 재작성(attempt 증가) 시 새 말풍선으로 끊는다
 
       es.onmessage = (event) => {
-        if (event.data === '[DONE]') { es.close(); stepsItem.done = true; sending.value = false; if (historyOpen.value) loadInvestigations(); return; }
+        if (event.data === '[DONE]') { es.close(); stepsItem.steps = finishSteps(stepsItem.steps); stepsItem.done = true; sending.value = false; if (historyOpen.value) loadInvestigations(); return; }
         let e;
         try { e = JSON.parse(event.data); } catch { return; }
+        if (e.type !== 'AnswerToken') stepsItem.eventCount++;
+        if (e.type === 'PlanCreated') stepsItem.incident = true;
+        if (e.type === 'Progress') {
+          if (e.step.stage_id === 'plan') stepsItem.incident = true;
+          if (!stepsItem.liveProgress) { stepsItem.steps = []; stepsItem.liveProgress = true; }
+          const index = stepsItem.steps.findIndex(s => s.id === e.step.id);
+          if (index < 0) stepsItem.steps.push(e.step);
+          else stepsItem.steps[index] = {...stepsItem.steps[index],...e.step};
+          scrollToBottom();
+          return;
+        }
 
         if (e.type === 'ProcessingError') {
+          stepsItem.steps = finishSteps(stepsItem.steps);
           if (streamItem) {streamItem.text = '작성 중단: 이 초안은 완료된 답변이 아닙니다.';streamItem.validationStatus = 'unverified';}
           streamItem = null; streamAttempt = null;
           log.value.push({id: nextId++, kind: 'agent', text: e.message});
@@ -371,6 +394,7 @@ createApp({
         }
 
         if (e.type === 'FinalAnswer') {
+          if (e.progress?.length) { stepsItem.steps = finishSteps(e.progress); stepsItem.liveProgress = true; }
           if (!streamItem || e.validation_status === 'unverified') {
             streamItem = reactive({ id: nextId++, kind: 'agent', text: '' });
             log.value.push(streamItem);
@@ -391,6 +415,7 @@ createApp({
           streamItem.validationStatus = e.status;
           streamItem.issues = e.issues || [];
         }
+        if (stepsItem.liveProgress) return;
         const fn = STEP_LABELS[e.type];
         if (!fn) return;
         const label = fn(e);
@@ -400,14 +425,14 @@ createApp({
       };
 
       es.onerror = () => {
-        es.close(); stepsItem.done = true; sending.value = false;
+        es.close(); stepsItem.steps = finishSteps(stepsItem.steps); stepsItem.done = true; sending.value = false;
         if (streamItem) {streamItem.text = '연결 중단: 이 초안의 완료 여부를 확인하지 못했습니다.';streamItem.validationStatus = 'unverified';}
         log.value.push({id: nextId++, kind: 'agent', text: '서버 연결이 끊겼습니다. 다시 질문해 주세요.'});
         scrollToBottom();
       };
     }
 
-    return { savedSteps, historyScope, historyCursor, setHistoryScope, loadInvestigations, reportBlocks, downloadUrl, formatTime, processingLabel, historyOpen, investigations, selectedInvestigation, historyError, historyLoading, toggleHistory, openInvestigation, validationLabel, backendLabel, log, input, sending, restoring, logEl, onSubmit, newConversation };
+    return { stepCount, stepIcon, stepText, savedSteps, historyScope, historyCursor, setHistoryScope, loadInvestigations, reportBlocks, downloadUrl, formatTime, processingLabel, historyOpen, investigations, selectedInvestigation, historyError, historyLoading, toggleHistory, openInvestigation, validationLabel, backendLabel, log, input, sending, restoring, logEl, onSubmit, newConversation };
   },
 }).mount('#app');
 </script>

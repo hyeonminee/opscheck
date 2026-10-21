@@ -12,7 +12,6 @@ import asyncio
 import json
 import re
 import time
-from functools import partial
 from typing import Any, TypedDict
 
 from langgraph.config import get_stream_writer
@@ -26,6 +25,8 @@ from .runbook_selector import select_runbooks, valid_runbook
 from .execution import MAX_DRAFTS, error_event
 from .report import evidence_catalog, validate_draft, build_report, render_report
 
+
+from .progress import Progress
 
 from .targets import KNOWN_SYSTEMS, requested_targets, is_target_reply
 
@@ -56,6 +57,7 @@ class AgentState(TypedDict, total=False):
     last_prompt: str
     cost_usd: float
     events: list[dict]
+    progress: list[dict]
 
 
 def _cost(state: AgentState, usage: dict) -> float:
@@ -135,17 +137,23 @@ async def chat_answer_node(state: AgentState, deps: SupervisorDeps) -> dict:
 
 
 @traceable(name="plan_node")
-async def plan_node(state: AgentState, deps: SupervisorDeps) -> dict:
+async def plan_node(state: AgentState, deps: SupervisorDeps, progress=None) -> dict:
     """Wave 4 — Plan/Task 분해. Wave 2의 MCP Prompt가 표준 절차를 깔아준다.
 
     resource와 마찬가지로 이름을 어느 서버가 들고 있는지 미리 가정하지 않고,
     find_prompt()로 연결된 서버들을 먼저 조회해 찾은 뒤에만 get_prompt를 보낸다."""
-    prompt_server, _ = await with_retry(deps.mcp.find_prompt, "incident_analysis_prompt")
-    procedure, _ = await with_retry(deps.mcp.get_prompt,
+    prompt_server, server_retries = await with_retry(deps.mcp.find_prompt, "incident_analysis_prompt",
+        on_attempt=progress.callback('plan:prompt-server','진단 절차 서버 탐색') if progress else None)
+    if progress:
+        progress.set('plan:prompt-server','진단 절차 서버 탐색','completed',attempt=server_retries+1)
+    procedure, prompt_retries = await with_retry(deps.mcp.get_prompt,
         "incident_analysis_prompt",
         {"system_name": ", ".join(state["requested_targets"]), "symptom": state["query"]},
         server=prompt_server,
+        on_attempt=progress.callback('plan:prompt','진단 절차 조회') if progress else None,
     )
+    if progress:
+        progress.set('plan:prompt','진단 절차 조회','completed',attempt=prompt_retries+1)
     result, usage = await deps.fast_llm.plan(state["query"], procedure)
     return {"tasks": result["tasks"], "needs_analysis": result["needs_analysis"],
             "cost_usd": _cost(state, usage)}
@@ -171,7 +179,7 @@ async def gate_node(state: AgentState, deps: SupervisorDeps) -> dict:
 
 
 @traceable(name="research_node")
-async def research_node(state: AgentState, deps: SupervisorDeps) -> dict:
+async def research_node(state: AgentState, deps: SupervisorDeps, progress=None) -> dict:
     """Wave 15 가드 + Wave 10b 병렬 + Wave 9 재시도 + Wave 2 Tool/Resource 실호출."""
     tasks = state["tasks"]
     research_indices = [i for i, t in enumerate(tasks)
@@ -193,16 +201,34 @@ async def research_node(state: AgentState, deps: SupervisorDeps) -> dict:
     async def run_one(idx: int) -> dict:
         task = tasks[idx]
         retries = 0
+        stage = task['kind'] + ':' + task['target']
+        label = task['target'] + (' 모니터링 조회' if task['kind']=='monitoring' else ' 대응 매뉴얼 조회')
+        attempt = 1
+        def notify(index, status):
+            nonlocal attempt
+            attempt = index + 1
+            if progress:
+                progress.set(stage,label,status,attempt=attempt)
         try:
             if task["kind"] == "monitoring":
-                data, retries = await with_retry(deps.mcp.call_tool, "get_monitoring_status", {"system_name": task["target"]})
+                data, retries = await with_retry(deps.mcp.call_tool, "get_monitoring_status", {"system_name": task["target"]}, on_attempt=notify)
+                if progress:
+                    progress.set(stage,label,'completed',attempt=attempt)
                 return {"idx": idx, "source": "monitoring", "data": data, "retries": retries}
-            (server, template), count = await with_retry(deps.mcp.find_resource_template, "get_incident_runbook")
+            discovery = stage + ':server'
+            (server, template), count = await with_retry(deps.mcp.find_resource_template, "get_incident_runbook",
+                on_attempt=progress.callback(discovery,task['target']+' 매뉴얼 서버 탐색') if progress else None)
+            if progress:
+                progress.set(discovery,task['target']+' 매뉴얼 서버 탐색','completed',attempt=count+1)
             retries += count
             uri = template.format(incident_type=task["target"])
-            data, count = await with_retry(deps.mcp.read_resource, uri, server=server)
+            data, count = await with_retry(deps.mcp.read_resource, uri, server=server, on_attempt=notify)
+            if progress:
+                progress.set(stage,label,'completed' if valid_runbook(data) else 'failed',attempt=attempt)
             return {"idx": idx, "source": "runbook", "data": data, "uri": uri, "retries": retries + count}
         except Exception as error:
+            if progress:
+                progress.set(stage,label,'failed',attempt=attempt)
             # Independent lookup failures become explicit results; cancellation still propagates.
             return {"idx": idx, "source": task["kind"] + "_failure", "ok": False,
                     "data": "모니터링을 조회하지 못했습니다." if task["kind"] == "monitoring" else "대응 매뉴얼을 조회하지 못했습니다.",
@@ -383,7 +409,48 @@ def _after_validate(state: AgentState) -> str:
 
 def build_graph(deps: SupervisorDeps):
     g = StateGraph(AgentState)
-    node = lambda fn: partial(fn, deps=deps)   # Wave 13 — 명시적 의존성 주입
+    def node(fn):
+        async def execute(state):
+            progress = Progress(state)
+            name = fn.__name__.removesuffix('_node')
+            attempt = state.get('validation_attempts',0)+1 if name in ('write','validate') else 1
+            labels = {'route':'요청 분류','chat_answer':'일반 대화 답변','plan':'계획 수립',
+                      'gate':'조사 계획 확인','analysis':'관측 비교 분석','write':'답변 작성',
+                      'validate':'근거 검증','finalize':'최종 답변 정리'}
+            skipped = (name=='analysis' and (not any(t['agent']=='analysis' and t['status']=='pending' for t in state['tasks'])
+                        or not any(c['source']=='monitoring' for c in state.get('collected',[])))) or (
+                        name=='write' and not any(v['kind']=='monitoring' and v['usable'] for v in evidence_catalog(state.get('collected',[])).values()))
+            if name in labels:
+                progress.set(name,labels[name],'skipped' if skipped else 'running',attempt=attempt)
+            try:
+                delta = await fn(state,deps=deps,**({'progress':progress} if name in ('research','plan') else {}))
+            except BaseException as error:
+                if name in labels and not skipped:
+                    progress.set(name,labels[name],'interrupted' if isinstance(error,asyncio.CancelledError) else 'failed',attempt=attempt)
+                progress.finish()
+                raise
+            if name in labels and not skipped:
+                verdict = delta.get('validation_status') if name=='validate' else None
+                progress.set(name,labels[name],verdict if verdict in ('rejected','unverified') else 'completed',attempt=attempt)
+            if name=='route' and delta.get('route')=='incident':
+                for stage in ('plan','gate','write','validate'):
+                    progress.set(stage,labels[stage],'pending')
+            if name in ('gate','replan_check'):
+                for task in delta.get('tasks',[]):
+                    if task['agent']=='research' and task['status']=='pending':
+                        stage=task['kind']+':'+task['target']
+                        label=task['target']+(' 모니터링 조회' if task['kind']=='monitoring' else ' 대응 매뉴얼 조회')
+                        if not any(s['stage_id']==stage for s in progress.steps):
+                            progress.set(stage,label,'pending')
+                if name=='gate' and any(t['agent']=='analysis' for t in delta.get('tasks',[])):
+                    progress.set('analysis',labels['analysis'],'pending')
+            if name=='validate' and delta.get('validation_status')=='rejected':
+                for stage in ('write','validate'):
+                    progress.set(stage,labels[stage],'pending',attempt=attempt+1)
+            if name in ('finalize','chat_answer') or (name=='route' and delta.get('route')=='clarify'):
+                progress.finish()
+            return {**delta,'progress':progress.steps}
+        return execute
     g.add_node("route", node(route_node))
     g.add_node("chat_answer", node(chat_answer_node))
     g.add_node("plan", node(plan_node))

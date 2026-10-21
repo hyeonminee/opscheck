@@ -1,5 +1,7 @@
 # all_total_vue — 운영 인시던트 대응 에이전트 (Vue 프론트엔드 버전)
 
+> 현재 구현: Phase 0~10. 후속 [정답 검증셋](VALIDATION_DATASET.md) · [전체 이력](PHASE9_RESULT.md) · [실시간 진행](PHASE10_RESULT.md). 과거 Phase 0~7 실행 결과는 당시 기록으로 보존합니다.
+
 수업 원본 `all_total`의 Vue 3 화면 버전을 기반으로 개선하는 프로젝트다. Phase 1에서 대상 검증·확인 대화·세션 복원을 추가했다. Vue 3는 CDN 글로벌 빌드로 사용하며 별도 빌드 단계는 없다. [Phase 1 결과](PHASE1_RESULT.md).
 
 수업에서 다룬 패턴(싱글턴·MCP·SSE·라우팅·게이트·재계획·검증·재시도·병렬·비용분리·
@@ -157,8 +159,12 @@ sequenceDiagram
     participant G as graph
 
     U->>S: GET /chat/stream (SSE)
-    loop 노드가 끝날 때마다
-        G-->>S: 노드 이벤트 (RouteDecided, PlanCreated, ...)
+    loop 실제 작업 시작·개별 완료·실패 시점
+        G-->>S: custom Progress(step ID, 상태, 시도)
+        S-->>U: data: {Progress}
+    end
+    loop 노드 완료 후 기존 이벤트도 유지
+        G-->>S: RouteDecided, PlanCreated, Validation 등
         S-->>U: data: {event}
     end
     G-->>S: FinalAnswer
@@ -351,13 +357,30 @@ node tests/test_web_session.cjs
 
 ## 후속 Phase 8~10
 
-기존 Phase 0~7 기록은 보존한다. [후속 계획](DEVELOPMENT_PHASE_PLAN.md#후속-개발-계획--phase-810-2026-10-21-추가)을 따른다. Phase 8의 [정답·판정 기준 검증셋](VALIDATION_DATASET.md)은 과거 회귀 문서의 자동 대체 같은 설명을 정답으로 사용하지 않는다. `eval/run_validation.py`로 fake 고정 그래프·초안 판정을 실행한다. Phase 9 전체 이력·Phase 10 실제 진행 이벤트는 후속 검증 전이다.
+기존 Phase 0~7 기록은 보존한다. [후속 계획](DEVELOPMENT_PHASE_PLAN.md#후속-개발-계획--phase-810-2026-10-21-추가)을 따른다. Phase 8의 [정답·판정 기준 검증셋](VALIDATION_DATASET.md)은 과거 회귀 문서의 자동 대체 같은 설명을 정답으로 사용하지 않는다. `eval/run_validation.py`로 fake 고정 그래프·초안 판정을 실행한다. Phase 9 전체 이력·Phase 10 실제 진행 이벤트는 아래 현재 동작과 결과 문서를 참고한다.
 
 
 ### Phase 9 전체 조사 이력 — 현재 동작
 
-조사 이력은 기본 **전체 조사**이며 **현재 대화**로 전환한다. 일반 대화와 대상 확인은 제외한다. 질문·서비스·시각·처리/검증 상태를 보여주며 저장 최신순 20건 이후는 **더 보기**로 조회한다. 새 대화를 시작해도 이전 조사는 DB에 남는다. 다른 대화의 기록을 열어도 활성 대화 ID/맥락을 바꾸지 않으며, 상세·Markdown은 기록의 원래 thread_id/run_id를 사용한다. 비교 결과는 저장 스냅샷을 유지한다. 처리 과정은 기록에 남은 이벤트를 펼쳐 확인한다. 새 실시간 단계 정보는 Phase 10의 범위다.
+조사 이력은 기본 **전체 조사**이며 **현재 대화**로 전환한다. 일반 대화와 대상 확인은 제외한다. 질문·서비스·시각·처리/검증 상태를 보여주며 저장 최신순 20건 이후는 **더 보기**로 조회한다. 새 대화를 시작해도 이전 조사는 DB에 남는다. 다른 대화의 기록을 열어도 활성 대화 ID/맥락을 바꾸지 않으며, 상세·Markdown은 기록의 원래 thread_id/run_id를 사용한다. 비교 결과는 저장 스냅샷을 유지한다. 처리 과정은 기록에 남은 이벤트를 펼쳐 확인한다. Phase 10부터 새 progress 스냅샷을 우선 보여주며 과거 기록은 기존 이벤트를 표시한다.
 
 API: `GET /investigations?limit=20`는 전체, `?thread_id=...`는 기존 대화별 호출이다. 응답의 `next_cursor`를 `before=...`로 전달하면 이전 저장 기록을 이어서 조회한다. 오프셋 대신 저장 행 순서의 run_id 커서를 사용해 중간 새 기록의 삽입으로 페이지가 밀리지 않는다. 필터 변경 시 커서는 초기화한다. 정렬은 기존 저장 순서(rowid 역순)를 유지하며 관측 시각 순이 아니다.
 
 인증 없는 **개인 실습 환경**이다. 같은 서버 DB에 접근하는 사람은 전체 조사 기록을 조회할 수 있다. thread_id는 인증/권한 수단이 아니다. 다중 사용자 인증은 이번 범위에 포함하지 않는다. [검증 결과](PHASE9_RESULT.md).
+
+
+### Phase 10 단계별 실시간 상태 — 현재 동작
+
+기존 SSE `custom` 모드로 실제 노드·조회 호출 전 running을 전송하고, 각 조회가 끝나는 즉시 completed/failed를 전송한다. 여러 조사를 gather로 기다리는 동안에도 개별 완료는 먼저 도착한다. 타이머 연출은 없다. 노드 완료의 기존 이벤트와 AnswerToken/Validation/FinalAnswer/[DONE] 계약도 유지한다.
+
+```json
+{"type":"Progress","step":{"id":"monitoring:payments-service:attempt:1","stage_id":"monitoring:payments-service","label":"payments-service 모니터링 조회","attempt":1,"status":"running"}}
+```
+
+화면은 같은 id를 갱신하고 시도 2는 별도 행으로 표시한다. 단계 수는 고유 stage_id 수이며 이벤트 수·시도 행 수와 다르다. 상태는 pending/running/completed/failed/skipped/interrupted/rejected/unverified를 구분한다. 분석을 생략하면 건너뜀, 검증 반려는 반려이며 정상 완료로 표시하지 않는다. 일반 대화/대상 확인에는 진단 계획·조사 단계가 생기지 않는다. 완료 과정은 접고 펼칠 수 있다. 사용자가 위로 읽고 있으면 진행/답변 갱신 때 스크롤을 빼앗지 않고 하단 부근일 때만 따라간다.
+
+기존 `investigations.result_json`에 progress를 함께 저장한다. 기록을 열면 완료 스냅샷을 표시하며 과거 pending/running은 건너뜀/중단으로 표시한다. progress 없는 기존 기록은 events를 사용한다. 취소된 요청은 기존 정책대로 완료 이력/대화에 저장하지 않는다. 시간 초과 등 종료된 실패 요청은 확인 자료와 종료 상태를 저장한다. v1은 기존 완료 이벤트 표시를 유지한다.
+
+검증: `tests/test_phase10.py`의 Event 차단 검사와 실제 루프백 HTTP·프록시 검사를 실행했다. 작업을 해제하기 전에 running/빠른 완료 수신을 확인했으며 단순 최종 이벤트 순서만 검사하지 않았다. 전체 Python119·Node·고정 판정35 통과. fake/고정 데이터로 데스크톱·390px을 확인했고 유료 호출은 없다. [Phase 10 결과·직접 확인](PHASE10_RESULT.md).
+
+MCP의 기존 Lock·네트워크 지연 자체는 개선하지 않았다. 같은 MCP 연결이 내부 직렬화하면 완료도 그 순서를 따른다. 로컬 테스트 성공을 모든 배포 프록시의 무버퍼 전달 보장으로 해석하지 않는다. 사용자 서버 8100/8600과 DB는 재시작/변경하지 않았으므로 반영하려면 기존 기동 방법으로 서버를 재시작하고 화면을 새로고침한다.
