@@ -1,0 +1,32 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+*.db
+*.db-*
+.DS_Store
+
+# 로컬 실행 로그와 테스트 대화
+/dev_logs/
+
+# Local editor, caches and additional database formats
+/.vscode/
+.pytest_cache/
+.ruff_cache/
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+
+# Generated submission archives
+/submission/*.zip
+
+# Personal working records and unreviewed historical captures
+/doc/DEVELOPMENT_LOG.md
+/doc/verification/phase0-browser.png
+/doc/image_usecase/
+/doc/image_usecase_openai/
+/eval/results/browser-smoke.txt
+/eval/results/local-smoke.json
+/eval/results/phase0-unittest.txt

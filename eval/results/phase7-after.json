@@ -1,0 +1,403 @@
+{
+  "kind": "fixed-input component checks, no external model; not end-to-end accuracy or speed",
+  "source": "/Users/hyeonmin/workspace/AI mini-project",
+  "python": "3.14.7",
+  "graph_sha256": "29a7bc7c43a7964c8476139409fb102bf2d0d24eb2cd41ed0fbb101be62c3104",
+  "evaluator_sha256": "c96065c77c024595bef924bfd19a353a41afc0153c9344ea58793da147360d98",
+  "cases_sha256": "5c4a1071bd235328712b5e3f3d2bdd23c9e7702333be332c81ba5a109e333fad",
+  "fixture_sha256": "a100f27ed3bbac814f9b30105aa19478925bb6d3ea3622982de4cf41528704df",
+  "repeat_count": 1,
+  "model": "none; gate inputs, observations and validation drafts are fixed",
+  "scope_note": "same plans and requested targets directly injected; target extraction and LLM routing are tested separately",
+  "validator_note": "same semantic faults, legacy prose vs structured JSON; NOT identical strings and NOT real LLM accuracy",
+  "timing_note": "diagnostic only: original research includes synthetic 0.35s delay; no speed-up claim",
+  "summary": {
+    "manuals": {
+      "passed": 15,
+      "total": 15,
+      "rate": 1.0
+    },
+    "missing_document": {
+      "passed": 1,
+      "total": 1,
+      "rate": 1.0
+    },
+    "partial_failure": {
+      "passed": 1,
+      "total": 1,
+      "rate": 1.0
+    },
+    "scope": {
+      "passed": 7,
+      "total": 7,
+      "rate": 1.0
+    },
+    "validator": {
+      "passed": 9,
+      "total": 9,
+      "rate": 1.0
+    },
+    "incorrect_blocked": {
+      "passed": 7,
+      "total": 7,
+      "rate": 1.0
+    },
+    "correct_blocked": {
+      "passed": 0,
+      "total": 2,
+      "rate": 0.0
+    }
+  },
+  "results": [
+    {
+      "group": "scope",
+      "id": "extra-target",
+      "expected": [
+        "payments-service"
+      ],
+      "actual": [
+        "payments-service"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000272
+    },
+    {
+      "group": "scope",
+      "id": "missing-target",
+      "expected": [
+        "payments-service",
+        "cache-service"
+      ],
+      "actual": [
+        "payments-service",
+        "cache-service"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.00017
+    },
+    {
+      "group": "scope",
+      "id": "duplicate-target",
+      "expected": [
+        "payments-service"
+      ],
+      "actual": [
+        "payments-service"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000118
+    },
+    {
+      "group": "scope",
+      "id": "correct-target",
+      "expected": [
+        "payments-service"
+      ],
+      "actual": [
+        "payments-service"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000101
+    },
+    {
+      "group": "scope",
+      "id": "unknown-target",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "elapsed_seconds": 0.000103
+    },
+    {
+      "group": "scope",
+      "id": "unspecified-target",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "elapsed_seconds": 8.4e-05
+    },
+    {
+      "group": "scope",
+      "id": "mixed-extra-missing",
+      "expected": [
+        "gateway-service",
+        "payments-service"
+      ],
+      "actual": [
+        "gateway-service",
+        "payments-service"
+      ],
+      "passed": true,
+      "elapsed_seconds": 9.6e-05
+    },
+    {
+      "group": "manuals",
+      "id": "payments-single",
+      "expected": [
+        "cpu-spike"
+      ],
+      "actual": [
+        "cpu-spike"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000445
+    },
+    {
+      "group": "manuals",
+      "id": "cache-single",
+      "expected": [
+        "memory-leak"
+      ],
+      "actual": [
+        "memory-leak"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000108
+    },
+    {
+      "group": "manuals",
+      "id": "log-single",
+      "expected": [
+        "disk-full"
+      ],
+      "actual": [
+        "disk-full"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000121
+    },
+    {
+      "group": "manuals",
+      "id": "gateway-payments",
+      "expected": [
+        "cpu-spike",
+        "network-timeout"
+      ],
+      "actual": [
+        "cpu-spike",
+        "network-timeout"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000119
+    },
+    {
+      "group": "manuals",
+      "id": "web-auth",
+      "expected": [
+        "high-latency"
+      ],
+      "actual": [
+        "high-latency"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000102
+    },
+    {
+      "group": "manuals",
+      "id": "payments-cache",
+      "expected": [
+        "cpu-spike",
+        "memory-leak"
+      ],
+      "actual": [
+        "cpu-spike",
+        "memory-leak"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000108
+    },
+    {
+      "group": "manuals",
+      "id": "healthy-web",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "elapsed_seconds": 0.000102
+    },
+    {
+      "group": "manuals",
+      "id": "partial-failure",
+      "expected": [
+        "cpu-spike"
+      ],
+      "actual": [
+        "cpu-spike"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000132
+    },
+    {
+      "group": "manuals",
+      "id": "type-cpu-spike",
+      "expected": [
+        "cpu-spike"
+      ],
+      "actual": [
+        "cpu-spike"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000102
+    },
+    {
+      "group": "manuals",
+      "id": "type-memory-leak",
+      "expected": [
+        "memory-leak"
+      ],
+      "actual": [
+        "memory-leak"
+      ],
+      "passed": true,
+      "elapsed_seconds": 9.7e-05
+    },
+    {
+      "group": "manuals",
+      "id": "type-disk-full",
+      "expected": [
+        "disk-full"
+      ],
+      "actual": [
+        "disk-full"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000106
+    },
+    {
+      "group": "manuals",
+      "id": "type-high-latency",
+      "expected": [
+        "high-latency"
+      ],
+      "actual": [
+        "high-latency"
+      ],
+      "passed": true,
+      "elapsed_seconds": 9.6e-05
+    },
+    {
+      "group": "manuals",
+      "id": "type-network-timeout",
+      "expected": [
+        "network-timeout"
+      ],
+      "actual": [
+        "network-timeout"
+      ],
+      "passed": true,
+      "elapsed_seconds": 8.9e-05
+    },
+    {
+      "group": "manuals",
+      "id": "type-db-down",
+      "expected": [
+        "db-down"
+      ],
+      "actual": [
+        "db-down"
+      ],
+      "passed": true,
+      "elapsed_seconds": 0.000101
+    },
+    {
+      "group": "manuals",
+      "id": "unknown-observation",
+      "expected": [],
+      "actual": [],
+      "passed": true,
+      "elapsed_seconds": 9.3e-05
+    },
+    {
+      "group": "missing_document",
+      "id": "missing-source-not-sufficient",
+      "expected": false,
+      "actual": false,
+      "passed": true,
+      "elapsed_seconds": 9.2e-05
+    },
+    {
+      "group": "partial_failure",
+      "id": "one-success-one-failure",
+      "expected": {
+        "success_preserved": true,
+        "failed_target_recorded": true
+      },
+      "actual": {
+        "success_preserved": true,
+        "failed_target_recorded": true
+      },
+      "passed": true,
+      "elapsed_seconds": 0.000545
+    },
+    {
+      "group": "validator",
+      "id": "valid-cpu",
+      "expected": "accept",
+      "actual": "accept",
+      "passed": true,
+      "elapsed_seconds": 0.000367
+    },
+    {
+      "group": "validator",
+      "id": "valid-status",
+      "expected": "accept",
+      "actual": "accept",
+      "passed": true,
+      "elapsed_seconds": 0.000148
+    },
+    {
+      "group": "validator",
+      "id": "wrong-cpu",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "elapsed_seconds": 0.000135
+    },
+    {
+      "group": "validator",
+      "id": "alert-threshold-as-value",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "elapsed_seconds": 0.00012
+    },
+    {
+      "group": "validator",
+      "id": "wrong-status",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "elapsed_seconds": 0.000118
+    },
+    {
+      "group": "validator",
+      "id": "cross-service",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "elapsed_seconds": 0.000107
+    },
+    {
+      "group": "validator",
+      "id": "missing-document",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "elapsed_seconds": 0.00011
+    },
+    {
+      "group": "validator",
+      "id": "missing-step",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "elapsed_seconds": 0.000112
+    },
+    {
+      "group": "validator",
+      "id": "unverified-condition",
+      "expected": "reject",
+      "actual": "reject",
+      "passed": true,
+      "elapsed_seconds": 0.000426
+    }
+  ]
+}

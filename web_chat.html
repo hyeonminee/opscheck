@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>운영 진단 워크스페이스</title>
+<style>
+  :root { color-scheme: light; --ink:#182b45; --muted:#64748b; --line:#e2e8f0; --blue:#2563eb; }
+  * { box-sizing:border-box; }
+  [v-cloak] { display:none; }
+  html,body { height:100%; }
+  body { margin:0; font-family:-apple-system,"Apple SD Gothic Neo",sans-serif; color:var(--ink); background:#f5f7fb; font-size:15px; }
+  button,input { font:inherit; }
+  button,a { -webkit-tap-highlight-color:transparent; }
+  button { cursor:pointer; border:1px solid var(--line); border-radius:10px; background:white; color:var(--ink); padding:10px 15px; font-weight:600; }
+  button:hover:not(:disabled) { background:#eff6ff; border-color:#b8cef9; }
+  button:disabled { cursor:default; opacity:.5; }
+  button:focus-visible,a:focus-visible,summary:focus-visible { outline:3px solid #93b4fb; outline-offset:3px; }
+  #app { height:100dvh; min-height:0; display:flex; flex-direction:column; overflow:hidden; }
+  .app-header { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 30px; background:#fff; border-bottom:1px solid var(--line); flex-shrink:0; }
+  .brand { display:flex; align-items:center; gap:12px; }
+  .brand-mark { width:38px; height:38px; display:grid; place-items:center; background:#eaf1ff; border-radius:12px; color:var(--blue); font-size:15px; font-weight:800; }
+  h1 { font-size:18px; letter-spacing:-.5px; margin:0; }
+  .brand p { color:var(--muted); margin:4px 0 0; font-size:12px; }
+  .header-actions { display:flex; gap:8px; }
+  .primary { background:var(--blue); color:#fff; border-color:var(--blue); }
+  .primary:hover:not(:disabled) { background:#1d4ed8; color:#fff; border-color:#1d4ed8; }
+  .workspace { display:flex; flex:1; min-height:0; position:relative; }
+  .history-panel { width:310px; flex-shrink:0; background:#fff; border-right:1px solid var(--line); padding:24px 18px; overflow-y:auto; }
+  .panel-heading { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .panel-heading h2 { margin:0; font-size:17px; }
+  .panel-heading span { background:#eef2f7; color:var(--muted); padding:3px 8px; border-radius:6px; font-size:12px; }
+  .muted { color:var(--muted); font-size:13px; line-height:1.6; }
+  .history-panel ul { margin:22px 0 0; padding:0; list-style:none; }
+  .history-panel li { margin-bottom:8px; }
+  .history-record { display:block; width:100%; text-align:left; padding:14px 12px; border-color:transparent; background:#f8fafc; }
+  .history-record.active { border-color:#93b4fb; background:#eff6ff; }
+  .history-query { display:block; line-height:1.5; overflow-wrap:anywhere; font-size:13px; font-weight:600; }
+  .history-meta { display:block; color:var(--muted); font-size:11px; font-weight:400; line-height:1.7; margin-top:8px; }
+  .conversation { flex:1; min-width:0; min-height:0; display:flex; flex-direction:column; }
+  .context-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 30px; border-bottom:1px solid var(--line); background:#fafcff; font-size:12px; color:var(--muted); }
+  .context-bar p { margin:0; }
+  .connection-details { position:relative; flex-shrink:0; }
+  .connection-details summary { cursor:pointer; }
+  .connection-details div { position:absolute; right:0; top:28px; z-index:5; width:300px; padding:14px; background:white; border:1px solid var(--line); box-shadow:0 8px 24px #182b4510; border-radius:10px; overflow-wrap:anywhere; }
+  #log { flex:1; min-height:0; overflow-y:auto; padding:32px max(28px,calc((100% - 920px)/2)); display:flex; flex-direction:column; gap:18px; scroll-padding:24px; }
+  #log::-webkit-scrollbar,.history-panel::-webkit-scrollbar,.history-detail::-webkit-scrollbar { width:7px; }
+  ::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:8px; }
+  .empty-state { margin:auto 0; padding:40px 0; max-width:760px; }
+  .eyebrow { font-size:12px; font-weight:700; color:var(--blue); letter-spacing:1px; margin:0 0 14px; }
+  .empty-state h2 { font-size:32px; letter-spacing:-1.1px; margin:0 0 16px; line-height:1.3; }
+  .empty-state>p:not(.eyebrow) { font-size:15px; color:var(--muted); line-height:1.8; margin:0 0 28px; }
+  .examples { display:flex; flex-direction:column; gap:10px; max-width:560px; }
+  .examples button { text-align:left; padding:15px 18px; display:flex; justify-content:space-between; gap:16px; font-weight:500; font-size:14px; }
+  .examples span { color:#8292aa; }
+  .row { display:flex; flex-direction:column; gap:8px; flex-shrink:0; min-width:0; }
+  .row.user { align-items:flex-end; margin-top:10px; }
+  .message-label { font-size:11px; font-weight:700; color:var(--muted); letter-spacing:.4px; }
+  .bubble { min-width:0; overflow-wrap:anywhere; line-height:1.85; font-size:14px; }
+  .row.user .bubble { background:#e8efff; color:#163c7a; border:1px solid #d9e5fc; border-radius:16px 16px 4px 16px; max-width:82%; padding:12px 18px; white-space:pre-wrap; }
+  .row.agent .bubble { background:white; border:1px solid var(--line); border-radius:4px 16px 16px 16px; padding:22px 24px; }
+  .validation-label { display:inline-block; font-size:11px; line-height:1.5; color:#13634c; background:#ecf8f1; border:1px solid #cbe8d6; padding:4px 8px; border-radius:6px; margin-bottom:14px; }
+  .status-pending .validation-label { color:#805b11; background:#fffbeb; border-color:#f1dfae; }
+  .status-rejected .validation-label,.status-unverified .validation-label { color:#9a432c; background:#fff3ed; border-color:#f5d4c4; }
+  .status-rejected .bubble { background:#fcfcfd; color:#64748b; }
+  .report-section+.report-section { margin-top:22px; padding-top:20px; border-top:1px solid #edf1f6; }
+  .report-section h3 { font-size:14px; color:#244b83; margin:0 0 9px; font-weight:700; }
+  .report-body { white-space:pre-wrap; margin:0; }
+  .comparison { margin:24px 0 0; padding:18px 20px; background:#f5f8fd; border:1px solid #e0e8f4; border-radius:10px; white-space:pre-wrap; font:inherit; font-size:13px; }
+  .issues { margin-top:14px; color:#9a432c; font-size:12px; }
+  .steps { flex-shrink:0; background:#edf2f9; border:1px solid #e2e8f0; border-radius:10px; font-size:12px; color:var(--muted); }
+  .steps summary { padding:12px 16px; cursor:pointer; line-height:1.6; }
+  .steps summary strong { color:#475b78; font-weight:600; }
+  .step-list { padding:0 16px 14px; display:flex; flex-direction:column; gap:8px; }
+  .step { display:flex; gap:10px; align-items:baseline; line-height:1.6; overflow-wrap:anywhere; }
+  .step-index { color:#8b9bb0; font-size:11px; flex-shrink:0; min-width:15px; }
+  .prompt-box { flex-shrink:0; color:var(--muted); font-size:12px; }
+  .prompt-box summary { cursor:pointer; padding:8px 0; }
+  .prompt-box pre { max-height:260px; overflow:auto; padding:16px; border:1px solid var(--line); background:white; white-space:pre-wrap; overflow-wrap:anywhere; border-radius:10px; }
+  .composer { padding:16px max(28px,calc((100% - 920px)/2)) 18px; background:#f5f7fb; flex-shrink:0; }
+  .composer form { display:flex; gap:10px; align-items:center; border:1px solid #d4ddea; border-radius:14px; padding:8px 9px 8px 17px; background:#fff; box-shadow:0 4px 16px #182b4505; }
+  .composer form:focus-within { border-color:#6898f4; box-shadow:0 0 0 3px #2563eb10; }
+  .composer input { width:100%; min-width:0; flex:1; border:0; outline:none; padding:9px 0; background:transparent; color:var(--ink); font-size:14px; }
+  .composer input::placeholder { color:#94a3b8; }
+  .composer button { flex-shrink:0; }
+  .composer-hint { display:flex; justify-content:space-between; gap:12px; margin:9px 2px 0; color:#8290a4; font-size:11px; }
+  .history-detail { overflow-y:auto; flex:1; min-height:0; padding:28px max(28px,calc((100% - 920px)/2)); }
+  .detail-toolbar { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:22px; }
+  .download { display:inline-block; text-decoration:none; color:white; background:var(--blue); padding:10px 14px; border-radius:9px; font-size:13px; font-weight:600; }
+  .detail-title { margin:0 0 8px; font-size:23px; line-height:1.5; letter-spacing:-.6px; overflow-wrap:anywhere; }
+  .sample-notice { color:#745b2e; background:#fffbef; border:1px solid #eee3c8; padding:12px 14px; font-size:12px; line-height:1.7; border-radius:8px; margin:18px 0; }
+  .detail-report { background:#fff; padding:26px; border:1px solid var(--line); border-radius:14px; font-size:14px; line-height:1.85; overflow-wrap:anywhere; }
+  .notice { margin-top:18px; padding:16px 12px; background:#f8fafc; border-radius:9px; font-size:13px; color:var(--muted); line-height:1.7; }
+  .error { color:#a1422b; }
+  @media(min-width:1450px) { .history-panel {width:340px;} }
+  @media(max-width:760px) {
+    .app-header { padding:14px 16px; gap:10px; }
+    h1 { font-size:15px; }
+    .brand-mark { display:none; }
+    .brand p { font-size:11px; }
+    .header-actions { gap:5px; }
+    button { padding:9px 11px; font-size:12px; }
+    .context-bar { padding:10px 16px; font-size:11px; }
+    .context-bar p { max-width:230px; }
+    .history-panel { position:absolute; inset:0 auto 0 0; width:min(330px,90%); z-index:10; box-shadow:12px 0 35px #182b4520; }
+    .workspace.has-detail .history-panel { display:none; }
+    #log { padding:24px 16px; gap:15px; }
+    .empty-state h2 { font-size:27px; }
+    .empty-state { padding:24px 0; }
+    .row.agent .bubble { padding:18px 16px; }
+    .row.user .bubble { max-width:92%; }
+    .composer { padding:12px 16px 14px; }
+    .composer-hint { font-size:10px; }
+    .history-detail { padding:20px 16px; }
+    .detail-report { padding:20px 16px; }
+    .detail-title { font-size:20px; }
+    .comparison { padding:14px; }
+  }
+</style>
+</head>
+<body>
+<div id="app" v-cloak>
+  <header class="app-header">
+    <div class="brand"><div class="brand-mark" aria-hidden="true">AI</div><div><h1>운영 진단 워크스페이스</h1><p>서비스의 상태를 확인하고, 근거로 판단하세요.</p></div></div>
+    <nav class="header-actions" aria-label="대화 메뉴">
+      <button type="button" @click="toggleHistory" :aria-expanded="historyOpen" aria-controls="investigation-history" :disabled="sending || restoring">{{ historyOpen ? "이력 닫기" : "조사 이력" }}</button>
+      <button type="button" class="primary" @click="newConversation" :disabled="sending || restoring">새 대화</button>
+    </nav>
+  </header>
+  <div class="workspace" :class="{'has-detail': historyOpen && selectedInvestigation}">
+    <aside v-if="historyOpen" id="investigation-history" class="history-panel" aria-label="조사 이력">
+      <div class="panel-heading"><h2>조사 이력</h2><span>{{ investigations.length }}건</span></div>
+      <p class="muted">현재 대화에서 완료한 최근 20건입니다.</p>
+      <div v-if="historyLoading" class="notice" role="status">조사 기록을 불러오고 있습니다.</div>
+      <div v-if="historyError" class="notice error" role="alert">{{ historyError }}</div>
+      <div v-if="!historyLoading && !historyError && !investigations.length" class="notice">아직 저장된 조사가 없습니다.<br>서비스를 진단하면 이곳에 기록됩니다.</div>
+      <ul><li v-for="record in investigations" :key="record.run_id">
+        <button type="button" class="history-record" :class="{active:selectedInvestigation?.run_id === record.run_id}" @click="openInvestigation(record.run_id)">
+          <span class="history-query">{{ record.query }}</span>
+          <span class="history-meta">{{ processingLabel(record.processing_status) }} · {{ validationLabel(record.validation_status) }}<br>{{ formatTime(record.created) }}</span>
+        </button>
+      </li></ul>
+    </aside>
+    <main class="conversation" aria-label="서비스 진단">
+      <div class="context-bar"><p>수업 샘플 데이터 · 운영 조치는 자동 실행되지 않습니다.</p><details class="connection-details"><summary>연결 정보</summary><div>{{ backendLabel }}</div></details></div>
+      <section v-if="historyOpen && selectedInvestigation" class="history-detail" aria-label="저장된 진단 보고서">
+        <div class="detail-toolbar"><button type="button" @click="selectedInvestigation=null; historyOpen=false">← 대화로 돌아가기</button><a class="download" :href="downloadUrl(selectedInvestigation.run_id)" download>Markdown 내려받기</a></div>
+        <p class="eyebrow">SAVED REPORT</p><h2 class="detail-title">{{ selectedInvestigation.query }}</h2>
+        <p class="muted">{{ formatTime(selectedInvestigation.created) }} · {{ processingLabel(selectedInvestigation.processing_status) }}</p>
+        <div v-if="selectedInvestigation.is_sample" class="sample-notice">저장 당시의 수업 샘플 데이터입니다. 현재 상태를 새로 조회한 결과가 아닙니다.</div>
+        <div class="detail-report" :class="'status-'+selectedInvestigation.validation_status">
+          <strong class="validation-label">{{ validationLabel(selectedInvestigation.validation_status) }}</strong>
+          <section v-for="(block,i) in reportBlocks(selectedInvestigation.reply,selectedInvestigation.validation_status)" :key="i" class="report-section"><h3 v-if="block.title">{{ block.title }}</h3><div class="report-body">{{ block.body }}</div></section>
+          <pre v-if="selectedInvestigation.comparison_text" class="comparison">{{ selectedInvestigation.comparison_text }}</pre>
+        </div>
+      </section>
+      <div v-show="!(historyOpen && selectedInvestigation)" id="log" ref="logEl" role="log" aria-label="진단 대화">
+        <section v-if="!log.length && !restoring" class="empty-state">
+          <p class="eyebrow">AI OPERATIONS ASSISTANT</p><h2>어떤 서비스를 확인할까요?</h2>
+          <p>서비스 이름과 증상을 알려주세요.<br>모니터링 정보와 대응 매뉴얼을 확인해 진단을 도와드립니다.</p>
+          <div class="examples" aria-label="질문 예시">
+            <button type="button" @click="input='payments-service 결제 응답이 느려요. 원인 확인해줘'">결제 응답이 느려요<span aria-hidden="true">↗</span></button>
+            <button type="button" @click="input='payments-service와 cache-service 장애를 함께 확인해줘'">두 서비스의 장애를 함께 확인하고 싶어요<span aria-hidden="true">↗</span></button>
+            <button type="button" @click="input='web-01 상태를 확인해줘'">서비스의 현재 상태를 확인하고 싶어요<span aria-hidden="true">↗</span></button>
+          </div>
+        </section>
+        <p v-if="restoring" class="muted" role="status">이전 대화를 불러오고 있습니다.</p>
+        <template v-for="item in log" :key="item.id">
+          <div v-if="item.kind === 'user'" class="row user"><span class="message-label">나</span><div class="bubble">{{ item.text }}</div></div>
+          <details v-else-if="item.kind === 'steps' && (item.steps.length || !item.done)" class="steps" :open="!item.done"><summary><strong>{{ item.done ? '처리 과정' : '진단 진행 중' }}</strong> · {{ item.steps.length }}단계<span v-if="item.steps.length"> · {{ item.steps[item.steps.length-1] }}</span></summary><div class="step-list"><div v-for="(step,i) in item.steps" :key="i" class="step"><span class="step-index">{{ i+1 }}</span><span>{{ step }}</span></div></div></details>
+          <div v-else-if="item.kind === 'agent'" class="row agent" :class="'status-'+item.validationStatus"><span class="message-label">진단 어시스턴트</span><div class="bubble"><strong v-if="item.validationStatus" class="validation-label">{{ validationLabel(item.validationStatus) }}</strong><section v-for="(block,i) in reportBlocks(item.text,item.validationStatus)" :key="i" class="report-section"><h3 v-if="block.title">{{ block.title }}</h3><div class="report-body">{{ block.body }}</div></section><pre v-if="item.comparisonText" class="comparison">{{ item.comparisonText }}</pre><div v-if="item.issues?.length" class="issues">반려 사유: {{ item.issues.join(" / ") }}</div></div></div>
+          <details v-else-if="item.kind === 'prompt'" class="prompt-box"><summary>개발용 · 최종 프롬프트 보기</summary><pre>{{ item.text }}</pre></details>
+        </template>
+      </div>
+      <div class="composer" v-show="!(historyOpen && selectedInvestigation)"><form @submit.prevent="onSubmit"><input v-model="input" autocomplete="off" aria-label="서비스 이름과 증상 입력" :placeholder="restoring ? '이전 대화를 불러오고 있습니다' : '서비스 이름과 증상을 입력하세요'" :disabled="restoring"/><button class="primary" type="submit" :disabled="sending || restoring">{{ sending ? '확인 중…' : '보내기' }}</button></form><div class="composer-hint"><span>서비스 이름을 함께 입력하면 더 정확히 조사할 수 있습니다.</span><span>Enter로 전송</span></div></div>
+    </main>
+  </div>
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<script>
+const { createApp, ref, reactive, nextTick } = Vue;
+
+const STEP_LABELS = {
+  PlanCreated: e => `계획 수립: 할 일 ${e.task_count}가지${e.targets?.length ? ` (시스템: ${e.targets.join(', ')})` : ''}`,
+  GateApplied: e => e.removed_analysis_tasks ? `불필요한 작업 ${e.removed_analysis_tasks}건 제거` : null,
+  TaskCompleted: e => (e.source === 'monitoring'
+      ? `모니터링 지표 확인 (시스템: ${e.target})`
+      : `대응 매뉴얼 조회: ${e.target} (${(e.related_systems || []).join(', ')})`) + (e.retries ? ' (재시도 성공)' : ''),
+  RunbookSelection: e => '서비스별 매뉴얼 선택: ' + e.selections.map(s =>
+    `${s.system_name}: ${s.incident_types.length ? s.incident_types.join(', ') : s.status === 'normal' ? '정상·문서 불필요' : '자료 부족'}`).join(' / '),
+  TaskFailed: e => e.source === 'monitoring' ? `모니터링 조회 실패: ${e.target}` : `매뉴얼 조회 실패: ${e.target} (${(e.related_systems || []).join(', ')})`,
+  DiagnosisUnavailable: () => '조회 자료 부족으로 진단을 중단했습니다.',
+  ReplanCheck: e => e.is_sufficient ? null : e.needs_more_research
+    ? `누락 매뉴얼 추가 조회: ${(e.missing || []).join(', ')}`
+    : `확인 한계: ${(e.limitations || []).join(' / ')}`,
+  DraftWritten: e => `답변 초안 작성 (시도 ${e.attempt})`,
+  Validation: e => e.status === 'passed' ? '근거 검증 통과' : e.status === 'unverified' ? '작성 한도 도달·검증 미통과' : '근거 검증 반려 → 다시 작성',
+  Finalize: e => e.processing_status === 'failed' || e.validation_status === 'unverified' ? '진단 미완료·확인 자료 안내 종료' : e.processing_status === 'partial' ? '일부 조회 실패·부분 답변 완료' : '최종 답변 완성',
+};
+
+function reportBlocks(value, status) {
+  const text = String(value || '');
+  const matches = [...text.matchAll(/^([1-5])\) (관측값|분석|권장 조치|미확인 사항|출처)$/gm)];
+  const titles = ['관측값','분석','권장 조치','미확인 사항','출처'];
+  if (matches.length !== 5 || !matches.every((m,i) => Number(m[1]) === i+1 && m[2] === titles[i])) return [{title:'',body:text}];
+  const blocks = [];
+  const lead = text.slice(0,matches[0].index).trim();
+  if (lead && !(lead === '검증 통과' && status === 'passed')) blocks.push({title:'',body:lead});
+  matches.forEach((m,i) => blocks.push({title:m[0],body:text.slice(m.index+m[0].length,matches[i+1]?.index ?? text.length).trim()}));
+  return blocks;
+}
+
+createApp({
+  setup() {
+    const validationLabel = status => ({pending: '검증 전 초안', rejected: '반려된 초안 · 최종 답변 아님', passed: '검증 통과', unverified: '검증 미통과 · 최종 권고 아님'}[status] || '');
+    const formatTime = value => value ? new Date(value).toLocaleString('ko-KR', {timeZone: 'Asia/Seoul'}) : '시각 미확인';
+    const processingLabel = status => ({completed: '완료', partial: '일부 조회 실패', failed: '처리 미완료'}[status] || status);
+    const historyOpen = ref(false), investigations = ref([]), selectedInvestigation = ref(null), historyError = ref(''), historyLoading = ref(false);
+    let historySelection = null;
+    const backendLabel = ref('서버 연결을 확인하고 있습니다.');
+    const log = ref([]);
+    const input = ref('');
+    const sending = ref(false);
+    const logEl = ref(null);
+    const restoring = ref(true);
+    const threadKey = 'ai-mini-project.thread-id';
+    let thread = localStorage.getItem(threadKey) || 't-web-' + crypto.randomUUID();
+    localStorage.setItem(threadKey, thread);
+    let nextId = 0;
+
+    async function restoreConversation() {
+      try {
+        const response = await fetch(`/sessions/${encodeURIComponent(thread)}/messages`);
+        if (!response.ok) throw new Error('대화 조회 실패');
+        const data = await response.json();
+        log.value = data.messages.map(m => ({id: nextId++, kind: m.role === 'user' ? 'user' : 'agent', text: m.content}));
+        scrollToBottom();
+      } catch {
+        log.value.push({id: nextId++, kind: 'agent', text: '이전 대화를 불러오지 못했습니다. 서버 연결 후 새로고침해 주세요.'});
+      } finally {
+        restoring.value = false;
+      }
+    }
+
+    const downloadUrl = runId => `/investigations/${encodeURIComponent(runId)}/report.md?thread_id=${encodeURIComponent(thread)}`;
+
+    async function loadInvestigations() {
+      const requestedThread = thread;
+      historyLoading.value = true; historyError.value = '';
+      try {
+        const response = await fetch(`/investigations?thread_id=${encodeURIComponent(requestedThread)}`);
+        if (!response.ok) throw new Error('history unavailable');
+        const data = await response.json();
+        if (thread === requestedThread) investigations.value = data.investigations;
+      } catch {
+        if (thread === requestedThread) historyError.value = '조사 이력을 불러오지 못했습니다. 다시 열어 주세요.';
+      } finally {
+        if (thread === requestedThread) historyLoading.value = false;
+      }
+    }
+
+    function toggleHistory() {
+      historyOpen.value = !historyOpen.value;
+      if (historyOpen.value) loadInvestigations();
+    }
+
+    async function openInvestigation(runId) {
+      const requestedThread = thread;
+      selectedInvestigation.value = null; historyError.value = ''; historySelection = runId;
+      try {
+        const response = await fetch(`/investigations/${encodeURIComponent(runId)}?thread_id=${encodeURIComponent(requestedThread)}`);
+        if (!response.ok) throw new Error('detail unavailable');
+        const record = await response.json();
+        if (thread === requestedThread && historySelection === runId) selectedInvestigation.value = record;
+      } catch {
+        if (thread === requestedThread && historySelection === runId) historyError.value = '이 세션에서 조사 상세를 불러오지 못했습니다.';
+      }
+    }
+
+    function newConversation() {
+      if (sending.value || restoring.value) return;
+      thread = 't-web-' + crypto.randomUUID();
+      localStorage.setItem(threadKey, thread);
+      log.value = [];
+      input.value = '';
+      historyOpen.value = false; investigations.value = []; selectedInvestigation.value = null;
+      historyError.value = ''; historyLoading.value = false; historySelection = null;
+    }
+
+    restoreConversation();
+
+    fetch('/health').then(r => r.json()).then(h => {
+      backendLabel.value = `${h.llm_backend === 'fake' ? '테스트 모델' : h.llm_backend} · ${h.fast_llm} / ${h.quality_llm}`;
+    }).catch(() => { backendLabel.value = '서버에 연결하지 못했습니다. 잠시 후 새로고침해 주세요.'; });
+
+    async function scrollToBottom() {
+      await nextTick();
+      if (logEl.value) logEl.value.scrollTop = logEl.value.scrollHeight;
+    }
+
+    function onSubmit() {
+      const text = input.value.trim();
+      if (!text || sending.value || restoring.value) return;
+
+      log.value.push({ id: nextId++, kind: 'user', text });
+      input.value = '';
+      sending.value = true;
+      scrollToBottom();
+
+      const stepsItem = reactive({ id: nextId++, kind: 'steps', steps: [], done: false });
+      log.value.push(stepsItem);
+      scrollToBottom();
+
+      const url = `/chat/stream?message=${encodeURIComponent(text)}&thread_id=${encodeURIComponent(thread)}`;
+      const es = new EventSource(url);
+      let streamItem = null;
+      let streamAttempt = null;   // write_node 재작성(attempt 증가) 시 새 말풍선으로 끊는다
+
+      es.onmessage = (event) => {
+        if (event.data === '[DONE]') { es.close(); stepsItem.done = true; sending.value = false; if (historyOpen.value) loadInvestigations(); return; }
+        let e;
+        try { e = JSON.parse(event.data); } catch { return; }
+
+        if (e.type === 'ProcessingError') {
+          if (streamItem) {streamItem.text = '작성 중단: 이 초안은 완료된 답변이 아닙니다.';streamItem.validationStatus = 'unverified';}
+          streamItem = null; streamAttempt = null;
+          log.value.push({id: nextId++, kind: 'agent', text: e.message});
+          scrollToBottom();
+          return;
+        }
+
+        if (e.type === 'AnswerToken') {
+          if (!streamItem || streamAttempt !== e.attempt) {
+            streamItem = reactive({ id: nextId++, kind: 'agent', text: '' });
+            log.value.push(streamItem);
+            streamAttempt = e.attempt;
+          }
+          if (e.validation_status) streamItem.validationStatus = e.validation_status;
+          streamItem.text += e.delta;
+          scrollToBottom();
+          return;
+        }
+
+        if (e.type === 'FinalAnswer') {
+          if (!streamItem || e.validation_status === 'unverified') {
+            streamItem = reactive({ id: nextId++, kind: 'agent', text: '' });
+            log.value.push(streamItem);
+          }
+          streamItem.validationStatus = e.validation_status || null;
+          streamItem.issues = [];
+          streamItem.report = e.report || null;
+          streamItem.comparisonText = e.comparison_text || ''; 
+          streamItem.text = e.reply;   // 토큰 합산 결과와 서버의 최종 텍스트를 일치시킨다
+          if (e.prompt) log.value.push({ id: nextId++, kind: 'prompt', text: e.prompt });
+          streamItem = null;
+          streamAttempt = null;
+          scrollToBottom();
+          return;
+        }
+
+        if (e.type === 'Validation' && streamItem && streamAttempt === e.attempt) {
+          streamItem.validationStatus = e.status;
+          streamItem.issues = e.issues || [];
+        }
+        const fn = STEP_LABELS[e.type];
+        if (!fn) return;
+        const label = fn(e);
+        if (!label) return;
+        stepsItem.steps.push(label);
+        scrollToBottom();
+      };
+
+      es.onerror = () => {
+        es.close(); stepsItem.done = true; sending.value = false;
+        if (streamItem) {streamItem.text = '연결 중단: 이 초안의 완료 여부를 확인하지 못했습니다.';streamItem.validationStatus = 'unverified';}
+        log.value.push({id: nextId++, kind: 'agent', text: '서버 연결이 끊겼습니다. 다시 질문해 주세요.'});
+        scrollToBottom();
+      };
+    }
+
+    return { reportBlocks, downloadUrl, formatTime, processingLabel, historyOpen, investigations, selectedInvestigation, historyError, historyLoading, toggleHistory, openInvestigation, validationLabel, backendLabel, log, input, sending, restoring, logEl, onSubmit, newConversation };
+  },
+}).mount('#app');
+</script>
+</body>
+</html>

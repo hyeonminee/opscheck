@@ -1,0 +1,437 @@
+{
+  "kind": "fixed-data / existing fake models; not real LLM quality or speed",
+  "source": "/Users/hyeonmin/workspace/AI mini-project/baseline/original",
+  "graph_sha256": "a28da5c2a9e24b84b4e23b721a9a2421e16125430c8b80afbdf404bc92b3e3dd",
+  "python": "3.14.7",
+  "langgraph": "1.2.16",
+  "case_sha256": "5c4a1071bd235328712b5e3f3d2bdd23c9e7702333be332c81ba5a109e333fad",
+  "fixture_sha256": "a100f27ed3bbac814f9b30105aa19478925bb6d3ea3622982de4cf41528704df",
+  "repeat_count": 1,
+  "warmup": "not applicable: no real model",
+  "timing_note": "graph contains an artificial 0.35-second task delay; not performance evidence",
+  "passed": 4,
+  "total": 21,
+  "results": [
+    {
+      "id": "payments-single",
+      "checks": {
+        "route": false,
+        "target_coverage": false,
+        "no_extra_targets": true,
+        "required_runbooks": false,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "chat",
+      "targets": [],
+      "runbooks": [],
+      "validation_attempts": 0,
+      "elapsed_seconds": 0.0038
+    },
+    {
+      "id": "cache-single",
+      "checks": {
+        "route": false,
+        "target_coverage": false,
+        "no_extra_targets": true,
+        "required_runbooks": false,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "chat",
+      "targets": [],
+      "runbooks": [],
+      "validation_attempts": 0,
+      "elapsed_seconds": 0.0021
+    },
+    {
+      "id": "log-single",
+      "checks": {
+        "route": false,
+        "target_coverage": false,
+        "no_extra_targets": true,
+        "required_runbooks": false,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "chat",
+      "targets": [],
+      "runbooks": [],
+      "validation_attempts": 0,
+      "elapsed_seconds": 0.0017
+    },
+    {
+      "id": "gateway-payments",
+      "checks": {
+        "route": false,
+        "target_coverage": false,
+        "no_extra_targets": true,
+        "required_runbooks": false,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "chat",
+      "targets": [],
+      "runbooks": [],
+      "validation_attempts": 0,
+      "elapsed_seconds": 0.0016
+    },
+    {
+      "id": "web-auth",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": true,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": true,
+      "actual_route": "incident",
+      "targets": [
+        "auth-service",
+        "web-01"
+      ],
+      "runbooks": [
+        "high-latency"
+      ],
+      "validation_attempts": 2,
+      "elapsed_seconds": 0.712
+    },
+    {
+      "id": "payments-cache",
+      "checks": {
+        "route": false,
+        "target_coverage": false,
+        "no_extra_targets": true,
+        "required_runbooks": false,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "chat",
+      "targets": [],
+      "runbooks": [],
+      "validation_attempts": 0,
+      "elapsed_seconds": 0.0031
+    },
+    {
+      "id": "unspecified",
+      "checks": {
+        "route": false,
+        "target_coverage": true,
+        "no_extra_targets": true,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "chat",
+      "targets": [],
+      "runbooks": [],
+      "validation_attempts": 0,
+      "elapsed_seconds": 0.0029
+    },
+    {
+      "id": "unknown-billing",
+      "checks": {
+        "route": false,
+        "target_coverage": true,
+        "no_extra_targets": true,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "chat",
+      "targets": [],
+      "runbooks": [],
+      "validation_attempts": 0,
+      "elapsed_seconds": 0.0036
+    },
+    {
+      "id": "greeting",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": true,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": true,
+      "actual_route": "chat",
+      "targets": [],
+      "runbooks": [],
+      "validation_attempts": 0,
+      "elapsed_seconds": 0.0026
+    },
+    {
+      "id": "name-first",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": true,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": true,
+      "actual_route": "chat",
+      "targets": [],
+      "runbooks": [],
+      "validation_attempts": 0,
+      "elapsed_seconds": 0.0028
+    },
+    {
+      "id": "name-followup",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": true,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true,
+        "memory": true
+      },
+      "passed": true,
+      "actual_route": "chat",
+      "targets": [],
+      "runbooks": [],
+      "validation_attempts": 0,
+      "elapsed_seconds": 0.0027
+    },
+    {
+      "id": "healthy-web",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": true,
+        "required_runbooks": true,
+        "no_extra_runbooks": false,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "incident",
+      "targets": [
+        "web-01"
+      ],
+      "runbooks": [
+        "db-down"
+      ],
+      "validation_attempts": 2,
+      "elapsed_seconds": 0.7125
+    },
+    {
+      "id": "partial-failure",
+      "passed": false,
+      "error": "ValueError",
+      "targets": [
+        "web-01",
+        "payments-service",
+        "cache-service"
+      ],
+      "elapsed_seconds": 0.355
+    },
+    {
+      "id": "type-cpu-spike",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": false,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "incident",
+      "targets": [
+        "web-01",
+        "auth-service"
+      ],
+      "runbooks": [
+        "cpu-spike"
+      ],
+      "validation_attempts": 2,
+      "elapsed_seconds": 0.7175
+    },
+    {
+      "id": "type-memory-leak",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": false,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "incident",
+      "targets": [
+        "web-01",
+        "auth-service"
+      ],
+      "runbooks": [
+        "memory-leak"
+      ],
+      "validation_attempts": 2,
+      "elapsed_seconds": 0.719
+    },
+    {
+      "id": "type-disk-full",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": false,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "incident",
+      "targets": [
+        "auth-service",
+        "web-01"
+      ],
+      "runbooks": [
+        "disk-full"
+      ],
+      "validation_attempts": 2,
+      "elapsed_seconds": 0.7199
+    },
+    {
+      "id": "type-high-latency",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": false,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "incident",
+      "targets": [
+        "auth-service",
+        "web-01"
+      ],
+      "runbooks": [
+        "high-latency"
+      ],
+      "validation_attempts": 2,
+      "elapsed_seconds": 0.7189
+    },
+    {
+      "id": "type-network-timeout",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": false,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "incident",
+      "targets": [
+        "auth-service",
+        "web-01"
+      ],
+      "runbooks": [
+        "network-timeout"
+      ],
+      "validation_attempts": 2,
+      "elapsed_seconds": 0.7206
+    },
+    {
+      "id": "type-db-down",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": false,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "incident",
+      "targets": [
+        "auth-service",
+        "web-01"
+      ],
+      "runbooks": [
+        "db-down"
+      ],
+      "validation_attempts": 2,
+      "elapsed_seconds": 0.7155
+    },
+    {
+      "id": "unknown-observation",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": false,
+        "required_runbooks": true,
+        "no_extra_runbooks": false,
+        "completed": true,
+        "valid_document_sources": true
+      },
+      "passed": false,
+      "actual_route": "incident",
+      "targets": [
+        "auth-service",
+        "web-01"
+      ],
+      "runbooks": [
+        "db-down"
+      ],
+      "validation_attempts": 2,
+      "elapsed_seconds": 0.7184
+    },
+    {
+      "id": "missing-runbook",
+      "checks": {
+        "route": true,
+        "target_coverage": true,
+        "no_extra_targets": false,
+        "required_runbooks": true,
+        "no_extra_runbooks": true,
+        "completed": true,
+        "valid_document_sources": false
+      },
+      "passed": false,
+      "actual_route": "incident",
+      "targets": [
+        "auth-service",
+        "web-01"
+      ],
+      "runbooks": [
+        "high-latency"
+      ],
+      "validation_attempts": 2,
+      "elapsed_seconds": 0.7188
+    }
+  ]
+}

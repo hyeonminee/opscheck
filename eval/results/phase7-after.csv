@@ -1,0 +1,34 @@
+group,id,expected,actual,passed,error,elapsed_seconds
+scope,extra-target,"[""payments-service""]","[""payments-service""]",True,,0.000272
+scope,missing-target,"[""payments-service"", ""cache-service""]","[""payments-service"", ""cache-service""]",True,,0.00017
+scope,duplicate-target,"[""payments-service""]","[""payments-service""]",True,,0.000118
+scope,correct-target,"[""payments-service""]","[""payments-service""]",True,,0.000101
+scope,unknown-target,[],[],True,,0.000103
+scope,unspecified-target,[],[],True,,8.4e-05
+scope,mixed-extra-missing,"[""gateway-service"", ""payments-service""]","[""gateway-service"", ""payments-service""]",True,,9.6e-05
+manuals,payments-single,"[""cpu-spike""]","[""cpu-spike""]",True,,0.000445
+manuals,cache-single,"[""memory-leak""]","[""memory-leak""]",True,,0.000108
+manuals,log-single,"[""disk-full""]","[""disk-full""]",True,,0.000121
+manuals,gateway-payments,"[""cpu-spike"", ""network-timeout""]","[""cpu-spike"", ""network-timeout""]",True,,0.000119
+manuals,web-auth,"[""high-latency""]","[""high-latency""]",True,,0.000102
+manuals,payments-cache,"[""cpu-spike"", ""memory-leak""]","[""cpu-spike"", ""memory-leak""]",True,,0.000108
+manuals,healthy-web,[],[],True,,0.000102
+manuals,partial-failure,"[""cpu-spike""]","[""cpu-spike""]",True,,0.000132
+manuals,type-cpu-spike,"[""cpu-spike""]","[""cpu-spike""]",True,,0.000102
+manuals,type-memory-leak,"[""memory-leak""]","[""memory-leak""]",True,,9.7e-05
+manuals,type-disk-full,"[""disk-full""]","[""disk-full""]",True,,0.000106
+manuals,type-high-latency,"[""high-latency""]","[""high-latency""]",True,,9.6e-05
+manuals,type-network-timeout,"[""network-timeout""]","[""network-timeout""]",True,,8.9e-05
+manuals,type-db-down,"[""db-down""]","[""db-down""]",True,,0.000101
+manuals,unknown-observation,[],[],True,,9.3e-05
+missing_document,missing-source-not-sufficient,False,False,True,,9.2e-05
+partial_failure,one-success-one-failure,"{""success_preserved"": true, ""failed_target_recorded"": true}","{""success_preserved"": true, ""failed_target_recorded"": true}",True,,0.000545
+validator,valid-cpu,accept,accept,True,,0.000367
+validator,valid-status,accept,accept,True,,0.000148
+validator,wrong-cpu,reject,reject,True,,0.000135
+validator,alert-threshold-as-value,reject,reject,True,,0.00012
+validator,wrong-status,reject,reject,True,,0.000118
+validator,cross-service,reject,reject,True,,0.000107
+validator,missing-document,reject,reject,True,,0.00011
+validator,missing-step,reject,reject,True,,0.000112
+validator,unverified-condition,reject,reject,True,,0.000426
