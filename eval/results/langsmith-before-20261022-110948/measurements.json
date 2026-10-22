@@ -1,0 +1,360 @@
+[
+  {
+    "case": "single",
+    "question": "payments-service가 느려요",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "langsmith_seconds": 5.494594,
+    "supporting_local_seconds": 5.4967359580041375,
+    "trace_span_count": 43,
+    "llm_api_calls": 3,
+    "input_tokens": 726,
+    "output_tokens": 196,
+    "total_tokens": 922,
+    "route": "incident",
+    "expected_targets": [
+      "payments-service"
+    ],
+    "actual_successful_targets": [
+      "payments-service"
+    ],
+    "target_set_matches": true,
+    "observations": [
+      {
+        "alerts": [
+          "CPU 91% (threshold 80%)",
+          "payments-service-3 instance responding slow"
+        ],
+        "cpu_percent": 95.0,
+        "last_checked": "2026-10-22T11:09:52.188360",
+        "memory_percent": 57.0,
+        "status": "degraded",
+        "system_name": "payments-service"
+      }
+    ],
+    "resource_uris": [
+      "runbook://incident-response/cpu-spike"
+    ],
+    "error_spans": [
+      {
+        "name": "mcp.call_tool",
+        "error": "TimeoutError('simulated transient timeout (Wave 9 demo)')\n\nNoneType: None\n"
+      }
+    ],
+    "reply": "1) 모니터링 결과 payments-service의 상태가 'degraded'로 확인되었으며, CPU 사용률이 95.0%로 높고 메모리 사용률은 57.0%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 발생했습니다.\n\n2) CPU 사용률이 90%를 넘고 지속되고 있으므로, 오토스케일링 그룹에서 인스턴스를 한 대 더 추가하여 부하를 분산해야 합니다.\n\n3) 문제 해결 후, 프로파일링 결과를 바탕으로 핫스팟 코드를 식별하고 최적화 작업을 등록해야 합니다.",
+    "events": [
+      {
+        "type": "RouteDecided",
+        "route": "incident",
+        "node": "route"
+      },
+      {
+        "type": "PlanCreated",
+        "task_count": 1,
+        "targets": [
+          "payments-service"
+        ],
+        "node": "plan"
+      },
+      {
+        "type": "GateApplied",
+        "removed_analysis_tasks": 0,
+        "node": "gate"
+      },
+      {
+        "type": "TaskCompleted",
+        "id": "task-0",
+        "source": "monitoring",
+        "target": "payments-service",
+        "retries": 1,
+        "node": "research"
+      },
+      {
+        "type": "ReplanCheck",
+        "round": 0,
+        "is_sufficient": false,
+        "gap_task": "task-gap-runbook",
+        "target": "cpu-spike",
+        "node": "replan_check"
+      },
+      {
+        "type": "TaskCompleted",
+        "id": "task-gap-runbook",
+        "source": "runbook",
+        "target": "cpu-spike",
+        "retries": 0,
+        "node": "research"
+      },
+      {
+        "type": "ReplanCheck",
+        "round": 1,
+        "is_sufficient": true,
+        "node": "replan_check"
+      },
+      {
+        "type": "AnalysisSkipped",
+        "reason": "analysis task 0개",
+        "node": "analysis"
+      },
+      {
+        "type": "AnswerToken",
+        "attempt": 1,
+        "delta": "1) 모니터링 결과 payments-service의 상태가 'degraded'로 확인되었으며, CPU 사용률이 95.0%로 높고 메모리 사용률은 57.0%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 발생했습니다.\n\n2) CPU 사용률이 90%를 넘고 지속되고 있으므로, 오토스케일링 그룹에서 인스턴스를 한 대 더 추가하여 부하를 분산해야 합니다.\n\n3) 문제 해결 후, 프로파일링 결과를 바탕으로 핫스팟 코드를 식별하고 최적화 작업을 등록해야 합니다."
+      },
+      {
+        "type": "DraftWritten",
+        "attempt": 1,
+        "length": 312,
+        "node": "write"
+      },
+      {
+        "type": "Validation",
+        "attempt": 1,
+        "verdict": "합격",
+        "node": "validate"
+      },
+      {
+        "type": "Finalize",
+        "pipeline": "incident-v2",
+        "node": "finalize"
+      },
+      {
+        "type": "FinalAnswer",
+        "reply": "1) 모니터링 결과 payments-service의 상태가 'degraded'로 확인되었으며, CPU 사용률이 95.0%로 높고 메모리 사용률은 57.0%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 발생했습니다.\n\n2) CPU 사용률이 90%를 넘고 지속되고 있으므로, 오토스케일링 그룹에서 인스턴스를 한 대 더 추가하여 부하를 분산해야 합니다.\n\n3) 문제 해결 후, 프로파일링 결과를 바탕으로 핫스팟 코드를 식별하고 최적화 작업을 등록해야 합니다."
+      }
+    ],
+    "langsmith_total_tokens": 922,
+    "langsmith_estimated_cost_usd": "0.0023885",
+    "cost_note": "LangSmith provider-price estimate; not invoice. Original cost_usd uses fictional blended rates and is excluded.",
+    "expected_resource_uris": [
+      "runbook://incident-response/cpu-spike"
+    ],
+    "manual_set_matches": true,
+    "answer_token_event_count": 1,
+    "first_answer_event_seconds": 5.487416457996005,
+    "fresh_investigation": true,
+    "report_five_sections": false,
+    "validation_attempts": [
+      {
+        "type": "Validation",
+        "attempt": 1,
+        "verdict": "합격",
+        "node": "validate"
+      }
+    ]
+  },
+  {
+    "case": "followup",
+    "question": "그 서비스 다시 확인해줘",
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "langsmith_seconds": 2.104555,
+    "supporting_local_seconds": 2.105578749993583,
+    "trace_span_count": 11,
+    "llm_api_calls": 2,
+    "input_tokens": 364,
+    "output_tokens": 54,
+    "total_tokens": 418,
+    "route": "chat",
+    "expected_targets": [
+      "payments-service"
+    ],
+    "actual_successful_targets": [],
+    "target_set_matches": false,
+    "observations": [],
+    "resource_uris": [],
+    "error_spans": [],
+    "reply": "payments-service의 상태는 여전히 'degraded'이며, CPU 사용률이 95.0%로 높습니다. 인스턴스를 추가하여 부하를 분산하는 것이 필요합니다.",
+    "events": [
+      {
+        "type": "RouteDecided",
+        "route": "chat",
+        "node": "route"
+      },
+      {
+        "type": "AnswerToken",
+        "delta": "payments-service의 상태는 여전히 'degraded'이며, CPU 사용률이 95.0%로 높습니다. 인스턴스를 추가하여 부하를 분산하는 것이 필요합니다."
+      },
+      {
+        "type": "Finalize",
+        "pipeline": "chat-direct",
+        "node": "chat_answer"
+      },
+      {
+        "type": "FinalAnswer",
+        "reply": "payments-service의 상태는 여전히 'degraded'이며, CPU 사용률이 95.0%로 높습니다. 인스턴스를 추가하여 부하를 분산하는 것이 필요합니다."
+      }
+    ],
+    "langsmith_total_tokens": 418,
+    "langsmith_estimated_cost_usd": "0.000087",
+    "cost_note": "LangSmith provider-price estimate; not invoice. Original cost_usd uses fictional blended rates and is excluded.",
+    "expected_resource_uris": [
+      "runbook://incident-response/cpu-spike"
+    ],
+    "manual_set_matches": false,
+    "answer_token_event_count": 1,
+    "first_answer_event_seconds": 2.1031381670036353,
+    "fresh_investigation": false,
+    "report_five_sections": null,
+    "validation_attempts": []
+  },
+  {
+    "case": "multiple",
+    "question": "payments-service와 cache-service를 확인해줘",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "langsmith_seconds": 6.624595,
+    "supporting_local_seconds": 6.625882083986653,
+    "trace_span_count": 44,
+    "llm_api_calls": 3,
+    "input_tokens": 785,
+    "output_tokens": 301,
+    "total_tokens": 1086,
+    "route": "incident",
+    "expected_targets": [
+      "cache-service",
+      "payments-service"
+    ],
+    "actual_successful_targets": [
+      "cache-service",
+      "payments-service"
+    ],
+    "target_set_matches": true,
+    "observations": [
+      {
+        "alerts": [
+          "CPU 91% (threshold 80%)",
+          "payments-service-3 instance responding slow"
+        ],
+        "cpu_percent": 93.5,
+        "last_checked": "2026-10-22T11:10:34.747462",
+        "memory_percent": 56.2,
+        "status": "degraded",
+        "system_name": "payments-service"
+      },
+      {
+        "alerts": [
+          "memory usage climbing steadily over 6h",
+          "heap near limit"
+        ],
+        "cpu_percent": 40.6,
+        "last_checked": "2026-10-22T11:10:34.750762",
+        "memory_percent": 88.3,
+        "status": "degraded",
+        "system_name": "cache-service"
+      }
+    ],
+    "resource_uris": [
+      "runbook://incident-response/cpu-spike"
+    ],
+    "error_spans": [],
+    "reply": "1) payments-service 상태는 'degraded'이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 있습니다.\n\n2) cache-service 상태는 'degraded'이며, CPU 사용률은 40.6%이고 메모리 사용률은 88.3%로 높습니다. 알림으로는 'memory usage climbing steadily over 6h'와 'heap near limit'가 있습니다.\n\n3) 대응 절차:\n   - payments-service의 경우, CPU 사용률이 90%를 넘고 지속되므로 오토스케일링 그룹에서 인스턴스를 추가하여 부하를 분산해야 합니다.\n   - cache-service의 경우, 메모리 사용률이 높으므로 메모리 최적화 및 필요 시 인스턴스 추가를 고려해야 합니다.\n   - 두 서비스 모두 상태가 'degraded'이므로, 각각의 알림 원인을 분석하고 필요한 조치를 취해야 합니다.",
+    "events": [
+      {
+        "type": "RouteDecided",
+        "route": "incident",
+        "node": "route"
+      },
+      {
+        "type": "PlanCreated",
+        "task_count": 2,
+        "targets": [
+          "payments-service",
+          "cache-service"
+        ],
+        "node": "plan"
+      },
+      {
+        "type": "GateApplied",
+        "removed_analysis_tasks": 0,
+        "node": "gate"
+      },
+      {
+        "type": "TaskCompleted",
+        "id": "task-0",
+        "source": "monitoring",
+        "target": "payments-service",
+        "retries": 0,
+        "node": "research"
+      },
+      {
+        "type": "TaskCompleted",
+        "id": "task-1",
+        "source": "monitoring",
+        "target": "cache-service",
+        "retries": 0,
+        "node": "research"
+      },
+      {
+        "type": "ReplanCheck",
+        "round": 0,
+        "is_sufficient": false,
+        "gap_task": "task-gap-runbook",
+        "target": "cpu-spike",
+        "node": "replan_check"
+      },
+      {
+        "type": "TaskCompleted",
+        "id": "task-gap-runbook",
+        "source": "runbook",
+        "target": "cpu-spike",
+        "retries": 0,
+        "node": "research"
+      },
+      {
+        "type": "ReplanCheck",
+        "round": 1,
+        "is_sufficient": true,
+        "node": "replan_check"
+      },
+      {
+        "type": "AnalysisSkipped",
+        "reason": "analysis task 0개",
+        "node": "analysis"
+      },
+      {
+        "type": "AnswerToken",
+        "attempt": 1,
+        "delta": "1) payments-service 상태는 'degraded'이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 있습니다.\n\n2) cache-service 상태는 'degraded'이며, CPU 사용률은 40.6%이고 메모리 사용률은 88.3%로 높습니다. 알림으로는 'memory usage climbing steadily over 6h'와 'heap near limit'가 있습니다.\n\n3) 대응 절차:\n   - payments-service의 경우, CPU 사용률이 90%를 넘고 지속되므로 오토스케일링 그룹에서 인스턴스를 추가하여 부하를 분산해야 합니다.\n   - cache-service의 경우, 메모리 사용률이 높으므로 메모리 최적화 및 필요 시 인스턴스 추가를 고려해야 합니다.\n   - 두 서비스 모두 상태가 'degraded'이므로, 각각의 알림 원인을 분석하고 필요한 조치를 취해야 합니다."
+      },
+      {
+        "type": "DraftWritten",
+        "attempt": 1,
+        "length": 545,
+        "node": "write"
+      },
+      {
+        "type": "Validation",
+        "attempt": 1,
+        "verdict": "합격",
+        "node": "validate"
+      },
+      {
+        "type": "Finalize",
+        "pipeline": "incident-v2",
+        "node": "finalize"
+      },
+      {
+        "type": "FinalAnswer",
+        "reply": "1) payments-service 상태는 'degraded'이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 있습니다.\n\n2) cache-service 상태는 'degraded'이며, CPU 사용률은 40.6%이고 메모리 사용률은 88.3%로 높습니다. 알림으로는 'memory usage climbing steadily over 6h'와 'heap near limit'가 있습니다.\n\n3) 대응 절차:\n   - payments-service의 경우, CPU 사용률이 90%를 넘고 지속되므로 오토스케일링 그룹에서 인스턴스를 추가하여 부하를 분산해야 합니다.\n   - cache-service의 경우, 메모리 사용률이 높으므로 메모리 최적화 및 필요 시 인스턴스 추가를 고려해야 합니다.\n   - 두 서비스 모두 상태가 'degraded'이므로, 각각의 알림 원인을 분석하고 필요한 조치를 취해야 합니다."
+      }
+    ],
+    "langsmith_total_tokens": 1086,
+    "langsmith_estimated_cost_usd": "0.00338625",
+    "cost_note": "LangSmith provider-price estimate; not invoice. Original cost_usd uses fictional blended rates and is excluded.",
+    "expected_resource_uris": [
+      "runbook://incident-response/cpu-spike",
+      "runbook://incident-response/memory-leak"
+    ],
+    "manual_set_matches": false,
+    "answer_token_event_count": 1,
+    "first_answer_event_seconds": 6.616109708993463,
+    "fresh_investigation": true,
+    "report_five_sections": false,
+    "validation_attempts": [
+      {
+        "type": "Validation",
+        "attempt": 1,
+        "verdict": "합격",
+        "node": "validate"
+      }
+    ]
+  }
+]

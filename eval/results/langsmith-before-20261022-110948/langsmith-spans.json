@@ -1,0 +1,2338 @@
+[
+  {
+    "id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "parent_run_id": null,
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:48.703922+00:00",
+    "end_time": "2026-10-22 02:09:54.198516+00:00",
+    "case": "single",
+    "name": "baseline_sse_measurement",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 5.494594,
+    "token_fields": {
+      "prompt_tokens": "726",
+      "completion_tokens": "196",
+      "total_tokens": "922",
+      "total_cost": "0.0023885"
+    }
+  },
+  {
+    "id": "01a1615f-28c6-728b-8e3a-8b08620cd092",
+    "parent_run_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:48.742183+00:00",
+    "end_time": "2026-10-22 02:09:54.196208+00:00",
+    "case": "single",
+    "name": "LangGraph",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 5.454025,
+    "token_fields": {
+      "prompt_tokens": "726",
+      "completion_tokens": "196",
+      "total_tokens": "922",
+      "total_cost": "0.0023885"
+    }
+  },
+  {
+    "id": "01a1615f-28c8-7655-9e39-0988aacf69c7",
+    "parent_run_id": "01a1615f-28c6-728b-8e3a-8b08620cd092",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:48.744060+00:00",
+    "end_time": "2026-10-22 02:09:50.216119+00:00",
+    "case": "single",
+    "name": "route",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 1.472059,
+    "token_fields": {
+      "prompt_tokens": "128",
+      "completion_tokens": "10",
+      "total_tokens": "138",
+      "total_cost": "0.0000252"
+    }
+  },
+  {
+    "id": "01a1615f-28d0-77a2-9bd1-fa2201da87f9",
+    "parent_run_id": "01a1615f-28c8-7655-9e39-0988aacf69c7",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:48.752214+00:00",
+    "end_time": "2026-10-22 02:09:50.214571+00:00",
+    "case": "single",
+    "name": "route_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 1.462357,
+    "token_fields": {
+      "prompt_tokens": "128",
+      "completion_tokens": "10",
+      "total_tokens": "138",
+      "total_cost": "0.0000252"
+    },
+    "outputs": {
+      "cost_usd": 2.1e-05,
+      "events": [
+        {
+          "route": "incident",
+          "type": "RouteDecided"
+        }
+      ],
+      "needs_analysis": false,
+      "route": "incident"
+    }
+  },
+  {
+    "id": "01a1615f-28d0-710e-90db-f7c46d8c2f54",
+    "parent_run_id": "01a1615f-28d0-77a2-9bd1-fa2201da87f9",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:48.752631+00:00",
+    "end_time": "2026-10-22 02:09:50.213905+00:00",
+    "case": "single",
+    "name": "openai_fast.route",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 1.461274,
+    "token_fields": {
+      "prompt_tokens": "128",
+      "completion_tokens": "10",
+      "total_tokens": "138",
+      "total_cost": "0.0000252"
+    }
+  },
+  {
+    "id": "01a1615f-28d0-7071-953b-2d121e05a506",
+    "parent_run_id": "01a1615f-28d0-710e-90db-f7c46d8c2f54",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:48.752759+00:00",
+    "end_time": "2026-10-22 02:09:50.209741+00:00",
+    "case": "single",
+    "name": "measurement.openai_http",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 1.456982,
+    "token_fields": {
+      "prompt_tokens": "128",
+      "completion_tokens": "10",
+      "total_tokens": "138",
+      "total_cost": "0.0000252"
+    },
+    "outputs": {
+      "output": "{\"route\":\"incident\",\"needs_analysis\":false}",
+      "usage_metadata": {
+        "input_tokens": 128,
+        "output_tokens": 10,
+        "total_tokens": 138
+      }
+    }
+  },
+  {
+    "id": "01a1615f-2e87-7212-a943-60eb04f816ae",
+    "parent_run_id": "01a1615f-28c8-7655-9e39-0988aacf69c7",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:50.215267+00:00",
+    "end_time": "2026-10-22 02:09:50.215843+00:00",
+    "case": "single",
+    "name": "_after_route",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000576,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-2e89-712a-8bd1-e80c95ab0156",
+    "parent_run_id": "01a1615f-28c6-728b-8e3a-8b08620cd092",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:50.217216+00:00",
+    "end_time": "2026-10-22 02:09:51.521450+00:00",
+    "case": "single",
+    "name": "plan",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 1.304234,
+    "token_fields": {
+      "prompt_tokens": "282",
+      "completion_tokens": "35",
+      "total_tokens": "317",
+      "total_cost": "0.0000633"
+    }
+  },
+  {
+    "id": "01a1615f-2e89-7ed8-8c95-0071a87dc65d",
+    "parent_run_id": "01a1615f-2e89-712a-8bd1-e80c95ab0156",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:50.217823+00:00",
+    "end_time": "2026-10-22 02:09:51.520904+00:00",
+    "case": "single",
+    "name": "plan_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 1.303081,
+    "token_fields": {
+      "prompt_tokens": "282",
+      "completion_tokens": "35",
+      "total_tokens": "317",
+      "total_cost": "0.0000633"
+    },
+    "outputs": {
+      "cost_usd": 6.9e-05,
+      "events": [
+        {
+          "route": "incident",
+          "type": "RouteDecided"
+        },
+        {
+          "targets": [
+            "payments-service"
+          ],
+          "task_count": 1,
+          "type": "PlanCreated"
+        }
+      ],
+      "needs_analysis": false,
+      "tasks": [
+        {
+          "agent": "research",
+          "id": "task-0",
+          "kind": "monitoring",
+          "status": "pending",
+          "target": "payments-service"
+        }
+      ]
+    }
+  },
+  {
+    "id": "01a1615f-2e8a-724d-bdb4-7c23121018d4",
+    "parent_run_id": "01a1615f-2e89-7ed8-8c95-0071a87dc65d",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:50.218316+00:00",
+    "end_time": "2026-10-22 02:09:50.364673+00:00",
+    "case": "single",
+    "name": "mcp.find_prompt",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.146357,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-2e8a-7b01-8141-ac32fb5d1cfd",
+    "parent_run_id": "01a1615f-2e8a-724d-bdb4-7c23121018d4",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:50.218690+00:00",
+    "end_time": "2026-10-22 02:09:50.364482+00:00",
+    "case": "single",
+    "name": "mcp.list_prompts",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.145792,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-2f1c-7ae5-b4ca-f5b7453a4ca2",
+    "parent_run_id": "01a1615f-2e89-7ed8-8c95-0071a87dc65d",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:50.364933+00:00",
+    "end_time": "2026-10-22 02:09:50.367438+00:00",
+    "case": "single",
+    "name": "mcp.get_prompt",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.002505,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-2f1f-7220-a60f-1536ec24046e",
+    "parent_run_id": "01a1615f-2e89-7ed8-8c95-0071a87dc65d",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:50.367601+00:00",
+    "end_time": "2026-10-22 02:09:51.520677+00:00",
+    "case": "single",
+    "name": "openai_fast.plan",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 1.153076,
+    "token_fields": {
+      "prompt_tokens": "282",
+      "completion_tokens": "35",
+      "total_tokens": "317",
+      "total_cost": "0.0000633"
+    }
+  },
+  {
+    "id": "01a1615f-2f1f-7c64-b72d-465a7768d7fd",
+    "parent_run_id": "01a1615f-2f1f-7220-a60f-1536ec24046e",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:50.367725+00:00",
+    "end_time": "2026-10-22 02:09:51.519941+00:00",
+    "case": "single",
+    "name": "measurement.openai_http",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 1.152216,
+    "token_fields": {
+      "prompt_tokens": "282",
+      "completion_tokens": "35",
+      "total_tokens": "317",
+      "total_cost": "0.0000633"
+    },
+    "outputs": {
+      "output": "{\n  \"needs_analysis\": false,\n  \"tasks\": [\n    {\n      \"agent\": \"research\",\n      \"target\": \"payments-service\"\n    }\n  ]\n}",
+      "usage_metadata": {
+        "input_tokens": 282,
+        "output_tokens": 35,
+        "total_tokens": 317
+      }
+    }
+  },
+  {
+    "id": "01a1615f-33a2-77cc-b6b6-4841ce83e53f",
+    "parent_run_id": "01a1615f-28c6-728b-8e3a-8b08620cd092",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:51.522361+00:00",
+    "end_time": "2026-10-22 02:09:51.523787+00:00",
+    "case": "single",
+    "name": "gate",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.001426,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-33a2-7f92-ade0-d4031fb05032",
+    "parent_run_id": "01a1615f-33a2-77cc-b6b6-4841ce83e53f",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:51.522972+00:00",
+    "end_time": "2026-10-22 02:09:51.523417+00:00",
+    "case": "single",
+    "name": "gate_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000445,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-33a4-7130-b74a-8872361ecfd8",
+    "parent_run_id": "01a1615f-28c6-728b-8e3a-8b08620cd092",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:51.524538+00:00",
+    "end_time": "2026-10-22 02:09:52.239253+00:00",
+    "case": "single",
+    "name": "research",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.714715,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-33a5-7f6b-8bdb-85683adc6f0d",
+    "parent_run_id": "01a1615f-33a4-7130-b74a-8872361ecfd8",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:51.525012+00:00",
+    "end_time": "2026-10-22 02:09:52.239014+00:00",
+    "case": "single",
+    "name": "research_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.714002,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-3504-7399-b099-f8f2a5cc21e2",
+    "parent_run_id": "01a1615f-33a5-7f6b-8bdb-85683adc6f0d",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:51.876766+00:00",
+    "end_time": "2026-10-22 02:09:52.238821+00:00",
+    "case": "single",
+    "name": "with_retry",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.362055,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-3505-7645-b526-fb823bc7f75b",
+    "parent_run_id": "01a1615f-3504-7399-b099-f8f2a5cc21e2",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:51.877258+00:00",
+    "end_time": "2026-10-22 02:09:51.877629+00:00",
+    "case": "single",
+    "name": "mcp.call_tool",
+    "run_type": "tool",
+    "error": "TimeoutError('simulated transient timeout (Wave 9 demo)')\n\nNoneType: None\n",
+    "elapsed_seconds": 0.000371,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    },
+    "inputs": {
+      "arguments": {
+        "system_name": "payments-service"
+      },
+      "name": "get_monitoring_status",
+      "server": "ops"
+    },
+    "outputs": {
+      "output": null
+    }
+  },
+  {
+    "id": "01a1615f-3633-7fc3-9dfd-55be64bea190",
+    "parent_run_id": "01a1615f-3504-7399-b099-f8f2a5cc21e2",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.179774+00:00",
+    "end_time": "2026-10-22 02:09:52.238510+00:00",
+    "case": "single",
+    "name": "mcp.call_tool",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.058736,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    },
+    "inputs": {
+      "arguments": {
+        "system_name": "payments-service"
+      },
+      "name": "get_monitoring_status",
+      "server": "ops"
+    },
+    "outputs": {
+      "alerts": [
+        "CPU 91% (threshold 80%)",
+        "payments-service-3 instance responding slow"
+      ],
+      "cpu_percent": 95.0,
+      "last_checked": "2026-10-22T11:09:52.188360",
+      "memory_percent": 57.0,
+      "status": "degraded",
+      "system_name": "payments-service"
+    }
+  },
+  {
+    "id": "01a1615f-366f-732b-8d42-56941656e746",
+    "parent_run_id": "01a1615f-28c6-728b-8e3a-8b08620cd092",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.239886+00:00",
+    "end_time": "2026-10-22 02:09:52.240888+00:00",
+    "case": "single",
+    "name": "replan_check",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.001002,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-3670-7aa1-8e43-4a2a032296f5",
+    "parent_run_id": "01a1615f-366f-732b-8d42-56941656e746",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.240224+00:00",
+    "end_time": "2026-10-22 02:09:52.240409+00:00",
+    "case": "single",
+    "name": "replan_check_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000185,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    },
+    "outputs": {
+      "events": [
+        {
+          "route": "incident",
+          "type": "RouteDecided"
+        },
+        {
+          "targets": [
+            "payments-service"
+          ],
+          "task_count": 1,
+          "type": "PlanCreated"
+        },
+        {
+          "removed_analysis_tasks": 0,
+          "type": "GateApplied"
+        },
+        {
+          "id": "task-0",
+          "retries": 1,
+          "source": "monitoring",
+          "target": "payments-service",
+          "type": "TaskCompleted"
+        },
+        {
+          "gap_task": "task-gap-runbook",
+          "is_sufficient": false,
+          "round": 0,
+          "target": "cpu-spike",
+          "type": "ReplanCheck"
+        }
+      ],
+      "replan_rounds": 1,
+      "tasks": [
+        {
+          "agent": "research",
+          "id": "task-0",
+          "kind": "monitoring",
+          "status": "done",
+          "target": "payments-service"
+        },
+        {
+          "agent": "research",
+          "id": "task-gap-runbook",
+          "kind": "runbook",
+          "status": "pending",
+          "target": "cpu-spike"
+        }
+      ]
+    }
+  },
+  {
+    "id": "01a1615f-3670-7272-bd53-f962d1fa0b7c",
+    "parent_run_id": "01a1615f-366f-732b-8d42-56941656e746",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.240566+00:00",
+    "end_time": "2026-10-22 02:09:52.240778+00:00",
+    "case": "single",
+    "name": "_after_replan_check",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000212,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-3671-713b-b0c1-414611ce515c",
+    "parent_run_id": "01a1615f-28c6-728b-8e3a-8b08620cd092",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.241170+00:00",
+    "end_time": "2026-10-22 02:09:52.605109+00:00",
+    "case": "single",
+    "name": "research",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.363939,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-3671-7819-95d3-f3a252fd33bb",
+    "parent_run_id": "01a1615f-3671-713b-b0c1-414611ce515c",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.241601+00:00",
+    "end_time": "2026-10-22 02:09:52.604789+00:00",
+    "case": "single",
+    "name": "research_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.363188,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-3671-72b3-8267-9db76e18bded",
+    "parent_run_id": "01a1615f-3671-7819-95d3-f3a252fd33bb",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.241876+00:00",
+    "end_time": "2026-10-22 02:09:52.243636+00:00",
+    "case": "single",
+    "name": "mcp.find_resource_template",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.00176,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-3672-729c-a0ce-1f367b93437d",
+    "parent_run_id": "01a1615f-3671-72b3-8267-9db76e18bded",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.242080+00:00",
+    "end_time": "2026-10-22 02:09:52.243489+00:00",
+    "case": "single",
+    "name": "mcp.list_resource_templates",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.001409,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-37d3-72b7-bba9-2284dd63d13e",
+    "parent_run_id": "01a1615f-3671-7819-95d3-f3a252fd33bb",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.595622+00:00",
+    "end_time": "2026-10-22 02:09:52.604459+00:00",
+    "case": "single",
+    "name": "mcp.read_resource",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.008837,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    },
+    "inputs": {
+      "server": "ops",
+      "uri": "runbook://incident-response/cpu-spike"
+    }
+  },
+  {
+    "id": "01a1615f-37dd-71ba-8290-41cafb629157",
+    "parent_run_id": "01a1615f-28c6-728b-8e3a-8b08620cd092",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.605904+00:00",
+    "end_time": "2026-10-22 02:09:52.607644+00:00",
+    "case": "single",
+    "name": "replan_check",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.00174,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-37de-72b7-be90-6916ac78c6e4",
+    "parent_run_id": "01a1615f-37dd-71ba-8290-41cafb629157",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.606490+00:00",
+    "end_time": "2026-10-22 02:09:52.606817+00:00",
+    "case": "single",
+    "name": "replan_check_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000327,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    },
+    "outputs": {
+      "events": [
+        {
+          "route": "incident",
+          "type": "RouteDecided"
+        },
+        {
+          "targets": [
+            "payments-service"
+          ],
+          "task_count": 1,
+          "type": "PlanCreated"
+        },
+        {
+          "removed_analysis_tasks": 0,
+          "type": "GateApplied"
+        },
+        {
+          "id": "task-0",
+          "retries": 1,
+          "source": "monitoring",
+          "target": "payments-service",
+          "type": "TaskCompleted"
+        },
+        {
+          "gap_task": "task-gap-runbook",
+          "is_sufficient": false,
+          "round": 0,
+          "target": "cpu-spike",
+          "type": "ReplanCheck"
+        },
+        {
+          "id": "task-gap-runbook",
+          "retries": 0,
+          "source": "runbook",
+          "target": "cpu-spike",
+          "type": "TaskCompleted"
+        },
+        {
+          "is_sufficient": true,
+          "round": 1,
+          "type": "ReplanCheck"
+        }
+      ]
+    }
+  },
+  {
+    "id": "01a1615f-37df-726c-a9ba-67100ce4bf2d",
+    "parent_run_id": "01a1615f-37dd-71ba-8290-41cafb629157",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.607127+00:00",
+    "end_time": "2026-10-22 02:09:52.607475+00:00",
+    "case": "single",
+    "name": "_after_replan_check",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000348,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-37e0-745f-b433-2e18ba00b545",
+    "parent_run_id": "01a1615f-28c6-728b-8e3a-8b08620cd092",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.608220+00:00",
+    "end_time": "2026-10-22 02:09:52.609039+00:00",
+    "case": "single",
+    "name": "analysis",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000819,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-37e0-7ffb-874c-1e3a5963d0c9",
+    "parent_run_id": "01a1615f-37e0-745f-b433-2e18ba00b545",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.608592+00:00",
+    "end_time": "2026-10-22 02:09:52.608848+00:00",
+    "case": "single",
+    "name": "analysis_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000256,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-37e1-759b-b9d4-0c91de160383",
+    "parent_run_id": "01a1615f-28c6-728b-8e3a-8b08620cd092",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.609567+00:00",
+    "end_time": "2026-10-22 02:09:54.189455+00:00",
+    "case": "single",
+    "name": "write",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 1.579888,
+    "token_fields": {
+      "prompt_tokens": "316",
+      "completion_tokens": "151",
+      "total_tokens": "467",
+      "total_cost": "0.0023"
+    }
+  },
+  {
+    "id": "01a1615f-37e1-7bcd-8eee-31aaa6361d7b",
+    "parent_run_id": "01a1615f-37e1-759b-b9d4-0c91de160383",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.609920+00:00",
+    "end_time": "2026-10-22 02:09:54.188983+00:00",
+    "case": "single",
+    "name": "write_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 1.579063,
+    "token_fields": {
+      "prompt_tokens": "316",
+      "completion_tokens": "151",
+      "total_tokens": "467",
+      "total_cost": "0.0023"
+    }
+  },
+  {
+    "id": "01a1615f-37e2-739d-86cd-67fe4e5114ff",
+    "parent_run_id": "01a1615f-37e1-7bcd-8eee-31aaa6361d7b",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.610288+00:00",
+    "end_time": "2026-10-22 02:09:54.188691+00:00",
+    "case": "single",
+    "name": "openai_quality.write",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 1.578403,
+    "token_fields": {
+      "prompt_tokens": "316",
+      "completion_tokens": "151",
+      "total_tokens": "467",
+      "total_cost": "0.0023"
+    }
+  },
+  {
+    "id": "01a1615f-37e2-700b-8aed-c1bbc0a9ec4e",
+    "parent_run_id": "01a1615f-37e2-739d-86cd-67fe4e5114ff",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:52.610600+00:00",
+    "end_time": "2026-10-22 02:09:54.187476+00:00",
+    "case": "single",
+    "name": "measurement.openai_http",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 1.576876,
+    "token_fields": {
+      "prompt_tokens": "316",
+      "completion_tokens": "151",
+      "total_tokens": "467",
+      "total_cost": "0.0023"
+    },
+    "outputs": {
+      "output": "1) 모니터링 결과 payments-service의 상태가 'degraded'로 확인되었으며, CPU 사용률이 95.0%로 높고 메모리 사용률은 57.0%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 발생했습니다.\n\n2) CPU 사용률이 90%를 넘고 지속되고 있으므로, 오토스케일링 그룹에서 인스턴스를 한 대 더 추가하여 부하를 분산해야 합니다.\n\n3) 문제 해결 후, 프로파일링 결과를 바탕으로 핫스팟 코드를 식별하고 최적화 작업을 등록해야 합니다.",
+      "usage_metadata": {
+        "input_tokens": 316,
+        "output_tokens": 151,
+        "total_tokens": 467
+      }
+    }
+  },
+  {
+    "id": "01a1615f-3e0e-70a6-b9f9-b1a98d79b419",
+    "parent_run_id": "01a1615f-28c6-728b-8e3a-8b08620cd092",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:54.190531+00:00",
+    "end_time": "2026-10-22 02:09:54.193195+00:00",
+    "case": "single",
+    "name": "validate",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.002664,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-3e0f-7ba2-a253-2e1e0cf89a4c",
+    "parent_run_id": "01a1615f-3e0e-70a6-b9f9-b1a98d79b419",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:54.191521+00:00",
+    "end_time": "2026-10-22 02:09:54.192056+00:00",
+    "case": "single",
+    "name": "validate_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000535,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    },
+    "outputs": {
+      "events": [
+        {
+          "route": "incident",
+          "type": "RouteDecided"
+        },
+        {
+          "targets": [
+            "payments-service"
+          ],
+          "task_count": 1,
+          "type": "PlanCreated"
+        },
+        {
+          "removed_analysis_tasks": 0,
+          "type": "GateApplied"
+        },
+        {
+          "id": "task-0",
+          "retries": 1,
+          "source": "monitoring",
+          "target": "payments-service",
+          "type": "TaskCompleted"
+        },
+        {
+          "gap_task": "task-gap-runbook",
+          "is_sufficient": false,
+          "round": 0,
+          "target": "cpu-spike",
+          "type": "ReplanCheck"
+        },
+        {
+          "id": "task-gap-runbook",
+          "retries": 0,
+          "source": "runbook",
+          "target": "cpu-spike",
+          "type": "TaskCompleted"
+        },
+        {
+          "is_sufficient": true,
+          "round": 1,
+          "type": "ReplanCheck"
+        },
+        {
+          "reason": "analysis task 0개",
+          "type": "AnalysisSkipped"
+        },
+        {
+          "attempt": 1,
+          "length": 312,
+          "type": "DraftWritten"
+        },
+        {
+          "attempt": 1,
+          "type": "Validation",
+          "verdict": "합격"
+        }
+      ],
+      "validation_attempts": 1,
+      "validation_feedback": null
+    }
+  },
+  {
+    "id": "01a1615f-3e10-77f2-a7e0-eabc5114c73e",
+    "parent_run_id": "01a1615f-3e0e-70a6-b9f9-b1a98d79b419",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:54.192488+00:00",
+    "end_time": "2026-10-22 02:09:54.192980+00:00",
+    "case": "single",
+    "name": "_after_validate",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000492,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-3e12-7342-9af1-619138440aec",
+    "parent_run_id": "01a1615f-28c6-728b-8e3a-8b08620cd092",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:54.194380+00:00",
+    "end_time": "2026-10-22 02:09:54.195670+00:00",
+    "case": "single",
+    "name": "finalize",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.00129,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-3e13-7c15-b825-c352b2ebb0e7",
+    "parent_run_id": "01a1615f-3e12-7342-9af1-619138440aec",
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "start_time": "2026-10-22 02:09:54.195036+00:00",
+    "end_time": "2026-10-22 02:09:54.195410+00:00",
+    "case": "single",
+    "name": "finalize_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000374,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "parent_run_id": null,
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "start_time": "2026-10-22 02:10:06.987380+00:00",
+    "end_time": "2026-10-22 02:10:09.091935+00:00",
+    "case": "followup",
+    "name": "baseline_sse_measurement",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 2.104555,
+    "token_fields": {
+      "prompt_tokens": "364",
+      "completion_tokens": "54",
+      "total_tokens": "418",
+      "total_cost": "0.000087"
+    }
+  },
+  {
+    "id": "01a1615f-700d-73db-b49b-c2321bb7775e",
+    "parent_run_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "start_time": "2026-10-22 02:10:06.989053+00:00",
+    "end_time": "2026-10-22 02:10:09.090326+00:00",
+    "case": "followup",
+    "name": "LangGraph",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 2.101273,
+    "token_fields": {
+      "prompt_tokens": "364",
+      "completion_tokens": "54",
+      "total_tokens": "418",
+      "total_cost": "0.000087"
+    }
+  },
+  {
+    "id": "01a1615f-700e-70ce-ae56-79ed18af6a36",
+    "parent_run_id": "01a1615f-700d-73db-b49b-c2321bb7775e",
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "start_time": "2026-10-22 02:10:06.990215+00:00",
+    "end_time": "2026-10-22 02:10:07.905362+00:00",
+    "case": "followup",
+    "name": "route",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.915147,
+    "token_fields": {
+      "prompt_tokens": "128",
+      "completion_tokens": "12",
+      "total_tokens": "140",
+      "total_cost": "0.0000264"
+    }
+  },
+  {
+    "id": "01a1615f-700e-7dd2-a747-5768aff7b49a",
+    "parent_run_id": "01a1615f-700e-70ce-ae56-79ed18af6a36",
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "start_time": "2026-10-22 02:10:06.990667+00:00",
+    "end_time": "2026-10-22 02:10:07.903148+00:00",
+    "case": "followup",
+    "name": "route_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.912481,
+    "token_fields": {
+      "prompt_tokens": "128",
+      "completion_tokens": "12",
+      "total_tokens": "140",
+      "total_cost": "0.0000264"
+    },
+    "outputs": {
+      "cost_usd": 2.1e-05,
+      "events": [
+        {
+          "route": "chat",
+          "type": "RouteDecided"
+        }
+      ],
+      "needs_analysis": false,
+      "route": "chat"
+    }
+  },
+  {
+    "id": "01a1615f-700e-708e-b0f8-deb60d90b9c8",
+    "parent_run_id": "01a1615f-700e-7dd2-a747-5768aff7b49a",
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "start_time": "2026-10-22 02:10:06.990994+00:00",
+    "end_time": "2026-10-22 02:10:07.902862+00:00",
+    "case": "followup",
+    "name": "openai_fast.route",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 0.911868,
+    "token_fields": {
+      "prompt_tokens": "128",
+      "completion_tokens": "12",
+      "total_tokens": "140",
+      "total_cost": "0.0000264"
+    }
+  },
+  {
+    "id": "01a1615f-700f-718c-8fba-0d8ba3592347",
+    "parent_run_id": "01a1615f-700e-708e-b0f8-deb60d90b9c8",
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "start_time": "2026-10-22 02:10:06.991179+00:00",
+    "end_time": "2026-10-22 02:10:07.901754+00:00",
+    "case": "followup",
+    "name": "measurement.openai_http",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 0.910575,
+    "token_fields": {
+      "prompt_tokens": "128",
+      "completion_tokens": "12",
+      "total_tokens": "140",
+      "total_cost": "0.0000264"
+    },
+    "outputs": {
+      "output": "{\"route\": \"chat\", \"needs_analysis\": false}",
+      "usage_metadata": {
+        "input_tokens": 128,
+        "output_tokens": 12,
+        "total_tokens": 140
+      }
+    }
+  },
+  {
+    "id": "01a1615f-73a0-745f-b416-5bcea0240481",
+    "parent_run_id": "01a1615f-700e-70ce-ae56-79ed18af6a36",
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "start_time": "2026-10-22 02:10:07.904223+00:00",
+    "end_time": "2026-10-22 02:10:07.905071+00:00",
+    "case": "followup",
+    "name": "_after_route",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000848,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-73a2-76b3-a1d0-9ffee49951f7",
+    "parent_run_id": "01a1615f-700d-73db-b49b-c2321bb7775e",
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "start_time": "2026-10-22 02:10:07.906427+00:00",
+    "end_time": "2026-10-22 02:10:09.089707+00:00",
+    "case": "followup",
+    "name": "chat_answer",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 1.18328,
+    "token_fields": {
+      "prompt_tokens": "236",
+      "completion_tokens": "42",
+      "total_tokens": "278",
+      "total_cost": "0.0000606"
+    }
+  },
+  {
+    "id": "01a1615f-73a3-767f-9cac-961f7b518281",
+    "parent_run_id": "01a1615f-73a2-76b3-a1d0-9ffee49951f7",
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "start_time": "2026-10-22 02:10:07.907026+00:00",
+    "end_time": "2026-10-22 02:10:09.089304+00:00",
+    "case": "followup",
+    "name": "chat_answer_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 1.182278,
+    "token_fields": {
+      "prompt_tokens": "236",
+      "completion_tokens": "42",
+      "total_tokens": "278",
+      "total_cost": "0.0000606"
+    }
+  },
+  {
+    "id": "01a1615f-73a3-700a-90f0-4d98e7325981",
+    "parent_run_id": "01a1615f-73a3-767f-9cac-961f7b518281",
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "start_time": "2026-10-22 02:10:07.907543+00:00",
+    "end_time": "2026-10-22 02:10:09.088994+00:00",
+    "case": "followup",
+    "name": "openai_fast.chat",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 1.181451,
+    "token_fields": {
+      "prompt_tokens": "236",
+      "completion_tokens": "42",
+      "total_tokens": "278",
+      "total_cost": "0.0000606"
+    }
+  },
+  {
+    "id": "01a1615f-73a3-70b2-9f68-93704128d621",
+    "parent_run_id": "01a1615f-73a3-700a-90f0-4d98e7325981",
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "start_time": "2026-10-22 02:10:07.907885+00:00",
+    "end_time": "2026-10-22 02:10:09.088142+00:00",
+    "case": "followup",
+    "name": "measurement.openai_http",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 1.180257,
+    "token_fields": {
+      "prompt_tokens": "236",
+      "completion_tokens": "42",
+      "total_tokens": "278",
+      "total_cost": "0.0000606"
+    },
+    "outputs": {
+      "output": "payments-service의 상태는 여전히 'degraded'이며, CPU 사용률이 95.0%로 높습니다. 인스턴스를 추가하여 부하를 분산하는 것이 필요합니다.",
+      "usage_metadata": {
+        "input_tokens": 236,
+        "output_tokens": 42,
+        "total_tokens": 278
+      }
+    }
+  },
+  {
+    "id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "parent_run_id": null,
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:30.818837+00:00",
+    "end_time": "2026-10-22 02:10:37.443432+00:00",
+    "case": "multiple",
+    "name": "baseline_sse_measurement",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 6.624595,
+    "token_fields": {
+      "prompt_tokens": "785",
+      "completion_tokens": "301",
+      "total_tokens": "1086",
+      "total_cost": "0.00338625"
+    }
+  },
+  {
+    "id": "01a1615f-cd25-73e4-a67b-a5212015d969",
+    "parent_run_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:30.821640+00:00",
+    "end_time": "2026-10-22 02:10:37.440857+00:00",
+    "case": "multiple",
+    "name": "LangGraph",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 6.619217,
+    "token_fields": {
+      "prompt_tokens": "785",
+      "completion_tokens": "301",
+      "total_tokens": "1086",
+      "total_cost": "0.00338625"
+    }
+  },
+  {
+    "id": "01a1615f-cd27-70a8-9d7a-a250586c5ecb",
+    "parent_run_id": "01a1615f-cd25-73e4-a67b-a5212015d969",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:30.823395+00:00",
+    "end_time": "2026-10-22 02:10:31.746069+00:00",
+    "case": "multiple",
+    "name": "route",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.922674,
+    "token_fields": {
+      "prompt_tokens": "131",
+      "completion_tokens": "10",
+      "total_tokens": "141",
+      "total_cost": "0.00002565"
+    }
+  },
+  {
+    "id": "01a1615f-cd28-7b15-94bb-17b609b3e6b4",
+    "parent_run_id": "01a1615f-cd27-70a8-9d7a-a250586c5ecb",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:30.824005+00:00",
+    "end_time": "2026-10-22 02:10:31.744676+00:00",
+    "case": "multiple",
+    "name": "route_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.920671,
+    "token_fields": {
+      "prompt_tokens": "131",
+      "completion_tokens": "10",
+      "total_tokens": "141",
+      "total_cost": "0.00002565"
+    },
+    "outputs": {
+      "cost_usd": 2.1e-05,
+      "events": [
+        {
+          "route": "incident",
+          "type": "RouteDecided"
+        }
+      ],
+      "needs_analysis": false,
+      "route": "incident"
+    }
+  },
+  {
+    "id": "01a1615f-cd28-79e3-82ae-fd39eb068062",
+    "parent_run_id": "01a1615f-cd28-7b15-94bb-17b609b3e6b4",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:30.824355+00:00",
+    "end_time": "2026-10-22 02:10:31.744466+00:00",
+    "case": "multiple",
+    "name": "openai_fast.route",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 0.920111,
+    "token_fields": {
+      "prompt_tokens": "131",
+      "completion_tokens": "10",
+      "total_tokens": "141",
+      "total_cost": "0.00002565"
+    }
+  },
+  {
+    "id": "01a1615f-cd28-7bb6-9cba-de782b28e870",
+    "parent_run_id": "01a1615f-cd28-79e3-82ae-fd39eb068062",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:30.824540+00:00",
+    "end_time": "2026-10-22 02:10:31.743326+00:00",
+    "case": "multiple",
+    "name": "measurement.openai_http",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 0.918786,
+    "token_fields": {
+      "prompt_tokens": "131",
+      "completion_tokens": "10",
+      "total_tokens": "141",
+      "total_cost": "0.00002565"
+    },
+    "outputs": {
+      "output": "{\"route\":\"incident\",\"needs_analysis\":false}",
+      "usage_metadata": {
+        "input_tokens": 131,
+        "output_tokens": 10,
+        "total_tokens": 141
+      }
+    }
+  },
+  {
+    "id": "01a1615f-d0c1-77b4-b2ee-1c4f5f017373",
+    "parent_run_id": "01a1615f-cd27-70a8-9d7a-a250586c5ecb",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:31.745164+00:00",
+    "end_time": "2026-10-22 02:10:31.745867+00:00",
+    "case": "multiple",
+    "name": "_after_route",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000703,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-d0c2-7696-9c3a-de5c6c09a29a",
+    "parent_run_id": "01a1615f-cd25-73e4-a67b-a5212015d969",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:31.746680+00:00",
+    "end_time": "2026-10-22 02:10:34.383313+00:00",
+    "case": "multiple",
+    "name": "plan",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 2.636633,
+    "token_fields": {
+      "prompt_tokens": "288",
+      "completion_tokens": "54",
+      "total_tokens": "342",
+      "total_cost": "0.0000756"
+    }
+  },
+  {
+    "id": "01a1615f-d0c3-71b1-b74e-9b355d7498ac",
+    "parent_run_id": "01a1615f-d0c2-7696-9c3a-de5c6c09a29a",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:31.747127+00:00",
+    "end_time": "2026-10-22 02:10:34.382605+00:00",
+    "case": "multiple",
+    "name": "plan_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 2.635478,
+    "token_fields": {
+      "prompt_tokens": "288",
+      "completion_tokens": "54",
+      "total_tokens": "342",
+      "total_cost": "0.0000756"
+    },
+    "outputs": {
+      "cost_usd": 7.2e-05,
+      "events": [
+        {
+          "route": "incident",
+          "type": "RouteDecided"
+        },
+        {
+          "targets": [
+            "payments-service",
+            "cache-service"
+          ],
+          "task_count": 2,
+          "type": "PlanCreated"
+        }
+      ],
+      "needs_analysis": false,
+      "tasks": [
+        {
+          "agent": "research",
+          "id": "task-0",
+          "kind": "monitoring",
+          "status": "pending",
+          "target": "payments-service"
+        },
+        {
+          "agent": "research",
+          "id": "task-1",
+          "kind": "monitoring",
+          "status": "pending",
+          "target": "cache-service"
+        }
+      ]
+    }
+  },
+  {
+    "id": "01a1615f-d0c3-7472-b595-594e4e620b46",
+    "parent_run_id": "01a1615f-d0c3-71b1-b74e-9b355d7498ac",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:31.747586+00:00",
+    "end_time": "2026-10-22 02:10:31.764213+00:00",
+    "case": "multiple",
+    "name": "mcp.find_prompt",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.016627,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-d0c4-744a-b8f4-e9d5fcc55e45",
+    "parent_run_id": "01a1615f-d0c3-7472-b595-594e4e620b46",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:31.748235+00:00",
+    "end_time": "2026-10-22 02:10:31.763929+00:00",
+    "case": "multiple",
+    "name": "mcp.list_prompts",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.015694,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-d0d4-7161-b1da-d18f9245f9a5",
+    "parent_run_id": "01a1615f-d0c3-71b1-b74e-9b355d7498ac",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:31.764780+00:00",
+    "end_time": "2026-10-22 02:10:31.768369+00:00",
+    "case": "multiple",
+    "name": "mcp.get_prompt",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.003589,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-d0d8-7690-bcf8-7ba2c82e2672",
+    "parent_run_id": "01a1615f-d0c3-71b1-b74e-9b355d7498ac",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:31.768733+00:00",
+    "end_time": "2026-10-22 02:10:34.382169+00:00",
+    "case": "multiple",
+    "name": "openai_fast.plan",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 2.613436,
+    "token_fields": {
+      "prompt_tokens": "288",
+      "completion_tokens": "54",
+      "total_tokens": "342",
+      "total_cost": "0.0000756"
+    }
+  },
+  {
+    "id": "01a1615f-d0d8-7d4f-b988-39e55f9cdae1",
+    "parent_run_id": "01a1615f-d0d8-7690-bcf8-7ba2c82e2672",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:31.768953+00:00",
+    "end_time": "2026-10-22 02:10:34.380640+00:00",
+    "case": "multiple",
+    "name": "measurement.openai_http",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 2.611687,
+    "token_fields": {
+      "prompt_tokens": "288",
+      "completion_tokens": "54",
+      "total_tokens": "342",
+      "total_cost": "0.0000756"
+    },
+    "outputs": {
+      "output": "{\n  \"needs_analysis\": false,\n  \"tasks\": [\n    {\n      \"agent\": \"research\",\n      \"target\": \"payments-service\"\n    },\n    {\n      \"agent\": \"research\",\n      \"target\": \"cache-service\"\n    }\n  ]\n}",
+      "usage_metadata": {
+        "input_tokens": 288,
+        "output_tokens": 54,
+        "total_tokens": 342
+      }
+    }
+  },
+  {
+    "id": "01a1615f-db10-7508-a113-5d5683bd564b",
+    "parent_run_id": "01a1615f-cd25-73e4-a67b-a5212015d969",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.384684+00:00",
+    "end_time": "2026-10-22 02:10:34.386562+00:00",
+    "case": "multiple",
+    "name": "gate",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.001878,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-db11-7a44-a200-d1944a606e8a",
+    "parent_run_id": "01a1615f-db10-7508-a113-5d5683bd564b",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.385830+00:00",
+    "end_time": "2026-10-22 02:10:34.386298+00:00",
+    "case": "multiple",
+    "name": "gate_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000468,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-db13-72b9-bc63-97e9eff8511d",
+    "parent_run_id": "01a1615f-cd25-73e4-a67b-a5212015d969",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.387278+00:00",
+    "end_time": "2026-10-22 02:10:34.752298+00:00",
+    "case": "multiple",
+    "name": "research",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.36502,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-db13-7ef3-bff9-6db31f4d7552",
+    "parent_run_id": "01a1615f-db13-72b9-bc63-97e9eff8511d",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.387927+00:00",
+    "end_time": "2026-10-22 02:10:34.752038+00:00",
+    "case": "multiple",
+    "name": "research_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.364111,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-dc73-70dd-838d-6b48ac26a938",
+    "parent_run_id": "01a1615f-db13-7ef3-bff9-6db31f4d7552",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.739909+00:00",
+    "end_time": "2026-10-22 02:10:34.749672+00:00",
+    "case": "multiple",
+    "name": "with_retry",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.009763,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-dc74-737c-b67d-d41723692e15",
+    "parent_run_id": "01a1615f-db13-7ef3-bff9-6db31f4d7552",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.740718+00:00",
+    "end_time": "2026-10-22 02:10:34.751812+00:00",
+    "case": "multiple",
+    "name": "with_retry",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.011094,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-dc75-72e7-bea7-a24454277b9f",
+    "parent_run_id": "01a1615f-dc73-70dd-838d-6b48ac26a938",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.741317+00:00",
+    "end_time": "2026-10-22 02:10:34.749321+00:00",
+    "case": "multiple",
+    "name": "mcp.call_tool",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.008004,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    },
+    "inputs": {
+      "arguments": {
+        "system_name": "payments-service"
+      },
+      "name": "get_monitoring_status",
+      "server": "ops"
+    },
+    "outputs": {
+      "alerts": [
+        "CPU 91% (threshold 80%)",
+        "payments-service-3 instance responding slow"
+      ],
+      "cpu_percent": 93.5,
+      "last_checked": "2026-10-22T11:10:34.747462",
+      "memory_percent": 56.2,
+      "status": "degraded",
+      "system_name": "payments-service"
+    }
+  },
+  {
+    "id": "01a1615f-dc76-7521-8806-5b1c6545fb86",
+    "parent_run_id": "01a1615f-dc74-737c-b67d-d41723692e15",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.742003+00:00",
+    "end_time": "2026-10-22 02:10:34.751647+00:00",
+    "case": "multiple",
+    "name": "mcp.call_tool",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.009644,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    },
+    "inputs": {
+      "arguments": {
+        "system_name": "cache-service"
+      },
+      "name": "get_monitoring_status",
+      "server": "ops"
+    },
+    "outputs": {
+      "alerts": [
+        "memory usage climbing steadily over 6h",
+        "heap near limit"
+      ],
+      "cpu_percent": 40.6,
+      "last_checked": "2026-10-22T11:10:34.750762",
+      "memory_percent": 88.3,
+      "status": "degraded",
+      "system_name": "cache-service"
+    }
+  },
+  {
+    "id": "01a1615f-dc81-7575-92b0-9a9ecc2718db",
+    "parent_run_id": "01a1615f-cd25-73e4-a67b-a5212015d969",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.753076+00:00",
+    "end_time": "2026-10-22 02:10:34.754700+00:00",
+    "case": "multiple",
+    "name": "replan_check",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.001624,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-dc81-7f16-bf73-8a6a3e56f6bf",
+    "parent_run_id": "01a1615f-dc81-7575-92b0-9a9ecc2718db",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.753597+00:00",
+    "end_time": "2026-10-22 02:10:34.753910+00:00",
+    "case": "multiple",
+    "name": "replan_check_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000313,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    },
+    "outputs": {
+      "events": [
+        {
+          "route": "incident",
+          "type": "RouteDecided"
+        },
+        {
+          "targets": [
+            "payments-service",
+            "cache-service"
+          ],
+          "task_count": 2,
+          "type": "PlanCreated"
+        },
+        {
+          "removed_analysis_tasks": 0,
+          "type": "GateApplied"
+        },
+        {
+          "id": "task-0",
+          "retries": 0,
+          "source": "monitoring",
+          "target": "payments-service",
+          "type": "TaskCompleted"
+        },
+        {
+          "id": "task-1",
+          "retries": 0,
+          "source": "monitoring",
+          "target": "cache-service",
+          "type": "TaskCompleted"
+        },
+        {
+          "gap_task": "task-gap-runbook",
+          "is_sufficient": false,
+          "round": 0,
+          "target": "cpu-spike",
+          "type": "ReplanCheck"
+        }
+      ],
+      "replan_rounds": 1,
+      "tasks": [
+        {
+          "agent": "research",
+          "id": "task-0",
+          "kind": "monitoring",
+          "status": "done",
+          "target": "payments-service"
+        },
+        {
+          "agent": "research",
+          "id": "task-1",
+          "kind": "monitoring",
+          "status": "done",
+          "target": "cache-service"
+        },
+        {
+          "agent": "research",
+          "id": "task-gap-runbook",
+          "kind": "runbook",
+          "status": "pending",
+          "target": "cpu-spike"
+        }
+      ]
+    }
+  },
+  {
+    "id": "01a1615f-dc82-73b8-b2b6-6e68cddd38f2",
+    "parent_run_id": "01a1615f-dc81-7575-92b0-9a9ecc2718db",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.754193+00:00",
+    "end_time": "2026-10-22 02:10:34.754521+00:00",
+    "case": "multiple",
+    "name": "_after_replan_check",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000328,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-dc83-744a-b4be-5eb1f91a0a57",
+    "parent_run_id": "01a1615f-cd25-73e4-a67b-a5212015d969",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.755269+00:00",
+    "end_time": "2026-10-22 02:10:35.120284+00:00",
+    "case": "multiple",
+    "name": "research",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.365015,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-dc83-76d5-b061-6f70f819a06b",
+    "parent_run_id": "01a1615f-dc83-744a-b4be-5eb1f91a0a57",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.755733+00:00",
+    "end_time": "2026-10-22 02:10:35.119941+00:00",
+    "case": "multiple",
+    "name": "research_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.364208,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-dc84-79e6-842e-4b32c2396121",
+    "parent_run_id": "01a1615f-dc83-76d5-b061-6f70f819a06b",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.756186+00:00",
+    "end_time": "2026-10-22 02:10:34.758737+00:00",
+    "case": "multiple",
+    "name": "mcp.find_resource_template",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.002551,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-dc84-788d-8ed1-783b94d7fbe8",
+    "parent_run_id": "01a1615f-dc84-79e6-842e-4b32c2396121",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:34.756525+00:00",
+    "end_time": "2026-10-22 02:10:34.758556+00:00",
+    "case": "multiple",
+    "name": "mcp.list_resource_templates",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.002031,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-dde6-7303-b3ba-2e381b3861ea",
+    "parent_run_id": "01a1615f-dc83-76d5-b061-6f70f819a06b",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:35.110928+00:00",
+    "end_time": "2026-10-22 02:10:35.119618+00:00",
+    "case": "multiple",
+    "name": "mcp.read_resource",
+    "run_type": "tool",
+    "error": null,
+    "elapsed_seconds": 0.00869,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    },
+    "inputs": {
+      "server": "ops",
+      "uri": "runbook://incident-response/cpu-spike"
+    }
+  },
+  {
+    "id": "01a1615f-ddf1-7612-8cf4-748bf1fcad53",
+    "parent_run_id": "01a1615f-cd25-73e4-a67b-a5212015d969",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:35.121220+00:00",
+    "end_time": "2026-10-22 02:10:35.123004+00:00",
+    "case": "multiple",
+    "name": "replan_check",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.001784,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-ddf1-71a6-82c9-39d6ef7216d1",
+    "parent_run_id": "01a1615f-ddf1-7612-8cf4-748bf1fcad53",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:35.121821+00:00",
+    "end_time": "2026-10-22 02:10:35.122123+00:00",
+    "case": "multiple",
+    "name": "replan_check_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000302,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    },
+    "outputs": {
+      "events": [
+        {
+          "route": "incident",
+          "type": "RouteDecided"
+        },
+        {
+          "targets": [
+            "payments-service",
+            "cache-service"
+          ],
+          "task_count": 2,
+          "type": "PlanCreated"
+        },
+        {
+          "removed_analysis_tasks": 0,
+          "type": "GateApplied"
+        },
+        {
+          "id": "task-0",
+          "retries": 0,
+          "source": "monitoring",
+          "target": "payments-service",
+          "type": "TaskCompleted"
+        },
+        {
+          "id": "task-1",
+          "retries": 0,
+          "source": "monitoring",
+          "target": "cache-service",
+          "type": "TaskCompleted"
+        },
+        {
+          "gap_task": "task-gap-runbook",
+          "is_sufficient": false,
+          "round": 0,
+          "target": "cpu-spike",
+          "type": "ReplanCheck"
+        },
+        {
+          "id": "task-gap-runbook",
+          "retries": 0,
+          "source": "runbook",
+          "target": "cpu-spike",
+          "type": "TaskCompleted"
+        },
+        {
+          "is_sufficient": true,
+          "round": 1,
+          "type": "ReplanCheck"
+        }
+      ]
+    }
+  },
+  {
+    "id": "01a1615f-ddf2-77f8-b8e7-043c8cf69a50",
+    "parent_run_id": "01a1615f-ddf1-7612-8cf4-748bf1fcad53",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:35.122428+00:00",
+    "end_time": "2026-10-22 02:10:35.122810+00:00",
+    "case": "multiple",
+    "name": "_after_replan_check",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000382,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-ddf3-720f-a38a-d4fcf4ee76ef",
+    "parent_run_id": "01a1615f-cd25-73e4-a67b-a5212015d969",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:35.123650+00:00",
+    "end_time": "2026-10-22 02:10:35.124635+00:00",
+    "case": "multiple",
+    "name": "analysis",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000985,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-ddf4-706a-beb5-c2ad661deb2f",
+    "parent_run_id": "01a1615f-ddf3-720f-a38a-d4fcf4ee76ef",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:35.124128+00:00",
+    "end_time": "2026-10-22 02:10:35.124428+00:00",
+    "case": "multiple",
+    "name": "analysis_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.0003,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-ddf5-727a-ae4c-f1d567af7add",
+    "parent_run_id": "01a1615f-cd25-73e4-a67b-a5212015d969",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:35.125125+00:00",
+    "end_time": "2026-10-22 02:10:37.434010+00:00",
+    "case": "multiple",
+    "name": "write",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 2.308885,
+    "token_fields": {
+      "prompt_tokens": "366",
+      "completion_tokens": "237",
+      "total_tokens": "603",
+      "total_cost": "0.003285"
+    }
+  },
+  {
+    "id": "01a1615f-ddf5-7353-82a6-8c778ecb3bc8",
+    "parent_run_id": "01a1615f-ddf5-727a-ae4c-f1d567af7add",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:35.125507+00:00",
+    "end_time": "2026-10-22 02:10:37.433262+00:00",
+    "case": "multiple",
+    "name": "write_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 2.307755,
+    "token_fields": {
+      "prompt_tokens": "366",
+      "completion_tokens": "237",
+      "total_tokens": "603",
+      "total_cost": "0.003285"
+    }
+  },
+  {
+    "id": "01a1615f-ddf5-7a32-859b-67ad156e5754",
+    "parent_run_id": "01a1615f-ddf5-7353-82a6-8c778ecb3bc8",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:35.125896+00:00",
+    "end_time": "2026-10-22 02:10:37.432607+00:00",
+    "case": "multiple",
+    "name": "openai_quality.write",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 2.306711,
+    "token_fields": {
+      "prompt_tokens": "366",
+      "completion_tokens": "237",
+      "total_tokens": "603",
+      "total_cost": "0.003285"
+    }
+  },
+  {
+    "id": "01a1615f-ddf6-79d5-8cda-ef96d31a3452",
+    "parent_run_id": "01a1615f-ddf5-7a32-859b-67ad156e5754",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:35.126206+00:00",
+    "end_time": "2026-10-22 02:10:37.429021+00:00",
+    "case": "multiple",
+    "name": "measurement.openai_http",
+    "run_type": "llm",
+    "error": null,
+    "elapsed_seconds": 2.302815,
+    "token_fields": {
+      "prompt_tokens": "366",
+      "completion_tokens": "237",
+      "total_tokens": "603",
+      "total_cost": "0.003285"
+    },
+    "outputs": {
+      "output": "1) payments-service 상태는 'degraded'이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 있습니다.\n\n2) cache-service 상태는 'degraded'이며, CPU 사용률은 40.6%이고 메모리 사용률은 88.3%로 높습니다. 알림으로는 'memory usage climbing steadily over 6h'와 'heap near limit'가 있습니다.\n\n3) 대응 절차:\n   - payments-service의 경우, CPU 사용률이 90%를 넘고 지속되므로 오토스케일링 그룹에서 인스턴스를 추가하여 부하를 분산해야 합니다.\n   - cache-service의 경우, 메모리 사용률이 높으므로 메모리 최적화 및 필요 시 인스턴스 추가를 고려해야 합니다.\n   - 두 서비스 모두 상태가 'degraded'이므로, 각각의 알림 원인을 분석하고 필요한 조치를 취해야 합니다.",
+      "usage_metadata": {
+        "input_tokens": 366,
+        "output_tokens": 237,
+        "total_tokens": 603
+      }
+    }
+  },
+  {
+    "id": "01a1615f-e6fb-7033-b954-72192b7f6d14",
+    "parent_run_id": "01a1615f-cd25-73e4-a67b-a5212015d969",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:37.435346+00:00",
+    "end_time": "2026-10-22 02:10:37.437820+00:00",
+    "case": "multiple",
+    "name": "validate",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.002474,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-e6fc-7948-a3af-4ee687406dda",
+    "parent_run_id": "01a1615f-e6fb-7033-b954-72192b7f6d14",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:37.436320+00:00",
+    "end_time": "2026-10-22 02:10:37.436752+00:00",
+    "case": "multiple",
+    "name": "validate_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000432,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    },
+    "outputs": {
+      "events": [
+        {
+          "route": "incident",
+          "type": "RouteDecided"
+        },
+        {
+          "targets": [
+            "payments-service",
+            "cache-service"
+          ],
+          "task_count": 2,
+          "type": "PlanCreated"
+        },
+        {
+          "removed_analysis_tasks": 0,
+          "type": "GateApplied"
+        },
+        {
+          "id": "task-0",
+          "retries": 0,
+          "source": "monitoring",
+          "target": "payments-service",
+          "type": "TaskCompleted"
+        },
+        {
+          "id": "task-1",
+          "retries": 0,
+          "source": "monitoring",
+          "target": "cache-service",
+          "type": "TaskCompleted"
+        },
+        {
+          "gap_task": "task-gap-runbook",
+          "is_sufficient": false,
+          "round": 0,
+          "target": "cpu-spike",
+          "type": "ReplanCheck"
+        },
+        {
+          "id": "task-gap-runbook",
+          "retries": 0,
+          "source": "runbook",
+          "target": "cpu-spike",
+          "type": "TaskCompleted"
+        },
+        {
+          "is_sufficient": true,
+          "round": 1,
+          "type": "ReplanCheck"
+        },
+        {
+          "reason": "analysis task 0개",
+          "type": "AnalysisSkipped"
+        },
+        {
+          "attempt": 1,
+          "length": 545,
+          "type": "DraftWritten"
+        },
+        {
+          "attempt": 1,
+          "type": "Validation",
+          "verdict": "합격"
+        }
+      ],
+      "validation_attempts": 1,
+      "validation_feedback": null
+    }
+  },
+  {
+    "id": "01a1615f-e6fd-74e7-a9ab-1de5fd766222",
+    "parent_run_id": "01a1615f-e6fb-7033-b954-72192b7f6d14",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:37.437122+00:00",
+    "end_time": "2026-10-22 02:10:37.437620+00:00",
+    "case": "multiple",
+    "name": "_after_validate",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000498,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-e6fe-74ba-85e7-e141a875fa2a",
+    "parent_run_id": "01a1615f-cd25-73e4-a67b-a5212015d969",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:37.438701+00:00",
+    "end_time": "2026-10-22 02:10:37.440066+00:00",
+    "case": "multiple",
+    "name": "finalize",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.001365,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  },
+  {
+    "id": "01a1615f-e6ff-7407-87a9-2ed83d317249",
+    "parent_run_id": "01a1615f-e6fe-74ba-85e7-e141a875fa2a",
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "start_time": "2026-10-22 02:10:37.439381+00:00",
+    "end_time": "2026-10-22 02:10:37.439806+00:00",
+    "case": "multiple",
+    "name": "finalize_node",
+    "run_type": "chain",
+    "error": null,
+    "elapsed_seconds": 0.000425,
+    "token_fields": {
+      "prompt_tokens": "0",
+      "completion_tokens": "0",
+      "total_tokens": "0",
+      "total_cost": null
+    }
+  }
+]

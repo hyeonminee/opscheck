@@ -1,0 +1,58 @@
+[
+  {
+    "case": "single",
+    "expected_targets": [
+      "payments-service"
+    ],
+    "actual_targets": [
+      "payments-service"
+    ],
+    "scope_passed": true,
+    "manuals_expected": [
+      "runbook://incident-response/cpu-spike"
+    ],
+    "manuals_actual": [
+      "runbook://incident-response/cpu-spike"
+    ],
+    "manuals_passed": true,
+    "five_sections_passed": false,
+    "reason": "Requested service and CPU manual retrieved; numbered prose lacks explicit five report areas and source URI."
+  },
+  {
+    "case": "followup",
+    "expected_targets": [
+      "payments-service"
+    ],
+    "actual_targets": [],
+    "scope_passed": false,
+    "manuals_expected": [
+      "runbook://incident-response/cpu-spike"
+    ],
+    "manuals_actual": [],
+    "manuals_passed": false,
+    "five_sections_passed": null,
+    "reason": "route=chat; previous payments CPU95.0 repeated, no fresh MCP invocation. Prior auth substitution did not reproduce."
+  },
+  {
+    "case": "multiple",
+    "expected_targets": [
+      "cache-service",
+      "payments-service"
+    ],
+    "actual_targets": [
+      "cache-service",
+      "payments-service"
+    ],
+    "scope_passed": true,
+    "manuals_expected": [
+      "runbook://incident-response/cpu-spike",
+      "runbook://incident-response/memory-leak"
+    ],
+    "manuals_actual": [
+      "runbook://incident-response/cpu-spike"
+    ],
+    "manuals_passed": false,
+    "five_sections_passed": false,
+    "reason": "Both requested services retrieved; only cpu-spike manual retrieved despite cache memory/heap alerts; memory-leak manual absent. Prior single-target omission did not reproduce."
+  }
+]

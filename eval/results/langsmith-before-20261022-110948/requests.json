@@ -1,0 +1,325 @@
+[
+  {
+    "case": "single",
+    "question": "payments-service가 느려요",
+    "thread_id": "t-web-2ygaz9",
+    "start_utc": "2026-10-22T02:09:48.701744+00:00",
+    "events": [
+      {
+        "at_seconds": 1.5148731250083074,
+        "event": {
+          "type": "RouteDecided",
+          "route": "incident",
+          "node": "route"
+        }
+      },
+      {
+        "at_seconds": 2.8199846250063274,
+        "event": {
+          "type": "PlanCreated",
+          "task_count": 1,
+          "targets": [
+            "payments-service"
+          ],
+          "node": "plan"
+        }
+      },
+      {
+        "at_seconds": 2.822373333008727,
+        "event": {
+          "type": "GateApplied",
+          "removed_analysis_tasks": 0,
+          "node": "gate"
+        }
+      },
+      {
+        "at_seconds": 3.5377644170075655,
+        "event": {
+          "type": "TaskCompleted",
+          "id": "task-0",
+          "source": "monitoring",
+          "target": "payments-service",
+          "retries": 1,
+          "node": "research"
+        }
+      },
+      {
+        "at_seconds": 3.5392712079919875,
+        "event": {
+          "type": "ReplanCheck",
+          "round": 0,
+          "is_sufficient": false,
+          "gap_task": "task-gap-runbook",
+          "target": "cpu-spike",
+          "node": "replan_check"
+        }
+      },
+      {
+        "at_seconds": 3.903700166993076,
+        "event": {
+          "type": "TaskCompleted",
+          "id": "task-gap-runbook",
+          "source": "runbook",
+          "target": "cpu-spike",
+          "retries": 0,
+          "node": "research"
+        }
+      },
+      {
+        "at_seconds": 3.906120458006626,
+        "event": {
+          "type": "ReplanCheck",
+          "round": 1,
+          "is_sufficient": true,
+          "node": "replan_check"
+        }
+      },
+      {
+        "at_seconds": 3.90751525000087,
+        "event": {
+          "type": "AnalysisSkipped",
+          "reason": "analysis task 0개",
+          "node": "analysis"
+        }
+      },
+      {
+        "at_seconds": 5.487416457996005,
+        "event": {
+          "type": "AnswerToken",
+          "attempt": 1,
+          "delta": "1) 모니터링 결과 payments-service의 상태가 'degraded'로 확인되었으며, CPU 사용률이 95.0%로 높고 메모리 사용률은 57.0%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 발생했습니다.\n\n2) CPU 사용률이 90%를 넘고 지속되고 있으므로, 오토스케일링 그룹에서 인스턴스를 한 대 더 추가하여 부하를 분산해야 합니다.\n\n3) 문제 해결 후, 프로파일링 결과를 바탕으로 핫스팟 코드를 식별하고 최적화 작업을 등록해야 합니다."
+        }
+      },
+      {
+        "at_seconds": 5.4880757500068285,
+        "event": {
+          "type": "DraftWritten",
+          "attempt": 1,
+          "length": 312,
+          "node": "write"
+        }
+      },
+      {
+        "at_seconds": 5.491802708012983,
+        "event": {
+          "type": "Validation",
+          "attempt": 1,
+          "verdict": "합격",
+          "node": "validate"
+        }
+      },
+      {
+        "at_seconds": 5.494161625014385,
+        "event": {
+          "type": "Finalize",
+          "pipeline": "incident-v2",
+          "node": "finalize"
+        }
+      },
+      {
+        "at_seconds": 5.494652833003784,
+        "event": {
+          "type": "FinalAnswer",
+          "reply": "1) 모니터링 결과 payments-service의 상태가 'degraded'로 확인되었으며, CPU 사용률이 95.0%로 높고 메모리 사용률은 57.0%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 발생했습니다.\n\n2) CPU 사용률이 90%를 넘고 지속되고 있으므로, 오토스케일링 그룹에서 인스턴스를 한 대 더 추가하여 부하를 분산해야 합니다.\n\n3) 문제 해결 후, 프로파일링 결과를 바탕으로 핫스팟 코드를 식별하고 최적화 작업을 등록해야 합니다."
+        }
+      }
+    ],
+    "http_calls_before": 0,
+    "trace_id": "01a1615f-289f-724e-9c7a-11402e7a8190",
+    "http_status": 200,
+    "done_at_seconds": 5.496053167007631,
+    "elapsed_seconds": 5.4967359580041375,
+    "http_calls_after": 3,
+    "reply": "1) 모니터링 결과 payments-service의 상태가 'degraded'로 확인되었으며, CPU 사용률이 95.0%로 높고 메모리 사용률은 57.0%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 발생했습니다.\n\n2) CPU 사용률이 90%를 넘고 지속되고 있으므로, 오토스케일링 그룹에서 인스턴스를 한 대 더 추가하여 부하를 분산해야 합니다.\n\n3) 문제 해결 후, 프로파일링 결과를 바탕으로 핫스팟 코드를 식별하고 최적화 작업을 등록해야 합니다."
+  },
+  {
+    "case": "followup",
+    "question": "그 서비스 다시 확인해줘",
+    "thread_id": "t-web-2ygaz9",
+    "start_utc": "2026-10-22T02:10:06.986216+00:00",
+    "events": [
+      {
+        "at_seconds": 0.9194705419940874,
+        "event": {
+          "type": "RouteDecided",
+          "route": "chat",
+          "node": "route"
+        }
+      },
+      {
+        "at_seconds": 2.1031381670036353,
+        "event": {
+          "type": "AnswerToken",
+          "delta": "payments-service의 상태는 여전히 'degraded'이며, CPU 사용률이 95.0%로 높습니다. 인스턴스를 추가하여 부하를 분산하는 것이 필요합니다."
+        }
+      },
+      {
+        "at_seconds": 2.103683541994542,
+        "event": {
+          "type": "Finalize",
+          "pipeline": "chat-direct",
+          "node": "chat_answer"
+        }
+      },
+      {
+        "at_seconds": 2.1041665420052595,
+        "event": {
+          "type": "FinalAnswer",
+          "reply": "payments-service의 상태는 여전히 'degraded'이며, CPU 사용률이 95.0%로 높습니다. 인스턴스를 추가하여 부하를 분산하는 것이 필요합니다."
+        }
+      }
+    ],
+    "http_calls_before": 3,
+    "trace_id": "01a1615f-700b-75d9-9f5f-7ea1f4711e4f",
+    "http_status": 200,
+    "done_at_seconds": 2.1052823750069365,
+    "elapsed_seconds": 2.105578749993583,
+    "http_calls_after": 5,
+    "reply": "payments-service의 상태는 여전히 'degraded'이며, CPU 사용률이 95.0%로 높습니다. 인스턴스를 추가하여 부하를 분산하는 것이 필요합니다."
+  },
+  {
+    "case": "multiple",
+    "question": "payments-service와 cache-service를 확인해줘",
+    "thread_id": "t-web-dsqf75",
+    "start_utc": "2026-10-22T02:10:30.817505+00:00",
+    "events": [
+      {
+        "at_seconds": 0.9288215839769691,
+        "event": {
+          "type": "RouteDecided",
+          "route": "incident",
+          "node": "route"
+        }
+      },
+      {
+        "at_seconds": 3.566476624982897,
+        "event": {
+          "type": "PlanCreated",
+          "task_count": 2,
+          "targets": [
+            "payments-service",
+            "cache-service"
+          ],
+          "node": "plan"
+        }
+      },
+      {
+        "at_seconds": 3.569323583971709,
+        "event": {
+          "type": "GateApplied",
+          "removed_analysis_tasks": 0,
+          "node": "gate"
+        }
+      },
+      {
+        "at_seconds": 3.935075916990172,
+        "event": {
+          "type": "TaskCompleted",
+          "id": "task-0",
+          "source": "monitoring",
+          "target": "payments-service",
+          "retries": 0,
+          "node": "research"
+        }
+      },
+      {
+        "at_seconds": 3.935149958997499,
+        "event": {
+          "type": "TaskCompleted",
+          "id": "task-1",
+          "source": "monitoring",
+          "target": "cache-service",
+          "retries": 0,
+          "node": "research"
+        }
+      },
+      {
+        "at_seconds": 3.937411249993602,
+        "event": {
+          "type": "ReplanCheck",
+          "round": 0,
+          "is_sufficient": false,
+          "gap_task": "task-gap-runbook",
+          "target": "cpu-spike",
+          "node": "replan_check"
+        }
+      },
+      {
+        "at_seconds": 4.303135791997192,
+        "event": {
+          "type": "TaskCompleted",
+          "id": "task-gap-runbook",
+          "source": "runbook",
+          "target": "cpu-spike",
+          "retries": 0,
+          "node": "research"
+        }
+      },
+      {
+        "at_seconds": 4.305763374984963,
+        "event": {
+          "type": "ReplanCheck",
+          "round": 1,
+          "is_sufficient": true,
+          "node": "replan_check"
+        }
+      },
+      {
+        "at_seconds": 4.30731524998555,
+        "event": {
+          "type": "AnalysisSkipped",
+          "reason": "analysis task 0개",
+          "node": "analysis"
+        }
+      },
+      {
+        "at_seconds": 6.616109708993463,
+        "event": {
+          "type": "AnswerToken",
+          "attempt": 1,
+          "delta": "1) payments-service 상태는 'degraded'이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 있습니다.\n\n2) cache-service 상태는 'degraded'이며, CPU 사용률은 40.6%이고 메모리 사용률은 88.3%로 높습니다. 알림으로는 'memory usage climbing steadily over 6h'와 'heap near limit'가 있습니다.\n\n3) 대응 절차:\n   - payments-service의 경우, CPU 사용률이 90%를 넘고 지속되므로 오토스케일링 그룹에서 인스턴스를 추가하여 부하를 분산해야 합니다.\n   - cache-service의 경우, 메모리 사용률이 높으므로 메모리 최적화 및 필요 시 인스턴스 추가를 고려해야 합니다.\n   - 두 서비스 모두 상태가 'degraded'이므로, 각각의 알림 원인을 분석하고 필요한 조치를 취해야 합니다."
+        }
+      },
+      {
+        "at_seconds": 6.617020624980796,
+        "event": {
+          "type": "DraftWritten",
+          "attempt": 1,
+          "length": 545,
+          "node": "write"
+        }
+      },
+      {
+        "at_seconds": 6.620591416984098,
+        "event": {
+          "type": "Validation",
+          "attempt": 1,
+          "verdict": "합격",
+          "node": "validate"
+        }
+      },
+      {
+        "at_seconds": 6.622872041974915,
+        "event": {
+          "type": "Finalize",
+          "pipeline": "incident-v2",
+          "node": "finalize"
+        }
+      },
+      {
+        "at_seconds": 6.6236148749885615,
+        "event": {
+          "type": "FinalAnswer",
+          "reply": "1) payments-service 상태는 'degraded'이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 있습니다.\n\n2) cache-service 상태는 'degraded'이며, CPU 사용률은 40.6%이고 메모리 사용률은 88.3%로 높습니다. 알림으로는 'memory usage climbing steadily over 6h'와 'heap near limit'가 있습니다.\n\n3) 대응 절차:\n   - payments-service의 경우, CPU 사용률이 90%를 넘고 지속되므로 오토스케일링 그룹에서 인스턴스를 추가하여 부하를 분산해야 합니다.\n   - cache-service의 경우, 메모리 사용률이 높으므로 메모리 최적화 및 필요 시 인스턴스 추가를 고려해야 합니다.\n   - 두 서비스 모두 상태가 'degraded'이므로, 각각의 알림 원인을 분석하고 필요한 조치를 취해야 합니다."
+        }
+      }
+    ],
+    "http_calls_before": 5,
+    "trace_id": "01a1615f-cd22-75f1-8dab-8ecc8f96eabf",
+    "http_status": 200,
+    "done_at_seconds": 6.625474124972243,
+    "elapsed_seconds": 6.625882083986653,
+    "http_calls_after": 8,
+    "reply": "1) payments-service 상태는 'degraded'이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 있습니다.\n\n2) cache-service 상태는 'degraded'이며, CPU 사용률은 40.6%이고 메모리 사용률은 88.3%로 높습니다. 알림으로는 'memory usage climbing steadily over 6h'와 'heap near limit'가 있습니다.\n\n3) 대응 절차:\n   - payments-service의 경우, CPU 사용률이 90%를 넘고 지속되므로 오토스케일링 그룹에서 인스턴스를 추가하여 부하를 분산해야 합니다.\n   - cache-service의 경우, 메모리 사용률이 높으므로 메모리 최적화 및 필요 시 인스턴스 추가를 고려해야 합니다.\n   - 두 서비스 모두 상태가 'degraded'이므로, 각각의 알림 원인을 분석하고 필요한 조치를 취해야 합니다."
+  }
+]

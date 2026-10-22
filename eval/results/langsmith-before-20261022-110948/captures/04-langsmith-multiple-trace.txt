@@ -1,0 +1,300 @@
+- banner:
+  - button "Personal":
+    - generic: Personal
+  - button "Search":
+  - button "Collapse":
+  - link "Overview":
+    - /url: /o/<org-id>/a/opscheck-before-20261022
+    - generic: OP
+    - generic: Overview
+  - button "Clear selected agent":
+  - separator
+  - link "Engine":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/engine
+    - generic: Engine
+    - generic: Plus
+  - link "Studio":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/studio/connect
+    - generic: Studio
+  - link "Build":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/build
+    - generic: Build
+  - link "Tracing":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/projects?poll=true&start_time=2026-10-22T02%3A10%3A30.818837
+    - generic: Tracing
+  - link "Insights":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/projects/p/<project-id>?tab=insights
+    - generic: Insights
+    - generic: Plus
+  - link "Monitoring":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/dashboards
+    - generic: Monitoring
+  - link "Datasets & Experiments":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/datasets
+    - generic: Datasets & Experiments
+  - link "Evaluators":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/evaluators
+    - generic: Evaluators
+  - link "Annotation Queues":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/annotation-queues
+    - generic: Annotation Queues
+  - link "Prompts":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/prompts
+    - generic: Prompts
+  - link "Playground":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/playground
+    - generic: Playground
+  - link "Deployments":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/host/deployments
+    - generic: Deployments
+    - generic: Plus
+  - link "Context Hub":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/context
+    - generic: Context Hub
+  - separator
+  - generic: Workspace
+  - link "Dashboards":
+    - /url: /o/<org-id>/a/-/dashboards/custom
+    - generic: Dashboards
+  - link "Custom Apps":
+    - /url: /o/<org-id>/a/-/custom-apps
+    - generic: Custom Apps
+  - link "LLM Gateway":
+    - /url: /o/<org-id>/a/-/gateway
+    - generic: LLM Gateway
+    - generic: Plus
+  - link "Sandboxes":
+    - /url: /o/<org-id>/a/-/sandboxes
+    - generic: Sandboxes
+  - generic "Keyboard Shortcuts":
+    - generic: Keyboard Shortcuts
+  - button "Notifications (1)":
+    - generic: Notifications
+    - generic: "1"
+  - link "Settings":
+    - /url: /o/<org-id>/settings
+    - generic: Settings
+  - button "현민":
+    - generic: 현민
+- main:
+  - link "OP opscheck-before-20261022":
+    - /url: /o/<org-id>/a/opscheck-before-20261022
+    - generic: OP
+    - generic: opscheck-before-20261022
+  - 'button "Select agent: opscheck-before-20261022"':
+  - button "Clear agent filter":
+  - link "Tracing":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/projects
+    - generic: Tracing
+  - link "baseline_sse_measurement":
+    - /url: /o/<org-id>/projects/p/<project-id>/trace/01a1615f-cd22-75f1-8dab-8ecc8f96eabf/run/01a1615f-cd22-75f1-8dab-8ecc8f96eabf?start_time=2026-10-22T02:10:30.818837Z
+    - generic: baseline_sse_measurement
+  - link "Back":
+    - /url: /o/<org-id>/projects/p/<project-id>?poll=true&start_time=2026-10-22T02%3A10%3A30.818837Z&peek=01a1615f-cd22-75f1-8dab-8ecc8f96eabf&peeked_trace=01a1615f-cd22-75f1-8dab-8ecc8f96eabf
+  - heading "baseline_sse_measurement ID" [level=3]:
+    - heading "baseline_sse_measurement" [level=2]
+    - generic: ID
+  - button "More actions":
+  - button "Share trace":
+  - button "Copy run":
+  - button "Trajectory":
+    - generic: Trajectory
+  - button "Details":
+    - generic: Details
+  - button "Add to Annotation Queue":
+  - button "Add to Dataset":
+  - generic: Trace
+  - button "Waterfall":
+    - generic: Waterfall
+  - button "Tree settings":
+  - button "Collapse runs":
+  - button "Toggle panel size":
+  - textbox "Filter runs":
+    - generic: Filter runs…
+  - tree "Trace run tree":
+    - button "baseline_sse_measurement 11:10 AM 6.63s":
+      - generic: baseline_sse_measurement
+      - generic: 11:10 AM
+      - generic: 6.63s
+    - button "route 0.92s Collapse":
+      - generic: route
+      - generic: 0.92s
+      - button "Collapse":
+    - button "route_node 0.92s Collapse":
+      - generic: route_node
+      - generic: 0.92s
+      - button "Collapse":
+    - button "openai_fast.route 0.92s Collapse":
+      - generic: openai_fast.route
+      - generic: 0.92s
+      - button "Collapse":
+    - button "measurement.openai_http gpt-4o-mini 0.92s 141":
+      - generic: measurement.openai_http
+      - generic: gpt-4o-mini
+      - generic: 0.92s
+      - generic: "141"
+    - button "_after_route 0.00s":
+      - generic: _after_route
+      - generic: 0.00s
+    - button "plan 2.64s Collapse":
+      - generic: plan
+      - generic: 2.64s
+      - button "Collapse":
+    - button "plan_node 2.63s Collapse":
+      - generic: plan_node
+      - generic: 2.63s
+      - button "Collapse":
+    - button "mcp.find_prompt 0.02s Collapse":
+      - generic: mcp.find_prompt
+      - generic: 0.02s
+      - button "Collapse":
+    - button "mcp.list_prompts 0.01s":
+      - generic: mcp.list_prompts
+      - generic: 0.01s
+    - button "mcp.get_prompt 0.00s":
+      - generic: mcp.get_prompt
+      - generic: 0.00s
+    - button "openai_fast.plan 2.61s Collapse":
+      - generic: openai_fast.plan
+      - generic: 2.61s
+      - button "Collapse":
+    - button "measurement.openai_http gpt-4o-mini 2.61s 342":
+      - generic: measurement.openai_http
+      - generic: gpt-4o-mini
+      - generic: 2.61s
+      - generic: "342"
+    - button "gate 0.00s Collapse":
+      - generic: gate
+      - generic: 0.00s
+      - button "Collapse":
+    - button "gate_node 0.00s":
+      - generic: gate_node
+      - generic: 0.00s
+    - button "research 0.36s Collapse":
+      - generic: research
+      - generic: 0.36s
+      - button "Collapse":
+    - button "research_node 0.36s Collapse":
+      - generic: research_node
+      - generic: 0.36s
+      - button "Collapse":
+    - button "with_retry 0.01s Collapse":
+      - generic: with_retry
+      - generic: 0.01s
+      - button "Collapse":
+    - text: Some runs have been hidden.
+    - generic: Show 1 hidden run
+  - separator
+  - region "Run details":
+    - heading "baseline_sse_measurement ID" [level=3]:
+      - heading "baseline_sse_measurement" [level=2]
+      - generic: ID
+    - button "Feedback"
+    - button "Input"
+    - button "Output"
+    - button "Attributes"
+    - button "Collapse all sections":
+    - generic: Feedback
+    - button "Add feedback":
+      - generic: Add feedback
+    - generic: Input
+    - button "Markdown":
+      - generic: Markdown
+    - button "Fields Copy as JSON":
+      - generic: Fields
+      - button "Copy as JSON":
+    - button "message payments-service와 cache-service를 확인해줘" [disabled]:
+      - generic: message
+      - generic: payments-service와 cache-service를 확인해줘
+    - button "thread_id t-web-dsqf75" [disabled]:
+      - generic: thread_id
+      - generic: t-web-dsqf75
+    - generic: Output
+    - button "Markdown":
+      - generic: Markdown
+    - button "Fields Expand all Copy as JSON":
+      - generic: Fields
+      - button "Expand all":
+      - button "Copy as JSON":
+    - 'button "reply 1) payments-service 상태는 ''degraded''이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 ''CPU 91% (threshold 80%)''와 ''payments-service-3 instance responding slow''가 있습니다. 2) cache-service 상태는 ''degraded''이며, CPU 사용률은 40.6%이고 메모리 사용률은 88.3%로 높습니다. 알림으로는 ''memory usage climbing steadily over 6h''와 ''heap near limit''가 있습니다. 3) 대응 절차: - payments-service의 경우, CPU 사용률이 90%를 넘고 지속되므로 오토스케일링 그룹에서 인스턴스를 추가하여 부하를 분산해야 합니다. - cache-service의 경우, 메모리 사용률이 높으므로 메모리 최적화 및 필요 시 인스턴스 추가를 고려해야 합니다. - 두 서비스 모두 상태가 ''degraded''이므로, 각각의 알림 원인을 분석하고 필요한 조치를 취해야 합니다."':
+      - generic: reply
+      - generic: "1) payments-service 상태는 'degraded'이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 있습니다. 2) cache-service 상태는 'degraded'이며, CPU 사용률은 40.6%이고 메모리 사용률은 88.3%로 높습니다. 알림으로는 'memory usage climbing steadily over 6h'와 'heap near limit'가 있습니다. 3) 대응 절차: - payments-service의 경우, CPU 사용률이 90%를 넘고 지속되므로 오토스케일링 그룹에서 인스턴스를 추가하여 부하를 분산해야 합니다. - cache-service의 경우, 메모리 사용률이 높으므로 메모리 최적화 및 필요 시 인스턴스 추가를 고려해야 합니다. - 두 서비스 모두 상태가 'degraded'이므로, 각각의 알림 원인을 분석하고 필요한 조치를 취해야 합니다."
+    - button "done true" [disabled]:
+      - generic: done
+      - generic: "true"
+    - button "elapsed_seconds 6.625882083986653" [disabled]:
+      - generic: elapsed_seconds
+      - generic: "6.625882083986653"
+    - generic: Attributes
+    - generic: Tags
+    - generic: before
+    - generic: one-pass
+    - generic: student-3
+    - generic: Metadata
+    - generic: case
+    - button "Show runs with this key":
+    - generic: multiple
+    - button "Copy value":
+    - button "Show runs with this key and value":
+    - generic: measurement_only_wrapper
+    - button "Show runs with this key":
+    - generic: "true"
+    - button "Copy value":
+    - button "Show runs with this key and value":
+    - generic: source_sha256
+    - button "Show runs with this key":
+    - generic: a28da5c2a9e24b84b4e23b721a9a2421e16125430c8b80afbdf404bc92b3e3dd
+    - button "Copy value":
+    - button "Show runs with this key and value":
+    - generic: LangSmith
+    - generic: LANGSMITH_PROJECT
+    - button "Show runs with this key":
+    - generic: opscheck-before-20261022
+    - button "Copy value":
+    - button "Show runs with this key and value":
+    - generic: LANGSMITH_TRACING
+    - button "Show runs with this key":
+    - generic: "true"
+    - button "Copy value":
+    - button "Show runs with this key and value":
+    - generic: ls_method
+    - button "Show runs with this key":
+    - generic: trace
+    - button "Copy value":
+    - button "Show runs with this key and value":
+    - generic: ls_run_depth
+    - button "Show runs with this key":
+    - generic: "0"
+    - button "Copy value":
+    - button "Show runs with this key and value":
+    - generic: Runtime
+    - generic: langchain_core_version
+    - generic: 1.6.12
+    - button "Copy value":
+    - generic: langchain_version
+    - button "Copy value":
+    - generic: library
+    - generic: langsmith
+    - button "Copy value":
+    - generic: platform
+    - generic: macOS-26.6.2-arm64-arm-64bit-Mach-O
+    - button "Copy value":
+    - generic: py_implementation
+    - generic: CPython
+    - button "Copy value":
+    - generic: runtime
+    - generic: python
+    - button "Copy value":
+    - generic: runtime_version
+    - generic: 3.14.7
+    - button "Copy value":
+    - generic: sdk
+    - generic: langsmith-py
+    - button "Copy value":
+    - generic: sdk_version
+    - generic: 0.14.11
+    - button "Copy value":
+- region "Notifications (F8)":
+  - list
+- button "LangSmith Chat":
+- iframe

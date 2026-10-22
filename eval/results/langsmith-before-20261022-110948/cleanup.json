@@ -1,0 +1,8 @@
+{
+  "temporary_server_port": 18810,
+  "signal": "SIGTERM",
+  "pids": [
+    "23432"
+  ],
+  "existing_user_servers_signalled": false
+}

@@ -1,0 +1,14 @@
+- banner: 운영 인시던트 대응 에이전트 openai 실모델(openai:gpt-4o-mini/openai:gpt-4o) · all_total_vue
+- generic: payments-service와 cache-service를 확인해줘
+- generic: "⏳ 계획 수립: 할 일 2가지 (시스템: payments-service, cache-service)"
+- generic: "⏳ 모니터링 지표 확인 (시스템: payments-service)"
+- generic: "⏳ 모니터링 지표 확인 (시스템: cache-service)"
+- generic: ⏳ 정보 부족 → 장애유형 "cpu-spike"로 추가 조사
+- generic: "⏳ 대응 매뉴얼(runbook) 조회 (장애유형: cpu-spike)"
+- generic: ⏳ 답변 초안 작성 (시도 1)
+- generic: ⏳ 검수 통과
+- generic: ⏳ 최종 답변 완성
+- generic: "1) payments-service 상태는 'degraded'이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 'CPU 91% (threshold 80%)'와 'payments-service-3 instance responding slow'가 있습니다. 2) cache-service 상태는 'degraded'이며, CPU 사용률은 40.6%이고 메모리 사용률은 88.3%로 높습니다. 알림으로는 'memory usage climbing steadily over 6h'와 'heap near limit'가 있습니다. 3) 대응 절차: - payments-service의 경우, CPU 사용률이 90%를 넘고 지속되므로 오토스케일링 그룹에서 인스턴스를 추가하여 부하를 분산해야 합니다. - cache-service의 경우, 메모리 사용률이 높으므로 메모리 최적화 및 필요 시 인스턴스 추가를 고려해야 합니다. - 두 서비스 모두 상태가 'degraded'이므로, 각각의 알림 원인을 분석하고 필요한 조치를 취해야 합니다."
+- generic "🔍 LLM에 전달된 최종 프롬프트 보기"
+- 'textbox "예: auth-service 로그인 응답이 느려졌어요. 원인 확인해주세요"'
+- button "보내기"

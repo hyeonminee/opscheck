@@ -1,0 +1,362 @@
+- banner:
+  - button "Personal":
+    - generic: Personal
+  - button "Search":
+  - button "Collapse":
+  - link "Overview":
+    - /url: /o/<org-id>/a/opscheck-before-20261022
+    - generic: OP
+    - generic: Overview
+  - button "Clear selected agent":
+  - separator
+  - link "Engine":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/engine
+    - generic: Engine
+    - generic: Plus
+  - link "Studio":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/studio/connect
+    - generic: Studio
+  - link "Build":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/build
+    - generic: Build
+  - link "Tracing":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/projects?poll=true
+    - generic: Tracing
+  - link "Insights":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/projects/p/<project-id>?tab=insights
+    - generic: Insights
+    - generic: Plus
+  - link "Monitoring":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/dashboards
+    - generic: Monitoring
+  - link "Datasets & Experiments":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/datasets
+    - generic: Datasets & Experiments
+  - link "Evaluators":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/evaluators
+    - generic: Evaluators
+  - link "Annotation Queues":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/annotation-queues
+    - generic: Annotation Queues
+  - link "Prompts":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/prompts
+    - generic: Prompts
+  - link "Playground":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/playground
+    - generic: Playground
+  - link "Deployments":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/host/deployments
+    - generic: Deployments
+    - generic: Plus
+  - link "Context Hub":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/context
+    - generic: Context Hub
+  - separator
+  - generic: Workspace
+  - link "Dashboards":
+    - /url: /o/<org-id>/a/-/dashboards/custom
+    - generic: Dashboards
+  - link "Custom Apps":
+    - /url: /o/<org-id>/a/-/custom-apps
+    - generic: Custom Apps
+  - link "LLM Gateway":
+    - /url: /o/<org-id>/a/-/gateway
+    - generic: LLM Gateway
+    - generic: Plus
+  - link "Sandboxes":
+    - /url: /o/<org-id>/a/-/sandboxes
+    - generic: Sandboxes
+  - button "Notifications (1)":
+    - generic: Notifications
+    - generic: "1"
+  - link "Settings":
+    - /url: /o/<org-id>/settings
+    - generic: Settings
+  - button "현민":
+    - generic: 현민
+- main:
+  - link "OP opscheck-before-20261022":
+    - /url: /o/<org-id>/a/opscheck-before-20261022
+    - generic: OP
+    - generic: opscheck-before-20261022
+  - 'button "Select agent: opscheck-before-20261022"':
+  - button "Clear agent filter":
+  - link "Tracing":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/projects
+    - generic: Tracing
+  - combobox "Environment":
+    - generic: Production
+    - generic: ID
+  - tablist:
+    - tab "Tracing" [selected]:
+      - generic: Tracing
+    - tab "Evaluators":
+      - generic: Evaluators
+    - tab "Automations":
+      - generic: Automations
+  - button "Edit tracing settings":
+  - button "Retention":
+    - generic: Retention
+    - generic: 14d
+  - button "Dashboard":
+    - generic: Dashboard
+  - button "Set default project dashboard":
+  - link "Alerts":
+    - /url: /o/<org-id>/a/opscheck-before-20261022/dashboards/alerts?sessionId=<project-id>
+    - button "Alerts":
+  - button "New":
+    - generic: New
+  - tabpanel "Tracing":
+    - combobox "Search scope":
+      - generic: in root run
+    - textbox "Filter root run":
+      - generic: Search…
+    - button "Add AI search":
+    - button "Add filter scope":
+    - button "Collapse shortcuts":
+      - generic: Shortcuts
+    - button "Last 1 day":
+      - generic: Last 1 day
+    - button "Threads":
+      - generic: Threads
+    - button "Traces":
+      - generic: Traces
+    - button "Runs":
+      - generic: Runs
+    - button:
+      - generic: Reset
+    - button:
+      - generic: Save View
+    - button "Views":
+      - generic: Views
+    - button "Format":
+    - button "Columns":
+    - button "Expand stats":
+      - generic: Stats · 3 traces
+    - generic: status
+    - checkbox "success"
+    - paragraph: success
+    - checkbox "error"
+    - paragraph: error
+    - checkbox "interrupted"
+    - paragraph: interrupted
+    - checkbox "pending"
+    - paragraph: pending
+    - generic: run name
+    - checkbox "baseline_sse_measurement"
+    - paragraph: baseline_sse_measurement
+    - generic: run type
+    - checkbox "chain"
+    - paragraph: chain
+    - generic: tag
+    - checkbox "before"
+    - paragraph: before
+    - checkbox "one-pass"
+    - paragraph: one-pass
+    - checkbox "student-3"
+    - paragraph: student-3
+    - generic: metadata
+    - checkbox "LANGSMITH_PROJECT"
+    - paragraph: LANGSMITH_PROJECT
+    - checkbox "LANGSMITH_TRACING"
+    - paragraph: LANGSMITH_TRACING
+    - checkbox "case"
+    - paragraph: case
+    - checkbox "ls_method"
+    - paragraph: ls_method
+    - checkbox "ls_run_depth"
+    - paragraph: ls_run_depth
+    - checkbox "measurement_only_wrapper"
+    - paragraph: measurement_only_wrapper
+    - checkbox "source_sha256"
+    - paragraph: source_sha256
+    - separator
+    - button "Load latest":
+      - text: Load latest
+    - table:
+      - rowgroup:
+        - row "Select all rows Reorder status Name Reorder Name Input Reorder Input Output Reorder Output Error Reorder Error Start Time Reorder Start Time Latency Reorder Latency Dataset Reorder Dataset Annotation Queue Reorder Annotation Queue Tokens Reorder Tokens Cost Reorder Cost First Token Reorder First Token Tags Reorder Tags Metadata Reorder Metadata Feedback Reorder Feedback Reference Example Reorder Reference Example":
+          - columnheader "Select all rows":
+            - checkbox "Select all rows"
+          - columnheader "Reorder status":
+            - button "Reorder status":
+          - columnheader "Name Reorder Name":
+            - generic: Name
+            - button "Reorder Name":
+          - columnheader "Input Reorder Input":
+            - generic: Input
+            - button "Reorder Input":
+          - columnheader "Output Reorder Output":
+            - generic: Output
+            - button "Reorder Output":
+          - columnheader "Error Reorder Error":
+            - generic: Error
+            - button "Reorder Error":
+          - columnheader "Start Time Reorder Start Time":
+            - generic: Start Time
+            - button "Reorder Start Time":
+          - columnheader "Latency Reorder Latency":
+            - generic: Latency
+            - button "Reorder Latency":
+          - columnheader "Dataset Reorder Dataset":
+            - generic: Dataset
+            - button "Reorder Dataset":
+          - columnheader "Annotation Queue Reorder Annotation Queue":
+            - generic: Annotation Queue
+            - button "Reorder Annotation Queue":
+          - columnheader "Tokens Reorder Tokens":
+            - generic: Tokens
+            - button "Reorder Tokens":
+          - columnheader "Cost Reorder Cost":
+            - generic: Cost
+            - button "Reorder Cost":
+          - columnheader "First Token Reorder First Token":
+            - generic: First Token
+            - button "Reorder First Token":
+          - columnheader "Tags Reorder Tags":
+            - generic: Tags
+            - button "Reorder Tags":
+          - columnheader "Metadata Reorder Metadata":
+            - generic: Metadata
+            - button "Reorder Metadata":
+          - columnheader "Feedback Reorder Feedback":
+            - generic: Feedback
+            - button "Reorder Feedback":
+          - columnheader "Reference Example Reorder Reference Example":
+            - generic: Reference Example
+            - button "Reorder Reference Example":
+          - columnheader
+      - rowgroup:
+        - 'row "Select row baseline_sse_measurement baseline_sse_measurement payments-service와 cache-service를 확인해줘 1) payments-service 상태는 ''degraded''이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 ''CPU 91% (threshol 10/22/2026, 11:10:30 AM 6.63s 1.086K $0.003386 before one-pass student-3 LANGSMITH_PROJECT: opscheck-before-20261022 LANGSMITH_TRACING: true case: multiple +4"':
+          - cell "Select row baseline_sse_measurement":
+            - checkbox "Select row baseline_sse_measurement"
+          - cell:
+          - cell "baseline_sse_measurement":
+            - generic: baseline_sse_measurement
+          - cell "payments-service와 cache-service를 확인해줘":
+            - generic: payments-service와 cache-service를 확인해줘
+          - cell "1) payments-service 상태는 'degraded'이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 'CPU 91% (threshol":
+            - generic: 1) payments-service 상태는 'degraded'이며, CPU 사용률은 93.5%로 높고 메모리 사용률은 56.2%입니다. 알림으로는 'CPU 91% (threshol
+          - cell
+          - cell "10/22/2026, 11:10:30 AM":
+            - generic: 10/22/2026, 11:10:30 AM
+          - cell "6.63s":
+            - generic: 6.63s
+          - cell:
+          - cell:
+          - cell "1.086K":
+            - generic: 1.086K
+          - cell "$0.003386":
+            - generic: $0.003386
+          - cell
+          - cell "before one-pass student-3":
+            - generic: before
+            - generic: one-pass
+            - generic: student-3
+          - 'cell "LANGSMITH_PROJECT: opscheck-before-20261022 LANGSMITH_TRACING: true case: multiple +4"':
+            - 'generic "LANGSMITH_PROJECT: opscheck-before-20261022"':
+              - generic: "LANGSMITH_PROJECT: opscheck-before-20261022"
+            - 'generic "LANGSMITH_TRACING: true"':
+              - generic: "LANGSMITH_TRACING: true"
+            - 'generic "case: multiple"':
+              - generic: "case: multiple"
+            - generic: "+4"
+          - cell
+          - cell
+          - cell
+        - 'row "Select row baseline_sse_measurement baseline_sse_measurement 그 서비스 다시 확인해줘 payments-service의 상태는 여전히 ''degraded''이며, CPU 사용률이 95.0%로 높습니다. 인스턴스를 추가하여 부하를 분산하는 것이 필요합니다. 10/22/2026, 11:10:06 AM 2.10s 418 $0.00008700 before one-pass student-3 LANGSMITH_PROJECT: opscheck-before-20261022 LANGSMITH_TRACING: true case: followup +4"':
+          - cell "Select row baseline_sse_measurement":
+            - checkbox "Select row baseline_sse_measurement"
+          - cell:
+          - cell "baseline_sse_measurement":
+            - generic: baseline_sse_measurement
+          - cell "그 서비스 다시 확인해줘":
+            - generic: 그 서비스 다시 확인해줘
+          - cell "payments-service의 상태는 여전히 'degraded'이며, CPU 사용률이 95.0%로 높습니다. 인스턴스를 추가하여 부하를 분산하는 것이 필요합니다.":
+            - generic: payments-service의 상태는 여전히 'degraded'이며, CPU 사용률이 95.0%로 높습니다. 인스턴스를 추가하여 부하를 분산하는 것이 필요합니다.
+          - cell
+          - cell "10/22/2026, 11:10:06 AM":
+            - generic: 10/22/2026, 11:10:06 AM
+          - cell "2.10s":
+            - generic: 2.10s
+          - cell:
+          - cell:
+          - cell "418":
+            - generic: "418"
+          - cell "$0.00008700":
+            - generic: $0.00008700
+          - cell
+          - cell "before one-pass student-3":
+            - generic: before
+            - generic: one-pass
+            - generic: student-3
+          - 'cell "LANGSMITH_PROJECT: opscheck-before-20261022 LANGSMITH_TRACING: true case: followup +4"':
+            - 'generic "LANGSMITH_PROJECT: opscheck-before-20261022"':
+              - generic: "LANGSMITH_PROJECT: opscheck-before-20261022"
+            - 'generic "LANGSMITH_TRACING: true"':
+              - generic: "LANGSMITH_TRACING: true"
+            - 'generic "case: followup"':
+              - generic: "case: followup"
+            - generic: "+4"
+          - cell
+          - cell
+          - cell
+        - 'row "Select row baseline_sse_measurement baseline_sse_measurement payments-service가 느려요 1) 모니터링 결과 payments-service의 상태가 ''degraded''로 확인되었으며, CPU 사용률이 95.0%로 높고 메모리 사용률은 57.0%입니다. 알림으로는 ''CP 10/22/2026, 11:09:48 AM 5.50s 922 $0.002389 before one-pass student-3 LANGSMITH_PROJECT: opscheck-before-20261022 LANGSMITH_TRACING: true case: single +4"':
+          - cell "Select row baseline_sse_measurement":
+            - checkbox "Select row baseline_sse_measurement"
+          - cell:
+          - cell "baseline_sse_measurement":
+            - generic: baseline_sse_measurement
+          - cell "payments-service가 느려요":
+            - generic: payments-service가 느려요
+          - cell "1) 모니터링 결과 payments-service의 상태가 'degraded'로 확인되었으며, CPU 사용률이 95.0%로 높고 메모리 사용률은 57.0%입니다. 알림으로는 'CP":
+            - generic: 1) 모니터링 결과 payments-service의 상태가 'degraded'로 확인되었으며, CPU 사용률이 95.0%로 높고 메모리 사용률은 57.0%입니다. 알림으로는 'CP
+          - cell
+          - cell "10/22/2026, 11:09:48 AM":
+            - generic: 10/22/2026, 11:09:48 AM
+          - cell "5.50s":
+            - generic: 5.50s
+          - cell:
+          - cell:
+          - cell "922":
+            - generic: "922"
+          - cell "$0.002389":
+            - generic: $0.002389
+          - cell
+          - cell "before one-pass student-3":
+            - generic: before
+            - generic: one-pass
+            - generic: student-3
+          - 'cell "LANGSMITH_PROJECT: opscheck-before-20261022 LANGSMITH_TRACING: true case: single +4"':
+            - 'generic "LANGSMITH_PROJECT: opscheck-before-20261022"':
+              - generic: "LANGSMITH_PROJECT: opscheck-before-20261022"
+            - 'generic "LANGSMITH_TRACING: true"':
+              - generic: "LANGSMITH_TRACING: true"
+            - 'generic "case: single"':
+              - generic: "case: single"
+            - generic: "+4"
+          - cell
+          - cell
+          - cell
+    - status
+    - separator
+    - generic: Trace Count
+    - generic: "3"
+    - generic: Total Tokens
+    - text: 2,426
+    - generic: / $0.01
+    - generic: Median Tokens
+    - generic: "925"
+    - generic: Error Rate
+    - generic: 0%
+    - generic: "% Streaming"
+    - generic: 0%
+    - generic: Latency
+    - generic: "P50:"
+    - generic: 5.45s
+    - generic: "P99:"
+    - generic: 5.45s
+- region "Notifications (F8)":
+  - list
+- button "LangSmith Chat":
+- iframe
