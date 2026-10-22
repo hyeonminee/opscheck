@@ -1,0 +1,260 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "OpsCheck · 근거를 확인하는 장애 진단 흐름",
+    "quality_profile": "showcase",
+    "animation": "none"
+  },
+  "lanes": [
+    {
+      "id": "direct",
+      "label": "진단을 시작하지 않는 요청"
+    },
+    {
+      "id": "diagnosis",
+      "label": "장애 진단 · LangGraph Supervisor"
+    },
+    {
+      "id": "result",
+      "label": "검증 결과와 저장"
+    }
+  ],
+  "mainPath": [
+    "request",
+    "plan",
+    "monitor",
+    "manual",
+    "draft",
+    "validate",
+    "finish"
+  ],
+  "nodes": [
+    {
+      "id": "request",
+      "lane": "diagnosis",
+      "col": 0,
+      "type": "frontend",
+      "label": "질문·대상 확인",
+      "sublabel": "대화별 맥락 연결",
+      "width": 145
+    },
+    {
+      "id": "plan",
+      "lane": "diagnosis",
+      "col": 1,
+      "type": "backend",
+      "label": "계획·대상 검증",
+      "sublabel": "누락·범위 이탈 방지",
+      "width": 145
+    },
+    {
+      "id": "monitor",
+      "lane": "diagnosis",
+      "col": 2,
+      "type": "external",
+      "label": "모니터링 조회",
+      "sublabel": "서비스별 병렬 조사",
+      "width": 145
+    },
+    {
+      "id": "manual",
+      "lane": "diagnosis",
+      "col": 3,
+      "type": "external",
+      "label": "매뉴얼 선택·조회",
+      "sublabel": "필요 문서 보완 1회",
+      "width": 145
+    },
+    {
+      "id": "draft",
+      "lane": "diagnosis",
+      "col": 4,
+      "type": "backend",
+      "label": "진단 초안 작성",
+      "sublabel": "필요 시 비교 분석",
+      "width": 145
+    },
+    {
+      "id": "validate",
+      "lane": "diagnosis",
+      "col": 5,
+      "type": "security",
+      "label": "근거 검증",
+      "sublabel": "대상·수치·출처·조치",
+      "width": 145
+    },
+    {
+      "id": "chat",
+      "lane": "direct",
+      "col": 1,
+      "type": "frontend",
+      "label": "일반 대화 응답",
+      "sublabel": "조사 없이 답변",
+      "width": 145
+    },
+    {
+      "id": "clarify",
+      "lane": "direct",
+      "col": 0,
+      "type": "frontend",
+      "label": "대상 확인 안내",
+      "sublabel": "미지정·미등록",
+      "width": 145
+    },
+    {
+      "id": "limited",
+      "lane": "result",
+      "col": 4,
+      "type": "security",
+      "label": "미통과·근거 안내",
+      "sublabel": "확인값·한계만 제공",
+      "width": 145
+    },
+    {
+      "id": "finish",
+      "lane": "result",
+      "col": 5,
+      "type": "database",
+      "label": "보고서·이력 저장",
+      "sublabel": "상태 비교·다운로드",
+      "width": 145
+    }
+  ],
+  "edges": [
+    {
+      "id": "incident",
+      "from": "request",
+      "to": "plan",
+      "label": "진단 요청",
+      "role": "main"
+    },
+    {
+      "id": "scope",
+      "from": "plan",
+      "to": "monitor",
+      "role": "main"
+    },
+    {
+      "id": "observed",
+      "from": "monitor",
+      "to": "manual",
+      "role": "main"
+    },
+    {
+      "id": "evidence",
+      "from": "manual",
+      "to": "draft",
+      "role": "main"
+    },
+    {
+      "id": "written",
+      "from": "draft",
+      "to": "validate",
+      "role": "main"
+    },
+    {
+      "id": "passed",
+      "from": "validate",
+      "to": "finish",
+      "label": "통과",
+      "role": "main",
+      "variant": "emphasis"
+    },
+    {
+      "id": "chat-branch",
+      "from": "request",
+      "to": "chat",
+      "label": "일반 대화",
+      "role": "branch"
+    },
+    {
+      "id": "clarify-branch",
+      "from": "request",
+      "to": "clarify",
+      "label": "대상 불명확",
+      "role": "branch"
+    },
+    {
+      "id": "rewrite",
+      "from": "validate",
+      "to": "draft",
+      "label": "반려 → 재작성 1회",
+      "role": "return",
+      "variant": "emphasis"
+    },
+    {
+      "id": "unverified",
+      "from": "validate",
+      "to": "limited",
+      "label": "2회 작성 후 미통과",
+      "role": "error",
+      "variant": "security"
+    },
+    {
+      "id": "no-observation",
+      "from": "manual",
+      "to": "limited",
+      "label": "관측 없음 · 작성 생략",
+      "role": "error",
+      "variant": "security"
+    },
+    {
+      "id": "limited-result",
+      "from": "limited",
+      "to": "finish",
+      "label": "미통과 상태 유지",
+      "role": "branch"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "MCP로 근거 수집",
+      "items": [
+        "Tool: 모니터링 · Resource: 매뉴얼",
+        "Prompt: 진단 절차 · 문서 선택은 규칙 기반"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "SSE로 실제 진행 전달",
+      "items": [
+        "작업별 시작·완료·실패 표시",
+        "검증 전 초안과 최종 보고서를 구분"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "LangSmith · SQLite",
+      "items": [
+        "요청·하위 호출 추적과 조사 ID 연결",
+        "이력·처리 과정·비교 결과 저장"
+      ]
+    }
+  ],
+  "semanticChecks": {
+    "allowedRoots": [
+      "request"
+    ],
+    "allowedTerminals": [
+      "chat",
+      "clarify",
+      "finish"
+    ],
+    "requiredEdges": [
+      {
+        "from": "validate",
+        "to": "draft"
+      },
+      {
+        "from": "validate",
+        "to": "limited"
+      },
+      {
+        "from": "limited",
+        "to": "finish"
+      }
+    ]
+  }
+}

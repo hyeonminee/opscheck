@@ -1,0 +1,30 @@
+{
+  "diagram_type": "workflow",
+  "source_files": {
+    "agent/graph.py": "645c9559fd54e667c03d71c200a7b831977c96f4b0946407b683925ef6425a15",
+    "agent/execution.py": "b96c34b1141d1d8ba8b20c3772eabf5049edced5382166b05597abe0f1902c2d",
+    "agent/runbook_selector.py": "3ce10f1a6917b82aff02864ff4bd5eabb8441e65e3fc7735ecb29861a225b631",
+    "server.py": "92eb84406e9b5f9c8a48eab44ab8ac3637b5e802c5c6d1572373f91e7ddfa1ae"
+  },
+  "code_anchors": {
+    "route+clarify+chat": "agent/graph.py:68-114",
+    "scope_gate": "agent/graph.py:163-178",
+    "parallel_failure_isolation": "agent/graph.py:182-265",
+    "rule_based_documents+one_supplement": "agent/graph.py:269-316",
+    "optional_analysis": "agent/graph.py:320-337",
+    "skip_write_without_observations": "agent/graph.py:341-350",
+    "validate+safe_final": "agent/graph.py:380-399",
+    "max_drafts_2": "agent/execution.py:10",
+    "SSE+save+trace": "server.py:243-294"
+  },
+  "summary_notes": [
+    "Plan/gate and research/replan_check are grouped for presentation.",
+    "The diagram omits lower-level timeout/retry wiring and the outer exception handler.",
+    "General chat/clarification do not create investigation history.",
+    "Partial failures preserve successful observations and declare limits.",
+    "The analysis node only runs when needed.",
+    "Unverified report still persists validation_status=unverified; it is not a passed result.",
+    "The viewer has English fixed UI; all authored diagram labels are Korean."
+  ],
+  "raster_outputs": "Sharp render of the authored SVG, 2x resolution; slide white background, diagram transparent."
+}

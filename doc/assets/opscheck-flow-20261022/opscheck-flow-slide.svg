@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img"><title>OpsCheck 장애 진단 처리 흐름</title><defs><marker id="green-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 8 4 L 0 8 Z" fill="#2C7461"/></marker><marker id="line-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 8 4 L 0 8 Z" fill="#99B5A9"/></marker><marker id="red-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M 0 0 L 8 4 L 0 8 Z" fill="#A65449"/></marker></defs><style>text{font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans CJK KR",sans-serif}*{box-sizing:border-box}</style><rect width="1920" height="1080" fill="white"/><text x="76" y="76" font-size="23" font-weight="750" fill="#2C7461" text-anchor="start">03  구조와 사용 기술</text>
+<text x="76" y="158" font-size="49" font-weight="800" fill="#203C36" text-anchor="start">대상 확인부터 근거 검증까지 이어지는 진단 흐름</text><path d="M 292 488 H 323" fill="none" stroke="#99B5A9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#line-arrow)"/>
+<path d="M 550 488 H 581" fill="none" stroke="#99B5A9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#line-arrow)"/>
+<path d="M 808 488 H 839" fill="none" stroke="#99B5A9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#line-arrow)"/>
+<path d="M 1066 488 H 1097" fill="none" stroke="#99B5A9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#line-arrow)"/>
+<path d="M 1324 488 H 1355" fill="none" stroke="#99B5A9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#line-arrow)"/>
+<path d="M 1582 488 H 1613" fill="none" stroke="#99B5A9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#line-arrow)"/>
+<path d="M 146 432 V 354" fill="none" stroke="#99B5A9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#line-arrow)"/>
+<path d="M 220 432 V 386 H 465 V 354" fill="none" stroke="#99B5A9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#line-arrow)"/>
+<path d="M 1420 544 V 612 H 1215 V 552" fill="none" stroke="#2C7461" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#green-arrow)"/>
+<text x="1318" y="646" font-size="23" font-weight="700" fill="#2C7461" text-anchor="middle">반려 → 재작성 1회</text>
+<text x="1318" y="676" font-size="18" font-weight="500" fill="#627A72" text-anchor="middle">총 2회 작성</text>
+<path d="M 957 544 V 782 H 1355" fill="none" stroke="#A65449" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#red-arrow)"/>
+<text x="1112" y="724" font-size="22" font-weight="700" fill="#A65449" text-anchor="middle">관측 근거 없음</text>
+<text x="1112" y="752" font-size="20" font-weight="500" fill="#A65449" text-anchor="middle">LLM 작성 생략</text>
+<path d="M 1532 544 V 729" fill="none" stroke="#A65449" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#red-arrow)"/>
+<text x="1695" y="649" font-size="23" font-weight="700" fill="#A65449" text-anchor="middle">2회 작성 후 미통과</text>
+<text x="1602" y="414" font-size="21" font-weight="700" fill="#2C7461" text-anchor="middle">통과</text>
+<path d="M 1840 782 H 1872 V 587 H 1742 V 552" fill="none" stroke="#A65449" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#red-arrow)"/>
+<text x="1770" y="619" font-size="18" font-weight="600" fill="#A65449" text-anchor="middle">미통과 상태 유지</text>
+<rect x="74" y="250" width="226" height="100" rx="22" fill="#EDF4F0" stroke="none" stroke-width="1.5"/>
+<text x="187" y="291" font-size="27" font-weight="700" fill="#203C36" text-anchor="middle">대상 확인 안내</text>
+<text x="187" y="322" font-size="18" font-weight="500" fill="#627A72" text-anchor="middle">미지정 · 미등록 서비스</text>
+<rect x="352" y="250" width="226" height="100" rx="22" fill="#EDF4F0" stroke="none" stroke-width="1.5"/>
+<text x="465" y="291" font-size="27" font-weight="700" fill="#203C36" text-anchor="middle">일반 대화 응답</text>
+<text x="465" y="322" font-size="18" font-weight="500" fill="#627A72" text-anchor="middle">조사 없이 답변</text>
+<rect x="74" y="432" width="218" height="112" rx="22" fill="#EDF4F0" stroke="none" stroke-width="1.5"/>
+<text x="183.0" y="476" font-size="27" font-weight="750" fill="#203C36" text-anchor="middle">질문·대상 확인</text>
+<text x="183.0" y="512" font-size="17.5" font-weight="500" fill="#627A72" text-anchor="middle">대화별 맥락 연결</text>
+<rect x="332" y="432" width="218" height="112" rx="22" fill="#EDF4F0" stroke="none" stroke-width="1.5"/>
+<text x="441.0" y="476" font-size="27" font-weight="750" fill="#203C36" text-anchor="middle">계획·대상 검증</text>
+<text x="441.0" y="512" font-size="17.5" font-weight="500" fill="#627A72" text-anchor="middle">누락·범위 이탈 방지</text>
+<rect x="590" y="432" width="218" height="112" rx="22" fill="#BDDCD0" stroke="none" stroke-width="1.5"/>
+<text x="699.0" y="476" font-size="27" font-weight="750" fill="#203C36" text-anchor="middle">모니터링 조회</text>
+<text x="699.0" y="512" font-size="17.5" font-weight="500" fill="#627A72" text-anchor="middle">MCP Tool · 병렬 조사</text>
+<rect x="848" y="432" width="218" height="112" rx="22" fill="#BDDCD0" stroke="none" stroke-width="1.5"/>
+<text x="957.0" y="476" font-size="27" font-weight="750" fill="#203C36" text-anchor="middle">매뉴얼 선택·조회</text>
+<text x="957.0" y="512" font-size="17.5" font-weight="500" fill="#627A72" text-anchor="middle">서비스별 선택 · 보완 1회</text>
+<rect x="1106" y="432" width="218" height="112" rx="22" fill="#EDF4F0" stroke="none" stroke-width="1.5"/>
+<text x="1215.0" y="476" font-size="27" font-weight="750" fill="#203C36" text-anchor="middle">진단 초안 작성</text>
+<text x="1215.0" y="512" font-size="17.5" font-weight="500" fill="#627A72" text-anchor="middle">필요 시 비교 분석 후</text>
+<rect x="1364" y="432" width="218" height="112" rx="22" fill="#BDDCD0" stroke="none" stroke-width="1.5"/>
+<text x="1473.0" y="476" font-size="27" font-weight="750" fill="#203C36" text-anchor="middle">근거 검증</text>
+<text x="1473.0" y="512" font-size="17.5" font-weight="500" fill="#627A72" text-anchor="middle">대상·수치·출처·조치</text>
+<rect x="1622" y="432" width="218" height="112" rx="22" fill="#2C7461" stroke="none" stroke-width="1.5"/>
+<text x="1731.0" y="476" font-size="27" font-weight="750" fill="#FFFFFF" text-anchor="middle">최종 보고서</text>
+<text x="1731.0" y="512" font-size="17.5" font-weight="500" fill="#D8ECE4" text-anchor="middle">이력 저장 · 비교 · 내보내기</text>
+<rect x="1364" y="738" width="476" height="88" rx="22" fill="#FBF0ED" stroke="none" stroke-width="1.5"/>
+<text x="1602" y="775" font-size="26" font-weight="750" fill="#A65449" text-anchor="middle">미통과 · 확인 근거와 한계 안내</text>
+<text x="1602" y="805" font-size="17" font-weight="500" fill="#A65449" text-anchor="middle">검증되지 않은 진단·조치는 최종 보고서에서 제외</text><path d="M 76 894 H 576" stroke="#DCE8E1" stroke-width="1.5"/>
+<text x="76" y="937" font-size="25" font-weight="750" fill="#2C7461" text-anchor="start">LangGraph · Multi-Agent</text>
+<text x="76" y="978" font-size="20" font-weight="550" fill="#203C36" text-anchor="start">Supervisor 기반 역할 분담</text>
+<path d="M 702 894 H 1202" stroke="#DCE8E1" stroke-width="1.5"/>
+<text x="702" y="937" font-size="25" font-weight="750" fill="#2C7461" text-anchor="start">MCP · 근거 검증</text>
+<text x="702" y="978" font-size="20" font-weight="550" fill="#203C36" text-anchor="start">Tool · Resource · Prompt / 규칙 기반 매뉴얼</text>
+<path d="M 1320 894 H 1820" stroke="#DCE8E1" stroke-width="1.5"/>
+<text x="1320" y="937" font-size="25" font-weight="750" fill="#2C7461" text-anchor="start">SSE · SQLite · LangSmith</text>
+<text x="1320" y="978" font-size="20" font-weight="550" fill="#203C36" text-anchor="start">실시간 진행 · 조사 이력 · 요청 추적</text>
+<text x="76" y="1045" font-size="18" font-weight="550" fill="#627A72" text-anchor="start">보고서: 관측값 · 분석 · 권장 조치 · 미확인 사항 · 출처</text>
+<text x="1840" y="1045" font-size="20" font-weight="750" fill="#2C7461" text-anchor="end">OpsCheck</text></svg>

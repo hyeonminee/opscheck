@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "workflow",
+  "input": "/tmp/opscheck-flow-20261022/opscheck-flow.json",
+  "output": "/tmp/opscheck-flow-20261022/opscheck-explore.html",
+  "specification": {
+    "sha256": "99c02b9d40bfb72bc6fdc93c268297cd999a4c0beb1c7e8357638c40a731744d",
+    "bytes": 5460
+  },
+  "artifact": {
+    "sha256": "2e14429421702a31f990e6f14fbb80f1bfe816e9b77cdf569d30490848a373bf",
+    "bytes": 814278
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}
