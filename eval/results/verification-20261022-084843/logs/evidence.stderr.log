@@ -1,0 +1,4 @@
+/private/tmp/opscheck_final_evidence.py:48: DeprecationWarning: read_run() is deprecated and will be removed after Jan 31, 2027. Use client.runs.retrieve() instead.See https://docs.langchain.com/langsmith/smithdb-sdk-migration-runs#runs-retrieve for the migration guide.
+  root=client.read_run(record['langsmith_run_id'])
+/private/tmp/opscheck_final_evidence.py:49: DeprecationWarning: list_runs() is deprecated and will be removed after Jan 31, 2027. Use client.runs.query() instead.See https://docs.langchain.com/langsmith/smithdb-sdk-migration-query-runs#runs-query for the migration guide.
+  runs=list(client.list_runs(project_name=os.environ.get('LANGSMITH_PROJECT') or os.environ.get('LANGCHAIN_PROJECT') or 'capstone-all-total-openai',trace_id=root.trace_id))

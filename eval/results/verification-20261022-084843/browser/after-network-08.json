@@ -1,0 +1,87 @@
+[
+  {
+    "at": 215209.859561,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "route:attempt:1",
+        "stage_id": "route",
+        "label": "요청 분류",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:33.319421+00:00",
+        "started_at": "2026-10-22T00:03:33.319421+00:00"
+      }
+    }
+  },
+  {
+    "at": 215209.860378583,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "route:attempt:1",
+        "stage_id": "route",
+        "label": "요청 분류",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:33.320206+00:00",
+        "started_at": "2026-10-22T00:03:33.319421+00:00",
+        "finished_at": "2026-10-22T00:03:33.320206+00:00"
+      }
+    }
+  },
+  {
+    "at": 215209.860861958,
+    "event": {
+      "type": "RouteDecided",
+      "route": "incident",
+      "node": "route"
+    }
+  },
+  {
+    "at": 215209.860914875,
+    "event": {
+      "type": "TargetConfirmationRequired",
+      "unknown": [],
+      "node": "route"
+    }
+  },
+  {
+    "at": 215209.860941833,
+    "event": {
+      "type": "Finalize",
+      "pipeline": "target-confirmation",
+      "node": "route"
+    }
+  },
+  {
+    "at": 215209.862719958,
+    "event": {
+      "type": "FinalAnswer",
+      "run_id": "20a0555f-a61e-4544-abf5-5f94c72832fd",
+      "reply": "조사할 서비스를 확인해 주세요. 등록된 서비스: auth-service, cache-service, gateway-service, log-service, payments-service, web-01",
+      "processing_status": "completed",
+      "validation_status": null,
+      "report": null,
+      "comparison": null,
+      "comparison_text": "",
+      "progress": [
+        {
+          "id": "route:attempt:1",
+          "stage_id": "route",
+          "label": "요청 분류",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:33.320206+00:00",
+          "started_at": "2026-10-22T00:03:33.319421+00:00",
+          "finished_at": "2026-10-22T00:03:33.320206+00:00"
+        }
+      ],
+      "langsmith_run_id": null
+    }
+  },
+  {
+    "at": 215209.862800916,
+    "event": "[DONE]"
+  }
+]

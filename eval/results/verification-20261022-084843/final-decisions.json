@@ -1,0 +1,80 @@
+[
+  {
+    "item": "functionality-fixed",
+    "status": "passed",
+    "reason": "Python130, Node1, fixed35, SSE26/29 turns, auth5 boundary cases; no HTTP-only grading",
+    "evidence": "automatic-summary.json; integration/"
+  },
+  {
+    "item": "functionality-live",
+    "status": "partial_failure",
+    "reason": "2 complete diagnoses; auth compound lacks CPU document action after two writes",
+    "evidence": "live/results.csv"
+  },
+  {
+    "item": "validator-safety",
+    "status": "passed",
+    "reason": "bad7 blocked, good0/2 falsely blocked; auth unverified fallback has no unsupported final actions",
+    "evidence": "before-after-comparison.csv; live/live-auth-compound.json"
+  },
+  {
+    "item": "RAG-search",
+    "status": "not_implemented",
+    "reason": "rule-based six-document selection; no BM25/embeddings/index",
+    "evidence": "source-code-anchors.json"
+  },
+  {
+    "item": "multi-agent",
+    "status": "partial_application",
+    "reason": "Supervisor role decomposition; not independent autonomous subgraphs",
+    "evidence": "live/api-calls.json; source-code-anchors.json"
+  },
+  {
+    "item": "MCP-DI-modules-tests",
+    "status": "passed",
+    "reason": "actual stdio Tool/Resource/Prompt plus injected model/MCP/DB and unit/integration contracts",
+    "evidence": "live/mcp-calls.json; test-inventory.json"
+  },
+  {
+    "item": "LangSmith",
+    "status": "passed",
+    "reason": "three existing traces read-only, redacted request/child/store IDs match; not quality grading",
+    "evidence": "langsmith/read-only-redacted.json"
+  },
+  {
+    "item": "live-stream-prefix",
+    "status": "passed",
+    "reason": "actual prefixes precede write completion in 3 requests; original EOF-recorder defect disclosed",
+    "evidence": "live/streaming-timing-reanalysis.json"
+  },
+  {
+    "item": "browser-realtime-history",
+    "status": "passed",
+    "reason": "barrier screenshots, failed retries/rewrite, 20→33 and context, actual file/API byte match, 390px no overflow",
+    "evidence": "browser/; captures/"
+  },
+  {
+    "item": "before-after-bonus-evidence",
+    "status": "passed_with_limits",
+    "reason": "same component33/version and matched 1440 screens; no real-LLM speed/accuracy/billing comparison",
+    "evidence": "before-after-comparison.csv; browser/before-after-screen-pair.json"
+  },
+  {
+    "item": "presentation",
+    "status": "draft_ready",
+    "reason": "7 slides, allocated280 seconds; actual rehearsal and final PPT not done",
+    "evidence": "/Users/hyeonmin/workspace/AI mini-project/doc/PRESENTATION_DRAFT_20261022_084843.md"
+  },
+  {
+    "item": "existing-submission-current",
+    "status": "failed",
+    "reason": "UI ZIP15 changed files; original ZIP16; 10-slide PPT has older107-tests and actual-model results",
+    "evidence": "submission/"
+  },
+  {
+    "item": "deployment-real-production",
+    "status": "unverified",
+    "reason": "sample monitoring only, no production operations/load/authentication investigation",
+    "evidence": "report.md section5"
+  }
+]

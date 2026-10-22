@@ -1,0 +1,32 @@
+- banner:
+  - heading "운영 진단 워크스페이스" [level=1]
+  - paragraph: 서비스의 상태를 확인하고, 근거로 판단하세요.
+  - navigation "대화 메뉴":
+    - button "이력 닫기" [expanded]
+    - button "새 대화"
+- main "서비스 진단":
+  - paragraph: 수업 샘플 데이터 · 운영 조치는 자동 실행되지 않습니다.
+  - generic "연결 정보"
+  - region "저장된 진단 보고서":
+    - button "← 대화로 돌아가기"
+    - link "Markdown 내려받기":
+      - /url: /investigations/07ceed8b-27ca-4dba-92b2-a23e4ade7cb5/report.md?thread_id=live-multiple
+    - paragraph: SAVED REPORT
+    - heading "payments-service랑 cache-service 둘 다 저하됐는데 공통 원인이 있는지 분석해줘." [level=2]
+    - paragraph: 2026. 10. 22. 오전 8:52:50 · 완료
+    - generic: 저장 당시의 수업 샘플 데이터입니다. 현재 상태를 새로 조회한 결과가 아닙니다.
+    - strong: 검증 통과
+    - heading "1) 관측값" [level=3]
+    - generic: "- payments-service: 상태=degraded, CPU 93.9%, 메모리 56.4%, 조회=2026-10-22T08:52:46.306098 [obs:payments-service] 활성 알림(발생 시점 미확인): CPU 91% (threshold 80%) / payments-service-3 instance responding slow - cache-service: 상태=degraded, CPU 47.8%, 메모리 91.9%, 조회=2026-10-22T08:52:46.308631 [obs:cache-service] 활성 알림(발생 시점 미확인): memory usage climbing steadily over 6h / heap near limit"
+    - heading "2) 분석" [level=3]
+    - generic: "- payments-service 가설(미확정): payments-service의 성능 저하는 CPU 사용량이 높은 상태로 인해 발생했을 가능성이 있다. / 관측 status=degraded, cpu_percent=93.9 [obs:payments-service] - cache-service 가설(미확정): cache-service의 성능 저하는 메모리 사용량이 높은 상태로 인해 발생했을 가능성이 있다. / 관측 status=degraded, memory_percent=91.9 [obs:cache-service]"
+    - heading "3) 권장 조치" [level=3]
+    - generic: "- payments-service 조건부 제안: 조건·지속 여부 미확인. 해당 조건을 확인한 후에만 검토. CPU가 90%를 넘고 지속되면 해당 인스턴스를 오토스케일링 그룹에서 한 대 더 띄워 부하를 분산한다. [obs:payments-service, doc:cpu-spike; 단계 3] - cache-service 조건부 제안: 조건·지속 여부 미확인. 해당 조건을 확인한 후에만 검토. OOM 직전(90% 이상)이면 해당 프로세스를 즉시 재시작해 서비스 중단을 막는다 — 재시작은 임시 조치일 뿐임을 기록해둔다. [obs:cache-service, doc:memory-leak; 단계 2]"
+    - heading "4) 미확인 사항" [level=3]
+    - generic: "- 단일 관측이므로 지속 시간·복구·공통 원인을 확정할 수 없습니다. - 활성 알림의 발생 시각은 제공되지 않아 알림 수치와 현재 측정값의 시점 일치를 확인하지 못했습니다."
+    - heading "5) 출처" [level=3]
+    - generic: "- [obs:payments-service] get_monitoring_status · payments-service - [obs:cache-service] get_monitoring_status · cache-service - [doc:cpu-spike] cpu-spike.md · runbook://incident-response/cpu-spike - [doc:memory-leak] memory-leak.md · runbook://incident-response/memory-leak"
+    - generic: "이전·현재 비교 · 두 관측의 차이이며 복구 확정이 아닙니다. payments-service - 이전 조회: 미확인 / 현재 조회: 2026-10-22T08:52:46.306098 - 비교 불가: 같은 세션·서비스의 이전 성공 관측 없음 cache-service - 이전 조회: 미확인 / 현재 조회: 2026-10-22T08:52:46.308631 - 비교 불가: 같은 세션·서비스의 이전 성공 관측 없음"
+    - generic "저장된 처리 과정 · 15단계":
+      - strong: 저장된 처리 과정
+      - text: · 15단계

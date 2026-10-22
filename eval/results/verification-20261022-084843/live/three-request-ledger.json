@@ -1,0 +1,17 @@
+[
+  {
+    "case": "live-auth-compound",
+    "state": "finished",
+    "started_at": 214556.400632416
+  },
+  {
+    "case": "live-multiple",
+    "state": "finished",
+    "started_at": 214561.815803791
+  },
+  {
+    "case": "live-text-stream",
+    "state": "finished",
+    "started_at": 214566.86755575
+  }
+]

@@ -1,0 +1,114 @@
+[
+  {
+    "technology": "Multi-Agent",
+    "path": "agent/graph.py",
+    "symbol": "plan_node",
+    "line": 140,
+    "sha256": "645c9559fd54e667c03d71c200a7b831977c96f4b0946407b683925ef6425a15"
+  },
+  {
+    "technology": "Multi-Agent",
+    "path": "agent/graph.py",
+    "symbol": "research_node",
+    "line": 182,
+    "sha256": "645c9559fd54e667c03d71c200a7b831977c96f4b0946407b683925ef6425a15"
+  },
+  {
+    "technology": "Multi-Agent",
+    "path": "agent/graph.py",
+    "symbol": "analysis_node",
+    "line": 320,
+    "sha256": "645c9559fd54e667c03d71c200a7b831977c96f4b0946407b683925ef6425a15"
+  },
+  {
+    "technology": "Multi-Agent",
+    "path": "agent/graph.py",
+    "symbol": "write_node",
+    "line": 341,
+    "sha256": "645c9559fd54e667c03d71c200a7b831977c96f4b0946407b683925ef6425a15"
+  },
+  {
+    "technology": "Multi-Agent",
+    "path": "agent/graph.py",
+    "symbol": "build_graph",
+    "line": 416,
+    "sha256": "645c9559fd54e667c03d71c200a7b831977c96f4b0946407b683925ef6425a15"
+  },
+  {
+    "technology": "MCP",
+    "path": "agent/mcp_client.py",
+    "symbol": "MCPClient",
+    "line": 45,
+    "sha256": "88d9c8e9293d318734a873013ba86176610cb353f7594ae8cdf4a4276eb1c8d9"
+  },
+  {
+    "technology": "RAG",
+    "path": "agent/runbook_selector.py",
+    "symbol": "select_runbooks",
+    "line": 24,
+    "sha256": "3ce10f1a6917b82aff02864ff4bd5eabb8441e65e3fc7735ecb29861a225b631"
+  },
+  {
+    "technology": "DI",
+    "path": "agent/deps.py",
+    "symbol": "SupervisorDeps",
+    "line": 12,
+    "sha256": "05e2a41c5a4af655e2544292c015047bd9447d7d47bd2f067515f50042ad4d69"
+  },
+  {
+    "technology": "LangSmith",
+    "path": "server.py",
+    "symbol": "_save_result",
+    "line": 136,
+    "sha256": "92eb84406e9b5f9c8a48eab44ab8ac3637b5e802c5c6d1572373f91e7ddfa1ae"
+  },
+  {
+    "technology": "LangSmith",
+    "path": "server.py",
+    "symbol": "chat_stream",
+    "line": 235,
+    "sha256": "92eb84406e9b5f9c8a48eab44ab8ac3637b5e802c5c6d1572373f91e7ddfa1ae"
+  },
+  {
+    "technology": "Grounding",
+    "path": "agent/report.py",
+    "symbol": "writer_prompt",
+    "line": 67,
+    "sha256": "6c773855187b8e22f0262ac0ec449749d6556455d5e253925c9a2577fec37a7f"
+  },
+  {
+    "technology": "Grounding",
+    "path": "agent/report.py",
+    "symbol": "validate_draft",
+    "line": 82,
+    "sha256": "6c773855187b8e22f0262ac0ec449749d6556455d5e253925c9a2577fec37a7f"
+  },
+  {
+    "technology": "Grounding",
+    "path": "agent/report.py",
+    "symbol": "build_report",
+    "line": 149,
+    "sha256": "6c773855187b8e22f0262ac0ec449749d6556455d5e253925c9a2577fec37a7f"
+  },
+  {
+    "technology": "Storage",
+    "path": "agent/session_store.py",
+    "symbol": "SqliteSessionStore",
+    "line": 14,
+    "sha256": "2dd67edab5f8dd58989a5c3eddd2eac14bcfff41a6fe18405bd269381e9990b4"
+  },
+  {
+    "technology": "Comparison",
+    "path": "agent/comparison.py",
+    "symbol": "compare_service",
+    "line": 30,
+    "sha256": "9e8cd9c650bf722a9c95ec5e4a1fb60f92e795a03f843fd6f1082aa715487ce8"
+  },
+  {
+    "technology": "OpenAI stream",
+    "path": "agent/openai_llm.py",
+    "symbol": "OpenAILLM",
+    "line": 52,
+    "sha256": "d969083fb1f4eb95cf98c53b0f26447076d7372d792a2fa9423c73d7b1226797"
+  }
+]

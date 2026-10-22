@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/Users/hyeonmin/workspace/AI mini-project/.venv/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "cwd": "/Users/hyeonmin/workspace/AI mini-project",
+  "started_utc": "2026-10-21T23:48:55.683709+00:00",
+  "elapsed_seconds": 9.98,
+  "exit_code": 0,
+  "stdout": "logs/unittest.stdout.log",
+  "stderr": "logs/unittest.stderr.log"
+}

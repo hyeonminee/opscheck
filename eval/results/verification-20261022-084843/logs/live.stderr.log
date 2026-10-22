@@ -1,0 +1,2 @@
+/private/tmp/opscheck_final_live.py:67: DeprecationWarning: 'asyncio.iscoroutinefunction' is deprecated and slated for removal in Python 3.16; use inspect.iscoroutinefunction() instead
+  if not asyncio.iscoroutinefunction(original):return original

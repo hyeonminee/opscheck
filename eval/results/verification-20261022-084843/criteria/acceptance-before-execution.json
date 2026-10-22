@@ -1,0 +1,122 @@
+[
+  {
+    "id": "I1",
+    "input": "single/multi/unknown/unspecified",
+    "pass": "requested scope equals monitoring calls; no replacement or omission",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "dataset, phase1",
+    "status": "planned"
+  },
+  {
+    "id": "I2",
+    "input": "healthy web; payments/cache; auth CPU 79.9/80/90/95 plus latency/pool",
+    "pass": "service document sets, all successful documents linked to valid conditional actions; no default db-down",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "dataset, new compound fixtures",
+    "status": "planned"
+  },
+  {
+    "id": "I3",
+    "input": "wrong value/service/source/document/step/condition; 2 invalid drafts",
+    "pass": "reject faults, accept correct structured drafts; max 2 writes and no forced approval",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "dataset, phase4, new compound coverage",
+    "status": "planned"
+  },
+  {
+    "id": "I4",
+    "input": "one/all lookup failure; deadline; unknown observation",
+    "pass": "keep successful evidence, identify failures, no zero/healthy fabrication; close SSE",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "phase3, phase10, dataset",
+    "status": "planned"
+  },
+  {
+    "id": "I5",
+    "input": "clarify→auth; same conversation followup; fresh conversation",
+    "pass": "retain original symptom; fresh observation; separate context; restore same temporary DB",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "phase1, phase5, phase9",
+    "status": "planned"
+  },
+  {
+    "id": "F1",
+    "input": "completed/partial/unverified diagnosis",
+    "pass": "5 sections; measured facts, hypotheses, conditional actions, limits, sources; unverified must omit unsupported actions",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "phase4, dataset",
+    "status": "planned"
+  },
+  {
+    "id": "F2/P9",
+    "input": "2 conversations; >20 records; select foreign record",
+    "pass": "global/current cursor scopes exact without duplicate; original thread for detail/download; active context unchanged",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "phase9, browser",
+    "status": "planned"
+  },
+  {
+    "id": "F3",
+    "input": "two dated fixed observations",
+    "pass": "same-service/thread previous valid observation, exact %p and alert differences; immutable saved comparison",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "phase6, browser",
+    "status": "planned"
+  },
+  {
+    "id": "F4",
+    "input": "saved record download",
+    "pass": "Markdown matches saved facts/status/sources/comparison; no new model call",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "phase6, browser",
+    "status": "planned"
+  },
+  {
+    "id": "P8",
+    "input": "all regression examples plus supplemental faults",
+    "pass": "26 flow/dialogue +9 draft cases judged; 4 linked integration contracts tested separately",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "run_validation, mapped tests",
+    "status": "planned"
+  },
+  {
+    "id": "P10",
+    "input": "gated slow research and writing",
+    "pass": "running and fast completion arrive before release; stable stage/attempt IDs; terminal snapshots not active",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "phase10, browser",
+    "status": "planned"
+  },
+  {
+    "id": "TRACE",
+    "input": "local tracing on/off/error/cancel/concurrent; existing real traces",
+    "pass": "request root/child model+MCP/store ID match; collection != quality",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "sse_tracing, read-only SDK",
+    "status": "planned"
+  },
+  {
+    "id": "TEXT",
+    "input": "gated upstream tokens; final report rendering",
+    "pass": "prefix before writer finish; pending/rejected/pass/unverified maintained; final reveal after validation; no stale/error text",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "answer_streaming, Node, browser",
+    "status": "planned"
+  },
+  {
+    "id": "LIVE",
+    "input": "auth compound; payments+cache; payments SSE",
+    "pass": "exact target/doc/action sets and facts; safety and diagnosis completeness separate; exactly 3 new requests; existing rewrite cap",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "current OpenAI models, temporary DB, actual MCP; documented auth override",
+    "status": "planned"
+  },
+  {
+    "id": "BEFORE_AFTER",
+    "input": "same gate plans/observations/drafts/failure",
+    "pass": "same judge and semantic inputs; component counts and error block/false block separate; no speed/cost claim",
+    "fail": "Any required set/fact/state mismatches; safety fallback does not imply answer completeness",
+    "evidence_method": "run_final_eval, matched browser screenshots",
+    "status": "planned"
+  }
+]

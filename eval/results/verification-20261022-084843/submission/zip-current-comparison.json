@@ -1,0 +1,187 @@
+[
+  {
+    "file": "AI_Mini_Project_Submission_UI.zip",
+    "sha256": "8ecb7ec7f4d9bc4cb4b1a53dd0ba7e08f23d7d3f7eb2f86b6db6da3cfd860bd0",
+    "compared": 129,
+    "same": 114,
+    "different": 15,
+    "differences": [
+      {
+        "archive_path": "AI_Mini_Project/agent/graph.py",
+        "current_path": "agent/graph.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/agent/openai_llm.py",
+        "current_path": "agent/openai_llm.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/agent/retry.py",
+        "current_path": "agent/retry.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/agent/session_store.py",
+        "current_path": "agent/session_store.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/dev_logs/20261021-ui/status.json",
+        "current_path": "dev_logs/20261021-ui/status.json",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/doc/DEVELOPMENT_LOG.md",
+        "current_path": "doc/DEVELOPMENT_LOG.md",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/doc/DEVELOPMENT_PHASE_PLAN.md",
+        "current_path": "doc/DEVELOPMENT_PHASE_PLAN.md",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/doc/README.md",
+        "current_path": "doc/README.md",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/doc/UX_CHANGELOG.md",
+        "current_path": "doc/UX_CHANGELOG.md",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/server.py",
+        "current_path": "server.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/tests/test_chat_messages.py",
+        "current_path": "tests/test_chat_messages.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/tests/test_phase5.py",
+        "current_path": "tests/test_phase5.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/web_chat.html",
+        "current_path": "web_chat.html",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/web_demo_server.py",
+        "current_path": "web_demo_server.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/README.md",
+        "current_path": "README.md",
+        "same": false
+      }
+    ],
+    "new_features_missing": {
+      "agent/progress.py": true,
+      "tests/test_answer_streaming.py": true,
+      "eval/validation_cases.v1.json": true
+    },
+    "preserved": true
+  },
+  {
+    "file": "AI_Mini_Project_Submission.zip",
+    "sha256": "7300a1718fff90dd70363c3bc244ec2ae18dc9f168cc39ebf9b76dd25d9c209f",
+    "compared": 126,
+    "same": 110,
+    "different": 16,
+    "differences": [
+      {
+        "archive_path": "AI_Mini_Project/agent/graph.py",
+        "current_path": "agent/graph.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/agent/openai_llm.py",
+        "current_path": "agent/openai_llm.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/agent/retry.py",
+        "current_path": "agent/retry.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/agent/session_store.py",
+        "current_path": "agent/session_store.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/doc/DEVELOPMENT_LOG.md",
+        "current_path": "doc/DEVELOPMENT_LOG.md",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/doc/DEVELOPMENT_PHASE_PLAN.md",
+        "current_path": "doc/DEVELOPMENT_PHASE_PLAN.md",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/doc/FINAL_REPORT.md",
+        "current_path": "doc/FINAL_REPORT.md",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/doc/README.md",
+        "current_path": "doc/README.md",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/doc/SUBMISSION_CHECKLIST.md",
+        "current_path": "doc/SUBMISSION_CHECKLIST.md",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/server.py",
+        "current_path": "server.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/submission/README.md",
+        "current_path": "submission/README.md",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/tests/test_chat_messages.py",
+        "current_path": "tests/test_chat_messages.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/tests/test_phase5.py",
+        "current_path": "tests/test_phase5.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/web_chat.html",
+        "current_path": "web_chat.html",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/web_demo_server.py",
+        "current_path": "web_demo_server.py",
+        "same": false
+      },
+      {
+        "archive_path": "AI_Mini_Project/README.md",
+        "current_path": "README.md",
+        "same": false
+      }
+    ],
+    "new_features_missing": {
+      "agent/progress.py": true,
+      "tests/test_answer_streaming.py": true,
+      "eval/validation_cases.v1.json": true
+    },
+    "preserved": true
+  }
+]

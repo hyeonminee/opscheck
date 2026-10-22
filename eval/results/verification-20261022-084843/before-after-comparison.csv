@@ -1,0 +1,7 @@
+metric,label,before_numerator,before_denominator,after_numerator,after_denominator,repeat_count,level
+scope,요청 대상 계획 일치,1,7,7,7,1,"fixed component checks, not population LLM accuracy"
+manuals,필요 매뉴얼 집합 일치,11,15,15,15,1,"fixed component checks, not population LLM accuracy"
+missing_document,없는 문서 충분 판정 방지,0,1,1,1,1,"fixed component checks, not population LLM accuracy"
+partial_failure,부분 실패 성공 근거 보존,0,1,1,1,1,"fixed component checks, not population LLM accuracy"
+incorrect_blocked,오류 초안 차단,0,7,7,7,1,"fixed component checks, not population LLM accuracy"
+correct_blocked,정답 초안 오차단 — 낮을수록 좋음,0,2,0,2,1,"fixed component checks, not population LLM accuracy"

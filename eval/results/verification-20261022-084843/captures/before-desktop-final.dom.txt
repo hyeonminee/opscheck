@@ -1,0 +1,12 @@
+- banner: 운영 인시던트 대응 에이전트 fake 실모델(fixed-planning-double/fixed-semantic-answer-double) · all_total_vue
+- generic: payments-service와 cache-service 장애 진단
+- generic: "⏳ 계획 수립: 할 일 1가지 (시스템: payments-service)"
+- generic: "⏳ 모니터링 지표 확인 (시스템: payments-service)"
+- generic: ⏳ 정보 부족 → 장애유형 "cpu-spike"로 추가 조사
+- generic: "⏳ 대응 매뉴얼(runbook) 조회 (장애유형: cpu-spike)"
+- generic: ⏳ 답변 초안 작성 (시도 1)
+- generic: ⏳ 검수 통과
+- generic: ⏳ 최종 답변 완성
+- generic: "1) 관측값 - payments-service: CPU 91.0%, 메모리 55.0% 2) 분석 관측된 지표와 증상의 관련성을 추가 확인할 필요가 있습니다. 3) 권장 조치 조회한 매뉴얼의 조건을 확인한 후 검토하세요."
+- 'textbox "예: auth-service 로그인 응답이 느려졌어요. 원인 확인해주세요"'
+- button "보내기"

@@ -1,0 +1,56 @@
+{
+  "fast_model": "gpt-4o-mini",
+  "quality_model": "gpt-4o",
+  "diagnoses": [
+    {
+      "id": "live-auth-compound",
+      "question": "auth-service 로그인이 느리고 커넥션 풀이 포화 상태이며 CPU 사용률도 높아요. 원인을 확인해줘.",
+      "targets": [
+        "auth-service"
+      ],
+      "manuals": {
+        "auth-service": [
+          "cpu-spike",
+          "high-latency"
+        ]
+      },
+      "fixed_auth_cpu": 85.0
+    },
+    {
+      "id": "live-multiple",
+      "question": "payments-service랑 cache-service 둘 다 저하됐는데 공통 원인이 있는지 분석해줘.",
+      "targets": [
+        "payments-service",
+        "cache-service"
+      ],
+      "manuals": {
+        "payments-service": [
+          "cpu-spike"
+        ],
+        "cache-service": [
+          "memory-leak"
+        ]
+      }
+    },
+    {
+      "id": "live-text-stream",
+      "question": "payments-service 결제 응답이 느려지고 CPU가 치솟았어요, 원인 확인해주세요",
+      "targets": [
+        "payments-service"
+      ],
+      "manuals": {
+        "payments-service": [
+          "cpu-spike"
+        ]
+      }
+    }
+  ],
+  "repeat_per_case": 1,
+  "new_external_tracing": false,
+  "actual_mcp": "original stdio ops/docs",
+  "auth_override": "Only auth CPU is fixed to 85% after actual MCP call to guarantee the documented compound boundary. Other tool values retain actual sample jitter.",
+  "no_application_source_change": true,
+  "model_retries": "existing graph rewrite cap only; HTTP transport retries=0",
+  "acceptance": "exact scopes/manuals/actions/facts/sources; unverified safety vs diagnosis completeness separately",
+  "cost": "actual reported tokens only, code virtual USD not billing"
+}

@@ -1,0 +1,34 @@
+- banner:
+  - generic: AI
+  - heading "운영 진단 워크스페이스" [level=1]
+  - paragraph: 서비스의 상태를 확인하고, 근거로 판단하세요.
+  - navigation "대화 메뉴":
+    - button "조사 이력"
+    - button "새 대화"
+- main "서비스 진단":
+  - paragraph: 수업 샘플 데이터 · 운영 조치는 자동 실행되지 않습니다.
+  - generic "연결 정보"
+  - log "진단 대화":
+    - generic: 나
+    - generic: payments-service와 cache-service 장애 진단
+    - generic "처리 과정 · 15단계 · 52이벤트":
+      - strong: 처리 과정
+      - text: · 15단계 · 52이벤트
+    - generic: 진단 어시스턴트
+    - strong: 검증 통과
+    - heading "1) 관측값" [level=3]
+    - generic: "- payments-service: 상태=degraded, CPU 91.0%, 메모리 55.0%, 조회=2026-10-20T00:00:00+00:00 [obs:payments-service] 활성 알림(발생 시점 미확인): CPU 91% (threshold 80%) / payments-service-3 instance responding slow - cache-service: 상태=degraded, CPU 42.0%, 메모리 89.0%, 조회=2026-10-20T00:00:00+00:00 [obs:cache-service] 활성 알림(발생 시점 미확인): memory usage climbing steadily over 6h / heap near limit"
+    - heading "2) 분석" [level=3]
+    - generic: "- payments-service 가설(미확정): 관측된 지표와 증상의 관련성을 추가 확인할 필요가 있습니다. / 관측 status=degraded, cpu_percent=91.0, memory_percent=55.0 [obs:payments-service] - cache-service 가설(미확정): 관측된 지표와 증상의 관련성을 추가 확인할 필요가 있습니다. / 관측 status=degraded, cpu_percent=42.0, memory_percent=89.0 [obs:cache-service]"
+    - heading "3) 권장 조치" [level=3]
+    - generic: "- payments-service 조건부 제안: 조건·지속 여부 미확인. 해당 조건을 확인한 후에만 검토. get_monitoring_status로 CPU 사용률과 최근 배포/트래픽 변화 시점을 확인한다. [obs:payments-service, doc:cpu-spike; 단계 1] - cache-service 조건부 제안: 조건·지속 여부 미확인. 해당 조건을 확인한 후에만 검토. get_monitoring_status로 메모리 사용률 추세(시간에 따라 꾸준히 증가하는지)를 확인한다. [obs:cache-service, doc:memory-leak; 단계 1]"
+    - heading "4) 미확인 사항" [level=3]
+    - generic: "- 단일 관측이므로 지속 시간·복구·공통 원인을 확정할 수 없습니다. - 활성 알림의 발생 시각은 제공되지 않아 알림 수치와 현재 측정값의 시점 일치를 확인하지 못했습니다."
+    - heading "5) 출처" [level=3]
+    - generic: "- [obs:payments-service] get_monitoring_status · payments-service - [obs:cache-service] get_monitoring_status · cache-service - [doc:cpu-spike"
+    - text: ▋
+  - textbox "서비스 이름과 증상 입력":
+    - /placeholder: 서비스 이름과 증상을 입력하세요
+  - button "보내기"
+  - generic: 서비스 이름을 함께 입력하면 더 정확히 조사할 수 있습니다.
+  - generic: Enter로 전송

@@ -1,0 +1,8 @@
+{
+  "python_methods": 130,
+  "node": "one VM/stubbed DOM-logic script, not full browser E2E",
+  "dataset_automatic": 35,
+  "dataset_passed": 35,
+  "linked_contracts": 4,
+  "note": "4 linked contracts are references to integration tests; not 4 additional auto-graded cases"
+}

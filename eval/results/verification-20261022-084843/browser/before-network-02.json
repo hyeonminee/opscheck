@@ -1,0 +1,124 @@
+[
+  {
+    "at": 215520.586571083,
+    "event": {
+      "type": "RouteDecided",
+      "route": "incident",
+      "node": "route"
+    }
+  },
+  {
+    "at": 215520.587351791,
+    "event": {
+      "type": "PlanCreated",
+      "task_count": 1,
+      "targets": [
+        "payments-service"
+      ],
+      "node": "plan"
+    }
+  },
+  {
+    "at": 215520.589601458,
+    "event": {
+      "type": "GateApplied",
+      "removed_analysis_tasks": 0,
+      "node": "gate"
+    }
+  },
+  {
+    "at": 215520.943466375,
+    "event": {
+      "type": "TaskCompleted",
+      "id": "task-payments-service",
+      "source": "monitoring",
+      "target": "payments-service",
+      "retries": 0,
+      "node": "research"
+    }
+  },
+  {
+    "at": 215520.945561166,
+    "event": {
+      "type": "ReplanCheck",
+      "round": 0,
+      "is_sufficient": false,
+      "gap_task": "task-gap-runbook",
+      "target": "cpu-spike",
+      "node": "replan_check"
+    }
+  },
+  {
+    "at": 215521.302618708,
+    "event": {
+      "type": "TaskCompleted",
+      "id": "task-gap-runbook",
+      "source": "runbook",
+      "target": "cpu-spike",
+      "retries": 0,
+      "node": "research"
+    }
+  },
+  {
+    "at": 215521.304313291,
+    "event": {
+      "type": "ReplanCheck",
+      "round": 1,
+      "is_sufficient": true,
+      "node": "replan_check"
+    }
+  },
+  {
+    "at": 215521.305238708,
+    "event": {
+      "type": "AnalysisSkipped",
+      "reason": "analysis task 0개",
+      "node": "analysis"
+    }
+  },
+  {
+    "at": 215521.305957208,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "1) 관측값\n- payments-service: CPU 91.0%, 메모리 55.0%\n\n2) 분석\n관측된 지표와 증상의 관련성을 추가 확인할 필요가 있습니다.\n\n3) 권장 조치\n조회한 매뉴얼의 조건을 확인한 후 검토하세요."
+    }
+  },
+  {
+    "at": 215521.306229958,
+    "event": {
+      "type": "DraftWritten",
+      "attempt": 1,
+      "length": 124,
+      "node": "write"
+    }
+  },
+  {
+    "at": 215521.307259625,
+    "event": {
+      "type": "Validation",
+      "attempt": 1,
+      "verdict": "합격",
+      "node": "validate"
+    }
+  },
+  {
+    "at": 215521.307987666,
+    "event": {
+      "type": "Finalize",
+      "pipeline": "incident-v2",
+      "node": "finalize"
+    }
+  },
+  {
+    "at": 215521.308366958,
+    "event": {
+      "type": "FinalAnswer",
+      "reply": "1) 관측값\n- payments-service: CPU 91.0%, 메모리 55.0%\n\n2) 분석\n관측된 지표와 증상의 관련성을 추가 확인할 필요가 있습니다.\n\n3) 권장 조치\n조회한 매뉴얼의 조건을 확인한 후 검토하세요."
+    }
+  },
+  {
+    "at": 215521.309746333,
+    "event": "[DONE]"
+  }
+]

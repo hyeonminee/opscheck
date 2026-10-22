@@ -1,0 +1,299 @@
+[
+  {
+    "case": "live-auth-compound",
+    "capability": "find_prompt",
+    "arguments": [
+      "incident_analysis_prompt"
+    ],
+    "keyword_arguments": {}
+  },
+  {
+    "case": "live-auth-compound",
+    "capability": "get_prompt",
+    "arguments": [
+      "incident_analysis_prompt",
+      {
+        "system_name": "auth-service",
+        "symptom": "auth-service 로그인이 느리고 커넥션 풀이 포화 상태이며 CPU 사용률도 높아요. 원인을 확인해줘."
+      }
+    ],
+    "keyword_arguments": {
+      "server": "ops"
+    },
+    "result_sha256": "3c6e5e834bc247e7601191fa95a4fdd990021df054c2e27fc2d4287ab13ce9e3"
+  },
+  {
+    "case": "live-auth-compound",
+    "capability": "call_tool",
+    "arguments": [
+      "get_monitoring_status",
+      {
+        "system_name": "auth-service"
+      }
+    ],
+    "keyword_arguments": {},
+    "observed": {
+      "system_name": "auth-service",
+      "status": "degraded",
+      "cpu_percent": 81.5,
+      "memory_percent": 62.7,
+      "last_checked": "2026-10-22T08:52:41.229589",
+      "alerts": [
+        "p95 latency 2.4s (threshold 1.0s)",
+        "connection pool 92% used"
+      ]
+    },
+    "fixed_cpu_override": 85.0,
+    "returned": {
+      "system_name": "auth-service",
+      "status": "degraded",
+      "cpu_percent": 85.0,
+      "memory_percent": 62.7,
+      "last_checked": "2026-10-22T08:52:41.229589",
+      "alerts": [
+        "p95 latency 2.4s (threshold 1.0s)",
+        "connection pool 92% used"
+      ]
+    }
+  },
+  {
+    "case": "live-auth-compound",
+    "capability": "find_resource_template",
+    "arguments": [
+      "get_incident_runbook"
+    ],
+    "keyword_arguments": {}
+  },
+  {
+    "case": "live-auth-compound",
+    "capability": "find_resource_template",
+    "arguments": [
+      "get_incident_runbook"
+    ],
+    "keyword_arguments": {}
+  },
+  {
+    "case": "live-auth-compound",
+    "capability": "read_resource",
+    "arguments": [
+      "runbook://incident-response/high-latency"
+    ],
+    "keyword_arguments": {
+      "server": "ops"
+    },
+    "result_sha256": "0df4846e66993b0b9312327a3f51fe6de663d701c64c2c7c10a9e2c35e9e63a3"
+  },
+  {
+    "case": "live-auth-compound",
+    "capability": "read_resource",
+    "arguments": [
+      "runbook://incident-response/cpu-spike"
+    ],
+    "keyword_arguments": {
+      "server": "ops"
+    },
+    "result_sha256": "30796f7b5c1d0bc09acfb2518b240e3a07b04136e84fe41397802a3bf2bff22d"
+  },
+  {
+    "case": "live-multiple",
+    "capability": "find_prompt",
+    "arguments": [
+      "incident_analysis_prompt"
+    ],
+    "keyword_arguments": {}
+  },
+  {
+    "case": "live-multiple",
+    "capability": "get_prompt",
+    "arguments": [
+      "incident_analysis_prompt",
+      {
+        "system_name": "payments-service, cache-service",
+        "symptom": "payments-service랑 cache-service 둘 다 저하됐는데 공통 원인이 있는지 분석해줘."
+      }
+    ],
+    "keyword_arguments": {
+      "server": "ops"
+    },
+    "result_sha256": "1924c9323f496ad3c70b2f43e77108cf6ac0c14a0caa71a8c3f03af60079eb7f"
+  },
+  {
+    "case": "live-multiple",
+    "capability": "call_tool",
+    "arguments": [
+      "get_monitoring_status",
+      {
+        "system_name": "payments-service"
+      }
+    ],
+    "keyword_arguments": {},
+    "observed": {
+      "system_name": "payments-service",
+      "status": "degraded",
+      "cpu_percent": 93.9,
+      "memory_percent": 56.4,
+      "last_checked": "2026-10-22T08:52:46.306098",
+      "alerts": [
+        "CPU 91% (threshold 80%)",
+        "payments-service-3 instance responding slow"
+      ]
+    },
+    "returned": {
+      "system_name": "payments-service",
+      "status": "degraded",
+      "cpu_percent": 93.9,
+      "memory_percent": 56.4,
+      "last_checked": "2026-10-22T08:52:46.306098",
+      "alerts": [
+        "CPU 91% (threshold 80%)",
+        "payments-service-3 instance responding slow"
+      ]
+    }
+  },
+  {
+    "case": "live-multiple",
+    "capability": "call_tool",
+    "arguments": [
+      "get_monitoring_status",
+      {
+        "system_name": "cache-service"
+      }
+    ],
+    "keyword_arguments": {},
+    "observed": {
+      "system_name": "cache-service",
+      "status": "degraded",
+      "cpu_percent": 47.8,
+      "memory_percent": 91.9,
+      "last_checked": "2026-10-22T08:52:46.308631",
+      "alerts": [
+        "memory usage climbing steadily over 6h",
+        "heap near limit"
+      ]
+    },
+    "returned": {
+      "system_name": "cache-service",
+      "status": "degraded",
+      "cpu_percent": 47.8,
+      "memory_percent": 91.9,
+      "last_checked": "2026-10-22T08:52:46.308631",
+      "alerts": [
+        "memory usage climbing steadily over 6h",
+        "heap near limit"
+      ]
+    }
+  },
+  {
+    "case": "live-multiple",
+    "capability": "find_resource_template",
+    "arguments": [
+      "get_incident_runbook"
+    ],
+    "keyword_arguments": {}
+  },
+  {
+    "case": "live-multiple",
+    "capability": "find_resource_template",
+    "arguments": [
+      "get_incident_runbook"
+    ],
+    "keyword_arguments": {}
+  },
+  {
+    "case": "live-multiple",
+    "capability": "read_resource",
+    "arguments": [
+      "runbook://incident-response/memory-leak"
+    ],
+    "keyword_arguments": {
+      "server": "ops"
+    },
+    "result_sha256": "085f00e9bba5effbb54e97a82d5f0b7032e027dac29816021729932a5e9a9ee1"
+  },
+  {
+    "case": "live-multiple",
+    "capability": "read_resource",
+    "arguments": [
+      "runbook://incident-response/cpu-spike"
+    ],
+    "keyword_arguments": {
+      "server": "ops"
+    },
+    "result_sha256": "30796f7b5c1d0bc09acfb2518b240e3a07b04136e84fe41397802a3bf2bff22d"
+  },
+  {
+    "case": "live-text-stream",
+    "capability": "find_prompt",
+    "arguments": [
+      "incident_analysis_prompt"
+    ],
+    "keyword_arguments": {}
+  },
+  {
+    "case": "live-text-stream",
+    "capability": "get_prompt",
+    "arguments": [
+      "incident_analysis_prompt",
+      {
+        "system_name": "payments-service",
+        "symptom": "payments-service 결제 응답이 느려지고 CPU가 치솟았어요, 원인 확인해주세요"
+      }
+    ],
+    "keyword_arguments": {
+      "server": "ops"
+    },
+    "result_sha256": "6ec0e94354dade624298a1d0ff921492d68da31b7e8ce40824acf409d525efb6"
+  },
+  {
+    "case": "live-text-stream",
+    "capability": "call_tool",
+    "arguments": [
+      "get_monitoring_status",
+      {
+        "system_name": "payments-service"
+      }
+    ],
+    "keyword_arguments": {},
+    "observed": {
+      "system_name": "payments-service",
+      "status": "degraded",
+      "cpu_percent": 93.9,
+      "memory_percent": 56.5,
+      "last_checked": "2026-10-22T08:52:51.337988",
+      "alerts": [
+        "CPU 91% (threshold 80%)",
+        "payments-service-3 instance responding slow"
+      ]
+    },
+    "returned": {
+      "system_name": "payments-service",
+      "status": "degraded",
+      "cpu_percent": 93.9,
+      "memory_percent": 56.5,
+      "last_checked": "2026-10-22T08:52:51.337988",
+      "alerts": [
+        "CPU 91% (threshold 80%)",
+        "payments-service-3 instance responding slow"
+      ]
+    }
+  },
+  {
+    "case": "live-text-stream",
+    "capability": "find_resource_template",
+    "arguments": [
+      "get_incident_runbook"
+    ],
+    "keyword_arguments": {}
+  },
+  {
+    "case": "live-text-stream",
+    "capability": "read_resource",
+    "arguments": [
+      "runbook://incident-response/cpu-spike"
+    ],
+    "keyword_arguments": {
+      "server": "ops"
+    },
+    "result_sha256": "30796f7b5c1d0bc09acfb2518b240e3a07b04136e84fe41397802a3bf2bff22d"
+  }
+]

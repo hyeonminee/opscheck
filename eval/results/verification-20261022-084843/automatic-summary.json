@@ -1,0 +1,79 @@
+[
+  {
+    "command": [
+      "/Users/hyeonmin/workspace/AI mini-project/.venv/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "cwd": "/Users/hyeonmin/workspace/AI mini-project",
+    "started_utc": "2026-10-21T23:48:55.683709+00:00",
+    "elapsed_seconds": 9.98,
+    "exit_code": 0,
+    "stdout": "logs/unittest.stdout.log",
+    "stderr": "logs/unittest.stderr.log"
+  },
+  {
+    "command": [
+      "node",
+      "tests/test_web_session.cjs"
+    ],
+    "cwd": "/Users/hyeonmin/workspace/AI mini-project",
+    "started_utc": "2026-10-21T23:49:05.664011+00:00",
+    "elapsed_seconds": 0.121,
+    "exit_code": 0,
+    "stdout": "logs/node.stdout.log",
+    "stderr": "logs/node.stderr.log"
+  },
+  {
+    "command": [
+      "/Users/hyeonmin/workspace/AI mini-project/.venv/bin/python",
+      "-B",
+      "eval/run_validation.py",
+      "--output",
+      "/Users/hyeonmin/workspace/AI mini-project/eval/results/verification-20261022-084843/validation.json"
+    ],
+    "cwd": "/Users/hyeonmin/workspace/AI mini-project",
+    "started_utc": "2026-10-21T23:49:05.784909+00:00",
+    "elapsed_seconds": 0.964,
+    "exit_code": 0,
+    "stdout": "logs/validation.stdout.log",
+    "stderr": "logs/validation.stderr.log"
+  },
+  {
+    "command": [
+      "/Users/hyeonmin/workspace/AI mini-project/.venv/bin/python",
+      "-B",
+      "eval/run_final_eval.py",
+      "--source",
+      "baseline/original",
+      "--output",
+      "/Users/hyeonmin/workspace/AI mini-project/eval/results/verification-20261022-084843/before-components.json"
+    ],
+    "cwd": "/Users/hyeonmin/workspace/AI mini-project",
+    "started_utc": "2026-10-21T23:49:06.749439+00:00",
+    "elapsed_seconds": 0.668,
+    "exit_code": 0,
+    "stdout": "logs/before-components.stdout.log",
+    "stderr": "logs/before-components.stderr.log"
+  },
+  {
+    "command": [
+      "/Users/hyeonmin/workspace/AI mini-project/.venv/bin/python",
+      "-B",
+      "eval/run_final_eval.py",
+      "--output",
+      "/Users/hyeonmin/workspace/AI mini-project/eval/results/verification-20261022-084843/after-components.json"
+    ],
+    "cwd": "/Users/hyeonmin/workspace/AI mini-project",
+    "started_utc": "2026-10-21T23:49:07.417907+00:00",
+    "elapsed_seconds": 0.296,
+    "exit_code": 0,
+    "stdout": "logs/after-components.stdout.log",
+    "stderr": "logs/after-components.stderr.log"
+  }
+]

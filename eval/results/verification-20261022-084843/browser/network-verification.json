@@ -1,0 +1,102 @@
+[
+  {
+    "file": "browser/after-network-01.json",
+    "processing_status": "completed",
+    "validation_status": "passed",
+    "fast_completed_before_slow_terminal": false,
+    "first_text_before_write_completed": true,
+    "terminal_steps_active": 0,
+    "final_progress_ids_unique": true,
+    "ended_done": true
+  },
+  {
+    "file": "browser/after-network-02.json",
+    "processing_status": "partial",
+    "validation_status": "passed",
+    "fast_completed_before_slow_terminal": true,
+    "first_text_before_write_completed": true,
+    "terminal_steps_active": 0,
+    "final_progress_ids_unique": true,
+    "ended_done": true
+  },
+  {
+    "file": "browser/after-network-03.json",
+    "processing_status": "failed",
+    "validation_status": "unverified",
+    "fast_completed_before_slow_terminal": false,
+    "first_text_before_write_completed": false,
+    "terminal_steps_active": 0,
+    "final_progress_ids_unique": true,
+    "ended_done": true
+  },
+  {
+    "file": "browser/after-network-04.json",
+    "processing_status": "completed",
+    "validation_status": "passed",
+    "fast_completed_before_slow_terminal": false,
+    "first_text_before_write_completed": true,
+    "terminal_steps_active": 0,
+    "final_progress_ids_unique": true,
+    "ended_done": true
+  },
+  {
+    "file": "browser/after-network-05.json",
+    "processing_status": "completed",
+    "validation_status": "passed",
+    "fast_completed_before_slow_terminal": false,
+    "first_text_before_write_completed": true,
+    "terminal_steps_active": 0,
+    "final_progress_ids_unique": true,
+    "ended_done": true
+  },
+  {
+    "file": "browser/after-network-06.json",
+    "processing_status": "completed",
+    "validation_status": "passed",
+    "fast_completed_before_slow_terminal": false,
+    "first_text_before_write_completed": true,
+    "terminal_steps_active": 0,
+    "final_progress_ids_unique": true,
+    "ended_done": true
+  },
+  {
+    "file": "browser/after-network-07.json",
+    "processing_status": "completed",
+    "validation_status": "passed",
+    "fast_completed_before_slow_terminal": false,
+    "first_text_before_write_completed": true,
+    "terminal_steps_active": 0,
+    "final_progress_ids_unique": true,
+    "ended_done": true
+  },
+  {
+    "file": "browser/after-network-08.json",
+    "processing_status": "completed",
+    "validation_status": null,
+    "fast_completed_before_slow_terminal": false,
+    "first_text_before_write_completed": false,
+    "terminal_steps_active": 0,
+    "final_progress_ids_unique": true,
+    "ended_done": true
+  },
+  {
+    "file": "browser/after-network-09.json",
+    "processing_status": "completed",
+    "validation_status": "unverified",
+    "fast_completed_before_slow_terminal": false,
+    "first_text_before_write_completed": true,
+    "terminal_steps_active": 0,
+    "final_progress_ids_unique": true,
+    "ended_done": true
+  },
+  {
+    "file": "browser/after-network-10.json",
+    "processing_status": "completed",
+    "validation_status": "passed",
+    "fast_completed_before_slow_terminal": false,
+    "first_text_before_write_completed": true,
+    "terminal_steps_active": 0,
+    "final_progress_ids_unique": true,
+    "ended_done": true
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "metric": "scope",
+    "label": "요청 대상 계획 일치",
+    "before_numerator": 1,
+    "before_denominator": 7,
+    "after_numerator": 7,
+    "after_denominator": 7,
+    "repeat_count": 1,
+    "level": "fixed component checks, not population LLM accuracy"
+  },
+  {
+    "metric": "manuals",
+    "label": "필요 매뉴얼 집합 일치",
+    "before_numerator": 11,
+    "before_denominator": 15,
+    "after_numerator": 15,
+    "after_denominator": 15,
+    "repeat_count": 1,
+    "level": "fixed component checks, not population LLM accuracy"
+  },
+  {
+    "metric": "missing_document",
+    "label": "없는 문서 충분 판정 방지",
+    "before_numerator": 0,
+    "before_denominator": 1,
+    "after_numerator": 1,
+    "after_denominator": 1,
+    "repeat_count": 1,
+    "level": "fixed component checks, not population LLM accuracy"
+  },
+  {
+    "metric": "partial_failure",
+    "label": "부분 실패 성공 근거 보존",
+    "before_numerator": 0,
+    "before_denominator": 1,
+    "after_numerator": 1,
+    "after_denominator": 1,
+    "repeat_count": 1,
+    "level": "fixed component checks, not population LLM accuracy"
+  },
+  {
+    "metric": "incorrect_blocked",
+    "label": "오류 초안 차단",
+    "before_numerator": 0,
+    "before_denominator": 7,
+    "after_numerator": 7,
+    "after_denominator": 7,
+    "repeat_count": 1,
+    "level": "fixed component checks, not population LLM accuracy"
+  },
+  {
+    "metric": "correct_blocked",
+    "label": "정답 초안 오차단 — 낮을수록 좋음",
+    "before_numerator": 0,
+    "before_denominator": 2,
+    "after_numerator": 0,
+    "after_denominator": 2,
+    "repeat_count": 1,
+    "level": "fixed component checks, not population LLM accuracy"
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "indexed_files": 143,
+  "hash_mismatches": [],
+  "passed": true,
+  "self_generated_manifests_excluded": [
+    "artifact-index.json",
+    "evidence-integrity.json"
+  ]
+}

@@ -1,0 +1,912 @@
+[
+  {
+    "id": "test_answer_streaming.AdapterStreamingTests.test_chat_and_writer_receive_tokens_before_generation_finishes",
+    "file": "tests/test_answer_streaming.py",
+    "line": 42,
+    "classification": "async streaming/transport integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_answer_streaming.AdapterStreamingTests.test_http_and_stream_errors_do_not_become_completed_answers",
+    "file": "tests/test_answer_streaming.py",
+    "line": 88,
+    "classification": "async streaming/transport integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_answer_streaming.AdapterStreamingTests.test_incomplete_and_truncated_streams_are_not_success",
+    "file": "tests/test_answer_streaming.py",
+    "line": 66,
+    "classification": "async streaming/transport integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_answer_streaming.AdapterStreamingTests.test_timeout_and_cancellation_close_stream",
+    "file": "tests/test_answer_streaming.py",
+    "line": 76,
+    "classification": "async streaming/transport integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_answer_streaming.DraftPreviewTests.test_hypothesis_prefix_arrives_before_writer_release_without_json_or_duplicates",
+    "file": "tests/test_answer_streaming.py",
+    "line": 97,
+    "classification": "async streaming/transport integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_baseline.BaselineChecks.test_both_required_manuals",
+    "file": "tests/test_baseline.py",
+    "line": 43,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_baseline.BaselineChecks.test_chat_does_not_investigate",
+    "file": "tests/test_baseline.py",
+    "line": 19,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_baseline.BaselineChecks.test_false_cpu_value_is_rejected",
+    "file": "tests/test_baseline.py",
+    "line": 55,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_baseline.BaselineChecks.test_fixed_history_remembers_name",
+    "file": "tests/test_baseline.py",
+    "line": 22,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_baseline.BaselineChecks.test_missing_document_is_not_sufficient",
+    "file": "tests/test_baseline.py",
+    "line": 62,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_baseline.BaselineChecks.test_no_default_manual_for_healthy_system",
+    "file": "tests/test_baseline.py",
+    "line": 47,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_baseline.BaselineChecks.test_partial_lookup_does_not_abort",
+    "file": "tests/test_baseline.py",
+    "line": 67,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_baseline.BaselineChecks.test_requested_scope_only",
+    "file": "tests/test_baseline.py",
+    "line": 36,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_baseline.BaselineChecks.test_short_third_draft_is_not_approved",
+    "file": "tests/test_baseline.py",
+    "line": 51,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_baseline.BaselineChecks.test_six_runbook_fixtures_exist",
+    "file": "tests/test_baseline.py",
+    "line": 25,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_baseline.BaselineChecks.test_unknown_service_not_investigated",
+    "file": "tests/test_baseline.py",
+    "line": 71,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_chat_messages.ChatMessageTests.test_both_adapters_preserve_roles_and_latest_query",
+    "file": "tests/test_chat_messages.py",
+    "line": 49,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_chat_messages.ChatMessageTests.test_empty_history_is_not_invented",
+    "file": "tests/test_chat_messages.py",
+    "line": 60,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_chat_messages.ChatMessageTests.test_fake_understands_both_name_introductions_and_user_only_history",
+    "file": "tests/test_chat_messages.py",
+    "line": 80,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_chat_messages.ChatMessageTests.test_recent_history_limit_and_role_filter",
+    "file": "tests/test_chat_messages.py",
+    "line": 66,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_chat_messages.ChatMessageTests.test_report_writer_keeps_its_existing_two_message_contract",
+    "file": "tests/test_chat_messages.py",
+    "line": 74,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_chat_messages.NameMemoryChecks.test_latest_user_name_wins_over_assistant_claim",
+    "file": "tests/test_chat_messages.py",
+    "line": 96,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_chat_messages.NameMemoryChecks.test_no_cross_session_or_old_window_guess",
+    "file": "tests/test_chat_messages.py",
+    "line": 104,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_chat_messages.NameMemoryChecks.test_unrelated_or_mixed_request_stays_with_normal_routing",
+    "file": "tests/test_chat_messages.py",
+    "line": 110,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_final_eval.FinalEvaluationTests.test_empty_denominator_is_unmeasured",
+    "file": "tests/test_final_eval.py",
+    "line": 12,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_final_eval.FinalEvaluationTests.test_fixed_cases_cover_six_manuals_and_missing_source",
+    "file": "tests/test_final_eval.py",
+    "line": 24,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_final_eval.FinalEvaluationTests.test_wrong_blocked_and_correct_blocked_are_separate",
+    "file": "tests/test_final_eval.py",
+    "line": 15,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_analysis_execution_matches_plan_and_ignores_route_flag",
+    "file": "tests/test_phase1.py",
+    "line": 129,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_analysis_gate_ensures_exactly_one_or_zero",
+    "file": "tests/test_phase1.py",
+    "line": 121,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_api_post_sse_restore_and_legacy_storage",
+    "file": "tests/test_phase1.py",
+    "line": 148,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_clarification_and_followup_always_query_fresh_data",
+    "file": "tests/test_phase1.py",
+    "line": 73,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_model_adapters_never_substitute_unknown_or_missing_targets",
+    "file": "tests/test_phase1.py",
+    "line": 178,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_multi_target_followup_requires_confirmation",
+    "file": "tests/test_phase1.py",
+    "line": 83,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_name_memory_bypasses_llm_and_returns_no_fake_prompt",
+    "file": "tests/test_phase1.py",
+    "line": 107,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_names_bypass_wrong_model_incident_route",
+    "file": "tests/test_phase1.py",
+    "line": 99,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_new_session_does_not_inherit_target",
+    "file": "tests/test_phase1.py",
+    "line": 92,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_registry_boundaries_no_partial_match_or_fallback",
+    "file": "tests/test_phase1.py",
+    "line": 172,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_restart_restores_messages_and_pending_context",
+    "file": "tests/test_phase1.py",
+    "line": 138,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_single_and_missing_duplicate_extra_plan_targets",
+    "file": "tests/test_phase1.py",
+    "line": 45,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_startup_scripts_preserve_database",
+    "file": "tests/test_phase1.py",
+    "line": 191,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_unknown_and_mixed_requests_make_no_mcp_calls",
+    "file": "tests/test_phase1.py",
+    "line": 59,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase1.Phase1Tests.test_unknown_correction_keeps_original_symptom",
+    "file": "tests/test_phase1.py",
+    "line": 66,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase10.ProgressTests.test_chat_confirmation_conditional_skip_unverified_and_legacy",
+    "file": "tests/test_phase10.py",
+    "line": 89,
+    "classification": "async streaming/transport integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase10.ProgressTests.test_custom_receipt_before_slow_lookup_and_writer_finish",
+    "file": "tests/test_phase10.py",
+    "line": 37,
+    "classification": "async streaming/transport integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase10.ProgressTests.test_live_tcp_proxy_receives_progress_before_release",
+    "file": "tests/test_phase10.py",
+    "line": 122,
+    "classification": "async streaming/transport integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase10.ProgressTests.test_request_timeout_closes_active_steps_and_done_contract",
+    "file": "tests/test_phase10.py",
+    "line": 106,
+    "classification": "async streaming/transport integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase10.ProgressTests.test_retry_partial_failure_rewrite_and_saved_snapshot_have_stable_attempts",
+    "file": "tests/test_phase10.py",
+    "line": 65,
+    "classification": "async streaming/transport integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase2.ManualsTests.test_cpu_and_memory_keep_service_mapping",
+    "file": "tests/test_phase2.py",
+    "line": 33,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase2.ManualsTests.test_degraded_without_matching_evidence_is_insufficient",
+    "file": "tests/test_phase2.py",
+    "line": 125,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase2.ManualsTests.test_gateway_and_payments_do_not_lose_network_document",
+    "file": "tests/test_phase2.py",
+    "line": 43,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase2.ManualsTests.test_healthy_user_claim_does_not_create_db_or_cpu_manual",
+    "file": "tests/test_phase2.py",
+    "line": 47,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase2.ManualsTests.test_missing_manual_excluded_and_other_success_preserved",
+    "file": "tests/test_phase2.py",
+    "line": 75,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase2.ManualsTests.test_only_missing_document_is_scheduled",
+    "file": "tests/test_phase2.py",
+    "line": 87,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase2.ManualsTests.test_round_cap_keeps_insufficient_verdict",
+    "file": "tests/test_phase2.py",
+    "line": 95,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase2.ManualsTests.test_same_manual_is_fetched_once_for_two_services",
+    "file": "tests/test_phase2.py",
+    "line": 62,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase2.ManualsTests.test_six_types_positive_and_negative_with_numeric_limits",
+    "file": "tests/test_phase2.py",
+    "line": 102,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase2.ManualsTests.test_unknown_observation_is_not_normal_or_db_down",
+    "file": "tests/test_phase2.py",
+    "line": 54,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase2.WriterMetadataTests.test_both_real_writer_adapters_receive_service_sources_and_limits",
+    "file": "tests/test_phase2.py",
+    "line": 134,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.AdapterLimitTests.test_both_writers_receive_failed_monitoring_target",
+    "file": "tests/test_phase3.py",
+    "line": 195,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.AdapterLimitTests.test_every_model_contract_is_async",
+    "file": "tests/test_phase3.py",
+    "line": 147,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.AdapterLimitTests.test_model_total_deadline_closes_http_and_allows_other_work",
+    "file": "tests/test_phase3.py",
+    "line": 182,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.AdapterLimitTests.test_ollama_stream_requires_done_and_rejects_length",
+    "file": "tests/test_phase3.py",
+    "line": 167,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.AdapterLimitTests.test_openai_async_cap_truncation_and_http_cleanup",
+    "file": "tests/test_phase3.py",
+    "line": 153,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.FailureTests.test_all_failures_skip_writer_and_analysis",
+    "file": "tests/test_phase3.py",
+    "line": 40,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.FailureTests.test_invalid_plan_ends_before_any_tool",
+    "file": "tests/test_phase3.py",
+    "line": 70,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.FailureTests.test_partial_failure_keeps_observations_and_failed_target",
+    "file": "tests/test_phase3.py",
+    "line": 33,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.FailureTests.test_per_attempt_deadline_cancels_and_recovers",
+    "file": "tests/test_phase3.py",
+    "line": 60,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.FailureTests.test_timeouts_retry_twice_and_permanent_failure_once",
+    "file": "tests/test_phase3.py",
+    "line": 49,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.MCPReuseTests.test_real_stdio_timeout_then_reuse_same_connection",
+    "file": "tests/test_phase3.py",
+    "line": 226,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.ProxyTests.test_incomplete_http_error_and_complete_streams",
+    "file": "tests/test_phase3.py",
+    "line": 209,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.RuntimeTests.test_canceled_request_does_not_save_completed_reply",
+    "file": "tests/test_phase3.py",
+    "line": 115,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.RuntimeTests.test_generation_limit_replaces_draft_with_verified_observations",
+    "file": "tests/test_phase3.py",
+    "line": 124,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.RuntimeTests.test_sse_exception_has_safe_error_final_and_done",
+    "file": "tests/test_phase3.py",
+    "line": 108,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.RuntimeTests.test_two_rejected_drafts_end_without_forced_approval",
+    "file": "tests/test_phase3.py",
+    "line": 138,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.RuntimeTests.test_whole_request_timeout_and_health_remains_responsive",
+    "file": "tests/test_phase3.py",
+    "line": 89,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase3.RuntimeTests.test_writer_timeout_preserves_already_collected_observations",
+    "file": "tests/test_phase3.py",
+    "line": 130,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.GroundingTests.test_free_text_numbers_asserted_normality_duration_and_other_system_rejected",
+    "file": "tests/test_phase4.py",
+    "line": 64,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.GroundingTests.test_gateway_evidence_cannot_be_attached_to_payments",
+    "file": "tests/test_phase4.py",
+    "line": 54,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.GroundingTests.test_measurement_and_alert_threshold_are_not_interchangeable",
+    "file": "tests/test_phase4.py",
+    "line": 87,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.GroundingTests.test_missing_document_and_cross_service_action_rejected",
+    "file": "tests/test_phase4.py",
+    "line": 59,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.GroundingTests.test_missing_section_bool_measurement_unknown_field_and_analysis_coverage",
+    "file": "tests/test_phase4.py",
+    "line": 78,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.GroundingTests.test_rejected_report_contains_no_rejected_hypothesis_or_action",
+    "file": "tests/test_phase4.py",
+    "line": 95,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.GroundingTests.test_unknown_and_failed_service_not_normal_or_zero_observation",
+    "file": "tests/test_phase4.py",
+    "line": 69,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.GroundingTests.test_valid_report_uses_original_values_sources_and_conditional_manual_text",
+    "file": "tests/test_phase4.py",
+    "line": 40,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.GroundingTests.test_wrong_cpu_value_rejected_with_expected_field_and_source",
+    "file": "tests/test_phase4.py",
+    "line": 49,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.PipelineTests.test_actual_analyzer_http_inputs_include_question_and_memory_for_both_adapters",
+    "file": "tests/test_phase4.py",
+    "line": 167,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.PipelineTests.test_analysis_receives_question_service_and_memory",
+    "file": "tests/test_phase4.py",
+    "line": 137,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.PipelineTests.test_fake_rewrite_then_grounded_report_and_statuses",
+    "file": "tests/test_phase4.py",
+    "line": 110,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.PipelineTests.test_malformed_preview_is_rejected_and_rewritten_without_aborting",
+    "file": "tests/test_phase4.py",
+    "line": 117,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.PipelineTests.test_post_and_sse_return_same_report_contract_and_pending_before_validation",
+    "file": "tests/test_phase4.py",
+    "line": 147,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase4.PipelineTests.test_two_bad_drafts_preserve_sources_without_final_recommendation",
+    "file": "tests/test_phase4.py",
+    "line": 130,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase5.APITests.test_chat_and_target_confirmation_do_not_create_investigations",
+    "file": "tests/test_phase5.py",
+    "line": 133,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase5.APITests.test_finished_timeout_is_recorded_but_cancellation_is_not",
+    "file": "tests/test_phase5.py",
+    "line": 150,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase5.APITests.test_partial_and_unverified_records_retain_final_state_only",
+    "file": "tests/test_phase5.py",
+    "line": 139,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase5.APITests.test_post_unique_id_snapshot_and_scoped_list_detail",
+    "file": "tests/test_phase5.py",
+    "line": 90,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase5.APITests.test_proxy_list_detail_encoding_and_upstream_error",
+    "file": "tests/test_phase5.py",
+    "line": 171,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase5.APITests.test_restart_restores_report_and_previous_messages",
+    "file": "tests/test_phase5.py",
+    "line": 165,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase5.APITests.test_sse_record_exists_before_final_event_and_midstream_cancel_is_not_saved",
+    "file": "tests/test_phase5.py",
+    "line": 113,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase5.APITests.test_sse_stores_once_before_final_and_separate_http_requests_are_distinct",
+    "file": "tests/test_phase5.py",
+    "line": 103,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase5.StoreTests.test_duplicate_completion_does_not_duplicate_messages_or_record",
+    "file": "tests/test_phase5.py",
+    "line": 47,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase5.StoreTests.test_existing_database_migration_preserves_messages_context_and_restart_history",
+    "file": "tests/test_phase5.py",
+    "line": 30,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase5.StoreTests.test_newest_first_limit_and_session_filter",
+    "file": "tests/test_phase5.py",
+    "line": 56,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase5.StoreTests.test_serialization_failure_leaves_no_partial_exchange_or_investigation",
+    "file": "tests/test_phase5.py",
+    "line": 65,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase6.APIExportTests.test_legacy_phase5_record_comparison_is_bounded_and_read_only",
+    "file": "tests/test_phase6.py",
+    "line": 141,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase6.APIExportTests.test_markdown_matches_saved_report_comparison_and_headers_without_new_calls",
+    "file": "tests/test_phase6.py",
+    "line": 124,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase6.APIExportTests.test_new_followup_is_fresh_and_comparison_survives_restart_and_future_runs",
+    "file": "tests/test_phase6.py",
+    "line": 110,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase6.APIExportTests.test_sse_contains_comparison_and_proxy_preserves_download_bytes_headers_errors",
+    "file": "tests/test_phase6.py",
+    "line": 155,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase6.APIExportTests.test_unverified_export_has_no_rejected_action",
+    "file": "tests/test_phase6.py",
+    "line": 148,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase6.ComparisonTests.test_90_to_70_is_minus_20_percentage_points_and_alert_sets",
+    "file": "tests/test_phase6.py",
+    "line": 43,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase6.ComparisonTests.test_invalid_metrics_and_missing_alerts_are_per_field_unavailable",
+    "file": "tests/test_phase6.py",
+    "line": 80,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase6.ComparisonTests.test_missing_or_invalid_time_and_non_increasing_time_are_not_comparable",
+    "file": "tests/test_phase6.py",
+    "line": 70,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase6.ComparisonTests.test_multiple_services_and_current_failure_do_not_reuse_old_as_current",
+    "file": "tests/test_phase6.py",
+    "line": 88,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase6.ComparisonTests.test_naive_sample_time_is_explicitly_korean_and_mixed_offsets_match",
+    "file": "tests/test_phase6.py",
+    "line": 75,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase6.ComparisonTests.test_previous_is_latest_success_by_save_order_not_validation_or_created_time",
+    "file": "tests/test_phase6.py",
+    "line": 53,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase6.ComparisonTests.test_stored_cutoff_excludes_current_and_all_future_records",
+    "file": "tests/test_phase6.py",
+    "line": 63,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase9.GlobalHistoryAPITests.test_cursor_api_validates_scope_limit_and_invalid_cursors",
+    "file": "tests/test_phase9.py",
+    "line": 67,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase9.GlobalHistoryAPITests.test_proxy_global_cursor_and_original_detail_params",
+    "file": "tests/test_phase9.py",
+    "line": 77,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase9.GlobalHistoryAPITests.test_two_conversations_new_context_detail_download_and_comparison_stay_original",
+    "file": "tests/test_phase9.py",
+    "line": 44,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_phase9.HistoryPageTests.test_cursor_pages_survive_new_insert_and_equal_timestamps_without_mutation",
+    "file": "tests/test_phase9.py",
+    "line": 17,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_sse_tracing.SSETracingTests.test_concurrent_streams_keep_distinct_trace_ids_and_contexts",
+    "file": "tests/test_sse_tracing.py",
+    "line": 133,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_sse_tracing.SSETracingTests.test_disabled_tracing_does_not_fabricate_trace_ids",
+    "file": "tests/test_sse_tracing.py",
+    "line": 126,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_sse_tracing.SSETracingTests.test_enabled_sdk_sends_matching_request_ids_to_inert_client",
+    "file": "tests/test_sse_tracing.py",
+    "line": 112,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_sse_tracing.SSETracingTests.test_post_and_sse_save_same_request_root_contract_with_real_mcp_children",
+    "file": "tests/test_sse_tracing.py",
+    "line": 43,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_sse_tracing.SSETracingTests.test_processing_error_retains_trace_link_and_safe_termination",
+    "file": "tests/test_sse_tracing.py",
+    "line": 72,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_sse_tracing.SSETracingTests.test_timeout_retains_trace_and_cancellation_does_not_save_history",
+    "file": "tests/test_sse_tracing.py",
+    "line": 87,
+    "classification": "API/storage/MCP integration (includes unit methods)",
+    "paid_model": false
+  },
+  {
+    "id": "test_startup_config.StartupConfigTests.test_env_models_reach_checks_warmup_and_server",
+    "file": "tests/test_startup_config.py",
+    "line": 13,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_startup_config.StartupConfigTests.test_missing_env_and_missing_model_stop_before_start",
+    "file": "tests/test_startup_config.py",
+    "line": 47,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_validation_dataset.ValidationDatasetTests.test_all_fixed_oracles",
+    "file": "tests/test_validation_dataset.py",
+    "line": 26,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_validation_dataset.ValidationDatasetTests.test_http_success_or_nonempty_answer_is_not_enough",
+    "file": "tests/test_validation_dataset.py",
+    "line": 32,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  },
+  {
+    "id": "test_validation_dataset.ValidationDatasetTests.test_source_integrity_and_coverage",
+    "file": "tests/test_validation_dataset.py",
+    "line": 12,
+    "classification": "unit/component or fixed graph; see method",
+    "paid_model": false
+  }
+]

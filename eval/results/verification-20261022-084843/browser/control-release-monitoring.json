@@ -1,0 +1,26 @@
+{
+  "at": 214907.170989458,
+  "before": {
+    "query": "payments-service와 cache-service 실시간 장애 진단",
+    "gated": true,
+    "cache_waiting": true,
+    "writer_waiting": true,
+    "writer_prefix": true,
+    "mode": "after",
+    "source": "/Users/hyeonmin/workspace/AI mini-project",
+    "fixed_planning_double": true,
+    "new_paid_calls": 0
+  },
+  "after": {
+    "query": "payments-service와 cache-service 실시간 장애 진단",
+    "gated": true,
+    "cache_waiting": true,
+    "writer_waiting": true,
+    "writer_prefix": true,
+    "mode": "after",
+    "source": "/Users/hyeonmin/workspace/AI mini-project",
+    "fixed_planning_double": true,
+    "new_paid_calls": 0
+  },
+  "action": "release-monitoring"
+}

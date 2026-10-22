@@ -1,0 +1,50 @@
+{
+  "checks": [
+    {
+      "id": "history-pagination",
+      "expected": {
+        "first": 20,
+        "all": 33,
+        "unique": 33,
+        "current": 2
+      },
+      "actual": {
+        "first": 20,
+        "all": 33,
+        "unique": 33,
+        "current": 2
+      },
+      "passed": true,
+      "note": "25 preseeded fixtures +3 stored real-model results +5 new fixed diagnoses"
+    },
+    {
+      "id": "open-foreign-history-context",
+      "expected": "cache followup remains cache after opening payments report",
+      "passed": true
+    },
+    {
+      "id": "new-context",
+      "expected": "clarify without diagnosis",
+      "passed": true
+    },
+    {
+      "id": "mobile-layout",
+      "expected": {
+        "width": 390,
+        "noHorizontalOverflow": true
+      },
+      "actual": {
+        "pageWidth": 390,
+        "viewport": 390
+      },
+      "passed": true
+    },
+    {
+      "id": "mobile-rewrite-limit",
+      "expected": "rejected then unverified, no supported final recommendation",
+      "passed": true
+    }
+  ],
+  "downloadHref": "/investigations/4206bb43-0e86-4ba6-8931-d037b0cf08ba/report.md?thread_id=t-web-5345cbce-7e26-4758-8f43-a71c1c5dbbee",
+  "downloadPath": "/Users/hyeonmin/Downloads/investigation-4206bb43-0e86-4ba6-8931-d037b0cf08ba.md"
+}

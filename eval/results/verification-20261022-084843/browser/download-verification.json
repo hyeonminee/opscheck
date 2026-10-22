@@ -1,0 +1,8 @@
+{
+  "http_status": 200,
+  "same_browser_and_api_bytes": true,
+  "contains_selected_id": true,
+  "contains_expected_comparison": true,
+  "sha256": "62b3234ffbb28ebe7b6ed93ffa4749714ef1a21650180cf14ab87c3febc10b69",
+  "source": "actual browser download and selected original-thread URL; temporary DB only"
+}

@@ -1,0 +1,49 @@
+{
+  "fixed_alerts": [
+    "p95 latency 2.4s (threshold 1.0s)",
+    "connection pool usage 92%"
+  ],
+  "cases": [
+    {
+      "cpu": 79.9,
+      "expected_manuals": [
+        "high-latency"
+      ]
+    },
+    {
+      "cpu": 80.0,
+      "expected_manuals": [
+        "high-latency",
+        "cpu-spike"
+      ]
+    },
+    {
+      "cpu": 89.9,
+      "expected_manuals": [
+        "high-latency",
+        "cpu-spike"
+      ]
+    },
+    {
+      "cpu": 90.0,
+      "expected_manuals": [
+        "high-latency",
+        "cpu-spike"
+      ]
+    },
+    {
+      "cpu": 95.0,
+      "expected_manuals": [
+        "high-latency",
+        "cpu-spike"
+      ]
+    }
+  ],
+  "sources": [
+    "data/runbooks/cpu-spike.md (conditional action >90% and persistence)",
+    "data/runbooks/high-latency.md (latency/pool investigation)",
+    "doc/README.md and existing document-selection policy: CPU >=80% includes CPU manual; this is a heuristic, not verified recovery/scale condition"
+  ],
+  "expected_complete_actions": "one valid conditional action per successful service-document pair",
+  "injected_fault": "remove CPU-manual action while retaining high-latency action on both drafts; safety must reject, diagnosis completeness must fail"
+}

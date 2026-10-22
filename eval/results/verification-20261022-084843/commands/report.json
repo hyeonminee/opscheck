@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/Users/hyeonmin/workspace/AI mini-project/.venv/bin/python",
+    "-B",
+    "/private/tmp/opscheck_final_report.py"
+  ],
+  "cwd": "/Users/hyeonmin/workspace/AI mini-project",
+  "started_utc": "2026-10-22T00:14:29.197307+00:00",
+  "elapsed_seconds": 0.155,
+  "exit_code": 0,
+  "stdout": "logs/report.stdout.log",
+  "stderr": "logs/report.stderr.log"
+}

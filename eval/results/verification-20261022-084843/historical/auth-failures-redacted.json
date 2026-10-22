@@ -1,0 +1,69 @@
+[
+  {
+    "record_pseudonym": "f032ec697f0c",
+    "service": "auth-service",
+    "cpu_percent": 82.3,
+    "validation_status": "unverified",
+    "validation_issues": [
+      [
+        "auth-service: 단일 관측으로 원인·지속·복구를 확정할 수 없음",
+        "매뉴얼 조치 누락: auth-service/doc:cpu-spike"
+      ],
+      [
+        "auth-service: 분석 문장의 수치는 claims로 분리해야 함",
+        "매뉴얼 조치 누락: auth-service/doc:cpu-spike"
+      ]
+    ],
+    "raw_question_copied": false,
+    "record_preserved": true
+  },
+  {
+    "record_pseudonym": "a8db9b13c775",
+    "service": "auth-service",
+    "cpu_percent": 82.7,
+    "validation_status": "unverified",
+    "validation_issues": [
+      [
+        "매뉴얼 조치 누락: auth-service/doc:cpu-spike"
+      ],
+      [
+        "매뉴얼 조치 누락: auth-service/doc:cpu-spike"
+      ]
+    ],
+    "raw_question_copied": false,
+    "record_preserved": true
+  },
+  {
+    "record_pseudonym": "141689965ab4",
+    "service": "auth-service",
+    "cpu_percent": 84.9,
+    "validation_status": "unverified",
+    "validation_issues": [
+      [
+        "매뉴얼 조치 누락: auth-service/doc:cpu-spike"
+      ],
+      [
+        "auth-service: 분석 문장의 수치는 claims로 분리해야 함",
+        "매뉴얼 조치 누락: auth-service/doc:cpu-spike"
+      ]
+    ],
+    "raw_question_copied": false,
+    "record_preserved": true
+  },
+  {
+    "record_pseudonym": "daddead45e99",
+    "service": "auth-service",
+    "cpu_percent": 84.7,
+    "validation_status": "unverified",
+    "validation_issues": [
+      [
+        "매뉴얼 조치 누락: auth-service/doc:cpu-spike"
+      ],
+      [
+        "매뉴얼 조치 누락: auth-service/doc:cpu-spike"
+      ]
+    ],
+    "raw_question_copied": false,
+    "record_preserved": true
+  }
+]

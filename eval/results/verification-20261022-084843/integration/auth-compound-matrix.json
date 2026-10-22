@@ -1,0 +1,265 @@
+{
+  "matrix": [
+    {
+      "id": "auth-cpu-79.9",
+      "fixed_observation": {
+        "system_name": "auth-service",
+        "status": "degraded",
+        "cpu_percent": 79.9,
+        "memory_percent": 61.0,
+        "alerts": [
+          "p95 latency 2.4s (threshold 1.0s)",
+          "connection pool usage 92%"
+        ],
+        "last_checked": "2026-10-20T00:00:00+00:00"
+      },
+      "expected_manuals": [
+        "high-latency"
+      ],
+      "actual_manuals": [
+        "high-latency"
+      ],
+      "actual_action_documents": [
+        "high-latency"
+      ],
+      "checks": {
+        "manuals": true,
+        "actions": true,
+        "facts": true,
+        "complete": true,
+        "no_condition_assertion": true
+      },
+      "status": "passed"
+    },
+    {
+      "id": "auth-cpu-80.0",
+      "fixed_observation": {
+        "system_name": "auth-service",
+        "status": "degraded",
+        "cpu_percent": 80.0,
+        "memory_percent": 61.0,
+        "alerts": [
+          "p95 latency 2.4s (threshold 1.0s)",
+          "connection pool usage 92%"
+        ],
+        "last_checked": "2026-10-20T00:00:00+00:00"
+      },
+      "expected_manuals": [
+        "cpu-spike",
+        "high-latency"
+      ],
+      "actual_manuals": [
+        "cpu-spike",
+        "high-latency"
+      ],
+      "actual_action_documents": [
+        "cpu-spike",
+        "high-latency"
+      ],
+      "checks": {
+        "manuals": true,
+        "actions": true,
+        "facts": true,
+        "complete": true,
+        "no_condition_assertion": true
+      },
+      "status": "passed"
+    },
+    {
+      "id": "auth-cpu-89.9",
+      "fixed_observation": {
+        "system_name": "auth-service",
+        "status": "degraded",
+        "cpu_percent": 89.9,
+        "memory_percent": 61.0,
+        "alerts": [
+          "p95 latency 2.4s (threshold 1.0s)",
+          "connection pool usage 92%"
+        ],
+        "last_checked": "2026-10-20T00:00:00+00:00"
+      },
+      "expected_manuals": [
+        "cpu-spike",
+        "high-latency"
+      ],
+      "actual_manuals": [
+        "cpu-spike",
+        "high-latency"
+      ],
+      "actual_action_documents": [
+        "cpu-spike",
+        "high-latency"
+      ],
+      "checks": {
+        "manuals": true,
+        "actions": true,
+        "facts": true,
+        "complete": true,
+        "no_condition_assertion": true
+      },
+      "status": "passed"
+    },
+    {
+      "id": "auth-cpu-90.0",
+      "fixed_observation": {
+        "system_name": "auth-service",
+        "status": "degraded",
+        "cpu_percent": 90.0,
+        "memory_percent": 61.0,
+        "alerts": [
+          "p95 latency 2.4s (threshold 1.0s)",
+          "connection pool usage 92%"
+        ],
+        "last_checked": "2026-10-20T00:00:00+00:00"
+      },
+      "expected_manuals": [
+        "cpu-spike",
+        "high-latency"
+      ],
+      "actual_manuals": [
+        "cpu-spike",
+        "high-latency"
+      ],
+      "actual_action_documents": [
+        "cpu-spike",
+        "high-latency"
+      ],
+      "checks": {
+        "manuals": true,
+        "actions": true,
+        "facts": true,
+        "complete": true,
+        "no_condition_assertion": true
+      },
+      "status": "passed"
+    },
+    {
+      "id": "auth-cpu-95.0",
+      "fixed_observation": {
+        "system_name": "auth-service",
+        "status": "degraded",
+        "cpu_percent": 95.0,
+        "memory_percent": 61.0,
+        "alerts": [
+          "p95 latency 2.4s (threshold 1.0s)",
+          "connection pool usage 92%"
+        ],
+        "last_checked": "2026-10-20T00:00:00+00:00"
+      },
+      "expected_manuals": [
+        "cpu-spike",
+        "high-latency"
+      ],
+      "actual_manuals": [
+        "cpu-spike",
+        "high-latency"
+      ],
+      "actual_action_documents": [
+        "cpu-spike",
+        "high-latency"
+      ],
+      "checks": {
+        "manuals": true,
+        "actions": true,
+        "facts": true,
+        "complete": true,
+        "no_condition_assertion": true
+      },
+      "status": "passed"
+    }
+  ],
+  "injected_reproduction": {
+    "id": "auth-missing-cpu-action",
+    "fault": "both drafts omit CPU document action",
+    "expected_safety": "reject then unverified; two writes; final actions empty",
+    "expected_diagnosis": "incomplete, must NOT count as quality pass",
+    "actual": {
+      "validation_status": "unverified",
+      "validations": [
+        {
+          "type": "Validation",
+          "attempt": 1,
+          "status": "rejected",
+          "issues": [
+            "매뉴얼 조치 누락: auth-service/doc:cpu-spike"
+          ],
+          "verdict": "불합격"
+        },
+        {
+          "type": "Validation",
+          "attempt": 2,
+          "status": "unverified",
+          "issues": [
+            "매뉴얼 조치 누락: auth-service/doc:cpu-spike"
+          ],
+          "verdict": "미통과(작성 한도 도달)"
+        }
+      ],
+      "report": {
+        "validation_status": "unverified",
+        "observations": [
+          {
+            "system_name": "auth-service",
+            "status": "degraded",
+            "last_checked": "2026-10-20T00:00:00+00:00",
+            "cpu_percent": 85.0,
+            "memory_percent": 61.0,
+            "alerts": [
+              "p95 latency 2.4s (threshold 1.0s)",
+              "connection pool 92% used"
+            ],
+            "evidence_id": "obs:auth-service"
+          }
+        ],
+        "analysis": [],
+        "actions": [],
+        "limitations": [
+          "작성 한도 내 근거 검증을 통과하지 못했습니다.",
+          "단일 관측이므로 지속 시간·복구·공통 원인을 확정할 수 없습니다.",
+          "활성 알림의 발생 시각은 제공되지 않아 알림 수치와 현재 측정값의 시점 일치를 확인하지 못했습니다."
+        ],
+        "sources": [
+          {
+            "id": "obs:auth-service",
+            "kind": "monitoring",
+            "system_name": "auth-service",
+            "usable": true,
+            "tool": "get_monitoring_status"
+          },
+          {
+            "id": "doc:high-latency",
+            "kind": "runbook",
+            "doc_id": "high-latency.md",
+            "uri": "runbook://incident-response/high-latency",
+            "related_systems": [
+              "auth-service"
+            ],
+            "selection_reasons": {
+              "auth-service": [
+                "활성 알림: p95 latency 2.4s (threshold 1.0s)",
+                "활성 알림: connection pool 92% used"
+              ]
+            }
+          },
+          {
+            "id": "doc:cpu-spike",
+            "kind": "runbook",
+            "doc_id": "cpu-spike.md",
+            "uri": "runbook://incident-response/cpu-spike",
+            "related_systems": [
+              "auth-service"
+            ],
+            "selection_reasons": {
+              "auth-service": [
+                "cpu_percent=85.0% (문서 선택 기준 80% 이상)"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "safety_passed": true,
+    "diagnosis_complete": false,
+    "fault_injected": true
+  }
+}

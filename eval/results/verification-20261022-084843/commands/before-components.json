@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/Users/hyeonmin/workspace/AI mini-project/.venv/bin/python",
+    "-B",
+    "eval/run_final_eval.py",
+    "--source",
+    "baseline/original",
+    "--output",
+    "/Users/hyeonmin/workspace/AI mini-project/eval/results/verification-20261022-084843/before-components.json"
+  ],
+  "cwd": "/Users/hyeonmin/workspace/AI mini-project",
+  "started_utc": "2026-10-21T23:49:06.749439+00:00",
+  "elapsed_seconds": 0.668,
+  "exit_code": 0,
+  "stdout": "logs/before-components.stdout.log",
+  "stderr": "logs/before-components.stderr.log"
+}

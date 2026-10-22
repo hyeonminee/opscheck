@@ -1,0 +1,38 @@
+[
+  {
+    "id": "live-auth-compound",
+    "original_flag": false,
+    "original_measurement_valid": false,
+    "reason": "transport stream_ended_at was set only on iterator exhaustion; adapter stops at [DONE] and closes early, so marker absent. Original result preserved.",
+    "first_text_received_at": 214558.509017833,
+    "first_write_completed_at": 214559.779633583,
+    "prefix_before_first_write_completed": true,
+    "lead_seconds": 1.270616,
+    "source": "live/results.json: original per-event monotonic timestamps, actual node-completed events; not another model execution",
+    "raw_sha256": "1bdc39985f22a779e4dbbb207d4543b5019ed0778b3242cfdbc919d9e3eac837"
+  },
+  {
+    "id": "live-multiple",
+    "original_flag": false,
+    "original_measurement_valid": false,
+    "reason": "transport stream_ended_at was set only on iterator exhaustion; adapter stops at [DONE] and closes early, so marker absent. Original result preserved.",
+    "first_text_received_at": 214564.729369,
+    "first_write_completed_at": 214566.856708458,
+    "prefix_before_first_write_completed": true,
+    "lead_seconds": 2.127339,
+    "source": "live/results.json: original per-event monotonic timestamps, actual node-completed events; not another model execution",
+    "raw_sha256": "1bdc39985f22a779e4dbbb207d4543b5019ed0778b3242cfdbc919d9e3eac837"
+  },
+  {
+    "id": "live-text-stream",
+    "original_flag": false,
+    "original_measurement_valid": false,
+    "reason": "transport stream_ended_at was set only on iterator exhaustion; adapter stops at [DONE] and closes early, so marker absent. Original result preserved.",
+    "first_text_received_at": 214568.527121083,
+    "first_write_completed_at": 214569.741314083,
+    "prefix_before_first_write_completed": true,
+    "lead_seconds": 1.214193,
+    "source": "live/results.json: original per-event monotonic timestamps, actual node-completed events; not another model execution",
+    "raw_sha256": "1bdc39985f22a779e4dbbb207d4543b5019ed0778b3242cfdbc919d9e3eac837"
+  }
+]

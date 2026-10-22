@@ -1,0 +1,9 @@
+{
+  "text_files_checked": 113,
+  "secret_value_matches": 0,
+  "matching_file_paths_only": [],
+  "secret_values_logged": false,
+  "scope": "current configured secret values; not an exhaustive secret-detection proof",
+  "personal_user_question_policy": "existing DB only read mode=ro; exported old records have pseudonyms/service/error summaries, not question text",
+  "new_db_policy": "temporary DBs include synthetic test queries/new authorized live outputs only"
+}

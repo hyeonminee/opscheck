@@ -1,0 +1,3 @@
+{"id": "live-auth-compound", "diagnosis_complete": false, "safety_passed": true, "prefix_before_writer_end": false, "api_calls": 3, "usage_total_tokens": 5008}
+{"id": "live-multiple", "diagnosis_complete": true, "safety_passed": true, "prefix_before_writer_end": false, "api_calls": 3, "usage_total_tokens": 3476}
+{"id": "live-text-stream", "diagnosis_complete": true, "safety_passed": true, "prefix_before_writer_end": false, "api_calls": 2, "usage_total_tokens": 2168}

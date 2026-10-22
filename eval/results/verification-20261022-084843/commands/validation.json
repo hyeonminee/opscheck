@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/Users/hyeonmin/workspace/AI mini-project/.venv/bin/python",
+    "-B",
+    "eval/run_validation.py",
+    "--output",
+    "/Users/hyeonmin/workspace/AI mini-project/eval/results/verification-20261022-084843/validation.json"
+  ],
+  "cwd": "/Users/hyeonmin/workspace/AI mini-project",
+  "started_utc": "2026-10-21T23:49:05.784909+00:00",
+  "elapsed_seconds": 0.964,
+  "exit_code": 0,
+  "stdout": "logs/validation.stdout.log",
+  "stderr": "logs/validation.stderr.log"
+}

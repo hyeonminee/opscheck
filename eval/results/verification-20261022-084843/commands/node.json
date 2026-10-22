@@ -1,0 +1,12 @@
+{
+  "command": [
+    "node",
+    "tests/test_web_session.cjs"
+  ],
+  "cwd": "/Users/hyeonmin/workspace/AI mini-project",
+  "started_utc": "2026-10-21T23:49:05.664011+00:00",
+  "elapsed_seconds": 0.121,
+  "exit_code": 0,
+  "stdout": "logs/node.stdout.log",
+  "stderr": "logs/node.stderr.log"
+}

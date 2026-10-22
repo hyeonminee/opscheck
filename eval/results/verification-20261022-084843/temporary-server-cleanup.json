@@ -1,0 +1,13 @@
+{
+  "sigterm_sent": [
+    {
+      "port": 18700,
+      "pid": 17954
+    },
+    {
+      "port": 18701,
+      "pid": 17940
+    }
+  ],
+  "user_ports_touched": false
+}

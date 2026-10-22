@@ -1,0 +1,15 @@
+{
+  "before": {
+    "height": 1100,
+    "width": 1440
+  },
+  "after": {
+    "height": 1100,
+    "width": 1440
+  },
+  "question": "payments-service와 cache-service 장애 진단",
+  "sameViewport": true,
+  "planningDouble": "only payments task; cache intentionally omitted in BOTH versions",
+  "observations": "tests/fixtures/monitoring.json",
+  "paidCalls": 0
+}

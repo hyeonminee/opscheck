@@ -1,0 +1,40 @@
+{
+  "question": "payments-service와 cache-service 장애 진단",
+  "expected_targets": [
+    "payments-service",
+    "cache-service"
+  ],
+  "shared_plan": [
+    "payments-service"
+  ],
+  "fault": "same missing-cache task injected before gate in both versions",
+  "before_observed_targets": [
+    "payments-service"
+  ],
+  "after_observed_targets": [
+    "payments-service",
+    "cache-service"
+  ],
+  "data_sha256": "a100f27ed3bbac814f9b30105aa19478925bb6d3ea3622982de4cf41528704df",
+  "viewport": {
+    "before": {
+      "height": 1100,
+      "width": 1440
+    },
+    "after": {
+      "height": 1100,
+      "width": 1440
+    },
+    "question": "payments-service와 cache-service 장애 진단",
+    "sameViewport": true,
+    "planningDouble": "only payments task; cache intentionally omitted in BOTH versions",
+    "observations": "tests/fixtures/monitoring.json",
+    "paidCalls": 0
+  },
+  "before_capture": "captures/before-pair-1440.jpg",
+  "after_capture": "captures/after-pair-1440.jpg",
+  "before_source": "/Users/hyeonmin/workspace/AI mini-project/baseline/original",
+  "after_commit": "4257de1e3536417bf9ea0af235f70a3b6801475b",
+  "model": "matched fixed planning double; answer adapters use each version contract, same cautious semantic content",
+  "note": "Original full graph and original HTML versus current full graph and current HTML. Real LLM Before/After, speed and cost NOT measured. Original UI label fake 실모델 is historical and does not make this a real-model test."
+}

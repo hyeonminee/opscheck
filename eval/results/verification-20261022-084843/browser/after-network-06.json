@@ -1,0 +1,937 @@
+[
+  {
+    "at": 215182.610310791,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "route:attempt:1",
+        "stage_id": "route",
+        "label": "요청 분류",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.070284+00:00",
+        "started_at": "2026-10-22T00:03:06.070284+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.610772083,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "route:attempt:1",
+        "stage_id": "route",
+        "label": "요청 분류",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.070740+00:00",
+        "started_at": "2026-10-22T00:03:06.070284+00:00",
+        "finished_at": "2026-10-22T00:03:06.070740+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.610805666,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:attempt:1",
+        "stage_id": "plan",
+        "label": "계획 수립",
+        "status": "pending",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.070750+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.610819916,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "gate:attempt:1",
+        "stage_id": "gate",
+        "label": "조사 계획 확인",
+        "status": "pending",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.070756+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.610852958,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "write:attempt:1",
+        "stage_id": "write",
+        "label": "답변 작성",
+        "status": "pending",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.070761+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.610868416,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "validate:attempt:1",
+        "stage_id": "validate",
+        "label": "근거 검증",
+        "status": "pending",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.070765+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.611135458,
+    "event": {
+      "type": "RouteDecided",
+      "route": "incident",
+      "node": "route"
+    }
+  },
+  {
+    "at": 215182.611662416,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:attempt:1",
+        "stage_id": "plan",
+        "label": "계획 수립",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.071663+00:00",
+        "started_at": "2026-10-22T00:03:06.071663+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.611868166,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:prompt-server:attempt:1",
+        "stage_id": "plan:prompt-server",
+        "label": "진단 절차 서버 탐색",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.071909+00:00",
+        "started_at": "2026-10-22T00:03:06.071909+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.611898791,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:prompt-server:attempt:1",
+        "stage_id": "plan:prompt-server",
+        "label": "진단 절차 서버 탐색",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.071983+00:00",
+        "started_at": "2026-10-22T00:03:06.071909+00:00",
+        "finished_at": "2026-10-22T00:03:06.071983+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.612094916,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:prompt:attempt:1",
+        "stage_id": "plan:prompt",
+        "label": "진단 절차 조회",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.072153+00:00",
+        "started_at": "2026-10-22T00:03:06.072153+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.6121125,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:prompt:attempt:1",
+        "stage_id": "plan:prompt",
+        "label": "진단 절차 조회",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.072224+00:00",
+        "started_at": "2026-10-22T00:03:06.072153+00:00",
+        "finished_at": "2026-10-22T00:03:06.072224+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.612255833,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:attempt:1",
+        "stage_id": "plan",
+        "label": "계획 수립",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.072356+00:00",
+        "started_at": "2026-10-22T00:03:06.071663+00:00",
+        "finished_at": "2026-10-22T00:03:06.072356+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.612746875,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "gate:attempt:1",
+        "stage_id": "gate",
+        "label": "조사 계획 확인",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.072741+00:00",
+        "started_at": "2026-10-22T00:03:06.072741+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.612984916,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "gate:attempt:1",
+        "stage_id": "gate",
+        "label": "조사 계획 확인",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.072980+00:00",
+        "started_at": "2026-10-22T00:03:06.072741+00:00",
+        "finished_at": "2026-10-22T00:03:06.072980+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.613008208,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "monitoring:cache-service:attempt:1",
+        "stage_id": "monitoring:cache-service",
+        "label": "cache-service 모니터링 조회",
+        "status": "pending",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.073003+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.613226583,
+    "event": {
+      "type": "GateApplied",
+      "removed_analysis_tasks": 0,
+      "node": "gate"
+    }
+  },
+  {
+    "at": 215182.613258,
+    "event": {
+      "type": "PlanCreated",
+      "task_count": 1,
+      "targets": [
+        "cache-service"
+      ],
+      "node": "gate"
+    }
+  },
+  {
+    "at": 215182.613856625,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "monitoring:cache-service:attempt:1",
+        "stage_id": "monitoring:cache-service",
+        "label": "cache-service 모니터링 조회",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.073939+00:00",
+        "started_at": "2026-10-22T00:03:06.073939+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.6139935,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "monitoring:cache-service:attempt:1",
+        "stage_id": "monitoring:cache-service",
+        "label": "cache-service 모니터링 조회",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.074030+00:00",
+        "started_at": "2026-10-22T00:03:06.073939+00:00",
+        "finished_at": "2026-10-22T00:03:06.074030+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.614171291,
+    "event": {
+      "type": "TaskCompleted",
+      "id": "task-monitoring-0",
+      "source": "monitoring",
+      "target": "cache-service",
+      "related_systems": [],
+      "retries": 0,
+      "node": "research"
+    }
+  },
+  {
+    "at": 215182.614665041,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "runbook:memory-leak:attempt:1",
+        "stage_id": "runbook:memory-leak",
+        "label": "memory-leak 대응 매뉴얼 조회",
+        "status": "pending",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.074705+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.615037833,
+    "event": {
+      "type": "RunbookSelection",
+      "selections": [
+        {
+          "system_name": "cache-service",
+          "status": "needs_manual",
+          "incident_types": [
+            "memory-leak"
+          ],
+          "reasons": {
+            "memory-leak": [
+              "활성 알림: memory usage climbing steadily over 6h",
+              "활성 알림: heap near limit"
+            ]
+          },
+          "limitations": []
+        }
+      ],
+      "node": "replan_check"
+    }
+  },
+  {
+    "at": 215182.615109208,
+    "event": {
+      "type": "ReplanCheck",
+      "round": 0,
+      "is_sufficient": false,
+      "needs_more_research": true,
+      "missing": [
+        "memory-leak"
+      ],
+      "limitations": [],
+      "node": "replan_check"
+    }
+  },
+  {
+    "at": 215182.615696791,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "runbook:memory-leak:server:attempt:1",
+        "stage_id": "runbook:memory-leak:server",
+        "label": "memory-leak 매뉴얼 서버 탐색",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.075778+00:00",
+        "started_at": "2026-10-22T00:03:06.075778+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.62113225,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "runbook:memory-leak:server:attempt:1",
+        "stage_id": "runbook:memory-leak:server",
+        "label": "memory-leak 매뉴얼 서버 탐색",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.075853+00:00",
+        "started_at": "2026-10-22T00:03:06.075778+00:00",
+        "finished_at": "2026-10-22T00:03:06.075853+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.621292333,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "runbook:memory-leak:attempt:1",
+        "stage_id": "runbook:memory-leak",
+        "label": "memory-leak 대응 매뉴얼 조회",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.075989+00:00",
+        "started_at": "2026-10-22T00:03:06.075989+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.621317083,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "runbook:memory-leak:attempt:1",
+        "stage_id": "runbook:memory-leak",
+        "label": "memory-leak 대응 매뉴얼 조회",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.081409+00:00",
+        "started_at": "2026-10-22T00:03:06.075989+00:00",
+        "finished_at": "2026-10-22T00:03:06.081409+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.621648583,
+    "event": {
+      "type": "TaskCompleted",
+      "id": "task-gap-memory-leak",
+      "source": "runbook",
+      "target": "memory-leak",
+      "related_systems": [
+        "cache-service"
+      ],
+      "retries": 0,
+      "node": "research"
+    }
+  },
+  {
+    "at": 215182.622470625,
+    "event": {
+      "type": "ReplanCheck",
+      "round": 1,
+      "is_sufficient": true,
+      "needs_more_research": false,
+      "missing": [],
+      "limitations": [],
+      "node": "replan_check"
+    }
+  },
+  {
+    "at": 215182.622741916,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "analysis:attempt:1",
+        "stage_id": "analysis",
+        "label": "관측 비교 분석",
+        "status": "skipped",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.082819+00:00",
+        "finished_at": "2026-10-22T00:03:06.082819+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.622947625,
+    "event": {
+      "type": "AnalysisSkipped",
+      "reason": "분석 작업 또는 확보한 모니터링 근거 없음",
+      "node": "analysis"
+    }
+  },
+  {
+    "at": 215182.623359291,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "write:attempt:1",
+        "stage_id": "write",
+        "label": "답변 작성",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.083369+00:00",
+        "started_at": "2026-10-22T00:03:06.083369+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.623560041,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.624305333,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "관측",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.624397,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "된 ",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.624500708,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "지표",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.624672875,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "와 ",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.624713541,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "증상",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.624729083,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "의 ",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.624814916,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": " 관련성",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.624826916,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "을 추가",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.62483525,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": " 확인할",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.624900416,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": " 필요가",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.624919416,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": " 있습니",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.62492875,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "다.",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215182.627113208,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "write:attempt:1",
+        "stage_id": "write",
+        "label": "답변 작성",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.087144+00:00",
+        "started_at": "2026-10-22T00:03:06.083369+00:00",
+        "finished_at": "2026-10-22T00:03:06.087144+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.627393583,
+    "event": {
+      "type": "DraftWritten",
+      "attempt": 1,
+      "length": 570,
+      "node": "write"
+    }
+  },
+  {
+    "at": 215182.627969916,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "validate:attempt:1",
+        "stage_id": "validate",
+        "label": "근거 검증",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.087839+00:00",
+        "started_at": "2026-10-22T00:03:06.087839+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.628266958,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "validate:attempt:1",
+        "stage_id": "validate",
+        "label": "근거 검증",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.088315+00:00",
+        "started_at": "2026-10-22T00:03:06.087839+00:00",
+        "finished_at": "2026-10-22T00:03:06.088315+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.628498,
+    "event": {
+      "type": "Validation",
+      "attempt": 1,
+      "status": "passed",
+      "issues": [],
+      "verdict": "합격",
+      "node": "validate"
+    }
+  },
+  {
+    "at": 215182.628941666,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "finalize:attempt:1",
+        "stage_id": "finalize",
+        "label": "최종 답변 정리",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.088960+00:00",
+        "started_at": "2026-10-22T00:03:06.088960+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.629078416,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "finalize:attempt:1",
+        "stage_id": "finalize",
+        "label": "최종 답변 정리",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:03:06.089187+00:00",
+        "started_at": "2026-10-22T00:03:06.088960+00:00",
+        "finished_at": "2026-10-22T00:03:06.089187+00:00"
+      }
+    }
+  },
+  {
+    "at": 215182.629166458,
+    "event": {
+      "type": "Finalize",
+      "pipeline": "incident-v2",
+      "processing_status": "completed",
+      "validation_status": "passed",
+      "node": "finalize"
+    }
+  },
+  {
+    "at": 215182.630414458,
+    "event": {
+      "type": "FinalAnswer",
+      "run_id": "e48d9fb7-0ad7-4be9-af23-5183cacf11af",
+      "reply": "검증 통과\n\n1) 관측값\n- cache-service: 상태=degraded, CPU 42.0%, 메모리 89.0%, 조회=2026-10-20T00:00:00+00:00 [obs:cache-service]\n  활성 알림(발생 시점 미확인): memory usage climbing steadily over 6h / heap near limit\n\n2) 분석\n- cache-service 가설(미확정): 관측된 지표와 증상의 관련성을 추가 확인할 필요가 있습니다. / 관측 status=degraded, cpu_percent=42.0, memory_percent=89.0 [obs:cache-service]\n\n3) 권장 조치\n- cache-service 조건부 제안: 조건·지속 여부 미확인. 해당 조건을 확인한 후에만 검토. get_monitoring_status로 메모리 사용률 추세(시간에 따라 꾸준히 증가하는지)를 확인한다. [obs:cache-service, doc:memory-leak; 단계 1]\n\n4) 미확인 사항\n- 단일 관측이므로 지속 시간·복구·공통 원인을 확정할 수 없습니다.\n- 활성 알림의 발생 시각은 제공되지 않아 알림 수치와 현재 측정값의 시점 일치를 확인하지 못했습니다.\n\n5) 출처\n- [obs:cache-service] get_monitoring_status · cache-service\n- [doc:memory-leak] memory-leak.md · runbook://incident-response/memory-leak",
+      "processing_status": "completed",
+      "validation_status": "passed",
+      "report": {
+        "validation_status": "passed",
+        "observations": [
+          {
+            "system_name": "cache-service",
+            "status": "degraded",
+            "last_checked": "2026-10-20T00:00:00+00:00",
+            "cpu_percent": 42.0,
+            "memory_percent": 89.0,
+            "alerts": [
+              "memory usage climbing steadily over 6h",
+              "heap near limit"
+            ],
+            "evidence_id": "obs:cache-service"
+          }
+        ],
+        "analysis": [
+          {
+            "system_name": "cache-service",
+            "hypothesis": "관측된 지표와 증상의 관련성을 추가 확인할 필요가 있습니다.",
+            "evidence_ids": [
+              "obs:cache-service"
+            ],
+            "claims": [
+              {
+                "evidence_id": "obs:cache-service",
+                "field": "status",
+                "value": "degraded"
+              },
+              {
+                "evidence_id": "obs:cache-service",
+                "field": "cpu_percent",
+                "value": 42.0
+              },
+              {
+                "evidence_id": "obs:cache-service",
+                "field": "memory_percent",
+                "value": 89.0
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "system_name": "cache-service",
+            "document_id": "doc:memory-leak",
+            "step_index": 1,
+            "evidence_ids": [
+              "obs:cache-service",
+              "doc:memory-leak"
+            ],
+            "condition_verified": false,
+            "condition": "조건·지속 여부 미확인. 해당 조건을 확인한 후에만 검토",
+            "text": "get_monitoring_status로 메모리 사용률 추세(시간에 따라 꾸준히 증가하는지)를 확인한다."
+          }
+        ],
+        "limitations": [
+          "단일 관측이므로 지속 시간·복구·공통 원인을 확정할 수 없습니다.",
+          "활성 알림의 발생 시각은 제공되지 않아 알림 수치와 현재 측정값의 시점 일치를 확인하지 못했습니다."
+        ],
+        "sources": [
+          {
+            "id": "obs:cache-service",
+            "kind": "monitoring",
+            "system_name": "cache-service",
+            "usable": true,
+            "tool": "get_monitoring_status"
+          },
+          {
+            "id": "doc:memory-leak",
+            "kind": "runbook",
+            "doc_id": "memory-leak.md",
+            "uri": "runbook://incident-response/memory-leak",
+            "related_systems": [
+              "cache-service"
+            ],
+            "selection_reasons": {
+              "cache-service": [
+                "활성 알림: memory usage climbing steadily over 6h",
+                "활성 알림: heap near limit"
+              ]
+            }
+          }
+        ]
+      },
+      "comparison": [
+        {
+          "system_name": "cache-service",
+          "status": "unavailable",
+          "previous_run_id": null,
+          "previous_checked": null,
+          "current_checked": "2026-10-20T00:00:00+00:00",
+          "interval_seconds": null,
+          "metrics": {},
+          "service_status": null,
+          "alerts": null,
+          "limitations": [
+            "같은 세션·서비스의 이전 성공 관측 없음"
+          ]
+        }
+      ],
+      "comparison_text": "이전·현재 비교 · 두 관측의 차이이며 복구 확정이 아닙니다.\n\ncache-service\n- 이전 조회: 미확인 / 현재 조회: 2026-10-20T00:00:00+00:00\n- 비교 불가: 같은 세션·서비스의 이전 성공 관측 없음",
+      "progress": [
+        {
+          "id": "route:attempt:1",
+          "stage_id": "route",
+          "label": "요청 분류",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:06.070740+00:00",
+          "started_at": "2026-10-22T00:03:06.070284+00:00",
+          "finished_at": "2026-10-22T00:03:06.070740+00:00"
+        },
+        {
+          "id": "plan:attempt:1",
+          "stage_id": "plan",
+          "label": "계획 수립",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:06.072356+00:00",
+          "started_at": "2026-10-22T00:03:06.071663+00:00",
+          "finished_at": "2026-10-22T00:03:06.072356+00:00"
+        },
+        {
+          "id": "gate:attempt:1",
+          "stage_id": "gate",
+          "label": "조사 계획 확인",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:06.072980+00:00",
+          "started_at": "2026-10-22T00:03:06.072741+00:00",
+          "finished_at": "2026-10-22T00:03:06.072980+00:00"
+        },
+        {
+          "id": "write:attempt:1",
+          "stage_id": "write",
+          "label": "답변 작성",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:06.087144+00:00",
+          "started_at": "2026-10-22T00:03:06.083369+00:00",
+          "finished_at": "2026-10-22T00:03:06.087144+00:00"
+        },
+        {
+          "id": "validate:attempt:1",
+          "stage_id": "validate",
+          "label": "근거 검증",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:06.088315+00:00",
+          "started_at": "2026-10-22T00:03:06.087839+00:00",
+          "finished_at": "2026-10-22T00:03:06.088315+00:00"
+        },
+        {
+          "id": "plan:prompt-server:attempt:1",
+          "stage_id": "plan:prompt-server",
+          "label": "진단 절차 서버 탐색",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:06.071983+00:00",
+          "started_at": "2026-10-22T00:03:06.071909+00:00",
+          "finished_at": "2026-10-22T00:03:06.071983+00:00"
+        },
+        {
+          "id": "plan:prompt:attempt:1",
+          "stage_id": "plan:prompt",
+          "label": "진단 절차 조회",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:06.072224+00:00",
+          "started_at": "2026-10-22T00:03:06.072153+00:00",
+          "finished_at": "2026-10-22T00:03:06.072224+00:00"
+        },
+        {
+          "id": "monitoring:cache-service:attempt:1",
+          "stage_id": "monitoring:cache-service",
+          "label": "cache-service 모니터링 조회",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:06.074030+00:00",
+          "started_at": "2026-10-22T00:03:06.073939+00:00",
+          "finished_at": "2026-10-22T00:03:06.074030+00:00"
+        },
+        {
+          "id": "runbook:memory-leak:attempt:1",
+          "stage_id": "runbook:memory-leak",
+          "label": "memory-leak 대응 매뉴얼 조회",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:06.081409+00:00",
+          "started_at": "2026-10-22T00:03:06.075989+00:00",
+          "finished_at": "2026-10-22T00:03:06.081409+00:00"
+        },
+        {
+          "id": "runbook:memory-leak:server:attempt:1",
+          "stage_id": "runbook:memory-leak:server",
+          "label": "memory-leak 매뉴얼 서버 탐색",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:06.075853+00:00",
+          "started_at": "2026-10-22T00:03:06.075778+00:00",
+          "finished_at": "2026-10-22T00:03:06.075853+00:00"
+        },
+        {
+          "id": "analysis:attempt:1",
+          "stage_id": "analysis",
+          "label": "관측 비교 분석",
+          "status": "skipped",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:06.082819+00:00",
+          "finished_at": "2026-10-22T00:03:06.082819+00:00"
+        },
+        {
+          "id": "finalize:attempt:1",
+          "stage_id": "finalize",
+          "label": "최종 답변 정리",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:03:06.089187+00:00",
+          "started_at": "2026-10-22T00:03:06.088960+00:00",
+          "finished_at": "2026-10-22T00:03:06.089187+00:00"
+        }
+      ],
+      "langsmith_run_id": null
+    }
+  },
+  {
+    "at": 215182.630434625,
+    "event": "[DONE]"
+  }
+]

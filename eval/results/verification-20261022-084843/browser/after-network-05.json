@@ -1,0 +1,954 @@
+[
+  {
+    "at": 215062.86092275,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "route:attempt:1",
+        "stage_id": "route",
+        "label": "요청 분류",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.320620+00:00",
+        "started_at": "2026-10-22T00:01:06.320620+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.861640208,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "route:attempt:1",
+        "stage_id": "route",
+        "label": "요청 분류",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.321131+00:00",
+        "started_at": "2026-10-22T00:01:06.320620+00:00",
+        "finished_at": "2026-10-22T00:01:06.321131+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.861764083,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:attempt:1",
+        "stage_id": "plan",
+        "label": "계획 수립",
+        "status": "pending",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.321152+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.861934375,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "gate:attempt:1",
+        "stage_id": "gate",
+        "label": "조사 계획 확인",
+        "status": "pending",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.321165+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.862017291,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "write:attempt:1",
+        "stage_id": "write",
+        "label": "답변 작성",
+        "status": "pending",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.321175+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.862084291,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "validate:attempt:1",
+        "stage_id": "validate",
+        "label": "근거 검증",
+        "status": "pending",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.321184+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.862698125,
+    "event": {
+      "type": "RouteDecided",
+      "route": "incident",
+      "node": "route"
+    }
+  },
+  {
+    "at": 215062.8636135,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:attempt:1",
+        "stage_id": "plan",
+        "label": "계획 수립",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.323177+00:00",
+        "started_at": "2026-10-22T00:01:06.323177+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.863909833,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:prompt-server:attempt:1",
+        "stage_id": "plan:prompt-server",
+        "label": "진단 절차 서버 탐색",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.323630+00:00",
+        "started_at": "2026-10-22T00:01:06.323630+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.863952458,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:prompt-server:attempt:1",
+        "stage_id": "plan:prompt-server",
+        "label": "진단 절차 서버 탐색",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.323733+00:00",
+        "started_at": "2026-10-22T00:01:06.323630+00:00",
+        "finished_at": "2026-10-22T00:01:06.323733+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.864238083,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:prompt:attempt:1",
+        "stage_id": "plan:prompt",
+        "label": "진단 절차 조회",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.323937+00:00",
+        "started_at": "2026-10-22T00:01:06.323937+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.864275375,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:prompt:attempt:1",
+        "stage_id": "plan:prompt",
+        "label": "진단 절차 조회",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.324039+00:00",
+        "started_at": "2026-10-22T00:01:06.323937+00:00",
+        "finished_at": "2026-10-22T00:01:06.324039+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.864470791,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "plan:attempt:1",
+        "stage_id": "plan",
+        "label": "계획 수립",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.324242+00:00",
+        "started_at": "2026-10-22T00:01:06.323177+00:00",
+        "finished_at": "2026-10-22T00:01:06.324242+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.865209375,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "gate:attempt:1",
+        "stage_id": "gate",
+        "label": "조사 계획 확인",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.324869+00:00",
+        "started_at": "2026-10-22T00:01:06.324869+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.865441833,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "gate:attempt:1",
+        "stage_id": "gate",
+        "label": "조사 계획 확인",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.325214+00:00",
+        "started_at": "2026-10-22T00:01:06.324869+00:00",
+        "finished_at": "2026-10-22T00:01:06.325214+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.865480916,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "monitoring:payments-service:attempt:1",
+        "stage_id": "monitoring:payments-service",
+        "label": "payments-service 모니터링 조회",
+        "status": "pending",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.325232+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.865625291,
+    "event": {
+      "type": "GateApplied",
+      "removed_analysis_tasks": 0,
+      "node": "gate"
+    }
+  },
+  {
+    "at": 215062.865658375,
+    "event": {
+      "type": "PlanCreated",
+      "task_count": 1,
+      "targets": [
+        "payments-service"
+      ],
+      "node": "gate"
+    }
+  },
+  {
+    "at": 215062.866417291,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "monitoring:payments-service:attempt:1",
+        "stage_id": "monitoring:payments-service",
+        "label": "payments-service 모니터링 조회",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.326166+00:00",
+        "started_at": "2026-10-22T00:01:06.326166+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.866577041,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "monitoring:payments-service:attempt:1",
+        "stage_id": "monitoring:payments-service",
+        "label": "payments-service 모니터링 조회",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.326286+00:00",
+        "started_at": "2026-10-22T00:01:06.326166+00:00",
+        "finished_at": "2026-10-22T00:01:06.326286+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.866820833,
+    "event": {
+      "type": "TaskCompleted",
+      "id": "task-monitoring-0",
+      "source": "monitoring",
+      "target": "payments-service",
+      "related_systems": [],
+      "retries": 0,
+      "node": "research"
+    }
+  },
+  {
+    "at": 215062.867655458,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "runbook:cpu-spike:attempt:1",
+        "stage_id": "runbook:cpu-spike",
+        "label": "cpu-spike 대응 매뉴얼 조회",
+        "status": "pending",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.327287+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.867987875,
+    "event": {
+      "type": "RunbookSelection",
+      "selections": [
+        {
+          "system_name": "payments-service",
+          "status": "needs_manual",
+          "incident_types": [
+            "cpu-spike"
+          ],
+          "reasons": {
+            "cpu-spike": [
+              "활성 알림: CPU 91% (threshold 80%)"
+            ]
+          },
+          "limitations": []
+        }
+      ],
+      "node": "replan_check"
+    }
+  },
+  {
+    "at": 215062.868019833,
+    "event": {
+      "type": "ReplanCheck",
+      "round": 0,
+      "is_sufficient": false,
+      "needs_more_research": true,
+      "missing": [
+        "cpu-spike"
+      ],
+      "limitations": [],
+      "node": "replan_check"
+    }
+  },
+  {
+    "at": 215062.86878625,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "runbook:cpu-spike:server:attempt:1",
+        "stage_id": "runbook:cpu-spike:server",
+        "label": "cpu-spike 매뉴얼 서버 탐색",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.328505+00:00",
+        "started_at": "2026-10-22T00:01:06.328505+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.869316291,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "runbook:cpu-spike:server:attempt:1",
+        "stage_id": "runbook:cpu-spike:server",
+        "label": "cpu-spike 매뉴얼 서버 탐색",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.328598+00:00",
+        "started_at": "2026-10-22T00:01:06.328505+00:00",
+        "finished_at": "2026-10-22T00:01:06.328598+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.86935475,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "runbook:cpu-spike:attempt:1",
+        "stage_id": "runbook:cpu-spike",
+        "label": "cpu-spike 대응 매뉴얼 조회",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.328835+00:00",
+        "started_at": "2026-10-22T00:01:06.328835+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.8695685,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "runbook:cpu-spike:attempt:1",
+        "stage_id": "runbook:cpu-spike",
+        "label": "cpu-spike 대응 매뉴얼 조회",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.329352+00:00",
+        "started_at": "2026-10-22T00:01:06.328835+00:00",
+        "finished_at": "2026-10-22T00:01:06.329352+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.869852833,
+    "event": {
+      "type": "TaskCompleted",
+      "id": "task-gap-cpu-spike",
+      "source": "runbook",
+      "target": "cpu-spike",
+      "related_systems": [
+        "payments-service"
+      ],
+      "retries": 0,
+      "node": "research"
+    }
+  },
+  {
+    "at": 215062.871008583,
+    "event": {
+      "type": "ReplanCheck",
+      "round": 1,
+      "is_sufficient": true,
+      "needs_more_research": false,
+      "missing": [],
+      "limitations": [],
+      "node": "replan_check"
+    }
+  },
+  {
+    "at": 215062.871990125,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "analysis:attempt:1",
+        "stage_id": "analysis",
+        "label": "관측 비교 분석",
+        "status": "skipped",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.331446+00:00",
+        "finished_at": "2026-10-22T00:01:06.331446+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.872423708,
+    "event": {
+      "type": "AnalysisSkipped",
+      "reason": "분석 작업 또는 확보한 모니터링 근거 없음",
+      "node": "analysis"
+    }
+  },
+  {
+    "at": 215062.873358083,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "write:attempt:1",
+        "stage_id": "write",
+        "label": "답변 작성",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.332935+00:00",
+        "started_at": "2026-10-22T00:01:06.332935+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.873837083,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.874848958,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "관",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.87491675,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "측된",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.874944958,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": " 지",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.875087916,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "표와",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.875117791,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": " 증",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.875137083,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "상의",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.875270125,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": " 관련성",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.875297958,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "을 추가",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.875316833,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": " 확인할",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.875438083,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": " 필요가",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.875464208,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": " 있습니",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.875483041,
+    "event": {
+      "type": "AnswerToken",
+      "attempt": 1,
+      "delta": "다.",
+      "validation_status": "pending"
+    }
+  },
+  {
+    "at": 215062.878530708,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "write:attempt:1",
+        "stage_id": "write",
+        "label": "답변 작성",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.338077+00:00",
+        "started_at": "2026-10-22T00:01:06.332935+00:00",
+        "finished_at": "2026-10-22T00:01:06.338077+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.878907458,
+    "event": {
+      "type": "DraftWritten",
+      "attempt": 1,
+      "length": 587,
+      "node": "write"
+    }
+  },
+  {
+    "at": 215062.87996,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "validate:attempt:1",
+        "stage_id": "validate",
+        "label": "근거 검증",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.339363+00:00",
+        "started_at": "2026-10-22T00:01:06.339363+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.880339791,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "validate:attempt:1",
+        "stage_id": "validate",
+        "label": "근거 검증",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.339970+00:00",
+        "started_at": "2026-10-22T00:01:06.339363+00:00",
+        "finished_at": "2026-10-22T00:01:06.339970+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.880646916,
+    "event": {
+      "type": "Validation",
+      "attempt": 1,
+      "status": "passed",
+      "issues": [],
+      "verdict": "합격",
+      "node": "validate"
+    }
+  },
+  {
+    "at": 215062.881788958,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "finalize:attempt:1",
+        "stage_id": "finalize",
+        "label": "최종 답변 정리",
+        "status": "running",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.341366+00:00",
+        "started_at": "2026-10-22T00:01:06.341366+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.882025916,
+    "event": {
+      "type": "Progress",
+      "step": {
+        "id": "finalize:attempt:1",
+        "stage_id": "finalize",
+        "label": "최종 답변 정리",
+        "status": "completed",
+        "attempt": 1,
+        "updated_at": "2026-10-22T00:01:06.341801+00:00",
+        "started_at": "2026-10-22T00:01:06.341366+00:00",
+        "finished_at": "2026-10-22T00:01:06.341801+00:00"
+      }
+    }
+  },
+  {
+    "at": 215062.882160125,
+    "event": {
+      "type": "Finalize",
+      "pipeline": "incident-v2",
+      "processing_status": "completed",
+      "validation_status": "passed",
+      "node": "finalize"
+    }
+  },
+  {
+    "at": 215062.887473291,
+    "event": {
+      "type": "FinalAnswer",
+      "run_id": "4206bb43-0e86-4ba6-8931-d037b0cf08ba",
+      "reply": "검증 통과\n\n1) 관측값\n- payments-service: 상태=degraded, CPU 71.0%, 메모리 50.0%, 조회=2026-10-20T00:01:00+00:00 [obs:payments-service]\n  활성 알림(발생 시점 미확인): CPU 91% (threshold 80%) / payments-service-3 instance responding slow\n\n2) 분석\n- payments-service 가설(미확정): 관측된 지표와 증상의 관련성을 추가 확인할 필요가 있습니다. / 관측 status=degraded, cpu_percent=71.0, memory_percent=50.0 [obs:payments-service]\n\n3) 권장 조치\n- payments-service 조건부 제안: 조건·지속 여부 미확인. 해당 조건을 확인한 후에만 검토. get_monitoring_status로 CPU 사용률과 최근 배포/트래픽 변화 시점을 확인한다. [obs:payments-service, doc:cpu-spike; 단계 1]\n\n4) 미확인 사항\n- 단일 관측이므로 지속 시간·복구·공통 원인을 확정할 수 없습니다.\n- 활성 알림의 발생 시각은 제공되지 않아 알림 수치와 현재 측정값의 시점 일치를 확인하지 못했습니다.\n\n5) 출처\n- [obs:payments-service] get_monitoring_status · payments-service\n- [doc:cpu-spike] cpu-spike.md · runbook://incident-response/cpu-spike",
+      "processing_status": "completed",
+      "validation_status": "passed",
+      "report": {
+        "validation_status": "passed",
+        "observations": [
+          {
+            "system_name": "payments-service",
+            "status": "degraded",
+            "last_checked": "2026-10-20T00:01:00+00:00",
+            "cpu_percent": 71.0,
+            "memory_percent": 50.0,
+            "alerts": [
+              "CPU 91% (threshold 80%)",
+              "payments-service-3 instance responding slow"
+            ],
+            "evidence_id": "obs:payments-service"
+          }
+        ],
+        "analysis": [
+          {
+            "system_name": "payments-service",
+            "hypothesis": "관측된 지표와 증상의 관련성을 추가 확인할 필요가 있습니다.",
+            "evidence_ids": [
+              "obs:payments-service"
+            ],
+            "claims": [
+              {
+                "evidence_id": "obs:payments-service",
+                "field": "status",
+                "value": "degraded"
+              },
+              {
+                "evidence_id": "obs:payments-service",
+                "field": "cpu_percent",
+                "value": 71.0
+              },
+              {
+                "evidence_id": "obs:payments-service",
+                "field": "memory_percent",
+                "value": 50.0
+              }
+            ]
+          }
+        ],
+        "actions": [
+          {
+            "system_name": "payments-service",
+            "document_id": "doc:cpu-spike",
+            "step_index": 1,
+            "evidence_ids": [
+              "obs:payments-service",
+              "doc:cpu-spike"
+            ],
+            "condition_verified": false,
+            "condition": "조건·지속 여부 미확인. 해당 조건을 확인한 후에만 검토",
+            "text": "get_monitoring_status로 CPU 사용률과 최근 배포/트래픽 변화 시점을 확인한다."
+          }
+        ],
+        "limitations": [
+          "단일 관측이므로 지속 시간·복구·공통 원인을 확정할 수 없습니다.",
+          "활성 알림의 발생 시각은 제공되지 않아 알림 수치와 현재 측정값의 시점 일치를 확인하지 못했습니다."
+        ],
+        "sources": [
+          {
+            "id": "obs:payments-service",
+            "kind": "monitoring",
+            "system_name": "payments-service",
+            "usable": true,
+            "tool": "get_monitoring_status"
+          },
+          {
+            "id": "doc:cpu-spike",
+            "kind": "runbook",
+            "doc_id": "cpu-spike.md",
+            "uri": "runbook://incident-response/cpu-spike",
+            "related_systems": [
+              "payments-service"
+            ],
+            "selection_reasons": {
+              "payments-service": [
+                "활성 알림: CPU 91% (threshold 80%)"
+              ]
+            }
+          }
+        ]
+      },
+      "comparison": [
+        {
+          "system_name": "payments-service",
+          "status": "compared",
+          "previous_run_id": "0e539678-70ae-447d-86b0-c13afbbc48c0",
+          "previous_checked": "2026-10-20T00:00:00+00:00",
+          "current_checked": "2026-10-20T00:01:00+00:00",
+          "interval_seconds": 60.0,
+          "metrics": {
+            "cpu_percent": {
+              "previous": 91.0,
+              "current": 71.0,
+              "delta_pp": -20.0
+            },
+            "memory_percent": {
+              "previous": 55.0,
+              "current": 50.0,
+              "delta_pp": -5.0
+            }
+          },
+          "service_status": {
+            "previous": "degraded",
+            "current": "degraded"
+          },
+          "alerts": {
+            "added": [],
+            "resolved": [],
+            "unchanged": [
+              "CPU 91% (threshold 80%)",
+              "payments-service-3 instance responding slow"
+            ]
+          },
+          "limitations": []
+        }
+      ],
+      "comparison_text": "이전·현재 비교 · 두 관측의 차이이며 복구 확정이 아닙니다.\n\npayments-service\n- 이전 조회: 2026-10-20T00:00:00+00:00 / 현재 조회: 2026-10-20T00:01:00+00:00\n- 비교한 이전 조사: 0e539678-70ae-447d-86b0-c13afbbc48c0\n- 관측 간격: 60.0초\n- CPU: 91.0% → 71.0% (-20%p)\n- 메모리: 55.0% → 50.0% (-5%p)\n- 상태: degraded → degraded\n- 새 알림: 없음\n- 해소 알림: 없음\n- 유지 알림: CPU 91% (threshold 80%) / payments-service-3 instance responding slow\n- 알림은 문자열의 추가·삭제 비교이며 실제 장애 발생·해소 확정이 아닙니다.",
+      "progress": [
+        {
+          "id": "route:attempt:1",
+          "stage_id": "route",
+          "label": "요청 분류",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:01:06.321131+00:00",
+          "started_at": "2026-10-22T00:01:06.320620+00:00",
+          "finished_at": "2026-10-22T00:01:06.321131+00:00"
+        },
+        {
+          "id": "plan:attempt:1",
+          "stage_id": "plan",
+          "label": "계획 수립",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:01:06.324242+00:00",
+          "started_at": "2026-10-22T00:01:06.323177+00:00",
+          "finished_at": "2026-10-22T00:01:06.324242+00:00"
+        },
+        {
+          "id": "gate:attempt:1",
+          "stage_id": "gate",
+          "label": "조사 계획 확인",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:01:06.325214+00:00",
+          "started_at": "2026-10-22T00:01:06.324869+00:00",
+          "finished_at": "2026-10-22T00:01:06.325214+00:00"
+        },
+        {
+          "id": "write:attempt:1",
+          "stage_id": "write",
+          "label": "답변 작성",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:01:06.338077+00:00",
+          "started_at": "2026-10-22T00:01:06.332935+00:00",
+          "finished_at": "2026-10-22T00:01:06.338077+00:00"
+        },
+        {
+          "id": "validate:attempt:1",
+          "stage_id": "validate",
+          "label": "근거 검증",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:01:06.339970+00:00",
+          "started_at": "2026-10-22T00:01:06.339363+00:00",
+          "finished_at": "2026-10-22T00:01:06.339970+00:00"
+        },
+        {
+          "id": "plan:prompt-server:attempt:1",
+          "stage_id": "plan:prompt-server",
+          "label": "진단 절차 서버 탐색",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:01:06.323733+00:00",
+          "started_at": "2026-10-22T00:01:06.323630+00:00",
+          "finished_at": "2026-10-22T00:01:06.323733+00:00"
+        },
+        {
+          "id": "plan:prompt:attempt:1",
+          "stage_id": "plan:prompt",
+          "label": "진단 절차 조회",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:01:06.324039+00:00",
+          "started_at": "2026-10-22T00:01:06.323937+00:00",
+          "finished_at": "2026-10-22T00:01:06.324039+00:00"
+        },
+        {
+          "id": "monitoring:payments-service:attempt:1",
+          "stage_id": "monitoring:payments-service",
+          "label": "payments-service 모니터링 조회",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:01:06.326286+00:00",
+          "started_at": "2026-10-22T00:01:06.326166+00:00",
+          "finished_at": "2026-10-22T00:01:06.326286+00:00"
+        },
+        {
+          "id": "runbook:cpu-spike:attempt:1",
+          "stage_id": "runbook:cpu-spike",
+          "label": "cpu-spike 대응 매뉴얼 조회",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:01:06.329352+00:00",
+          "started_at": "2026-10-22T00:01:06.328835+00:00",
+          "finished_at": "2026-10-22T00:01:06.329352+00:00"
+        },
+        {
+          "id": "runbook:cpu-spike:server:attempt:1",
+          "stage_id": "runbook:cpu-spike:server",
+          "label": "cpu-spike 매뉴얼 서버 탐색",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:01:06.328598+00:00",
+          "started_at": "2026-10-22T00:01:06.328505+00:00",
+          "finished_at": "2026-10-22T00:01:06.328598+00:00"
+        },
+        {
+          "id": "analysis:attempt:1",
+          "stage_id": "analysis",
+          "label": "관측 비교 분석",
+          "status": "skipped",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:01:06.331446+00:00",
+          "finished_at": "2026-10-22T00:01:06.331446+00:00"
+        },
+        {
+          "id": "finalize:attempt:1",
+          "stage_id": "finalize",
+          "label": "최종 답변 정리",
+          "status": "completed",
+          "attempt": 1,
+          "updated_at": "2026-10-22T00:01:06.341801+00:00",
+          "started_at": "2026-10-22T00:01:06.341366+00:00",
+          "finished_at": "2026-10-22T00:01:06.341801+00:00"
+        }
+      ],
+      "langsmith_run_id": null
+    }
+  },
+  {
+    "at": 215062.887549375,
+    "event": "[DONE]"
+  }
+]

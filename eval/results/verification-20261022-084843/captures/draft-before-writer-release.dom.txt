@@ -1,0 +1,50 @@
+- banner:
+  - generic: AI
+  - heading "운영 진단 워크스페이스" [level=1]
+  - paragraph: 서비스의 상태를 확인하고, 근거로 판단하세요.
+  - navigation "대화 메뉴":
+    - button "조사 이력" [disabled]
+    - button "새 대화" [disabled]
+- main "서비스 진단":
+  - paragraph: 수업 샘플 데이터 · 운영 조치는 자동 실행되지 않습니다.
+  - generic "연결 정보"
+  - log "진단 대화":
+    - generic: 나
+    - generic: payments-service와 cache-service 실시간 장애 진단
+    - generic "진단 진행 중 · 12단계 · 40이벤트":
+      - strong: 진단 진행 중
+      - text: · 12단계 · 40이벤트
+    - generic: ✓
+    - generic: 요청 분류 · 완료
+    - generic: ✓
+    - generic: 계획 수립 · 완료
+    - generic: ✓
+    - generic: 조사 계획 확인 · 완료
+    - generic: ●
+    - generic: 답변 작성 · 진행 중…
+    - generic: ○
+    - generic: 근거 검증 · 대기
+    - generic: ✓
+    - generic: 진단 절차 서버 탐색 · 완료
+    - generic: ✓
+    - generic: 진단 절차 조회 · 완료
+    - generic: ✓
+    - generic: payments-service 모니터링 조회 · 완료
+    - generic: "!"
+    - generic: cache-service 모니터링 조회 · 실패
+    - generic: "!"
+    - generic: cache-service 모니터링 조회 · 시도 2 · 실패
+    - generic: ✓
+    - generic: cpu-spike 대응 매뉴얼 조회 · 완료
+    - generic: ✓
+    - generic: cpu-spike 매뉴얼 서버 탐색 · 완료
+    - generic: –
+    - generic: 관측 비교 분석 · 건너뜀
+    - generic: 진단 어시스턴트
+    - strong: 검증 전 초안
+    - generic: 추가 확인이 필요한
+  - textbox "서비스 이름과 증상 입력":
+    - /placeholder: 서비스 이름과 증상을 입력하세요
+  - button "확인 중…" [disabled]
+  - generic: 서비스 이름을 함께 입력하면 더 정확히 조사할 수 있습니다.
+  - generic: Enter로 전송

@@ -1,0 +1,1 @@
+PASS: restore, stable thread ID, new conversation, duplicate submit guard, DONE completion, timeout/network error, pending/rejected/passed report/general chat, history list/detail, new-session reset stale-response isolation, comparison rendering and Markdown download URL
