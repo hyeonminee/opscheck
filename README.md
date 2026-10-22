@@ -17,6 +17,8 @@
 - 대화 복원, 후속 질문의 새 조사, 전체/현재 대화 조사 이력·커서 페이지 조회
 - 이전·현재 관측 비교(%p·상태·알림), Markdown 보고서 다운로드
 - 실제 작업 시작·개별 완료·재시도를 SSE로 표시하고 처리 과정을 저장하는 Vue 화면
+- 답변 텍스트 점진 표시: 작성 중 가설은 OpenAI 응답 스트림으로 '검증 전' 초안에 표시하고, 최종 5개 영역 보고서는 검증 후 점진 표시
+- 요청·하위 호출·저장된 조사 ID를 하나의 LangSmith 요청 추적으로 연결(추적 설정을 켠 경우)
 
 ## 기술 구성
 
@@ -26,7 +28,7 @@
 | 외부 자료 | MCP Tool·Resource·Prompt |
 | 모델 | fake, Ollama, OpenAI 선택 |
 | 화면·전달 | Vue 3 CDN, SSE, 동일 출처 프록시 |
-| 저장·검증 | SQLite, Pydantic, unittest·Node 검사 |
+| 저장·검증 | SQLite, Pydantic, unittest·Node 검사, LangSmith 추적(선택) |
 
 ## 실행
 
@@ -71,7 +73,7 @@ node tests/test_web_session.cjs
 .venv/bin/python -B eval/run_final_eval.py --output /tmp/opscheck-after.json
 ```
 
-2026-10-21 로컬 검증에서 Python 107개와 Node 검사를 통과했습니다. 전후 비교는 동일 노드 입력·고정 관측을 사용하며 실제 모델 전체 정확도나 속도 개선율을 뜻하지 않습니다. 검증기의 자유형/JSON 계약 차이는 결과 보고서에 명시했습니다.
+2026-10-22 로컬 검증에서 Python 130개와 Node 화면 검사, 검증셋 자동 판정 35개(연결 계약 4개는 Python 테스트에 포함)를 통과했습니다. 전후 비교는 동일 노드 입력·고정 관측을 사용하며 실제 모델 전체 정확도나 속도 개선율을 뜻하지 않습니다. 검증기의 자유형/JSON 계약 차이는 결과 보고서에 명시했습니다.
 
 | 고정 검사 | 원본 | 개선 |
 |---|---:|---:|
@@ -80,16 +82,19 @@ node tests/test_web_session.cjs
 | 오류 초안 차단 | 0/7 | 7/7 |
 | 올바른 초안 오차단 | 0/2 | 0/2 |
 
+실제 OpenAI + 실제 MCP로 진단 3건을 실행한 결과, 2건은 진단을 완료했고 auth-service 복합 증상 1건은 선택된 CPU 매뉴얼의 조치가 두 번 모두 빠져 검증 미통과로 종료했습니다(안전하게 차단했지만 답변 완성은 실패). 3건의 실제 사용 토큰은 10,652개이며 청구액은 측정하지 않았습니다. 소수 사례이므로 전체 정확도로 해석하지 않습니다. 자세한 내용은 [최종 평가 검증 보고서](doc/FINAL_EVALUATION_20261022_084843.md)에 있습니다.
+
 ## 문서·발표
 
 - [실행 메인 매뉴얼](doc/README.md)
 - [최종 결과 보고서](doc/FINAL_REPORT.md)
 - [프로젝트 이해 가이드](doc/PROJECT_GUIDE.md)
 - [설계 결정과 한계](doc/ADR.md)
+- [최종 평가 검증 보고서](doc/FINAL_EVALUATION_20261022_084843.md) · [개선 전후 증거](doc/BEFORE_AFTER_EVIDENCE.md)
 - [발표 대본](doc/PRESENTATION_SCRIPT.md) · [발표 PPT](submission/AI_Mini_Project_Presentation.pptx)
 - [커밋 메시지·작업 지침](AGENTS.md)
 
-`baseline/original/`은 개선 전 수업 코드입니다. 개인 개발 로그·대화 DB·설정·생성 ZIP·예전 수업 캡처는 공개 파일에서 제외했습니다. 과거 단계 문서의 로컬 경로와 개발 로그 참조는 공개 저장소에서 열리지 않을 수 있습니다. 화면은 아래 최신 UI를 기준으로 확인합니다. PPT의 화면은 UI 변경 전 기능 검증 캡처입니다.
+`baseline/original/`은 개선 전 수업 코드입니다. 개인 개발 로그·대화 DB·설정·생성 ZIP·예전 수업 캡처는 공개 파일에서 제외했습니다. 과거 단계 문서의 로컬 경로와 개발 로그 참조는 공개 저장소에서 열리지 않을 수 있습니다. 화면은 아래 최신 UI를 기준으로 확인합니다. 위 발표 대본·PPT는 Phase 7 시점(Python 107개, 실모델 3건 통과) 기준이라 최신 결과(130개, 실모델 2건 완료·1건 실패)와 다릅니다. 최신 발표 초안은 [PRESENTATION_DRAFT_20261022_084843.md](doc/PRESENTATION_DRAFT_20261022_084843.md)를 참고하세요.
 
 ![진단 보고서와 조사 이력](doc/verification/ui-report.png)
 
@@ -100,9 +105,14 @@ node tests/test_web_session.cjs
 - 두 관측 비교만 제공하며 추세·복구·재발을 판정하지 않습니다.
 - SQLite 단일 서버 실습이며 `thread_id`는 사용자 인증 수단이 아닙니다.
 - v1은 레거시 경로로, v2와 같은 개선 기능을 제공하지 않습니다.
+- auth-service 같은 복합 증상에서 선택된 모든 매뉴얼의 조치를 작성하지 못해 검증 미통과로 끝날 수 있습니다. 최종 평가에서 실제 모델로 재현했고, 수정안은 제안만 하고 적용하지 않았습니다.
 
-후속 개발: [Phase 8 검증셋](doc/VALIDATION_DATASET.md) · [Phase 9 전체 이력](doc/PHASE9_RESULT.md). 전체 이력은 인증 없는 개인 실습용으로 같은 DB의 기록을 통합한다.
+## 후속 개발 기록
 
-[Phase 10 실시간 진행 결과](doc/PHASE10_RESULT.md): 후속 검증에서 Python119개·Node·고정 판정35개 통과. 실제 HTTP/프록시의 작업 도중 수신을 검사했다. 이전 107개/Phase 7 결과는 당시 기록으로 보존한다.
+- [Phase 8 검증셋](doc/VALIDATION_DATASET.md): 정답 검증셋 39개(자동 판정 35·연결 계약 4)
+- [Phase 9 전체 이력](doc/PHASE9_RESULT.md): 인증 없는 개인 실습용으로 같은 DB의 기록을 통합 조회
+- [Phase 10 실시간 진행](doc/PHASE10_RESULT.md): 실제 작업 단계에 연결한 진행 상태
+- [LangSmith SSE 요청 추적](doc/LANGSMITH_SSE_VERIFICATION.md): 요청·하위 호출·저장 조사 ID 연결. 외부 대시보드 수집은 별도 확인이 필요합니다.
+- [답변 스트리밍 검증](doc/ANSWER_STREAMING_VERIFICATION.md)
 
-[LangSmith SSE 요청 추적 보완](doc/LANGSMITH_SSE_VERIFICATION.md): 요청·하위 호출·저장 조사 ID 연결, 신규6개 포함 Python125개 통과. 외부 대시보드 수집은 별도 확인이 필요합니다.
+위 문서의 이전 시점 수치(Python 107·119·125개 등)는 당시 기록으로 보존했고, 현재 기준은 130개입니다.
