@@ -48,7 +48,7 @@
 
 ## 4. 다시 확인하는 명령
 
-프로젝트 루트 `/Users/hyeonmin/workspace/AI mini-project/`에서 실행합니다.
+프로젝트 루트에서 실행합니다.
 
 ```bash
 # 외부 API 없이 회귀 검사

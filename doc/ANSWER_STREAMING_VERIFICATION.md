@@ -23,13 +23,13 @@ OpenAI 어댑터는 완성 응답을 한 번만 콜백에 보냈고, 최종 보�
 
 - [x] `.venv/bin/python -B -m unittest discover -s tests -v`: 130개 통과. 로컬 TCP/프록시 검사는 승인된 네트워크 환경에서 실행.
 - [x] `node tests/test_web_session.cjs`: 통과.
-- [x] `.venv/bin/python -B eval/run_validation.py --output /private/tmp/opscheck-answer-stream-validation.json`: 자동 판정 35 통과, 실패 0, 연결 계약 4. 연결 계약은 위 전체 테스트에 포함.
+- [x] `.venv/bin/python -B eval/run_validation.py --output <임시 경로>/opscheck-answer-stream-validation.json`: 자동 판정 35 통과, 실패 0, 연결 계약 4. 연결 계약은 위 전체 테스트에 포함.
 - [x] 작업 해제 전 토큰 도착: Event로 다음 조각을 차단한 상태에서 첫 텍스트를 소비하고 실행 미종료 확인. 최종 이벤트 순서만 본 검사가 아님.
 - [x] 실제 브라우저: 임시 18100/18600 서버, 고정 MCP·임시 DB·로컬 OpenAI 호환 SSE 대역. 단일/복수 서비스, 반려→재작성→pending→passed, 보고서 5개 영역, 전체 이력 2건 확인.
 - [x] 390×844 화면에서 작성 중 가설 일부가 나타난 상태와 완료 보고서 확인. 페이지 폭=뷰포트 폭=390, 임시 뷰포트 복원.
 - [x] `git diff --check`: 통과.
 
-화면: `/private/tmp/opscheck-answer-stream-desktop.jpg`, `/private/tmp/opscheck-answer-stream-mobile-live.jpg`, `/private/tmp/opscheck-answer-stream-mobile-complete.jpg`.
+화면: `<임시 경로>/opscheck-answer-stream-desktop.jpg`, `<임시 경로>/opscheck-answer-stream-mobile-live.jpg`, `<임시 경로>/opscheck-answer-stream-mobile-complete.jpg`.
 로컬 서버/대역은 확인용이며 프로젝트에 새 의존성이나 테스트용 API를 추가하지 않았다.
 
 ## 기존 실제 LangSmith 기록 조회

@@ -3,8 +3,8 @@
 작성일: 2026-10-20  
 상태: Phase 0~10 구현·로컬 검증 완료 / Phase 0~7 과거 결과·발표 파일 보존 / 외부 제출 사용자 확인 필요  
 검증일: 2026-10-21 (범위·평가 증거 계획 재점검)  
-프로젝트: `/Users/hyeonmin/workspace/AI mini-project/`  
-참고 실습: `/Users/hyeonmin/Desktop/AiCapstone/`
+프로젝트: 프로젝트 루트  
+참고 실습: 수업 실습 폴더(AiCapstone, 저장소에 미포함)
 
 > **Phase 0 완료:** 설정·가상환경·기본 모델·브라우저 연결, 원본 보존과 고정 테스트를 준비했습니다. 모델 설정 순서를 수정했습니다. [Phase 0 결과](PHASE0_RESULT.md)에서 기존 결함과 미확인 범위를 확인합니다. Phase 1의 조사 대상·대화 연결을 구현하고 로컬 테스트를 통과했습니다. [Phase 1 결과](PHASE1_RESULT.md). 실제 Ollama·브라우저·재시작 복원을 확인했습니다. Phase 2의 서비스별 매뉴얼 연결·자료 부족 구분을 구현하고 고정 검사·실제 MCP+fake 브라우저를 확인했습니다. [Phase 2 결과](PHASE2_RESULT.md). Phase 3의 부분 실패·실행 한도·오류 안내를 구현·검증했습니다. [Phase 3 결과](PHASE3_RESULT.md). Phase 4의 근거 검증·5개 영역 보고서·초안 상태 구분도 구현했습니다. [Phase 4 결과](PHASE4_RESULT.md). Phase 5의 조사 이력 저장·조회와 재시작 복원을 완료했습니다. [Phase 5 결과](PHASE5_RESULT.md). Phase 6의 이전/현재 비교·Markdown 다운로드도 구현·검증했습니다. [Phase 6 결과](PHASE6_RESULT.md). Phase 7 전체 검증·전후 JSON/CSV·10장 PPT·발표 대본도 준비했습니다. [최종 결과](PHASE7_RESULT.md). 외부 등록·제출은 [체크리스트](SUBMISSION_CHECKLIST.md)를 확인합니다. 이후 작업은 [개발 로그](DEVELOPMENT_LOG.md)에 누적합니다.
 
@@ -446,18 +446,18 @@ RAG·LLM-as-judge 등 수업에서 제시한 대안과 달리 선택한 부분�
 
 ## 참고 파일
 
-- [과제·평가 기준 PDF](</Users/hyeonmin/Downloads/AI-Mini-Project_20261004_2.pdf>) — PDF 쪽수 3 일정, 5 실행 안내, 10 과제 선택·코드 설명, 11~12 가상 예시, 13 평가표.
-- [Capstone 수업 PDF](</Users/hyeonmin/Downloads/AI캠퍼스_AI_Capstone_20261016 (1).pdf>) — PDF 쪽수 7 ADR, 17 반복 상한, 19 실패 격리, 21 혼합 평가 대안, 148 게이트, 209 세션, 245 고정 평가 데이터셋. PDF 쪽수는 첫 표지를 1쪽으로 센다.
-- [프로젝트 메인 매뉴얼](</Users/hyeonmin/workspace/AI mini-project/doc/README.md>)
-- [프로젝트 회귀 질문](</Users/hyeonmin/workspace/AI mini-project/doc/regression_test_queries.md>)
-- [Wave 6 게이트](/Users/hyeonmin/Desktop/AiCapstone/wave06_conditional_routing/improved_gate.py)
-- [Wave 7 추가 조사](/Users/hyeonmin/Desktop/AiCapstone/wave07_dynamic_planning/langgraph/improved_langgraph.py)
-- [Wave 8 작성·검증](/Users/hyeonmin/Desktop/AiCapstone/wave08_validator_agent/improved_validated.py)
-- [Wave 9 오류·재시도](/Users/hyeonmin/Desktop/AiCapstone/wave09_error_handling/improved_with_retry.py)
-- [Wave 11 실패 격리](/Users/hyeonmin/Desktop/AiCapstone/wave11_latency_parallelization/improved_parallel.py)
-- [Wave 12 SQLite 저장](/Users/hyeonmin/Desktop/AiCapstone/wave12_stateless_session/improved_sqlite_checkpointer.py)
-- [Wave 13 의존성 주입](/Users/hyeonmin/Desktop/AiCapstone/wave13_modularization/improved_deps_injection.py)
-- [Wave 14 평가](/Users/hyeonmin/Desktop/AiCapstone/wave14_base-langsmith/04_dataset_eval.py)
+- 과제·평가 기준 PDF(저장소 밖 로컬 파일 `AI-Mini-Project_20261004_2.pdf`) — PDF 쪽수 3 일정, 5 실행 안내, 10 과제 선택·코드 설명, 11~12 가상 예시, 13 평가표.
+- Capstone 수업 PDF(저장소 밖 로컬 파일 `AI캠퍼스_AI_Capstone_20261016 (1`).pdf>) — PDF 쪽수 7 ADR, 17 반복 상한, 19 실패 격리, 21 혼합 평가 대안, 148 게이트, 209 세션, 245 고정 평가 데이터셋. PDF 쪽수는 첫 표지를 1쪽으로 센다.
+- [프로젝트 메인 매뉴얼](README.md)
+- [프로젝트 회귀 질문](regression_test_queries.md)
+- Wave 6 게이트(저장소 밖 로컬 파일 `improved_gate.py`)
+- Wave 7 추가 조사(저장소 밖 로컬 파일 `improved_langgraph.py`)
+- Wave 8 작성·검증(저장소 밖 로컬 파일 `improved_validated.py`)
+- Wave 9 오류·재시도(저장소 밖 로컬 파일 `improved_with_retry.py`)
+- Wave 11 실패 격리(저장소 밖 로컬 파일 `improved_parallel.py`)
+- Wave 12 SQLite 저장(저장소 밖 로컬 파일 `improved_sqlite_checkpointer.py`)
+- Wave 13 의존성 주입(저장소 밖 로컬 파일 `improved_deps_injection.py`)
+- Wave 14 평가(저장소 밖 로컬 파일 `04_dataset_eval.py`)
 
 ## 검증 기록 — 2026-10-20
 

@@ -33,7 +33,7 @@
 4. 새 대화의 전체 이력에서 원래 기록의 보고서·비교·처리 과정을 열면 진행 중 상태가 없음.
 5. 대상 확인은 요청 분류1단계, 일반 대화는 요청 처리2단계이며 진단 계획/조사가 없음.
 
-로컬 화면: `/private/tmp/opscheck-phase10-live.png`, `opscheck-phase10-mobile.png`, `opscheck-phase10-complete.png`, `opscheck-phase10-saved.png`. 고정 대역을 지연/해제한 검사이며 실제 운영 속도 측정이 아니다.
+로컬 화면: `<임시 경로>/opscheck-phase10-live.png`, `opscheck-phase10-mobile.png`, `opscheck-phase10-complete.png`, `opscheck-phase10-saved.png`. 고정 대역을 지연/해제한 검사이며 실제 운영 속도 측정이 아니다.
 
 ## 사용자가 직접 확인할 방법
 

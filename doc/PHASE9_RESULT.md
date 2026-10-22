@@ -13,7 +13,7 @@
 
 Python 114개 통과, Node 통과. 임시 DB 25개 동시각 기록과 페이지 사이 새 삽입에도 원래 25건 순회 누락/중복 없음. 두 대화 진단·새 대화 확인 분기·원래 상세/Markdown·비교 스냅샷 불변, 구 API·오류 커서·프록시를 검사했다. Node는 필터/페이지/상세/새 대화의 늦은 응답과 ID 보존을 검사한다.
 
-실제 브라우저(fake·고정 MCP·격리 DB)에서 전체 20건→더 보기25건, 현재 대화0건, 새 대화 이후 전체 유지, 다른 대화의 원래 demo-a 링크, 저장 보고서·비교·처리 과정 펼치기를 확인했다. 데스크톱 및 390×844 모바일 목록/상세 배치 확인. 화면 자료: `/private/tmp/opscheck-phase9-desktop.png`, `/private/tmp/opscheck-phase9-mobile.png`, `/private/tmp/opscheck-phase9-detail.png`(로컬 검증 자료).
+실제 브라우저(fake·고정 MCP·격리 DB)에서 전체 20건→더 보기25건, 현재 대화0건, 새 대화 이후 전체 유지, 다른 대화의 원래 demo-a 링크, 저장 보고서·비교·처리 과정 펼치기를 확인했다. 데스크톱 및 390×844 모바일 목록/상세 배치 확인. 화면 자료: `<임시 경로>/opscheck-phase9-desktop.png`, `<임시 경로>/opscheck-phase9-mobile.png`, `<임시 경로>/opscheck-phase9-detail.png`(로컬 검증 자료).
 
 ## 직접 확인
 

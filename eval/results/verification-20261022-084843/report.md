@@ -33,14 +33,14 @@ Phase8은 정답 검증셋39개(자동 판정35·연결 계약4), Phase9는 전�
 
 | 기술 | 적용 상태 | 기존 기반 / 개선 부분 | 코드 위치 | 실행·검사 결과와 증거 | 한계 |
 |---|---|---|---|---|---|
-| Multi-Agent | 일부 적용 — 역할 분담 Supervisor 패턴 | 기존 계획·조사·분석·작성 역할 / 계획 게이트·자료 전달·검증 보강 | [plan](</Users/hyeonmin/workspace/AI mini-project/agent/graph.py:140>) · [research](</Users/hyeonmin/workspace/AI mini-project/agent/graph.py:182>) · [analysis](</Users/hyeonmin/workspace/AI mini-project/agent/graph.py:320>) · [write](</Users/hyeonmin/workspace/AI mini-project/agent/graph.py:341>) | 실제 복수 진단에서 plan→MCP 조사→analyze→write 호출. [실제 모델 호출](./live/api-calls.json)와 SSE·외부 trace 확인 | 모든 노드를 독립 에이전트라고 부르지 않는다. research는 MCP 작업, validate/gate는 코드이며 자율 전문 서브그래프는 없음 |
-| MCP | 구현·실행 확인 | 기존 stdio ops/docs의 Tool·Resource·Prompt / 문서별 근거·실패 처리·진행 연결 | [MCPClient](</Users/hyeonmin/workspace/AI mini-project/agent/mcp_client.py:45>) | 새 실모델3건에서 실제 stdio 모니터링·Resource·Prompt 호출. [호출 기록](./live/mcp-calls.json) | FixedMCP 대역 검사와 구분. 샘플 데이터이며 첫 Tool 호출 오류는 기존 의도적 시뮬레이션. 기존 Lock 유지 |
-| RAG | BM25·임베딩 RAG 미구현 | 원본의 한 문서 선택 / 서비스별 규칙과 복수 문서 연결로 개선 | [select_runbooks](</Users/hyeonmin/workspace/AI mini-project/agent/runbook_selector.py:27>) | 알림 패턴·CPU80/메모리90 기준으로 문서 유형 선택 후 MCP URI 조회. 경계/유형/정상 검사 통과 | 검색 인덱스·임베딩·BM25·의미 검색 없음. 문서 연결을 검색 정확도 향상으로 발표하지 않음 |
-| 의존성 주입 | 구현·교체 실행 확인 | 기존 SupervisorDeps / 고정·실제 모델·MCP·임시 DB 교체 검사 확대 | [SupervisorDeps](</Users/hyeonmin/workspace/AI mini-project/agent/deps.py:12>) · [build_graph](</Users/hyeonmin/workspace/AI mini-project/agent/graph.py:416>) | 고정 모델+FixedMCP, 실제 OpenAI+실제 MCP, 임시 SQLite로 같은 그래프/API 실행. 저장소 재연결 검사도 통과 | 새 DI 프레임워크 아님. 현재 노드 래퍼는 deps=deps로 전달하며 오래된 partial 설명과 구분 |
-| LangSmith | 구현·실제 외부 수집 확인 | 기존 노드/모델/MCP 추적 / SSE 생성기 내부 요청 루트·조사 ID 연결 보완 | [chat_stream](</Users/hyeonmin/workspace/AI mini-project/server.py:235>) · [_save_result](</Users/hyeonmin/workspace/AI mini-project/server.py:136>) | 로컬 SDK on/off·동시·취소/오류 검사와 기존 외부3건의 요청/하위 호출/저장 ID 일치. [익명화 근거](./langsmith/read-only-redacted.json) | 추적 성공은 답변 품질·LLM-as-judge가 아님. 새 검증의 외부 업로드는 껐고 기존 추적만 읽음 |
+| Multi-Agent | 일부 적용 — 역할 분담 Supervisor 패턴 | 기존 계획·조사·분석·작성 역할 / 계획 게이트·자료 전달·검증 보강 | [plan](../../../agent/graph.py#L140) · [research](../../../agent/graph.py#L182) · [analysis](../../../agent/graph.py#L320) · [write](../../../agent/graph.py#L341) | 실제 복수 진단에서 plan→MCP 조사→analyze→write 호출. [실제 모델 호출](./live/api-calls.json)와 SSE·외부 trace 확인 | 모든 노드를 독립 에이전트라고 부르지 않는다. research는 MCP 작업, validate/gate는 코드이며 자율 전문 서브그래프는 없음 |
+| MCP | 구현·실행 확인 | 기존 stdio ops/docs의 Tool·Resource·Prompt / 문서별 근거·실패 처리·진행 연결 | [MCPClient](../../../agent/mcp_client.py#L45) | 새 실모델3건에서 실제 stdio 모니터링·Resource·Prompt 호출. [호출 기록](./live/mcp-calls.json) | FixedMCP 대역 검사와 구분. 샘플 데이터이며 첫 Tool 호출 오류는 기존 의도적 시뮬레이션. 기존 Lock 유지 |
+| RAG | BM25·임베딩 RAG 미구현 | 원본의 한 문서 선택 / 서비스별 규칙과 복수 문서 연결로 개선 | [select_runbooks](../../../agent/runbook_selector.py#L27) | 알림 패턴·CPU80/메모리90 기준으로 문서 유형 선택 후 MCP URI 조회. 경계/유형/정상 검사 통과 | 검색 인덱스·임베딩·BM25·의미 검색 없음. 문서 연결을 검색 정확도 향상으로 발표하지 않음 |
+| 의존성 주입 | 구현·교체 실행 확인 | 기존 SupervisorDeps / 고정·실제 모델·MCP·임시 DB 교체 검사 확대 | [SupervisorDeps](../../../agent/deps.py#L12) · [build_graph](../../../agent/graph.py#L416) | 고정 모델+FixedMCP, 실제 OpenAI+실제 MCP, 임시 SQLite로 같은 그래프/API 실행. 저장소 재연결 검사도 통과 | 새 DI 프레임워크 아님. 현재 노드 래퍼는 deps=deps로 전달하며 오래된 partial 설명과 구분 |
+| LangSmith | 구현·실제 외부 수집 확인 | 기존 노드/모델/MCP 추적 / SSE 생성기 내부 요청 루트·조사 ID 연결 보완 | [chat_stream](../../../server.py#L235) · [_save_result](../../../server.py#L136) | 로컬 SDK on/off·동시·취소/오류 검사와 기존 외부3건의 요청/하위 호출/저장 ID 일치. [익명화 근거](./langsmith/read-only-redacted.json) | 추적 성공은 답변 품질·LLM-as-judge가 아님. 새 검증의 외부 업로드는 껐고 기존 추적만 읽음 |
 | 모듈화 | 구현·경로 확인 | 기존 서버/어댑터/저장소 / targets·selector·report·comparison·progress 책임 분리 | source-code-anchors.json · agent 모듈들 | 그래프가 해당 모듈을 호출하고 기능·API 회귀 검사 통과. [코드 위치](./source-code-anchors.json) | orchestration은 graph.py에 집중. 모든 노드를 별도 파일/서브그래프로 분리하지 않음 |
 | 단위·통합 테스트 | 구현·이번 실행 통과 | 초기에 검사 부족 / 함수·어댑터·그래프·API·MCP·네트워크 검사 추가 | tests/ 및 eval/ | Python130 메서드·Node1스크립트·검증셋35. [검사별 분류·위치](./test-inventory.json) | 130개를 전부 단위 테스트라고 부르지 않음. 코드 커버리지·실제 LLM 일반화 정확도 미측정 |
-| SSE·Vue 텍스트 | 구현·진행 중 도착 확인 | 기존 SSE/Vue / 단계ID·시도·실패·저장 과정·실제 OpenAI delta와 표시 큐 | [OpenAI 어댑터](</Users/hyeonmin/workspace/AI mini-project/agent/openai_llm.py:60>) · [write](</Users/hyeonmin/workspace/AI mini-project/agent/graph.py:341>) · [revealText](</Users/hyeonmin/workspace/AI mini-project/web_chat.html:351>) | 장벽 중 running·빠른 완료·초안 도착, 오류 복귀, Node 프레임 검사, 데스크톱/390px 확인 | 모델 생성 스트림과 검증 후 보고서 표시 연출을 구분. 배포 프록시의 무버퍼 전달은 미보장 |
+| SSE·Vue 텍스트 | 구현·진행 중 도착 확인 | 기존 SSE/Vue / 단계ID·시도·실패·저장 과정·실제 OpenAI delta와 표시 큐 | [OpenAI 어댑터](../../../agent/openai_llm.py#L60) · [write](../../../agent/graph.py#L341) · [revealText](../../../web_chat.html#L351) | 장벽 중 running·빠른 완료·초안 도착, 오류 복귀, Node 프레임 검사, 데스크톱/390px 확인 | 모델 생성 스트림과 검증 후 보고서 표시 연출을 구분. 배포 프록시의 무버퍼 전달은 미보장 |
 
 **정보 전달:** 계획의 작업 목록→research의 서비스별 관측·매뉴얼→선택적 analysis의 미확정 요약→write의 구조화 JSON→validate의 수치·출처·조건 대조→코드 기반 보고서 순서다. LLM-as-judge·LangSmith Dataset/Feedback 자동 평가와 HITL 운영 조치 승인은 구현하지 않았다.
 
@@ -122,7 +122,7 @@ Phase8은 정답 검증셋39개(자동 판정35·연결 계약4), Phase9는 전�
 - **재현:** CPU85%, p95지연·커넥션 풀 알림을 가진 auth에 CPU+지연 문서가 조회됐다. 두 작성에서 모두 `auth-service/doc:cpu-spike` 조치가 빠졌다. validator는 이를 반려하고2회 후 unverified로 종료했다. [새 실제 재현](./live/live-auth-compound.json).
 - **과거 기록:** 최근30개 조사에서 같은 auth 미통과4건을 읽기 전용 확인했다. 기존 기록/실패는 보존하고 질문 원문·실제 추적 ID는 복사하지 않았다. [익명화 과거 기록](./historical/auth-failures-redacted.json).
 - **분리 판정:** 검증기의 안전한 차단은 통과, 정상 진단 요청의 완성도는 실패다. 매뉴얼 선택 자체가 실패한 것이 아니라 **선택된 모든 문서의 조치가 작성되지 않은 것**이다.
-- **원인 근거:** [작성 프롬프트](</Users/hyeonmin/workspace/AI mini-project/agent/report.py:67>)는 유효한 ID/단계를 지시하지만 모든 서비스·문서 쌍을 빠짐없이 작성하라는 목록을 명시하지 않는다. [검증기](</Users/hyeonmin/workspace/AI mini-project/agent/report.py:141>)는 실제로 모든 쌍의 조치를 요구한다. 이 계약 차이는 누락을 유발할 수 있는 코드상 요인이다. 모델 내부의 이유를 확정한 것은 아니다.
+- **원인 근거:** [작성 프롬프트](../../../agent/report.py#L67)는 유효한 ID/단계를 지시하지만 모든 서비스·문서 쌍을 빠짐없이 작성하라는 목록을 명시하지 않는다. [검증기](../../../agent/report.py#L141)는 실제로 모든 쌍의 조치를 요구한다. 이 계약 차이는 누락을 유발할 수 있는 코드상 요인이다. 모델 내부의 이유를 확정한 것은 아니다.
 - **최소 수정안(미적용):** 기존 evidence에서 `required_action_pairs`를 계산해 프롬프트 입력에 명시하고 각 쌍당 조건부 조치1개를 요구한다. 누락 쌍을 재작성 피드백에 구조화해 전달하고 완전/누락 auth 초안 회귀를 추가한다. 검증 조건을 약화하거나 빠진 조치를 임의 생성해 강제 통과시키지 않는다. 이후 같은 모델 확인에는 새 승인이 필요하다.
 
 ### 5.2 설계 선택과 검증의 경계
@@ -167,6 +167,6 @@ node tests/test_web_session.cjs
 .venv/bin/python -B eval/run_final_eval.py --output <새 경로>/after.json
 ```
 
-수업 근거: [평가표 PDF](</Users/hyeonmin/Downloads/AI-Mini-Project_20261004_2.pdf>), 물리적13쪽/인쇄12. 가상 예시는 물리적11~12쪽. 사용자 제공 최종 안내가 발표 순서·시간·화면 필수 조건을 보완한다. [OpenAI 공식 스트리밍 계약](https://developers.openai.com/api/reference/resources/chat)은 delta/usage 해석에만 사용했다.
+수업 근거: 평가표 PDF(저장소 밖 로컬 파일 `AI-Mini-Project_20261004_2.pdf`), 물리적13쪽/인쇄12. 가상 예시는 물리적11~12쪽. 사용자 제공 최종 안내가 발표 순서·시간·화면 필수 조건을 보완한다. [OpenAI 공식 스트리밍 계약](https://developers.openai.com/api/reference/resources/chat)은 delta/usage 해석에만 사용했다.
 
 실행 종료 시 보존 검사와 비밀 값 검사 결과는 `preservation-final.json`, `privacy-scan.json`으로 별도 남긴다. 사용자 서버를 재시작하거나 소스·기존 문서·제출물·과거 결과를 덮어쓰지 않는다.

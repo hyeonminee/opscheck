@@ -8,7 +8,7 @@
 
 **실행 준비 완료:** 기본 로컬 모델과 브라우저 채팅을 확인했습니다. [Phase 0 결과](PHASE0_RESULT.md)에 테스트·현재 한계·직접 할 일을 정리했습니다.
 
-작성일: 2026-10-20 · 기준 코드: `/Users/hyeonmin/workspace/AI mini-project/`
+작성일: 2026-10-20 · 기준 코드: 프로젝트 루트
 
 **처음에는 1~4번을 읽고 큰 그림을 잡으세요.** 코드를 볼 때는 5번 파일 지도를, 개발할 때는 7~8번을 참고하면 됩니다.
 
@@ -203,10 +203,10 @@ flowchart TB
 
 | 파일 | 역할 | 연결되는 곳 |
 |---|---|---|
-| [web_chat.html](</Users/hyeonmin/workspace/AI mini-project/web_chat.html>) | Vue 채팅 UI. 질문 전송·SSE 이벤트·답변 표시 | 중계 서버 |
-| [web_demo_server.py](</Users/hyeonmin/workspace/AI mini-project/web_demo_server.py>) | 화면 제공 및 백엔드 요청 중계. 기본 8600 포트 | 화면 ↔ FastAPI |
-| [server.py](</Users/hyeonmin/workspace/AI mini-project/server.py>) | FastAPI 진입점. 공유 객체 초기화, API, 그래프 호출, 대화 저장 | 그래프·모델·MCP·SQLite |
-| [requirements.txt](</Users/hyeonmin/workspace/AI mini-project/requirements.txt>) | 필요한 Python 패키지 목록 | 가상환경 설치 |
+| [web_chat.html](../web_chat.html) | Vue 채팅 UI. 질문 전송·SSE 이벤트·답변 표시 | 중계 서버 |
+| [web_demo_server.py](../web_demo_server.py) | 화면 제공 및 백엔드 요청 중계. 기본 8600 포트 | 화면 ↔ FastAPI |
+| [server.py](../server.py) | FastAPI 진입점. 공유 객체 초기화, API, 그래프 호출, 대화 저장 | 그래프·모델·MCP·SQLite |
+| [requirements.txt](../requirements.txt) | 필요한 Python 패키지 목록 | 가상환경 설치 |
 
 화면이 열리는 것과 진단 서버가 동작하는 것은 다릅니다. 화면 서버는 기본 8600, 진단 백엔드는 8100입니다. 웹 화면은 중계 서버를 통해 백엔드에 질문합니다.
 
@@ -214,17 +214,17 @@ flowchart TB
 
 | 파일 | 역할 | 기억할 점 |
 |---|---|---|
-| [graph.py](</Users/hyeonmin/workspace/AI mini-project/agent/graph.py>) | v2의 노드·분기·반복을 정의 | 이 프로젝트의 중심 흐름 |
-| [runbook_selector.py](</Users/hyeonmin/workspace/AI mini-project/agent/runbook_selector.py>) | Phase 2 서비스별 문서 선택·사유·정상/자료 부족 판단 | 수치 기준·활성 알림 규칙. 원인 확정은 하지 않음 |
-| [deps.py](</Users/hyeonmin/workspace/AI mini-project/agent/deps.py>) | 모델·MCP·저장소 등 필요한 객체를 한 묶음으로 전달 | 테스트 때 가짜 도구로 바꿔 끼울 수 있음 |
-| [fake_llm.py](</Users/hyeonmin/workspace/AI mini-project/agent/fake_llm.py>) | 정해진 응답으로 분류·계획·작성 등 시연 | 고의 오류·web-01 추가 같은 실습 동작 포함 |
-| [ollama_llm.py](</Users/hyeonmin/workspace/AI mini-project/agent/ollama_llm.py>) | 로컬 Ollama 모델 호출, 모델 응답을 계획·문장으로 변환 | 실제 모델 backend 중 하나 |
-| [openai_llm.py](</Users/hyeonmin/workspace/AI mini-project/agent/openai_llm.py>) | OpenAI API 호출과 응답 변환 | 현재는 완성 문장을 한 번에 전달하는 부분이 있음 |
-| [mcp_client.py](</Users/hyeonmin/workspace/AI mini-project/agent/mcp_client.py>) | 두 MCP 서버 기동·연결, 도구·문서·프롬프트 요청 | 클라이언트는 요청 담당, 데이터 생성은 MCP 서버 담당 |
-| [retry.py](</Users/hyeonmin/workspace/AI mini-project/agent/retry.py>) | 일시적 시간 초과에 제한된 재시도·대기 적용 | 현재는 asyncio.TimeoutError 중심 |
-| [session_store.py](</Users/hyeonmin/workspace/AI mini-project/agent/session_store.py>) | SQLite에서 thread_id별 대화 읽기·저장 | 메시지·직전 대상·확인 대기 증상 저장 |
-| [supervisor_v1.py](</Users/hyeonmin/workspace/AI mini-project/agent/supervisor_v1.py>) | 초기 선형 처리 방식 | v2 개선 전 기준선과는 별개인 레거시 버전 |
-| [__init__.py](</Users/hyeonmin/workspace/AI mini-project/agent/__init__.py>) | agent 폴더를 Python 패키지로 표시 | 별도 진단 로직 없음 |
+| [graph.py](../agent/graph.py) | v2의 노드·분기·반복을 정의 | 이 프로젝트의 중심 흐름 |
+| [runbook_selector.py](../agent/runbook_selector.py) | Phase 2 서비스별 문서 선택·사유·정상/자료 부족 판단 | 수치 기준·활성 알림 규칙. 원인 확정은 하지 않음 |
+| [deps.py](../agent/deps.py) | 모델·MCP·저장소 등 필요한 객체를 한 묶음으로 전달 | 테스트 때 가짜 도구로 바꿔 끼울 수 있음 |
+| [fake_llm.py](../agent/fake_llm.py) | 정해진 응답으로 분류·계획·작성 등 시연 | 고의 오류·web-01 추가 같은 실습 동작 포함 |
+| [ollama_llm.py](../agent/ollama_llm.py) | 로컬 Ollama 모델 호출, 모델 응답을 계획·문장으로 변환 | 실제 모델 backend 중 하나 |
+| [openai_llm.py](../agent/openai_llm.py) | OpenAI API 호출과 응답 변환 | 현재는 완성 문장을 한 번에 전달하는 부분이 있음 |
+| [mcp_client.py](../agent/mcp_client.py) | 두 MCP 서버 기동·연결, 도구·문서·프롬프트 요청 | 클라이언트는 요청 담당, 데이터 생성은 MCP 서버 담당 |
+| [retry.py](../agent/retry.py) | 일시적 시간 초과에 제한된 재시도·대기 적용 | 현재는 asyncio.TimeoutError 중심 |
+| [session_store.py](../agent/session_store.py) | SQLite에서 thread_id별 대화 읽기·저장 | 메시지·직전 대상·확인 대기 증상 저장 |
+| [supervisor_v1.py](../agent/supervisor_v1.py) | 초기 선형 처리 방식 | v2 개선 전 기준선과는 별개인 레거시 버전 |
+| [__init__.py](../agent/__init__.py) | agent 폴더를 Python 패키지로 표시 | 별도 진단 로직 없음 |
 
 **의존성 주입이란?** 함수가 전역 객체를 몰래 가져다 쓰는 대신 필요한 모델·도구를 인자로 받는 방식입니다. 실제 서버 대신 고정 데이터를 주는 도구를 넣어 같은 문제를 반복 검사할 수 있습니다.
 
@@ -232,15 +232,15 @@ flowchart TB
 
 | 파일 | 역할 |
 |---|---|
-| [mcp_server.py](</Users/hyeonmin/workspace/AI mini-project/mcp_server.py>) | 실제 진단에 쓰는 ops MCP 서버. 모니터링 Tool·매뉴얼 Resource·표준 절차 Prompt 제공 |
-| [mcp_server_docs.py](</Users/hyeonmin/workspace/AI mini-project/mcp_server_docs.py>) | 내부 API 문서 Resource를 제공하는 탐색 실습용 서버. 현재 장애 진단 자료로 사용하지 않음 |
-| [monitoring.json](</Users/hyeonmin/workspace/AI mini-project/data/monitoring.json>) | 등록 서비스 6개와 상태·기준 CPU/메모리·알림 샘플 |
-| [cpu-spike.md](</Users/hyeonmin/workspace/AI mini-project/data/runbooks/cpu-spike.md>) | CPU 급증 대응 |
-| [memory-leak.md](</Users/hyeonmin/workspace/AI mini-project/data/runbooks/memory-leak.md>) | 메모리 증가·누수 대응 |
-| [high-latency.md](</Users/hyeonmin/workspace/AI mini-project/data/runbooks/high-latency.md>) | 지연·커넥션 풀 문제 대응 |
-| [network-timeout.md](</Users/hyeonmin/workspace/AI mini-project/data/runbooks/network-timeout.md>) | 네트워크 타임아웃 대응 |
-| [disk-full.md](</Users/hyeonmin/workspace/AI mini-project/data/runbooks/disk-full.md>) | 디스크 공간 부족 대응 |
-| [db-down.md](</Users/hyeonmin/workspace/AI mini-project/data/runbooks/db-down.md>) | DB 장애 대응 |
+| [mcp_server.py](../mcp_server.py) | 실제 진단에 쓰는 ops MCP 서버. 모니터링 Tool·매뉴얼 Resource·표준 절차 Prompt 제공 |
+| [mcp_server_docs.py](../mcp_server_docs.py) | 내부 API 문서 Resource를 제공하는 탐색 실습용 서버. 현재 장애 진단 자료로 사용하지 않음 |
+| [monitoring.json](../data/monitoring.json) | 등록 서비스 6개와 상태·기준 CPU/메모리·알림 샘플 |
+| [cpu-spike.md](../data/runbooks/cpu-spike.md) | CPU 급증 대응 |
+| [memory-leak.md](../data/runbooks/memory-leak.md) | 메모리 증가·누수 대응 |
+| [high-latency.md](../data/runbooks/high-latency.md) | 지연·커넥션 풀 문제 대응 |
+| [network-timeout.md](../data/runbooks/network-timeout.md) | 네트워크 타임아웃 대응 |
+| [disk-full.md](../data/runbooks/disk-full.md) | 디스크 공간 부족 대응 |
+| [db-down.md](../data/runbooks/db-down.md) | DB 장애 대응 |
 
 두 MCP 서버는 백엔드가 자식 프로세스로 실행하고 표준 입출력(stdio)으로 연결합니다. 8100·8600의 HTTP 연결과 다른 통로입니다.
 
@@ -248,12 +248,12 @@ flowchart TB
 
 | 파일 | 역할 | 현재 알아둘 동작 |
 |---|---|---|
-| [setup_venv.sh](</Users/hyeonmin/workspace/AI mini-project/sh/setup_venv.sh>) | 가상환경 생성과 패키지 설치 | 최초 준비용 |
-| [setup_ollama.sh](</Users/hyeonmin/workspace/AI mini-project/sh/setup_ollama.sh>) | 로컬 모델 확인·다운로드 | 기존 Ollama 프로세스를 종료하는 코드와 선택적 모델 재설정 기능 포함 |
-| [run_agent_ollma.sh](</Users/hyeonmin/workspace/AI mini-project/sh/run_agent_ollma.sh>) | Ollama 백엔드 기동 | 모델 설정 순서 수정 완료. Phase 1부터 DB 보존 |
-| [run_agent_openai.sh](</Users/hyeonmin/workspace/AI mini-project/sh/run_agent_openai.sh>) | OpenAI 백엔드 기동 | 실제 API 비용 확인. Phase 1부터 DB 보존 |
-| [run_frontend.sh](</Users/hyeonmin/workspace/AI mini-project/sh/run_frontend.sh>) | 화면 서버 기동 | 백엔드가 먼저 필요. 기존 8600 포트 프로세스 종료 코드 포함 |
-| [make_student_zip.sh](</Users/hyeonmin/workspace/AI mini-project/sh/make_student_zip.sh>) | 배포용 ZIP 생성 | .env·가상환경·세션 DB 등을 제외하는 포장 작업 |
+| [setup_venv.sh](../sh/setup_venv.sh) | 가상환경 생성과 패키지 설치 | 최초 준비용 |
+| [setup_ollama.sh](../sh/setup_ollama.sh) | 로컬 모델 확인·다운로드 | 기존 Ollama 프로세스를 종료하는 코드와 선택적 모델 재설정 기능 포함 |
+| [run_agent_ollma.sh](../sh/run_agent_ollma.sh) | Ollama 백엔드 기동 | 모델 설정 순서 수정 완료. Phase 1부터 DB 보존 |
+| [run_agent_openai.sh](../sh/run_agent_openai.sh) | OpenAI 백엔드 기동 | 실제 API 비용 확인. Phase 1부터 DB 보존 |
+| [run_frontend.sh](../sh/run_frontend.sh) | 화면 서버 기동 | 백엔드가 먼저 필요. 기존 8600 포트 프로세스 종료 코드 포함 |
+| [make_student_zip.sh](../sh/make_student_zip.sh) | 배포용 ZIP 생성 | .env·가상환경·세션 DB 등을 제외하는 포장 작업 |
 
 설치·모델 준비와 실제 백엔드/프론트엔드 실행을 Phase 0에서 확인했습니다. 기존 Ollama를 종료하는 setup 스크립트 대신 필요한 모델만 준비했습니다. [Phase 0 결과](PHASE0_RESULT.md)에 수행 범위와 남은 결함을 구분했습니다.
 
@@ -261,13 +261,13 @@ flowchart TB
 
 | 파일·폴더 | 역할 |
 |---|---|
-| [doc/README.md](</Users/hyeonmin/workspace/AI mini-project/doc/README.md>) | 수업 베이스 프로그램의 메인 매뉴얼 |
-| [manual_ollma.md](</Users/hyeonmin/workspace/AI mini-project/doc/manual_ollma.md>) | 로컬 모델 사용 예와 기존 캡처 |
-| [manual_openai.md](</Users/hyeonmin/workspace/AI mini-project/doc/manual_openai.md>) | OpenAI 사용 예와 기존 캡처 |
-| [regression_test_queries.md](</Users/hyeonmin/workspace/AI mini-project/doc/regression_test_queries.md>) | 기존 동작을 다시 확인할 테스트 질문 목록 |
-| [DEVELOPMENT_PHASE_PLAN.md](</Users/hyeonmin/workspace/AI mini-project/doc/DEVELOPMENT_PHASE_PLAN.md>) | 앞으로 무엇을 어떤 순서·완료 기준으로 개발할지 정한 문서 |
+| [doc/README.md](README.md) | 수업 베이스 프로그램의 메인 매뉴얼 |
+| [manual_ollma.md](manual_ollma.md) | 로컬 모델 사용 예와 기존 캡처 |
+| [manual_openai.md](manual_openai.md) | OpenAI 사용 예와 기존 캡처 |
+| [regression_test_queries.md](regression_test_queries.md) | 기존 동작을 다시 확인할 테스트 질문 목록 |
+| [DEVELOPMENT_PHASE_PLAN.md](DEVELOPMENT_PHASE_PLAN.md) | 앞으로 무엇을 어떤 순서·완료 기준으로 개발할지 정한 문서 |
 | PROJECT_GUIDE.md — 이 문서 | 프로젝트를 이해하기 위한 전체 안내 |
-| [image_usecase](</Users/hyeonmin/workspace/AI mini-project/doc/image_usecase>) · [image_usecase_openai](</Users/hyeonmin/workspace/AI mini-project/doc/image_usecase_openai>) | 위 사용 매뉴얼에서 보여주는 기존 실행 화면 12개. 이번 개선의 측정 결과가 아님 |
+| [image_usecase](image_usecase) · [image_usecase_openai](image_usecase_openai) | 위 사용 매뉴얼에서 보여주는 기존 실행 화면 12개. 이번 개선의 측정 결과가 아님 |
 | .venv/ | Phase 0에서 준비한 프로젝트 Python 환경 |
 | .env | Phase 0에서 만든 키 없는 로컬 설정. 개인 키는 문서·Git에 복사하지 않음 |
 | session.db | messages·session_context와 Phase 5 investigations를 보관하는 기존 SQLite 파일 |
@@ -376,7 +376,7 @@ flowchart LR
 | 6 | 전후 비교·Markdown 다운로드 | F3, F4 |
 | 7 | 전체 테스트·실측 비교·PPT·코드 설명 | 제출 준비 |
 
-구현할 파일·API와 항목별 완료 기준은 [개발 계획서](</Users/hyeonmin/workspace/AI mini-project/doc/DEVELOPMENT_PHASE_PLAN.md>)를 기준으로 합니다. 이 가이드는 계획서를 대신하는 새 명세가 아닙니다.
+구현할 파일·API와 항목별 완료 기준은 [개발 계획서](DEVELOPMENT_PHASE_PLAN.md)를 기준으로 합니다. 이 가이드는 계획서를 대신하는 새 명세가 아닙니다.
 
 ### 평가에서 보여줄 것
 
@@ -404,11 +404,11 @@ SQLite는 단일 서버 실습의 단순성을 위해 유지합니다. 다중 �
 | 순서 | 읽을 곳 | 이 질문에 답해보기 |
 |---|---|---|
 | 1 | 이 문서의 구조·흐름 그림 | 질문은 어디로 들어가고 자료는 어디서 오는가? |
-| 2 | [server.py](</Users/hyeonmin/workspace/AI mini-project/server.py>) | 요청을 받고 그래프를 실행하는 곳은 어디인가? |
-| 3 | [graph.py](</Users/hyeonmin/workspace/AI mini-project/agent/graph.py>) | 어떤 순서로 조사·작성·검증하는가? |
-| 4 | [mcp_server.py](</Users/hyeonmin/workspace/AI mini-project/mcp_server.py>) · [monitoring.json](</Users/hyeonmin/workspace/AI mini-project/data/monitoring.json>) | 모델이 수치를 만들어내는가, 도구가 데이터를 읽는가? |
-| 5 | [ollama_llm.py](</Users/hyeonmin/workspace/AI mini-project/agent/ollama_llm.py>) | 모델에 무엇을 보내고 어떤 응답을 받는가? |
-| 6 | [web_chat.html](</Users/hyeonmin/workspace/AI mini-project/web_chat.html>) · [session_store.py](</Users/hyeonmin/workspace/AI mini-project/agent/session_store.py>) | 화면 표시와 대화 저장은 어떻게 다른가? |
+| 2 | [server.py](../server.py) | 요청을 받고 그래프를 실행하는 곳은 어디인가? |
+| 3 | [graph.py](../agent/graph.py) | 어떤 순서로 조사·작성·검증하는가? |
+| 4 | [mcp_server.py](../mcp_server.py) · [monitoring.json](../data/monitoring.json) | 모델이 수치를 만들어내는가, 도구가 데이터를 읽는가? |
+| 5 | [ollama_llm.py](../agent/ollama_llm.py) | 모델에 무엇을 보내고 어떤 응답을 받는가? |
+| 6 | [web_chat.html](../web_chat.html) · [session_store.py](../agent/session_store.py) | 화면 표시와 대화 저장은 어떻게 다른가? |
 
 **현재의 첫 학습 목표:** “payments 질문이 들어오면, 서버가 그래프를 실행하고 MCP로 샘플과 매뉴얼을 읽은 뒤 모델이 답변을 작성한다”를 자기 말로 설명하기입니다. 그다음 각 단계에서 빠진 값과 잘못된 판단을 하나씩 고칩니다.
 
@@ -423,9 +423,9 @@ SQLite는 단일 서버 실습의 단순성을 위해 유지합니다. 다중 �
 | 이 PROJECT_GUIDE.md | 프로젝트 전체를 이해하기 |
 | [PHASE0_RESULT.md](PHASE0_RESULT.md) | 실제 실행·테스트 결과와 직접 할 일 |
 | [PREDEVELOPMENT_CHECK.md](PREDEVELOPMENT_CHECK.md) | PDF 실행 순서·환경 준비·문서 정정 결과 확인 |
-| [doc/README.md](</Users/hyeonmin/workspace/AI mini-project/doc/README.md>) | 베이스 프로그램의 원래 설명 확인 |
-| [DEVELOPMENT_PHASE_PLAN.md](</Users/hyeonmin/workspace/AI mini-project/doc/DEVELOPMENT_PHASE_PLAN.md>) | 개발 순서·수정 대상·완료 기준 확인 |
-| `/Users/hyeonmin/Desktop/AiCapstone/` | Wave별 실습에서 배운 패턴 참고. 현재 프로젝트 소스와 별개 |
+| [doc/README.md](README.md) | 베이스 프로그램의 원래 설명 확인 |
+| [DEVELOPMENT_PHASE_PLAN.md](DEVELOPMENT_PHASE_PLAN.md) | 개발 순서·수정 대상·완료 기준 확인 |
+| 수업 실습 폴더(AiCapstone, 저장소에 미포함) | Wave별 실습에서 배운 패턴 참고. 현재 프로젝트 소스와 별개 |
 
 작성 시 소스·데이터·스크립트·계획서의 역할을 대조했습니다. 후속 점검 결과와 연결했으며 프로그램 구현 상태를 완료로 바꾸지 않습니다.
 
@@ -458,7 +458,7 @@ SQLite는 단일 서버 실습의 단순성을 위해 유지합니다. 다중 �
 | 미확인 사항 | 코드 | 조회 실패·부족 자료·단일 관측·알림 시점 한계 |
 | 출처 | 코드 | obs:서비스, doc:장애유형 ID와 실제 Tool/Resource URI |
 
-[report.py](</Users/hyeonmin/workspace/AI mini-project/agent/report.py>)가 계약·검사·보고서 생성을 담당합니다. 예를 들어 `obs:payments-service`의 CPU가 91이면 claims의 cpu_percent=1은 반려됩니다. gateway 근거를 payments에 붙이거나 문서 ID에 존재하지 않는 값을 넣어도 반려됩니다. 모델은 `doc:cpu-spike`의 단계 번호를 선택하고, 코드는 해당 문장을 조건부 제안으로 표시합니다.
+[report.py](../agent/report.py)가 계약·검사·보고서 생성을 담당합니다. 예를 들어 `obs:payments-service`의 CPU가 91이면 claims의 cpu_percent=1은 반려됩니다. gateway 근거를 payments에 붙이거나 문서 ID에 존재하지 않는 값을 넣어도 반려됩니다. 모델은 `doc:cpu-spike`의 단계 번호를 선택하고, 코드는 해당 문장을 조건부 제안으로 표시합니다.
 
 모델 JSON 원문 대신 완성된 가설 문장을 검증 전 초안으로 스트리밍합니다. 반려 사유와 재작성 상태를 보여주며, 최대 2회 실패하면 관측·출처·한계만 제공합니다. 통과한 보고서도 원인을 확정한 것으로 읽지 않습니다. [실제 검증·한계](PHASE4_RESULT.md).
 
@@ -483,7 +483,7 @@ flowchart LR
 
 초안 본문·최종 프롬프트·검증되지 않은 분석 노드 요약을 새 조사 이력에 넣지 않는다. 미통과 report에는 가설·조치를 넣지 않으며 검증 실패 사유 이벤트는 남긴다. 단순 조회는 새로운 MCP 조사나 LLM 호출이 아니다. 이전 기록을 현재 상태로 보여주지 않도록 샘플·저장 시점 안내를 붙인다.
 
-[session_store.py](</Users/hyeonmin/workspace/AI mini-project/agent/session_store.py>)가 테이블 생성·중복 방지·저장·목록·상세를 담당한다. server.py의 공통 저장 함수는 POST/SSE 모두 최종 이벤트 전에 커밋하고, web_demo_server.py가 조회 경로를 중계한다. web_chat.html의 ‘조사 이력’에서 같은 대화의 최근 20건과 상세를 확인한다. 새 대화로 전환하거나 다른 기록을 선택한 뒤 늦게 도착한 이전 응답이 화면을 덮지 않도록 확인했다.
+[session_store.py](../agent/session_store.py)가 테이블 생성·중복 방지·저장·목록·상세를 담당한다. server.py의 공통 저장 함수는 POST/SSE 모두 최종 이벤트 전에 커밋하고, web_demo_server.py가 조회 경로를 중계한다. web_chat.html의 ‘조사 이력’에서 같은 대화의 최근 20건과 상세를 확인한다. 새 대화로 전환하거나 다른 기록을 선택한 뒤 늦게 도착한 이전 응답이 화면을 덮지 않도록 확인했다.
 
 기존 채팅은 소급 변환하지 않는다. 같은 로컬 DB 파일을 사용하는 재시작은 복원되지만 DB 파일을 바꾸거나 thread_id를 잃으면 다른 이력으로 보인다. thread_id는 인증이 아니며 다중 사용자 서비스용 접근 제어는 구현하지 않았다. [Phase 5 결과](PHASE5_RESULT.md).
 
@@ -502,7 +502,7 @@ flowchart LR
 
 새 조사는 comparison을 스냅샷으로 저장하므로 이후 기록이 늘어도 바뀌지 않습니다. Phase 5 기록에는 필드가 없으므로 해당 행 이전만 읽어 비교하며 원래 JSON은 고치지 않습니다. 새 진단 직후 채팅에 표시하고 새로고침 후에는 조사 이력 상세에서 다시 봅니다. 저장 보고서의 Markdown에는 5개 영역·검증 상태·샘플 안내·비교가 함께 들어가며 재조사나 LLM 호출은 없습니다.
 
-[comparison.py](</Users/hyeonmin/workspace/AI mini-project/agent/comparison.py>)가 계산, session_store.py가 이전 관측 선택, report.py가 Markdown 변환을 담당합니다. UI의 다운로드 링크와 server.py API, web_demo_server.py의 바이트·헤더 중계를 연결했습니다. 시계열 추세·차트·장애 재발·복구 완료 판정은 추가하지 않았습니다. [실제 검증·한계](PHASE6_RESULT.md).
+[comparison.py](../agent/comparison.py)가 계산, session_store.py가 이전 관측 선택, report.py가 Markdown 변환을 담당합니다. UI의 다운로드 링크와 server.py API, web_demo_server.py의 바이트·헤더 중계를 연결했습니다. 시계열 추세·차트·장애 재발·복구 완료 판정은 추가하지 않았습니다. [실제 검증·한계](PHASE6_RESULT.md).
 
 
 ## 최종 이해·발표에 사용할 자료
