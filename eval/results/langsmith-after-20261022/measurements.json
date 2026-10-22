@@ -1,0 +1,743 @@
+{
+  "project": "capstone-all-total-openai",
+  "queried": "2026-10-22 (read-only LangSmith API 조회, 모델 호출·재측정 없음)",
+  "note": "개선 후 코드의 실제 chat_request 루트. 측정용 래퍼 없음. 토큰은 LangSmith 기본 토큰 필드가 아니라 모델 어댑터가 span output에 기록한 tokens 값이며 LangSmith 기본 token/cost 필드는 0.",
+  "series_definition": {
+    "A": "11:27 같은 대화(thread …5cc202): 단일→후속→복수",
+    "B": "11:33~11:34 같은 대화(thread …faa656): 단일→후속→복수",
+    "C": "11:34:44 새 대화 복수",
+    "D": "11:35~11:36 같은 대화(thread …ba331d): 단일→후속 2회",
+    "E": "11:44 새 대화 복수(질문 문구 다름)"
+  },
+  "ppt_slide16_mapping": {
+    "note": "이전 초안 수치와 실제 run의 대응. 발표에는 사용하지 않는다.",
+    "2.95s 단일": "D 11:35:14 (2.946s)",
+    "3.05s 후속": "A 11:27:38 (3.047s)",
+    "6.01s 복수": "B 11:34:11 (6.013s)",
+    "caveat": "세 수치가 서로 다른 대화 3개에서 나왔다. 같은 대화의 후속은 B 3.392s, D 4.860s·3.932s. 같은 대화 세트 A는 3.476/3.047/6.058초, B는 3.261/3.392/6.013초."
+  },
+  "runs": [
+    {
+      "series": "A",
+      "question": "payments-service가 느려요",
+      "thread_id": "t-web-bdde8816-d7d3-4e20-a857-e0a41e5cc202",
+      "trace_id": "01a1616f-4ed7-731d-ba9b-c178bb7dea79",
+      "start_kst": "2026-10-22T11:27:27.065570+09:00",
+      "end_kst": "2026-10-22T11:27:30.541211+09:00",
+      "langsmith_seconds": 3.476,
+      "status": "success",
+      "span_count": 43,
+      "root_outputs": {
+        "processing_status": "completed",
+        "run_id": "6f05e043-266a-44c9-901c-58a492929594",
+        "validation_status": "passed"
+      },
+      "llm_spans": [
+        {
+          "name": "openai_fast.plan",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 328,
+          "sec": 1.173
+        },
+        {
+          "name": "openai_quality.write",
+          "model": "openai:gpt-4o",
+          "tokens": 1788,
+          "sec": 2.134
+        }
+      ],
+      "adapter_reported_tokens_total": 2116,
+      "langsmith_native_token_fields_total": 0,
+      "mcp_call_tool": [
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "payments-service",
+          "error": null,
+          "seconds": 0.015
+        }
+      ],
+      "mcp_read_resource": [
+        "runbook://incident-response/cpu-spike"
+      ],
+      "observations": [
+        {
+          "system_name": "payments-service",
+          "status": "degraded",
+          "cpu_percent": 94.3,
+          "memory_percent": 56.6,
+          "alerts": [
+            "CPU 91% (threshold 80%)",
+            "payments-service-3 instance responding slow"
+          ]
+        }
+      ],
+      "error_spans": []
+    },
+    {
+      "series": "A",
+      "question": "그 서비스 다시 확인해줘",
+      "thread_id": "t-web-bdde8816-d7d3-4e20-a857-e0a41e5cc202",
+      "trace_id": "01a1616f-79f6-7216-81c0-26f49b8e738b",
+      "start_kst": "2026-10-22T11:27:38.102783+09:00",
+      "end_kst": "2026-10-22T11:27:41.149553+09:00",
+      "langsmith_seconds": 3.047,
+      "status": "success",
+      "span_count": 43,
+      "root_outputs": {
+        "processing_status": "completed",
+        "run_id": "10411450-02a7-4661-b00b-c41ff8e5bfba",
+        "validation_status": "passed"
+      },
+      "llm_spans": [
+        {
+          "name": "openai_fast.plan",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 340,
+          "sec": 1.104
+        },
+        {
+          "name": "openai_quality.write",
+          "model": "openai:gpt-4o",
+          "tokens": 1795,
+          "sec": 1.884
+        }
+      ],
+      "adapter_reported_tokens_total": 2135,
+      "langsmith_native_token_fields_total": 0,
+      "mcp_call_tool": [
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "payments-service",
+          "error": null,
+          "seconds": 0.005
+        }
+      ],
+      "mcp_read_resource": [
+        "runbook://incident-response/cpu-spike"
+      ],
+      "observations": [
+        {
+          "system_name": "payments-service",
+          "status": "degraded",
+          "cpu_percent": 89.2,
+          "memory_percent": 54.1,
+          "alerts": [
+            "CPU 91% (threshold 80%)",
+            "payments-service-3 instance responding slow"
+          ]
+        }
+      ],
+      "error_spans": []
+    },
+    {
+      "series": "A",
+      "question": "payments-service와 cache-service를 확인해줘",
+      "thread_id": "t-web-bdde8816-d7d3-4e20-a857-e0a41e5cc202",
+      "trace_id": "01a1616f-99ed-70cb-ac82-a67b319e7496",
+      "start_kst": "2026-10-22T11:27:46.285664+09:00",
+      "end_kst": "2026-10-22T11:27:52.343293+09:00",
+      "langsmith_seconds": 6.058,
+      "status": "success",
+      "span_count": 51,
+      "root_outputs": {
+        "processing_status": "completed",
+        "run_id": "1de3f8a4-0b4c-4a1c-8e8e-f1a186d12e96",
+        "validation_status": "passed"
+      },
+      "llm_spans": [
+        {
+          "name": "openai_fast.plan",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 356,
+          "sec": 1.258
+        },
+        {
+          "name": "openai_fast.analyze",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 290,
+          "sec": 1.446
+        },
+        {
+          "name": "openai_quality.write",
+          "model": "openai:gpt-4o",
+          "tokens": 2727,
+          "sec": 3.275
+        }
+      ],
+      "adapter_reported_tokens_total": 3373,
+      "langsmith_native_token_fields_total": 0,
+      "mcp_call_tool": [
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "cache-service",
+          "error": null,
+          "seconds": 0.009
+        },
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "payments-service",
+          "error": null,
+          "seconds": 0.012
+        }
+      ],
+      "mcp_read_resource": [
+        "runbook://incident-response/cpu-spike",
+        "runbook://incident-response/memory-leak"
+      ],
+      "observations": [
+        {
+          "system_name": "payments-service",
+          "status": "degraded",
+          "cpu_percent": 89.2,
+          "memory_percent": 54.1,
+          "alerts": [
+            "CPU 91% (threshold 80%)",
+            "payments-service-3 instance responding slow"
+          ]
+        },
+        {
+          "system_name": "cache-service",
+          "status": "degraded",
+          "cpu_percent": 44.6,
+          "memory_percent": 90.3,
+          "alerts": [
+            "memory usage climbing steadily over 6h",
+            "heap near limit"
+          ]
+        }
+      ],
+      "error_spans": []
+    },
+    {
+      "series": "B",
+      "question": "payments-service가 느려요",
+      "thread_id": "t-web-3338f956-2d8c-465a-88a8-6f6196faa656",
+      "trace_id": "01a16174-b3eb-7364-abc6-de46d57bc313",
+      "start_kst": "2026-10-22T11:33:20.620112+09:00",
+      "end_kst": "2026-10-22T11:33:23.880871+09:00",
+      "langsmith_seconds": 3.261,
+      "status": "success",
+      "span_count": 43,
+      "root_outputs": {
+        "processing_status": "completed",
+        "run_id": "ff5c0479-8e76-4aa7-b9c5-a66fa3a8bff3",
+        "validation_status": "passed"
+      },
+      "llm_spans": [
+        {
+          "name": "openai_fast.plan",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 328,
+          "sec": 1.229
+        },
+        {
+          "name": "openai_quality.write",
+          "model": "openai:gpt-4o",
+          "tokens": 1791,
+          "sec": 1.922
+        }
+      ],
+      "adapter_reported_tokens_total": 2119,
+      "langsmith_native_token_fields_total": 0,
+      "mcp_call_tool": [
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "payments-service",
+          "error": null,
+          "seconds": 0.01
+        }
+      ],
+      "mcp_read_resource": [
+        "runbook://incident-response/cpu-spike"
+      ],
+      "observations": [
+        {
+          "system_name": "payments-service",
+          "status": "degraded",
+          "cpu_percent": 90.5,
+          "memory_percent": 54.8,
+          "alerts": [
+            "CPU 91% (threshold 80%)",
+            "payments-service-3 instance responding slow"
+          ]
+        }
+      ],
+      "error_spans": []
+    },
+    {
+      "series": "B",
+      "question": "그 서비스 다시 확인해줘",
+      "thread_id": "t-web-3338f956-2d8c-465a-88a8-6f6196faa656",
+      "trace_id": "01a16174-f021-7306-83f1-69e54e692576",
+      "start_kst": "2026-10-22T11:33:36.033948+09:00",
+      "end_kst": "2026-10-22T11:33:39.425575+09:00",
+      "langsmith_seconds": 3.392,
+      "status": "success",
+      "span_count": 43,
+      "root_outputs": {
+        "processing_status": "completed",
+        "run_id": "49e5afef-a007-454e-b6ef-dfaa1c609755",
+        "validation_status": "passed"
+      },
+      "llm_spans": [
+        {
+          "name": "openai_fast.plan",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 340,
+          "sec": 1.105
+        },
+        {
+          "name": "openai_quality.write",
+          "model": "openai:gpt-4o",
+          "tokens": 1795,
+          "sec": 2.209
+        }
+      ],
+      "adapter_reported_tokens_total": 2135,
+      "langsmith_native_token_fields_total": 0,
+      "mcp_call_tool": [
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "payments-service",
+          "error": null,
+          "seconds": 0.007
+        }
+      ],
+      "mcp_read_resource": [
+        "runbook://incident-response/cpu-spike"
+      ],
+      "observations": [
+        {
+          "system_name": "payments-service",
+          "status": "degraded",
+          "cpu_percent": 98.4,
+          "memory_percent": 58.7,
+          "alerts": [
+            "CPU 91% (threshold 80%)",
+            "payments-service-3 instance responding slow"
+          ]
+        }
+      ],
+      "error_spans": []
+    },
+    {
+      "series": "B",
+      "question": "payments-service와 cache-service를 확인해줘",
+      "thread_id": "t-web-3338f956-2d8c-465a-88a8-6f6196faa656",
+      "trace_id": "01a16175-79f0-7750-9d32-ce9fd10ea16d",
+      "start_kst": "2026-10-22T11:34:11.312688+09:00",
+      "end_kst": "2026-10-22T11:34:17.326007+09:00",
+      "langsmith_seconds": 6.013,
+      "status": "success",
+      "span_count": 51,
+      "root_outputs": {
+        "processing_status": "completed",
+        "run_id": "12e2eaf0-282f-4857-91b5-7132935f48ff",
+        "validation_status": "passed"
+      },
+      "llm_spans": [
+        {
+          "name": "openai_fast.plan",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 356,
+          "sec": 1.551
+        },
+        {
+          "name": "openai_fast.analyze",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 298,
+          "sec": 1.507
+        },
+        {
+          "name": "openai_quality.write",
+          "model": "openai:gpt-4o",
+          "tokens": 2740,
+          "sec": 2.831
+        }
+      ],
+      "adapter_reported_tokens_total": 3394,
+      "langsmith_native_token_fields_total": 0,
+      "mcp_call_tool": [
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "payments-service",
+          "error": null,
+          "seconds": 0.016
+        },
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "cache-service",
+          "error": null,
+          "seconds": 0.02
+        }
+      ],
+      "mcp_read_resource": [
+        "runbook://incident-response/memory-leak",
+        "runbook://incident-response/cpu-spike"
+      ],
+      "observations": [
+        {
+          "system_name": "cache-service",
+          "status": "degraded",
+          "cpu_percent": 47.4,
+          "memory_percent": 91.7,
+          "alerts": [
+            "memory usage climbing steadily over 6h",
+            "heap near limit"
+          ]
+        },
+        {
+          "system_name": "payments-service",
+          "status": "degraded",
+          "cpu_percent": 96.4,
+          "memory_percent": 57.7,
+          "alerts": [
+            "CPU 91% (threshold 80%)",
+            "payments-service-3 instance responding slow"
+          ]
+        }
+      ],
+      "error_spans": []
+    },
+    {
+      "series": "C",
+      "question": "payments-service와 cache-service를 확인해줘",
+      "thread_id": "t-web-fcb922b3-4a95-42b5-9d13-6d7360474437",
+      "trace_id": "01a16175-fa53-7616-85bf-9b13948a94e6",
+      "start_kst": "2026-10-22T11:34:44.180546+09:00",
+      "end_kst": "2026-10-22T11:34:50.961123+09:00",
+      "langsmith_seconds": 6.781,
+      "status": "success",
+      "span_count": 51,
+      "root_outputs": {
+        "processing_status": "completed",
+        "run_id": "093e1416-bd17-46ef-9615-ecba9420bb5b",
+        "validation_status": "passed"
+      },
+      "llm_spans": [
+        {
+          "name": "openai_fast.plan",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 356,
+          "sec": 1.505
+        },
+        {
+          "name": "openai_fast.analyze",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 290,
+          "sec": 1.856
+        },
+        {
+          "name": "openai_quality.write",
+          "model": "openai:gpt-4o",
+          "tokens": 2728,
+          "sec": 3.315
+        }
+      ],
+      "adapter_reported_tokens_total": 3374,
+      "langsmith_native_token_fields_total": 0,
+      "mcp_call_tool": [
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "payments-service",
+          "error": null,
+          "seconds": 0.008
+        },
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "cache-service",
+          "error": null,
+          "seconds": 0.011
+        }
+      ],
+      "mcp_read_resource": [
+        "runbook://incident-response/memory-leak",
+        "runbook://incident-response/cpu-spike"
+      ],
+      "observations": [
+        {
+          "system_name": "cache-service",
+          "status": "degraded",
+          "cpu_percent": 46.9,
+          "memory_percent": 91.5,
+          "alerts": [
+            "memory usage climbing steadily over 6h",
+            "heap near limit"
+          ]
+        },
+        {
+          "system_name": "payments-service",
+          "status": "degraded",
+          "cpu_percent": 89.9,
+          "memory_percent": 54.4,
+          "alerts": [
+            "CPU 91% (threshold 80%)",
+            "payments-service-3 instance responding slow"
+          ]
+        }
+      ],
+      "error_spans": []
+    },
+    {
+      "series": "D",
+      "question": "payments-service가 느려요",
+      "thread_id": "t-web-afc98806-9bcf-4037-8e10-4b49b4ba331d",
+      "trace_id": "01a16176-7121-74e2-aa5e-236b94eac2fb",
+      "start_kst": "2026-10-22T11:35:14.593742+09:00",
+      "end_kst": "2026-10-22T11:35:17.539692+09:00",
+      "langsmith_seconds": 2.946,
+      "status": "success",
+      "span_count": 43,
+      "root_outputs": {
+        "processing_status": "completed",
+        "run_id": "b784a7fb-3d95-45d2-aad1-6d83afcca911",
+        "validation_status": "passed"
+      },
+      "llm_spans": [
+        {
+          "name": "openai_fast.plan",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 328,
+          "sec": 1.019
+        },
+        {
+          "name": "openai_quality.write",
+          "model": "openai:gpt-4o",
+          "tokens": 1788,
+          "sec": 1.854
+        }
+      ],
+      "adapter_reported_tokens_total": 2116,
+      "langsmith_native_token_fields_total": 0,
+      "mcp_call_tool": [
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "payments-service",
+          "error": null,
+          "seconds": 0.008
+        }
+      ],
+      "mcp_read_resource": [
+        "runbook://incident-response/cpu-spike"
+      ],
+      "observations": [
+        {
+          "system_name": "payments-service",
+          "status": "degraded",
+          "cpu_percent": 96.8,
+          "memory_percent": 57.9,
+          "alerts": [
+            "CPU 91% (threshold 80%)",
+            "payments-service-3 instance responding slow"
+          ]
+        }
+      ],
+      "error_spans": []
+    },
+    {
+      "series": "D",
+      "question": "그 서비스 다시 확인해줘",
+      "thread_id": "t-web-afc98806-9bcf-4037-8e10-4b49b4ba331d",
+      "trace_id": "01a16176-9807-715c-a731-2a5c9fb1e048",
+      "start_kst": "2026-10-22T11:35:24.551248+09:00",
+      "end_kst": "2026-10-22T11:35:29.410880+09:00",
+      "langsmith_seconds": 4.86,
+      "status": "success",
+      "span_count": 43,
+      "root_outputs": {
+        "processing_status": "completed",
+        "run_id": "36d4285d-285a-4b24-973d-41cb8c53a189",
+        "validation_status": "passed"
+      },
+      "llm_spans": [
+        {
+          "name": "openai_fast.plan",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 340,
+          "sec": 1.138
+        },
+        {
+          "name": "openai_quality.write",
+          "model": "openai:gpt-4o",
+          "tokens": 1795,
+          "sec": 3.649
+        }
+      ],
+      "adapter_reported_tokens_total": 2135,
+      "langsmith_native_token_fields_total": 0,
+      "mcp_call_tool": [
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "payments-service",
+          "error": null,
+          "seconds": 0.006
+        }
+      ],
+      "mcp_read_resource": [
+        "runbook://incident-response/cpu-spike"
+      ],
+      "observations": [
+        {
+          "system_name": "payments-service",
+          "status": "degraded",
+          "cpu_percent": 92.6,
+          "memory_percent": 55.8,
+          "alerts": [
+            "CPU 91% (threshold 80%)",
+            "payments-service-3 instance responding slow"
+          ]
+        }
+      ],
+      "error_spans": []
+    },
+    {
+      "series": "D",
+      "question": "그 서비스 다시 확인해줘",
+      "thread_id": "t-web-afc98806-9bcf-4037-8e10-4b49b4ba331d",
+      "trace_id": "01a16177-35c9-73d4-9f01-cecbe62dff7e",
+      "start_kst": "2026-10-22T11:36:04.938003+09:00",
+      "end_kst": "2026-10-22T11:36:08.869557+09:00",
+      "langsmith_seconds": 3.932,
+      "status": "success",
+      "span_count": 43,
+      "root_outputs": {
+        "processing_status": "completed",
+        "run_id": "fbc7098d-119e-4097-80f3-1136719f7fcc",
+        "validation_status": "passed"
+      },
+      "llm_spans": [
+        {
+          "name": "openai_fast.plan",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 340,
+          "sec": 1.275
+        },
+        {
+          "name": "openai_quality.write",
+          "model": "openai:gpt-4o",
+          "tokens": 1795,
+          "sec": 2.564
+        }
+      ],
+      "adapter_reported_tokens_total": 2135,
+      "langsmith_native_token_fields_total": 0,
+      "mcp_call_tool": [
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "payments-service",
+          "error": null,
+          "seconds": 0.009
+        }
+      ],
+      "mcp_read_resource": [
+        "runbook://incident-response/cpu-spike"
+      ],
+      "observations": [
+        {
+          "system_name": "payments-service",
+          "status": "degraded",
+          "cpu_percent": 90.9,
+          "memory_percent": 54.9,
+          "alerts": [
+            "CPU 91% (threshold 80%)",
+            "payments-service-3 instance responding slow"
+          ]
+        }
+      ],
+      "error_spans": []
+    },
+    {
+      "series": "E",
+      "question": "payments-service와 cache-service 장애를 함께 확인해줘",
+      "thread_id": "t-web-eb8476e5-afd9-48c9-9067-a81dfcfb8051",
+      "trace_id": "01a1617f-0323-710d-b592-8ec07fb34642",
+      "start_kst": "2026-10-22T11:44:36.260017+09:00",
+      "end_kst": "2026-10-22T11:44:42.108133+09:00",
+      "langsmith_seconds": 5.848,
+      "status": "success",
+      "span_count": 51,
+      "root_outputs": {
+        "processing_status": "completed",
+        "run_id": "01ca09b5-f2a4-406b-856c-fdeaca8a16bd",
+        "validation_status": "passed"
+      },
+      "llm_spans": [
+        {
+          "name": "openai_fast.plan",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 360,
+          "sec": 1.339
+        },
+        {
+          "name": "openai_fast.analyze",
+          "model": "openai:gpt-4o-mini",
+          "tokens": 283,
+          "sec": 1.936
+        },
+        {
+          "name": "openai_quality.write",
+          "model": "openai:gpt-4o",
+          "tokens": 2718,
+          "sec": 2.479
+        }
+      ],
+      "adapter_reported_tokens_total": 3361,
+      "langsmith_native_token_fields_total": 0,
+      "mcp_call_tool": [
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "payments-service",
+          "error": null,
+          "seconds": 0.008
+        },
+        {
+          "tool": "get_monitoring_status",
+          "system_name": "cache-service",
+          "error": null,
+          "seconds": 0.012
+        }
+      ],
+      "mcp_read_resource": [
+        "runbook://incident-response/memory-leak",
+        "runbook://incident-response/cpu-spike"
+      ],
+      "observations": [
+        {
+          "system_name": "cache-service",
+          "status": "degraded",
+          "cpu_percent": 45.9,
+          "memory_percent": 91.0,
+          "alerts": [
+            "memory usage climbing steadily over 6h",
+            "heap near limit"
+          ]
+        },
+        {
+          "system_name": "payments-service",
+          "status": "degraded",
+          "cpu_percent": 89.0,
+          "memory_percent": 54.0,
+          "alerts": [
+            "CPU 91% (threshold 80%)",
+            "payments-service-3 instance responding slow"
+          ]
+        }
+      ],
+      "error_spans": []
+    }
+  ],
+  "presentation_set": {
+    "set": "B",
+    "runs": [
+      "11:33:20 단일 3.261s",
+      "11:33:36 후속 3.392s",
+      "11:34:11 복수 6.013s"
+    ],
+    "slides": [
+      16,
+      17,
+      20
+    ],
+    "discarded": "이전 초안의 2.95/3.05/6.01초는 서로 다른 대화에서 고른 값이라 사용하지 않는다"
+  }
+}
